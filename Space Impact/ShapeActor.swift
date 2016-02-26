@@ -53,7 +53,6 @@ public class ShapeActor: IActor {
             let location = CGPoint(x:300, y:50);
             self._shape = SKShapeNode(circleOfRadius: CGFloat(width));
             self._position = location;
-            //    self.init(sprite: SKSpriteNode(imageNamed:"Spaceship"),position: location,scale:0.1);
         }
         
         self._width = self._shape.frame.size.width;
