@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 protocol IActor : class{
-   // var Sprite:SKSpriteNode{get}
+
     var Scale:CGFloat { get set}
     var Position:CGPoint{get set}
     var Width:CGFloat{get}

@@ -9,42 +9,88 @@
 import UIKit
 import SpriteKit
 
-class Spaceship: SpriteActor{
+class Spaceship: SpaceshipActor{
     
-    private var _health:Int;
-    private var _speed:Int;
-    private var _damage:Int;
-    private var _type:ActorType;
+    private var _initialPosition:CGPoint;
+    private var _gameScene:GameScene;
+    private var _missles:[Missle];
+    private var _moveDirection:MoveDirection;
     
-    var Health:Int{get{return _health} set(newVal){_health = newVal}};
-    var Speed:Int{get{return _speed} set(newVal){_speed = newVal}};
-    var Damage:Int{get{return _damage} set(newVal){_damage = newVal}};
-    var Type:ActorType{get{return _type} set(newVal){_type = newVal}};
+    private var _frameCount:CGFloat;
     
-    init(type:ActorType)
+    var Missles:[Missle]{get{return self._missles}};
+    var Direction:MoveDirection{get{return self._moveDirection} set(val){self._moveDirection = val}}
+    
+    init(gs:GameScene, position:CGPoint)
     {
-        switch(type)
-        {
-            case ActorType.MySpaceship:
-                _health = 1;
-                _speed = 8;
-                _damage = 1;
-                _type = type;
-            default:
-                _health = 1;
-                _speed = 8;
-                _damage = 1;
-                _type = type;
+        self._gameScene = gs;
+        self._initialPosition = position;
+        self._missles = [Missle]();
+        self._frameCount = 0;
+        self._moveDirection = MoveDirection.None;
+        super.init(type: ActorType.MySpaceship, position:position);
+
+        self._gameScene.addActor(self);
+       
+        
+    }
+    
+    func callForWait(){
+        
+        
+    }
+    
+    func stepsAfterDelay(){
+        //your code after delay takes place here...
+    }
+    
+    public func AddMissle() {
+        //for(var i = 0; i < 20; i++)
+     //   {
+        
+        self._missles.append(Missle(gs:self._gameScene, position:CGPoint(x:self.Position.x, y:self.Position.y + (self.ActualHeight / 2))));
+      //  }
+    }
+    
+    override func Update(){
+        self.myMissleUpdate();
+        self.spaceshipMovementUpdate();
+        
+    }
+    
+    private func myMissleUpdate(){
+        for missle in self._missles{
+            
+            missle.Update();
+            if missle.Sprite.position.y > CGFloat(GeneralGameSettings.SCREEN_HEIGHT)
+            {
+                self._missles.removeFirst();
+            }
+            
         }
-        
-        super.init(type: type,scale: 0.1);
-        
-        
     }
     
-    private func InitializeSpaceship(type:ActorType){
-        
+    private func spaceshipMovementUpdate(){
+        switch self._moveDirection{
+        case .Left:
+            if(self.Sprite.position.x  > (self.Width / 2))
+            {
+                self.Sprite.position.x -= self.Speed;
+            }
+                break;
+        case .None:
+            break;
+        case .Right:
+            if(self.Sprite.position.x  < (self._gameScene.frame.width - (self.Width / 2)))
+            {
+                self.Sprite.position.x  += self.Speed;
+            }
+        default:
+            break;
+        }
     }
-    
-    
+}
+
+enum MoveDirection:Int{
+    case Left = -1, None, Right
 }

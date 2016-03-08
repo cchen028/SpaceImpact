@@ -9,14 +9,25 @@
 import UIKit
 
 public class Background:IStage {
+    private var _name:String;
+    
     private var _stars:[Star];
     private var _gameScene:GameScene;
+    private var _isActive:Bool;
+    private var _type:BackgroundStarAnimationType;
+    
+    
+    var IsActive:Bool{get{return self._isActive} set(val){self._isActive = val}}
+    var Name:String{get{return self._name}}
     
     var Stars:[Star]{get{return self._stars} set(val){self._stars = val}}
     init(gs:GameScene)
     {
+        self._type = BackgroundStarAnimationType.Default;
+        self._name = "Background";
         self._gameScene = gs;
         self._stars = [Star]();
+        self._isActive = false;
         InitializeStars();
         
     }
@@ -25,6 +36,10 @@ public class Background:IStage {
         GenerateStars(StarType.Slow, num:10);
         GenerateStars(StarType.Medium, num:10);
         GenerateStars(StarType.Fast, num:10);
+        
+    }
+    
+    func InitializePlanets(){
         
     }
     
@@ -38,10 +53,42 @@ public class Background:IStage {
         }
     }
     
-     public func Update(){
-        for star in self._stars{
-            star.Update();
+    func Notify(targetStage:String){
+        if(targetStage == "Main")
+        {
+            self._type = BackgroundStarAnimationType.MainMenu;
+        }
+        else
+        {
+           self._type = BackgroundStarAnimationType.Default;
         }
     }
     
+    public func Update(){
+        for star in self._stars{
+            star.Update();
+            if(self._type == BackgroundStarAnimationType.MainMenu)
+            {
+                star.MainMenuSpecialEffect();
+            }
+            else
+            {
+                star.DefaultSpecialEffect();
+            }
+        }
+    }
+    
+    func Active(){
+
+    }
+    
+    func DeActive() {
+
+    }
+    
+}
+
+
+enum BackgroundStarAnimationType{
+    case Default, MainMenu
 }

@@ -28,7 +28,7 @@ public class ShapeActor: IActor {
     var Position:CGPoint{get{return self._position} set(val){self._position = val; self._shape.position = val}}
     var Width:CGFloat{get{return self._width}}
     var Height:CGFloat{get{return self._height}}
-    var Opacity:CGFloat{get{return self._opacity}}
+    var Opacity:CGFloat{get{return self._opacity} set(val){self._opacity = val; self._shape.alpha = val}}
     
     var ActualWidth:CGFloat{get{return self._width}}
     var ActualHeight:CGFloat{get{return self._height}}
@@ -53,6 +53,7 @@ public class ShapeActor: IActor {
             let location = CGPoint(x:300, y:50);
             self._shape = SKShapeNode(circleOfRadius: CGFloat(width));
             self._position = location;
+            //    self.init(sprite: SKSpriteNode(imageNamed:"Spaceship"),position: location,scale:0.1);
         }
         
         self._width = self._shape.frame.size.width;

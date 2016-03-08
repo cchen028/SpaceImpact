@@ -9,5 +9,10 @@
 import UIKit
 
 protocol IStage {
-
+    var Name:String{get};
+    var IsActive:Bool{get set};
+    
+    func Notify(targetStage:String)
+    func Active();
+    func DeActive();
 }

@@ -9,7 +9,8 @@
 import UIKit
 
 protocol ITouchable {
-    var SingleTap:Bool{get}
+    //func HandlesTouch(touches: Set<UITouch>, withEvent event: UIEvent?)
+    func IsTouched(touch: UITouch, withEvent event: UIEvent?)->Bool
 }
 
 

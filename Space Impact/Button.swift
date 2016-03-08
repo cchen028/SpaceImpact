@@ -9,28 +9,65 @@
 import UIKit
 import SpriteKit
 
-class Button: ShapeActor {
+class Button: SpriteActor,ITouchable{
     
     private var _displayText:String;
     private var _gameScene:GameScene;
-    private var _labelNode:SKLabelNode;
+    private var _labelNode:Label;
+    private var _alpha:CGFloat;
     
     var DisplayText:String{get{return self._displayText}}
-    var Label:SKLabelNode{get{return self._labelNode}}
+    var Alpha:CGFloat{get{return self._alpha}}
+    var LabelNode:Label{get{return self._labelNode}}
+    //var Label:Label{get{return self._labelNode}}
     
-    init(gs:GameScene, displayText: String, position: CGPoint){
+    init(gs:GameScene, displayText: String, position: CGPoint, opacity: CGFloat, fontName:String?, fontSize:CGFloat, imageName:String){
         self._displayText = displayText;
         self._gameScene = gs;
-        self._labelNode = SKLabelNode(fontNamed:"Chalkduster");
-        self._labelNode.text = self._displayText;
-        self._labelNode.fontSize = 20;
-        self._labelNode.position = position;
+        self._alpha = opacity;
+       
         
-        super.init(type: ShapeActorType.Rectangle, width: 100.0, height: 40, position: position, opacity: 1, glowWidth: 1, strokeColor: SKColor.blueColor(), fillColor: SKColor(white:1, alpha: 0.1));
+        self._labelNode = Label(gs:self._gameScene, displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontName, opacity: self._alpha);
+
+        super.init(sprite: SKSpriteNode(imageNamed:imageName), position: CGPoint(x:position.x,y:position.y), scale:1,opacity:self._alpha);
         
+        self.Sprite.name = displayText.stringByReplacingOccurrencesOfString(" ", withString: "_");
         
-        gs.addChild(self._labelNode);
-        gs.addChild(self.Shape);
+        //adjusting position
+        self._labelNode.Position = CGPoint(x:_labelNode.Position.x, y:_labelNode.Position.y - ( (self.Height-_labelNode.LabelNode.frame.height)/4));
+
+        
+
+        
+   // if imageName != nil
+   // {
+       gs.addChild(self.Sprite);
+       // }
+    }
+    
+    func IsTouched(touch: UITouch, withEvent event: UIEvent?)->Bool
+    {
+
+        let location = touch.locationInNode(self._gameScene);
+        let node = self._gameScene.nodeAtPoint(location) as SKNode;
+     //   if let temp = node as? SKSpriteNode
+        if(node.position==self.Sprite.position)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+            //for node in nodes{
+           //     if node .isMemberOfClass(Button){
+                    
+                
+           //     }
+         //   }
+            
+            
+        
     }
     
 }
