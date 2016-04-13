@@ -9,91 +9,83 @@
 import UIKit
 import SpriteKit
 
- class SpriteActor: IActor {
+ class SpriteActor: SKSpriteNode {
     
-    private var _sprite:SKSpriteNode;
-    private var _scale:CGFloat;
-    private var _position:CGPoint;
-    private var _width:CGFloat;
-    private var _height:CGFloat;
-    private var _opacity:CGFloat;
     private var _spriteAction: SKAction!;
     private var _spriteTextures: [SKTexture];
+    private var _isAnimation:Bool;
+    private var _gameScene:GameScene?;
+    private var _type:ActorType;
     
-    var Sprite:SKSpriteNode{get{return _sprite}}
-    
-    var Scale:CGFloat { get{return self._scale} set{self._scale = Scale; self._sprite.xScale = Scale;self._sprite.yScale = Scale}}
-    var Position:CGPoint{get{return self._sprite.position} set{self._position = Position; self._sprite.position = Position}}
-    var Width:CGFloat{get{return self._width}}
-    var Height:CGFloat{get{return self._height}}
-    var ActualWidth:CGFloat{get{return self._width * self._scale}}
-    var ActualHeight:CGFloat{get{return (self._height) * self._scale}}
-    var Opacity:CGFloat{get{return self._opacity} set(val){self._opacity = val; self._sprite.alpha = val}}
+    var Width:CGFloat{get{return self.frame.width}}
+    var Height:CGFloat{get{return self.frame.height}}
     var SpriteAction:SKAction{get{return self._spriteAction} set(val){self._spriteAction = val}}
+    var Type:ActorType{get{return _type} set(newVal){_type = newVal}};
     
-    init(imageName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, atlasName:String = "", repeatCount:Int = -1)
+    init(gs:GameScene, imageName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat,type:ActorType)
     {
-        self._sprite = SKSpriteNode(imageNamed:imageName);
-        self._position = position;
-        self._scale = scale;
-        self._width = self._sprite.frame.size.width;
-        self._height = self._sprite.frame.size.height;
-        
-        self._sprite.position = self._position;
-        self._sprite.xScale = self._scale;
-        self._sprite.yScale = self._scale;
-        self._sprite.alpha = opacity;
-        self._opacity = opacity;
+        self._gameScene = gs;
+        self._isAnimation = false;
         self._spriteTextures = [SKTexture]();
+        self._type = type;
         
-        if(atlasName != ""){
-            
-            let atlas = SKTextureAtlas(named:atlasName);
-            
-            for (var i = 1; i <= 30; i++){
-                self._spriteTextures.append(atlas.textureNamed(self.getFileName(atlasName, orderNumber: i)));
-            }
-            
-            let anim = SKAction.animateWithTextures(
-                self._spriteTextures, timePerFrame: 0.05);
-            
-            if(repeatCount == -1)
-            {
-                self._spriteAction = SKAction.repeatActionForever(anim);
-            }
-            else
-            {
-                self._spriteAction = SKAction.repeatAction(anim, count: repeatCount);
-            }
-            
-            self._sprite.runAction(self._spriteAction);
+        let texture = gs.AssetService?.SKTextures[imageName];
+        super.init(texture: texture, color: UIColor.clearColor(), size: texture!.size());
+        
+        self.position = position;
+        self.xScale = scale;
+        self.yScale = scale;
+        self.alpha = opacity;
 
+    }
+    
+    init(gs:GameScene, atlasName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, frameCount:Int, type:ActorType , repeatCount:Int = -1, startAnimating:Bool = false)
+    {
+        self._gameScene = gs;
+        self._isAnimation = true;
+        self._spriteTextures = [SKTexture]();
+        self._type = type;
+        
+        let texture = gs.AssetService?.SKTextures[atlasName];
+        
+        super.init(texture: texture, color: UIColor.clearColor(), size: texture!.size());
+        
+        self.position = position;
+        self.xScale = scale;
+        self.yScale = scale;
+        self.alpha = opacity;
+        
+        self._spriteTextures = (gs.AssetService?.SKTexturesList[atlasName])!;
+        
+        let anim = SKAction.animateWithTextures(self._spriteTextures, timePerFrame: 0.05);
+        
+        if(repeatCount == -1)
+        {
+            self._spriteAction = SKAction.repeatActionForever(anim);
         }
         else
         {
-            self._spriteAction = SKAction();
+            self._spriteAction = SKAction.repeatAction(anim, count: repeatCount);
         }
-
-    }
-    
-    convenience init(sprite:SKSpriteNode, position:CGPoint){
-        self.init(sprite:sprite,position:position,scale:0.1, opacity:0);
-    }
-    
-    init(sprite:SKSpriteNode, position:CGPoint, scale:CGFloat, opacity:CGFloat){
-        self._sprite = sprite;
-        self._position = position;
-        self._scale = scale;
-        self._width = sprite.frame.size.width;
-        self._height = sprite.frame.size.height;
-        self._opacity = opacity;
         
-        self._sprite.position = position;
-        self._sprite.xScale = scale;
-        self._sprite.yScale = scale;
-        self._sprite.alpha = self._opacity;
+        if(startAnimating){
+            self.runAction(self._spriteAction);
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        self._gameScene = nil;
+        self._isAnimation = false;
         self._spriteTextures = [SKTexture]();
+        self._type = ActorType.None;
+        super.init(coder: aDecoder);
+    }
     
+    func RunAnimation(){
+        if(self._isAnimation)
+        {
+            self.runAction(self._spriteAction);
+        }
     }
     
     private func getFileName(name:String, orderNumber:Int) -> String{
@@ -113,7 +105,4 @@ import SpriteKit
 }
 
 
-enum ActorType:Int{
-    case MySpaceship = 1, RollingAstroid_A, StraightRock, EnemySpaceship
-    
-}
+

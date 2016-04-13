@@ -19,12 +19,12 @@ class TransitionService {
     {
         for var stage in self._stages{
             if stage.IsActive{
-                stage.IsActive = false;
+                stage.SetActive(false);
             }
             
             if(stage.Name == targetStage.Name)
             {
-                stage.IsActive = true;
+                stage.SetActive(true);
             }
             
             if(stage.Name == "Background")

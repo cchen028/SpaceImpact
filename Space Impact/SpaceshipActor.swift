@@ -7,75 +7,90 @@
 //
 
 import UIKit
+import SpriteKit
 
-class SpaceshipActor: SpriteActor{
+class SpaceshipActor: NSObject, ISpaceship{
+    
+    var _isActive:Bool;
     
     private var _health:Int;
     private var _speed:CGFloat;
     private var _damage:Int;
-    private var _type:ActorType;
-    private var _explosion:SpriteActor;
-    private var _isActive:Bool;
+    var _explosion:SpriteActor;
     private var _isCollide:Bool;
+    private var _spaceship:SpriteActor;
+    private var _spaceshipMissleTimer: NSTimer!;
+    private var _gameScene:GameScene;
+    
+    var _missleTimer:MissleTimer;
+    var _missles:[Missle];
     
     var Health:Int{get{return _health} set(newVal){_health = newVal}};
     var Speed:CGFloat{get{return _speed} set(newVal){_speed = newVal}};
     var Damage:Int{get{return _damage} set(newVal){_damage = newVal}};
-    var Type:ActorType{get{return _type} set(newVal){_type = newVal}};
     var Explosion:SpriteActor{get{return _explosion} set(newVal){_explosion = newVal}};
-    var IsActive:Bool{get{return _isActive} set(newVal){_isActive = newVal;}};
     var IsCollide:Bool{get{return _isCollide} set(newVal){_isCollide = newVal;collideUpdate(_isActive)}};
+    var Spaceship:SpriteActor{get{return self._spaceship}};
+    var Missles:[Missle]{get{return self._missles}};
 
-    
-    init(type:ActorType, position:CGPoint)
+    init(gs:GameScene, imageName:String, explosionName: String, health:Int, speed:CGFloat, damage:Int , position:CGPoint,scale:CGFloat = 1,type:ActorType, isSpaceShipAnimation:Bool = false)
     {
-        switch(type)
+        self._gameScene = gs;
+        self._missleTimer = MissleTimer();
+        self._missles = [Missle]();
+        
+        _health = health;
+        _speed = speed;
+        _damage = damage;
+        _isActive = false;
+        _isCollide = false;
+        _explosion = SpriteActor(gs:gs, atlasName:explosionName, position: position, scale: 1, opacity: 0, frameCount: 1, type:type, repeatCount: 1, startAnimating: false);
+        
+        if(isSpaceShipAnimation)
         {
-        case ActorType.MySpaceship:
-            _health = 1;
-            _speed = GeneralGameSettings.MYSPACESHIP_SPEED;
-            _damage = 1;
-            _type = type;
-            _isActive = true;
-            _isCollide = false;
-            _explosion = SpriteActor(imageName: GeneralGameSettings.MYSPACESHIP_NAME, position: position, scale: 0.5, opacity: 0);
-            super.init(imageName: GeneralGameSettings.MYSPACESHIP_NAME, position: position, scale: 0.5, opacity: 0);
-            break;
-        case ActorType.RollingAstroid_A:
-            _health = 1;
-            _speed = GeneralGameSettings.MYSPACESHIP_SPEED;
-            _damage = 1;
-            _type = type;
-            _isActive = true;
-            _isCollide = false;
-            _explosion = SpriteActor(imageName: GeneralGameSettings.ROLLINGROCKA_NAME + "_01.png",position: position, scale: 1, opacity: 0);
-            super.init(imageName: GeneralGameSettings.ROLLINGROCKA_NAME + "_01.png",position: position, scale: 1, opacity: 1, atlasName: GeneralGameSettings.ROLLINGROCKA_NAME);
-            break;
-        default:
-            _health = 1;
-            _speed = 8;
-            _damage = 1;
-            _type = type;
-            _isActive = true;
-            _isCollide = false;
-            _explosion = SpriteActor(imageName: "error", position: position, scale: 0.5, opacity: 0);
-            super.init(imageName: "error",position: position, scale: 0.5, opacity: 0);
+            _spaceship = SpriteActor(gs:gs, atlasName: imageName, position: position, scale: 1, opacity: 1,frameCount: 1 , type:type, startAnimating: true);
+        }
+        else
+        {
+            _spaceship = SpriteActor(gs:gs, imageName: imageName, position: position, scale: scale, opacity: 1, type:type);
+            
         }
         
+      //  self._spaceship.physicsBody = SKPhysicsBody(rectangleOfSize: self._spaceship.frame.size);
+      //  self._spaceship.physicsBody?.usesPreciseCollisionDetection = true;
+        //self._spaceship.physicsBody?.
+     //   self._spaceship.physicsBody?.categoryBitMask = GeneralGameSettings.ENEMY_CATEGORY;
         
-        
-        
-        
+        super.init();
     }
     
     func Update(){
         
     }
     
+    func Active(){
+      //  self._gameScene.childNodeWithName(GeneralGameSettings.GAMESCREEN_NAME)?.addChild(self._spaceship);
+        self._gameScene.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self._spaceship);
+        
+    }
+    
+    func InActive() {
+        self._spaceship.removeFromParent();
+    
+        self._spaceship.position = CGPoint(x:900,y:900);
+    }
+    
+    func AddMissle() {
+    }
+    
+    func IsCollideWithSelf(actor: SpriteActor) -> Bool{
+        return self.Spaceship.frame.intersects(actor.frame);
+    }
+    
+    
+    
     private func collideUpdate(isCollided:Bool){
         if isCollided{
-            _explosion = SpriteActor(imageName: GeneralGameSettings.ROLLINGROCKA_NAME + "_01.png",position: self.Position, scale: 1, opacity: 1, atlasName: GeneralGameSettings.ROLLINGROCKA_NAME, repeatCount: 1);
-
         }
     }
 }

@@ -9,13 +9,13 @@
 import UIKit
 import SpriteKit
 
-class Actor: IActor {
+public class Actor {
 
-    private var _scale:CGFloat;
-    private var _position:CGPoint;
-    private var _width:CGFloat;
-    private var _height:CGFloat;
-    private var _opacity:CGFloat;
+    var _scale:CGFloat;
+    var _position:CGPoint;
+    var _width:CGFloat;
+    var _height:CGFloat;
+    var _opacity:CGFloat;
 
     
     var Scale:CGFloat{get{return self._scale} set(val){self._scale = val;}}

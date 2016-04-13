@@ -19,6 +19,10 @@ class GameScene: SKScene {
     var button:Button?;
     var gameTimer: NSTimer?;
     
+    private var _assetServices:AssetServices?;
+    
+    var AssetService:AssetServices?{ get{return self._assetServices}}
+    
     var transitService:TransitionService?;
     
     override func didMoveToView(view: SKView) {
@@ -26,10 +30,12 @@ class GameScene: SKScene {
         /* Setup your scene here */
 
         touched = false;
-        
+        _assetServices = AssetServices();
         
         
         self.backgroundColor = SKColor.blackColor();
+        
+        self.physicsWorld.gravity = CGVectorMake(0, 0);
         
        // self.addChild(myLabel)
         
@@ -212,26 +218,35 @@ class GameScene: SKScene {
     
     
     
-    
+    func addSpaceship(node:SpaceshipActor?)
+    {
+        self.addChild(node!.Spaceship);
+//        if let shapeNode = node as? ShapeActor{
+//            self.addChild(shapeNode.Shape);
+//        }
+//        else if let spriteNode = node as? SpriteActor{
+//            self.addChild(spriteNode.Sprite);
+//        }
+    }
     
     func addActor(node:IActor?)
     {
         if let shapeNode = node as? ShapeActor{
-            self.addChild(shapeNode.Shape);
+            self.addChild(shapeNode);
         }
         else if let spriteNode = node as? SpriteActor{
-            self.addChild(spriteNode.Sprite);
+            self.addChild(spriteNode);
         }
     }
     
-    func addStage(node:IStage?)
-    {
-        if let background = node as? Background{
-            for star in background.Stars{
-                self.addActor(star);
-            }
-        }
-        
-    }
+//    func addStage(node:IStage?)
+//    {
+//        if let background = node as? Background{
+//            for star in background.Stars{
+//                self.addActor(star);
+//            }
+//        }
+//        
+//    }
     
 }

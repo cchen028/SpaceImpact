@@ -7,33 +7,55 @@
 //
 
 import UIKit
+import SpriteKit
 
-class MissleActor: SpriteActor, IMissle {
+class MissleActor: IMissle {
+    var _isActive:Bool;
+    var _missle:SpriteActor;
+    
     private var _speed:CGFloat;
     private var _damage:CGFloat;
-    private var _type:MissleType;
+    private var _gameScene:GameScene;
     
+    var Missle:SpriteActor{get{return self._missle}};
     var Speed:CGFloat { get{return self._speed} set(val){self._speed = val}}
     var Damage:CGFloat{get{return self._damage} set(val){self._damage = val}}
-    var Type:MissleType{get{return self._type} set(val){self._type = val}}
     
-    init(missleType: MissleType,position:CGPoint, speed:CGFloat,damage:CGFloat) {
+    init(gs:GameScene, missleType: ActorType,position:CGPoint, speed:CGFloat,damage:CGFloat) {
         
-        self._type = missleType;
+        self._gameScene = gs;
         self._speed = speed;
         self._damage = damage;
-        
-        switch missleType{
-        case MissleType.MissleDefault:
-            super.init(imageName: "missle",position:position, scale: 1, opacity: 1);
-        default:
-            super.init(imageName: "error",position: position, scale: 1, opacity: 1);
-            
-        }
+        self._isActive = false;
+        self._missle = SpriteActor(gs:gs, imageName: GeneralGameSettings.MyMissle_Name, position: position, scale: 1, opacity: 1, type: missleType);
+        self._missle.name = missleType.rawValue;
     }
     
-    public func Update(){
+    func Update(){
 
+    }
+        
+    func UpdateStatus(isActive:Bool){
+            
+        if isActive == self._isActive {
+                return;
+            }
+            
+            if(isActive){
+                Active();
+            }
+            else
+            {
+                InActive();
+            }
+    }
+    
+    func Active(){
+        self._gameScene.childNodeWithName(NodeType.GameScreen.rawValue)?.addChild(self._missle);
+    }
+    
+    func InActive() {
+        self.Missle.removeFromParent();
     }
 }
 

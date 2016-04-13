@@ -23,14 +23,28 @@ struct GeneralGameSettings {
     static let BUTTON_PADDINGS: CGFloat = 30;
     static let BUTTON_FONTFAMILY:String = "AvenirNext-Medium";
     
+    
+    
+    
+    // Game Screen Setting
+    static let GAMESCREEN_NAME = "Game";
+    static let MYSPACESHIP_CATEGORY: UInt32 = 0;
+    
+    static let ENEMY_CATEGORY: UInt32 = 1;
     // My Spaceship
     
     static let MYSPACESHIP_NAME:String = "Spaceship";
     static let MYSPACESHIP_SPEED: CGFloat = 7;
+    static let MYSPACESHIP_EXPLOSION: String = "explosionA";
     
+    static let MyMissle_Name:String = "missle";
     static let MyMissle_Frequency:Double = 0.25;
+    
     
     //ROLLING ROCK A
     static let ROLLINGROCKA_NAME:String = "rollingrockA";
+    static let ROLLINGROCKA_SPEED:CGFloat = 5;
+    static let ROLLINGROCKA_HEALTH:Int = 1;
+    static let ROLLINGROCKA_EXPLOSION:String = "explosionA";
     
 }

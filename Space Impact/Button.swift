@@ -12,13 +12,13 @@ import SpriteKit
 class Button: SpriteActor,ITouchable{
     
     private var _displayText:String;
-    private var _gameScene:GameScene;
-    private var _labelNode:Label;
+    private let _gameScene:GameScene?;
+    private var _labelNode:Label?;
     private var _alpha:CGFloat;
     
     var DisplayText:String{get{return self._displayText}}
     var Alpha:CGFloat{get{return self._alpha}}
-    var LabelNode:Label{get{return self._labelNode}}
+    var LabelNode:Label{get{return self._labelNode!}}
     //var Label:Label{get{return self._labelNode}}
     
     init(gs:GameScene, displayText: String, position: CGPoint, opacity: CGFloat, fontName:String?, fontSize:CGFloat, imageName:String){
@@ -27,31 +27,40 @@ class Button: SpriteActor,ITouchable{
         self._alpha = opacity;
        
         
-        self._labelNode = Label(gs:self._gameScene, displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontName, opacity: self._alpha);
-
-        super.init(sprite: SKSpriteNode(imageNamed:imageName), position: CGPoint(x:position.x,y:position.y), scale:1,opacity:self._alpha);
+        self._labelNode = Label(gs:self._gameScene!, displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontName, opacity: self._alpha);
         
-        self.Sprite.name = displayText.stringByReplacingOccurrencesOfString(" ", withString: "_");
+        super.init(gs:gs, imageName: imageName, position: CGPoint(x:position.x,y:position.y), scale: 1, opacity: opacity, type:ActorType.Button)
+       // super.init(sprite: SKSpriteNode(imageNamed:imageName), position: CGPoint(x:position.x,y:position.y), scale:1,opacity:self._alpha);
+        
+        self.name = displayText.stringByReplacingOccurrencesOfString(" ", withString: "_");
         
         //adjusting position
-        self._labelNode.Position = CGPoint(x:_labelNode.Position.x, y:_labelNode.Position.y - ( (self.Height-_labelNode.LabelNode.frame.height)/4));
+        self.position = CGPoint(x:_labelNode!.Position.x, y:_labelNode!.Position.y - ( (self.Height-_labelNode!.LabelNode.frame.height)/4));
 
         
 
         
    // if imageName != nil
    // {
-       gs.addChild(self.Sprite);
+       gs.addChild(self);
        // }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        self._displayText = "";
+        self._gameScene = nil;
+        self._alpha = 1;
+        self._labelNode = nil;
+        super.init(coder: aDecoder);
     }
     
     func IsTouched(touch: UITouch, withEvent event: UIEvent?)->Bool
     {
 
-        let location = touch.locationInNode(self._gameScene);
-        let node = self._gameScene.nodeAtPoint(location) as SKNode;
+        let location = touch.locationInNode(self._gameScene!);
+        let node = self._gameScene!.nodeAtPoint(location) as SKNode;
      //   if let temp = node as? SKSpriteNode
-        if(node.position==self.Sprite.position)
+        if(node.position==self.position)
         {
             return true;
         }

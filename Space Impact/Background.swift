@@ -17,7 +17,7 @@ public class Background:IStage {
     private var _type:BackgroundStarAnimationType;
     
     
-    var IsActive:Bool{get{return self._isActive} set(val){self._isActive = val}}
+    var IsActive:Bool{get{return self._isActive}}
     var Name:String{get{return self._name}}
     
     var Stars:[Star]{get{return self._stars} set(val){self._stars = val}}
@@ -48,7 +48,7 @@ public class Background:IStage {
             let randomX = Int(arc4random_uniform(400) + 1);
             let randomY = Int(arc4random_uniform(800) + 1);
             let tempStar = Star(type: type, position: CGPoint(x:randomX , y: randomY));
-            self._gameScene.addChild(tempStar.Shape);
+            self._gameScene.addChild(tempStar);
             self._stars.append(tempStar);
         }
     }
@@ -78,11 +78,29 @@ public class Background:IStage {
         }
     }
     
-    func Active(){
-
+    func SetActive(isActive: Bool) {
+        if(self._isActive == isActive)
+        {
+            return;
+        }
+        else{
+            self._isActive = isActive;
+        }
+        
+        if(isActive){
+            Active();
+        }
+        else
+        {
+            InActive();
+        }
     }
     
-    func DeActive() {
+    func Active(){
+    
+    }
+    
+    func InActive() {
 
     }
     

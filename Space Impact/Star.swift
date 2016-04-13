@@ -40,40 +40,44 @@ public class Star: ShapeActor {
         super.init(type: ShapeActorType.Circle, width: 1, height: 1, position: position,opacity:0.7, glowWidth: self._glow, strokeColor: SKColor.whiteColor(), fillColor: SKColor.whiteColor());
         
     }
+
+    required public init?(coder aDecoder: NSCoder) {
+        self._speed = 0;
+        self._glow = 0;
+        self._type = StarType.Slow;
+        super.init(coder: aDecoder);
+    }
     
     public func Update(){
-        if super.Position.y < 0{
-            let randomX = Int(arc4random_uniform(UInt32(GeneralGameSettings.SCREEN_WIDTH)) + 1);
-            super.Position = CGPoint(x:randomX, y:GeneralGameSettings.SCREEN_HEIGHT);
+        if super.position.y < 0{
+            super.position = SpriteServices.GenerateRandomPosition();
         }
         else{
-            super.Position.y -= self._speed;
+            super.position.y -= self._speed;
         }
         
         
     }
     
     public func MainMenuSpecialEffect(){
-            if (super.Position.y < 600 && super.Position.y > 500) || (super.Position.y < 450 && super.Position.y > 300 && super.Position.x > 100 && super.Position.x < 300){
-                if(super.Opacity>0.2)
+            if (super.position.y < 600 && super.position.y > 500) || (super.position.y < 450 && super.position.y > 300 && super.position.x > 100 && super.position.x < 300){
+                if(super.alpha>0.2)
                 {
-                    super.Opacity -= 0.01;
+                    super.alpha -= 0.01;
                 }
             }
             else
             {
-                if(super.Opacity<0.7)
+                if(super.alpha<0.7)
                 {
-                    super.Opacity += 0.01;
+                    super.alpha += 0.01;
                 }
             }
     }
     
     public func DefaultSpecialEffect(){
-        super.Opacity = 0.7;
+        super.alpha = 0.7;
     }
-    
-    
 }
 
 

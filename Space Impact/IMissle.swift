@@ -11,5 +11,5 @@ import UIKit
 protocol IMissle {
     var Speed:CGFloat { get set}
     var Damage:CGFloat{get set}
-    var Type:MissleType{get set}
+   // var Type:MissleType{get set}
 }

@@ -10,12 +10,14 @@ import UIKit
 import SpriteKit
 
 class GameScreen: NSObject,IStage {
+    private var _gameScreenNode:SKNode;
     private var _name:String;
     private var _gameScene:GameScene;
     private var _isActive:Bool;
     private var _mySpaceShip:Spaceship;
-    private var _enemySpaceShips:[Spaceship];
+    private var _allOtherObjects:[IActor];
     private var _mySpaceshipMissleTimer: NSTimer!;
+    private var rollingRock:RollingRockA;
     
     private var astroid:SKSpriteNode!;
     private var astroidAction: SKAction!;
@@ -23,87 +25,79 @@ class GameScreen: NSObject,IStage {
     
     var Name:String{get{return self._name}}
     var MySpaceship:Spaceship{get{return self._mySpaceShip}}
-    var IsActive:Bool{get{return self._isActive} set(val)
-    {
-        self._isActive = val;
-        Transition();
-        }}
+    var IsActive:Bool{get{return self._isActive}}
     
     
     init(gs:GameScene){
-        self._name = "Game";
+        self._name = GeneralGameSettings.GAMESCREEN_NAME;
         self._gameScene = gs;
         self._isActive = false;
+        self._gameScreenNode = SKNode();
+        self._gameScreenNode.name = GeneralGameSettings.GAMESCREEN_NAME;
         
         let location = CGPoint(x:CGRectGetMidX(self._gameScene.frame), y:CGRectGetMinY(self._gameScene.frame) + 30);
         self._mySpaceShip = Spaceship(gs:self._gameScene, position:location);
-        self._enemySpaceShips = [Spaceship]();
-        var rollingRock = RollingRockA(gs:self._gameScene, position:location);
+        self._allOtherObjects = [IActor]();
         
-        
-//        astroid = SKSpriteNode(imageNamed: "astroid1_01.png");
-//        astroid.position = CGPoint(x:CGRectGetMidX(self._gameScene.frame), y:CGRectGetMidY(self._gameScene.frame) + 30);
-//        self._gameScene.addChild(astroid);
-//        
-//        let atlas = SKTextureAtlas(named:"astroid1");
-//        
-//        let anim = SKAction.animateWithTextures([
-//            atlas.textureNamed("astroid1_01"),
-//            atlas.textureNamed("astroid1_02"),
-//            atlas.textureNamed("astroid1_03"),
-//            atlas.textureNamed("astroid1_04"),
-//            atlas.textureNamed("astroid1_05"),
-//            atlas.textureNamed("astroid1_06"),
-//            atlas.textureNamed("astroid1_06"),
-//            atlas.textureNamed("astroid1_06"),
-//            atlas.textureNamed("astroid1_06"),
-//            atlas.textureNamed("astroid1_06"),
-//            atlas.textureNamed("astroid1_06"),
-//            atlas.textureNamed("astroid1_06"),
-//            atlas.textureNamed("astroid1_06"),
-//            atlas.textureNamed("astroid1_06")
-//            ], timePerFrame: 0.1);
-//        
-//        astroidAction = SKAction.repeatActionForever(anim);
-//        
-//        astroid.runAction(astroidAction);
-        
+        rollingRock = RollingRockA(gs:self._gameScene, position:SpriteServices.GenerateRandomPosition());
+        _allOtherObjects.append(rollingRock);
     }
     
-    
-    
-    func Transition(){
-        if !self._isActive{
-            self.DeActive();
+    func SetActive(isActive: Bool) {
+        if(self._isActive == isActive)
+        {
+            return;
         }
         else{
-            self.Active();
+            self._isActive = isActive;
+        }
+        
+        if(isActive){
+            Active();
+        }
+        else
+        {
+            InActive();
         }
     }
     
     func Active(){
         
-        let fadeInAnimation = SKAction.fadeInWithDuration(NSTimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
+        self._gameScene.addChild(self._gameScreenNode);
         
-        self._mySpaceShip.Sprite.runAction(fadeInAnimation);
+        self._mySpaceShip.SetActive(true);
         
-        for missle in self._mySpaceShip.Missles{
-            missle.Sprite.runAction(fadeInAnimation);
+//        for node in self._gameScene.childNodeWithNodeType(NodeType.GameScreen)!.children{
+//          node
+//        }
+        
+        for object in _allOtherObjects{
+            object.SetActive(true);
         }
         
-        _mySpaceshipMissleTimer = NSTimer.scheduledTimerWithTimeInterval(GeneralGameSettings.MyMissle_Frequency, target: self, selector: "addMissleToSpaceship", userInfo: nil, repeats: true);
+//        for object in _allOtherObjects{
+//            if(!object.IsActive)
+//            {
+//                
+//            }
+//        }
+        
+    //    _allOtherObjects = _allOtherObjects.filter({(objectt) in objectt.IsActive == false})
+        
     }
     
-    func DeActive() {
-        let fadeOutAnimation = SKAction.fadeOutWithDuration(NSTimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
+    func InActive() {
         
-        self._mySpaceShip.Sprite.runAction(fadeOutAnimation);
+        self._mySpaceShip.SetActive(false);
         
-        for missle in self._mySpaceShip.Missles{
-            missle.Sprite.runAction(fadeOutAnimation);
+        for object in _allOtherObjects{
+            object.SetActive(false);
         }
         
-        _mySpaceshipMissleTimer.invalidate();
+      //  _allOtherObjects = _allOtherObjects.filter({$0.IsActive});
+        
+        self._gameScreenNode.removeFromParent();
+       // _allOtherObjects = _allOtherObjects.filter({(objectt) in objectt.IsActive == false})
     }
     
     func HandlesTouch(touch: UITouch, withEvent event: UIEvent?, isTouched:Bool)
@@ -132,19 +126,15 @@ class GameScreen: NSObject,IStage {
         
     }
     
-    func addMissleToSpaceship(){
-        self._mySpaceShip.AddMissle();
-    }
-    
     func Update(){
-        self._mySpaceShip.Update();
+        self._mySpaceShip.Update(_allOtherObjects);
+        
+        for object in _allOtherObjects{
+            object.Update();
+        }
     }
     
     func Notify(targetStage:String){
         
     }
-    
-    
-
-
 }

@@ -27,11 +27,7 @@ class MainScreen: IStage,ITouchable {
     
     var Buttons:[Button]{get{return self._buttons} set(val){self._buttons = val}}
     
-    var IsActive:Bool{get{return self._isActive} set(val)
-    {
-        self._isActive = val;
-        Transition();
-    }}
+    var IsActive:Bool{get{return self._isActive}}
     var IsStarted:Bool{get{return self._isStarted}set(val){self._isStarted = val}}
     var IsHighScore:Bool{get{return self._isHighScore}}
     var IsTutorial:Bool{get{return self._isTutorial}}
@@ -56,9 +52,9 @@ class MainScreen: IStage,ITouchable {
         
         let btnStart = Button(gs: self._gameScene, displayText: "START".capitalizedString, position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y:CGRectGetMidY(self._gameScene.frame)*1.2), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
-        let btnHighScore = Button(gs: self._gameScene, displayText: "HIGH SCORE".capitalizedString, position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y: btnStart.Position.y - btnStart.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnHighScore = Button(gs: self._gameScene, displayText: "HIGH SCORE".capitalizedString, position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y: btnStart.position.y - btnStart.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
-        let btnTutorial = Button(gs: self._gameScene, displayText: "TUTORIAL".capitalizedString, position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y: btnHighScore.Position.y - btnHighScore.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnTutorial = Button(gs: self._gameScene, displayText: "TUTORIAL".capitalizedString, position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y: btnHighScore.position.y - btnHighScore.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
         _buttons.append(btnStart);
         _buttons.append(btnHighScore);
@@ -82,24 +78,42 @@ class MainScreen: IStage,ITouchable {
         
     }
     
-    func Transition(){
-        if !self._isActive{
-            DeActive();
+    func SetActive(isActive: Bool) {
+        if(self._isActive == isActive)
+        {
+            return;
+        }
+        else{
+            self._isActive = isActive;
+        }
+        
+        if(isActive){
+            Active();
         }
         else
         {
-            self.Active();
+            InActive();
         }
-
     }
+    
+//    func Transition(){
+//        if !self._isActive{
+//            InActive();
+//        }
+//        else
+//        {
+//            self.Active();
+//        }
+//
+//    }
     
     func Active(){
         let fadeInAnimation = SKAction.fadeInWithDuration(NSTimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
         
         for button in self._buttons{
-            if button.Sprite.alpha < 1
+            if button.alpha < 1
             {
-                button.Sprite.runAction(fadeInAnimation);
+                button.runAction(fadeInAnimation);
                 button.LabelNode.LabelNode.runAction(fadeInAnimation);
             }
         }
@@ -112,14 +126,14 @@ class MainScreen: IStage,ITouchable {
         }
     }
     
-    func DeActive() {
+    func InActive() {
         let fadeOutAnimation = SKAction.fadeOutWithDuration(NSTimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
         
         for button in self._buttons{
             
-            if button.Sprite.alpha > 0
+            if button.alpha > 0
             {
-                button.Sprite.runAction(fadeOutAnimation);
+                button.runAction(fadeOutAnimation);
                 button.LabelNode.LabelNode.runAction(fadeOutAnimation);
             }
         }
@@ -142,7 +156,7 @@ class MainScreen: IStage,ITouchable {
         for button in self._buttons{
             if button.IsTouched(touch, withEvent: event)
             {
-                let curNodeName = button.Sprite.name == nil ? "" : button.Sprite.name!;
+                let curNodeName = button.name == nil ? "" : button.name!;
                 switch curNodeName {
                     case "Start":
                         self._isStarted = true;
