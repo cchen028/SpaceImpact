@@ -37,13 +37,13 @@ struct SpriteServices {
     
     static func GenerateRandomPosition() -> CGPoint{
         let randomX = GenerateRandomNumber(GeneralGameSettings.SCREEN_WIDTH);
-        let position = CGPoint(x:randomX, y:GeneralGameSettings.SCREEN_HEIGHT);
+        let randomY = GenerateRandomNumber(GeneralGameSettings.SCREEN_HEIGHT)+800;
+        let position = CGPoint(x:randomX, y:randomY);
         return position;
     }
     
     static func GenerateRandomNumber(range:Int) -> Int{
         let randomX = Int(arc4random_uniform(UInt32(range)) + 1);
         return randomX;
-        
     }
 }

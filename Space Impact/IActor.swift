@@ -26,7 +26,7 @@ protocol IActor {
     
     func SetActive(isActive:Bool);
     
-    func Explode();
+  //  func Explode();
     
     
   //  func ==(lhs: IActor, rhs: IActor) -> Bool;

@@ -11,7 +11,7 @@ import SpriteKit
 
 class SpaceshipActor: NSObject, ISpaceship{
     
-    var _isActive:Bool;
+    //var _isActive:Bool;
     
     private var _health:Int;
     private var _speed:CGFloat;
@@ -29,7 +29,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     var Speed:CGFloat{get{return _speed} set(newVal){_speed = newVal}};
     var Damage:Int{get{return _damage} set(newVal){_damage = newVal}};
     var Explosion:SpriteActor{get{return _explosion} set(newVal){_explosion = newVal}};
-    var IsCollide:Bool{get{return _isCollide} set(newVal){_isCollide = newVal;collideUpdate(_isActive)}};
+    var IsCollide:Bool{get{return _isCollide} set(newVal){_isCollide = newVal;collideUpdate(self._spaceship.IsActive)}};
     var Spaceship:SpriteActor{get{return self._spaceship}};
     var Missles:[Missle]{get{return self._missles}};
 
@@ -42,9 +42,9 @@ class SpaceshipActor: NSObject, ISpaceship{
         _health = health;
         _speed = speed;
         _damage = damage;
-        _isActive = false;
+      //  _isActive = false;
         _isCollide = false;
-        _explosion = SpriteActor(gs:gs, atlasName:explosionName, position: position, scale: 1, opacity: 0, frameCount: 1, type:type, repeatCount: 1, startAnimating: false);
+        _explosion = SpriteActor(gs:gs, atlasName:explosionName, position: position, scale: 1, opacity: 1, frameCount: 1, type:ActorType.Explosion, repeatCount: 1, startAnimating: false);
         
         if(isSpaceShipAnimation)
         {
@@ -56,6 +56,10 @@ class SpaceshipActor: NSObject, ISpaceship{
             
         }
         
+        let uniqueID = NSUUID().UUIDString;
+         self._explosion.name = ActorType.Explosion.rawValue + "_" + uniqueID ;
+        self._spaceship.name = uniqueID;
+        
       //  self._spaceship.physicsBody = SKPhysicsBody(rectangleOfSize: self._spaceship.frame.size);
       //  self._spaceship.physicsBody?.usesPreciseCollisionDetection = true;
         //self._spaceship.physicsBody?.
@@ -65,19 +69,43 @@ class SpaceshipActor: NSObject, ISpaceship{
     }
     
     func Update(){
+        self._explosion.position = self._spaceship.position;
+    }
+    
+    func Explode(){
+        self._spaceship.alpha = 0;
+        self._explosion.alpha = 1;
+     //   self._explosion.RunAnimation();
         
+
+            // self.runAction(self._spriteAction);
+        self._explosion.runAction(self._explosion.SpriteAction, completion: {self._explosion.removeFromParent(); self._spaceship.removeFromParent()});
+
     }
     
     func Active(){
       //  self._gameScene.childNodeWithName(GeneralGameSettings.GAMESCREEN_NAME)?.addChild(self._spaceship);
-        self._gameScene.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self._spaceship);
+        self._spaceship.alpha = 1;
+        self._explosion.alpha = 0;
+        self._spaceship.Active();
+        self._explosion.Active();
+      //  self._gameScene.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self._spaceship);
+    //    self._gameScene.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self._explosion);
         
     }
     
     func InActive() {
+        self._spaceship.removeAllActions();
+        self._spaceship.removeAllChildren();
         self._spaceship.removeFromParent();
-    
-        self._spaceship.position = CGPoint(x:900,y:900);
+        
+        self._explosion.removeAllActions();
+        self._explosion.removeAllChildren();
+        self._explosion.removeFromParent();
+     //   self._spaceship = nil;
+     //   self._explosion
+      //  self._spaceship.position = CGPoint(x:900,y:900);
+      //  self._explosion.position = self._spaceship.position;
     }
     
     func AddMissle() {

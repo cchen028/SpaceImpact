@@ -35,20 +35,7 @@ class MissleActor: IMissle {
 
     }
         
-    func UpdateStatus(isActive:Bool){
-            
-        if isActive == self._isActive {
-                return;
-            }
-            
-            if(isActive){
-                Active();
-            }
-            else
-            {
-                InActive();
-            }
-    }
+   
     
     func Active(){
         self._gameScene.childNodeWithName(NodeType.GameScreen.rawValue)?.addChild(self._missle);
@@ -56,6 +43,10 @@ class MissleActor: IMissle {
     
     func InActive() {
         self.Missle.removeFromParent();
+    }
+    
+    func IsCollideWithSelf(actor: SpriteActor) -> Bool{
+        return self.Missle.frame.intersects(actor.frame);
     }
 }
 

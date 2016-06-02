@@ -39,8 +39,13 @@ class GameScreen: NSObject,IStage {
         self._mySpaceShip = Spaceship(gs:self._gameScene, position:location);
         self._allOtherObjects = [IActor]();
         
-        rollingRock = RollingRockA(gs:self._gameScene, position:SpriteServices.GenerateRandomPosition());
-        _allOtherObjects.append(rollingRock);
+        for i in 1...25{
+            let tempRock = RollingRockA(gs:self._gameScene, position:SpriteServices.GenerateRandomPosition());
+            _allOtherObjects.append(tempRock);
+        }
+        
+       rollingRock = RollingRockA(gs:self._gameScene, position:SpriteServices.GenerateRandomPosition());
+   //     _allOtherObjects.append(rollingRock);
     }
     
     func SetActive(isActive: Bool) {

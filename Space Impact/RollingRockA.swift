@@ -15,7 +15,7 @@ class RollingRockA: SpaceshipActor, IActor{
     
     
     var Position:CGPoint{get{return self.Spaceship.position}}
-    var IsActive:Bool{get{return _isActive}};
+    var IsActive:Bool{get{return self.Spaceship.IsActive} set(newVal){self.Spaceship.IsActive = newVal}};
     var Sprite:SpriteActor { get{return self.Spaceship}}
    // private var _missles:[Missle];
    // private var _moveDirection:MoveDirection;
@@ -37,7 +37,8 @@ class RollingRockA: SpaceshipActor, IActor{
 
     
     override func Update(){
-        if(self._isActive)
+        super.Update();
+        if(self.IsActive)
         {
             self.Spaceship.position.y -= self.Speed;
         }
@@ -45,12 +46,12 @@ class RollingRockA: SpaceshipActor, IActor{
     }
     
     func SetActive(isActive:Bool){
-        if(self._isActive == isActive)
+        if(self.IsActive == isActive)
         {
             return;
         }
         else{
-            self._isActive = isActive;
+            self.IsActive = isActive;
         }
         
         if(isActive){
@@ -58,7 +59,8 @@ class RollingRockA: SpaceshipActor, IActor{
         }
         else
         {
-            InActive();
+           Explode();
+          //  InActive();
         }
     }
     
@@ -67,11 +69,14 @@ class RollingRockA: SpaceshipActor, IActor{
     }
     
     override func InActive() {
+       // super.Explode();
         super.InActive();
     }
     
-    func Explode() {
-        self._explosion.RunAnimation();
+    override func Explode() {
+        super.Explode();
+     //   self._explosion.RunAnimation();
+        
     }
     
    
