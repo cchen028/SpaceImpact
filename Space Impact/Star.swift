@@ -24,15 +24,19 @@ public class Star: ShapeActor {
         case .Fast:
             self._speed = 2;
             self._glow = 1;
+            break
         case .Medium:
             self._speed = 1;
             self._glow = 0.2;
+            break
         case .Slow:
             self._speed = 0.5;
             self._glow = 0;
+            break
         default:
             self._speed = 0;
             self._glow = 0;
+            break
         }
         
         self._type = type;
