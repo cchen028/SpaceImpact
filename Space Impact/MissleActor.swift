@@ -13,9 +13,9 @@ class MissleActor: IMissle {
     var _isActive:Bool;
     var _missle:SpriteActor;
     
-    private var _speed:CGFloat;
-    private var _damage:CGFloat;
-    private var _gameScene:GameScene;
+    fileprivate var _speed:CGFloat;
+    fileprivate var _damage:CGFloat;
+    fileprivate var _gameScene:GameScene;
     
     var Missle:SpriteActor{get{return self._missle}};
     var Speed:CGFloat { get{return self._speed} set(val){self._speed = val}}
@@ -38,19 +38,20 @@ class MissleActor: IMissle {
    
     
     func Active(){
-        self._gameScene.childNodeWithName(NodeType.GameScreen.rawValue)?.addChild(self._missle);
+      //  GameScene.gameScene.childNode(withName: NodeType.GameScreen.rawValue)?.addChild(self._missle);
+        self._gameScene.childNode(withName: NodeType.GameScreen.rawValue)?.addChild(self._missle);
     }
     
     func InActive() {
         self.Missle.removeFromParent();
     }
     
-    func IsCollideWithSelf(actor: SpriteActor) -> Bool{
+    func IsCollideWithSelf(_ actor: SpriteActor) -> Bool{
         return self.Missle.frame.intersects(actor.frame);
     }
 }
 
 
 enum MissleType: Int{
-    case MissleDefault = 1, EnemyMissle
+    case missleDefault = 1, enemyMissle
 }

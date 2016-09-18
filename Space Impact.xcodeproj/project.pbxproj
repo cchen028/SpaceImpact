@@ -34,6 +34,7 @@
 		B03BD62F1C7D8E5100D14F4C /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD62E1C7D8E5100D14F4C /* Background.swift */; };
 		B03BD6311C7D98D100D14F4C /* IStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6301C7D98D100D14F4C /* IStage.swift */; };
 		B03BD6351C80182900D14F4C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6341C80182900D14F4C /* Button.swift */; };
+		B07545951D848F710004E53B /* GameObjectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07545941D848F710004E53B /* GameObjectServices.swift */; };
 		B07E8E1A1C82499100217260 /* SpriteSheetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E191C82499100217260 /* SpriteSheetService.swift */; };
 		B07E8E1C1C824E5300217260 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E1B1C824E5300217260 /* MainScreen.swift */; };
 		B07E8E1E1C8251BF00217260 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E1D1C8251BF00217260 /* Label.swift */; };
@@ -101,6 +102,7 @@
 		B03BD62E1C7D8E5100D14F4C /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		B03BD6301C7D98D100D14F4C /* IStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IStage.swift; sourceTree = "<group>"; };
 		B03BD6341C80182900D14F4C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		B07545941D848F710004E53B /* GameObjectServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObjectServices.swift; sourceTree = "<group>"; };
 		B07E8E191C82499100217260 /* SpriteSheetService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheetService.swift; sourceTree = "<group>"; };
 		B07E8E1B1C824E5300217260 /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		B07E8E1D1C8251BF00217260 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				B0F53E021C83ACC400876394 /* TransitionService.swift */,
 				B003F4AF1C901E7500AFDF91 /* SpriteServices.swift */,
 				B0038BEC1C93EACD00870D97 /* AssetServices.swift */,
+				B07545941D848F710004E53B /* GameObjectServices.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -377,19 +380,23 @@
 		B03BD5DF1C706BC200D14F4C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0730;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Jay;
 				TargetAttributes = {
 					B03BD5E61C706BC200D14F4C = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 					B03BD5FE1C706BC200D14F4C = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = B03BD5E61C706BC200D14F4C;
 					};
 					B03BD6091C706BC200D14F4C = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = B03BD5E61C706BC200D14F4C;
 					};
 				};
@@ -472,6 +479,7 @@
 				B003F4AE1C8EA9B700AFDF91 /* Actor.swift in Sources */,
 				B03BD5EB1C706BC200D14F4C /* AppDelegate.swift in Sources */,
 				B03BD6211C713D4200D14F4C /* SpriteActor.swift in Sources */,
+				B07545951D848F710004E53B /* GameObjectServices.swift in Sources */,
 				B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */,
 				B0EF1ED81C8B92C300E24202 /* SpaceshipActor.swift in Sources */,
 				B0F53E081C83C98300876394 /* GeneralGameSettings.swift in Sources */,
@@ -549,8 +557,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -594,8 +604,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -614,6 +626,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -627,6 +640,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cchen.Space-Impact";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -638,6 +652,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cchen.Space-Impact";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -650,6 +665,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cchen.Space-ImpactTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Space Impact.app/Space Impact";
 			};
 			name = Debug;
@@ -662,6 +678,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cchen.Space-ImpactTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Space Impact.app/Space Impact";
 			};
 			name = Release;
@@ -674,6 +691,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cchen.Space-ImpactUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "Space Impact";
 				USES_XCTRUNNER = YES;
 			};
@@ -686,6 +704,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cchen.Space-ImpactUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "Space Impact";
 				USES_XCTRUNNER = YES;
 			};

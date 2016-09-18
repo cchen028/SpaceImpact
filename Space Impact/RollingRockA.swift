@@ -10,8 +10,8 @@ import UIKit
 
 class RollingRockA: SpaceshipActor, IActor{
     
-    private var _initialPosition:CGPoint;
-    private var _gameScene:GameScene;
+    fileprivate var _initialPosition:CGPoint;
+    fileprivate var _gameScene:GameScene;
     
     
     var Position:CGPoint{get{return self.Spaceship.position}}
@@ -45,7 +45,7 @@ class RollingRockA: SpaceshipActor, IActor{
         
     }
     
-    func SetActive(isActive:Bool){
+    func SetActive(_ isActive:Bool){
         if(self.IsActive == isActive)
         {
             return;

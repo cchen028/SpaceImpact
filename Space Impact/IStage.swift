@@ -12,8 +12,8 @@ protocol IStage {
     var Name:String{get};
     var IsActive:Bool{get};
     
-    func Notify(targetStage:String)
-    func SetActive(isActive:Bool);
+    func Notify(_ targetStage:String)
+    func SetActive(_ isActive:Bool);
     func Active();
     func InActive();
 }

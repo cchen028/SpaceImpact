@@ -24,7 +24,7 @@ protocol IActor {
     
     func Update();
     
-    func SetActive(isActive:Bool);
+    func SetActive(_ isActive:Bool);
     
   //  func Explode();
     

@@ -10,8 +10,8 @@ import UIKit
 import SpriteKit
 
 class AssetServices {
-    private var _skTextures:[String:SKTexture];
-    private var _skTexturesList:[String:[SKTexture]];
+    fileprivate var _skTextures:[String:SKTexture];
+    fileprivate var _skTexturesList:[String:[SKTexture]];
    // private var _spriteTextures: [SKTexture];
     
 
@@ -33,7 +33,7 @@ class AssetServices {
         
         
         self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKA_NAME);
-             self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKA_EXPLOSION);
+        self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKA_EXPLOSION);
       //  InitializeAtlas(GeneralGameSettings.MYSPACESHIP_NAME);
         
         //InitializeAtlas(GeneralGameSettings.MyMissle_Name);
@@ -48,13 +48,14 @@ class AssetServices {
         
     }
     
-    private func InitializeAtlas(atlasName:String){
+    fileprivate func InitializeAtlas(_ atlasName:String){
         let _atlas = SKTextureAtlas(named:atlasName);
       //  let texture = SKTexture(imageNamed: atlasName + "_01");
         let spriteTextName = self.getFileName(atlasName, orderNumber: 1);
         var spriteTextures = [SKTexture]();
         
-        for (var i = 1; i <= _atlas.textureNames.count; i++){
+       
+        for i in (1..._atlas.textureNames.count){
             spriteTextures.append(_atlas.textureNamed(self.getFileName(atlasName, orderNumber: i)));
         }
         
@@ -64,7 +65,7 @@ class AssetServices {
     }
     
     
-    private func getFileName(name:String, orderNumber:Int) -> String{
+    fileprivate func getFileName(_ name:String, orderNumber:Int) -> String{
         var fileName:String = name + "_";
         if orderNumber < 10 {
             fileName += ("0" + String(orderNumber));

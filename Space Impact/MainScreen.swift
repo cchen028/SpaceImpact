@@ -10,16 +10,16 @@ import UIKit
 import SpriteKit
 
 class MainScreen: IStage,ITouchable {
-    private var _name:String;
+    fileprivate var _name:String;
     
-    private var _buttons:[Button];
-    private var _labels:[Label];
-    private var _gameScene:GameScene;
+    fileprivate var _buttons:[Button];
+    fileprivate var _labels:[Label];
+    fileprivate var _gameScene:GameScene;
     
-    private var _isStarted:Bool;
-    private var _isHighScore:Bool;
-    private var _isTutorial:Bool;
-    private var _isActive:Bool;
+    fileprivate var _isStarted:Bool;
+    fileprivate var _isHighScore:Bool;
+    fileprivate var _isTutorial:Bool;
+    fileprivate var _isActive:Bool;
     
     let _buttonPaddings:CGFloat = GeneralGameSettings.BUTTON_PADDINGS;
     
@@ -48,13 +48,13 @@ class MainScreen: IStage,ITouchable {
         
     }
     
-    private func generateButtons(){
+    fileprivate func generateButtons(){
         
-        let btnStart = Button(gs: self._gameScene, displayText: "START".capitalizedString, position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y:CGRectGetMidY(self._gameScene.frame)*1.2), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnStart = Button(gs: self._gameScene, displayText: "START".capitalized, position: CGPoint(x:self._gameScene.frame.midX, y:self._gameScene.frame.midY*1.2), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
-        let btnHighScore = Button(gs: self._gameScene, displayText: "HIGH SCORE".capitalizedString, position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y: btnStart.position.y - btnStart.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnHighScore = Button(gs: self._gameScene, displayText: "HIGH SCORE".capitalized, position: CGPoint(x:self._gameScene.frame.midX, y: btnStart.position.y - btnStart.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
-        let btnTutorial = Button(gs: self._gameScene, displayText: "TUTORIAL".capitalizedString, position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y: btnHighScore.position.y - btnHighScore.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnTutorial = Button(gs: self._gameScene, displayText: "TUTORIAL".capitalized, position: CGPoint(x:self._gameScene.frame.midX, y: btnHighScore.position.y - btnHighScore.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
         _buttons.append(btnStart);
         _buttons.append(btnHighScore);
@@ -63,8 +63,8 @@ class MainScreen: IStage,ITouchable {
         
     }
     
-    private func generateLabels(){
-        let lblMainTitle = Label(gs: self._gameScene, displayText: "SPACE IMPACT", position: CGPoint(x:CGRectGetMidX(self._gameScene.frame), y:CGRectGetMidY(self._gameScene.frame)+150), fontSize: GeneralGameSettings.TITLE_FONTSIZE, fontNamed: GeneralGameSettings.TITLE_FONTFAMILY,opacity: 0);
+    fileprivate func generateLabels(){
+        let lblMainTitle = Label(gs: self._gameScene, displayText: "SPACE IMPACT", position: CGPoint(x:self._gameScene.frame.midX, y:self._gameScene.frame.midY+150), fontSize: GeneralGameSettings.TITLE_FONTSIZE, fontNamed: GeneralGameSettings.TITLE_FONTFAMILY,opacity: 0);
         
         
         self._labels.append(lblMainTitle);
@@ -74,11 +74,11 @@ class MainScreen: IStage,ITouchable {
       
     }
     
-    func Notify(targetStage:String){
+    func Notify(_ targetStage:String){
         
     }
     
-    func SetActive(isActive: Bool) {
+    func SetActive(_ isActive: Bool) {
         if(self._isActive == isActive)
         {
             return;
@@ -108,45 +108,45 @@ class MainScreen: IStage,ITouchable {
 //    }
     
     func Active(){
-        let fadeInAnimation = SKAction.fadeInWithDuration(NSTimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
         
         for button in self._buttons{
             if button.alpha < 1
             {
-                button.runAction(fadeInAnimation);
-                button.LabelNode.LabelNode.runAction(fadeInAnimation);
+                button.run(fadeInAnimation);
+                button.LabelNode.LabelNode.run(fadeInAnimation);
             }
         }
         
         for label in self._labels{
             if label.LabelNode.alpha < 1
             {
-                label.LabelNode.runAction(fadeInAnimation);
+                label.LabelNode.run(fadeInAnimation);
             }
         }
     }
     
     func InActive() {
-        let fadeOutAnimation = SKAction.fadeOutWithDuration(NSTimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
         
         for button in self._buttons{
             
             if button.alpha > 0
             {
-                button.runAction(fadeOutAnimation);
-                button.LabelNode.LabelNode.runAction(fadeOutAnimation);
+                button.run(fadeOutAnimation);
+                button.LabelNode.LabelNode.run(fadeOutAnimation);
             }
         }
         
         for label in self._labels{
             if label.LabelNode.alpha>0
             {
-                label.LabelNode.runAction(fadeOutAnimation);
+                label.LabelNode.run(fadeOutAnimation);
             }
         }
     }
     
-    func HandlesTouch(touch: UITouch, withEvent event: UIEvent?)
+    func HandlesTouch(_ touch: UITouch, withEvent event: UIEvent?)
     {
         if !self._isActive
         {
@@ -165,13 +165,13 @@ class MainScreen: IStage,ITouchable {
                     case "Tutorial":
                         self._isTutorial = true;
                     default:
-                        print("main menu error");
+                        print("main menu error", terminator: "");
                 }
             }
         }
     }
     
-    func IsTouched(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+    func IsTouched(_ touch: UITouch, withEvent event: UIEvent?) -> Bool {
         if self._isActive
         {
             return true;
@@ -184,6 +184,6 @@ class MainScreen: IStage,ITouchable {
 }
 
 enum MainMenuButtonType:Int{
-    case Start=1,Help,Tutorial
+    case start=1,help,tutorial
     
 }

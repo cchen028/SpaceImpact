@@ -13,14 +13,14 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     //var _isActive:Bool;
     
-    private var _health:Int;
-    private var _speed:CGFloat;
-    private var _damage:Int;
+    fileprivate var _health:Int;
+    fileprivate var _speed:CGFloat;
+    fileprivate var _damage:Int;
     var _explosion:SpriteActor;
-    private var _isCollide:Bool;
-    private var _spaceship:SpriteActor;
-    private var _spaceshipMissleTimer: NSTimer!;
-    private var _gameScene:GameScene;
+    fileprivate var _isCollide:Bool;
+    fileprivate var _spaceship:SpriteActor;
+    fileprivate var _spaceshipMissleTimer: Timer!;
+    fileprivate var _gameScene:GameScene;
     
     var _missleTimer:MissleTimer;
     var _missles:[Missle];
@@ -56,7 +56,7 @@ class SpaceshipActor: NSObject, ISpaceship{
             
         }
         
-        let uniqueID = NSUUID().UUIDString;
+        let uniqueID = UUID().uuidString;
          self._explosion.name = ActorType.Explosion.rawValue + "_" + uniqueID ;
         self._spaceship.name = uniqueID;
         
@@ -79,7 +79,7 @@ class SpaceshipActor: NSObject, ISpaceship{
         
 
             // self.runAction(self._spriteAction);
-        self._explosion.runAction(self._explosion.SpriteAction, completion: {self._explosion.removeFromParent(); self._spaceship.removeFromParent()});
+        self._explosion.run(self._explosion.SpriteAction, completion: {self._explosion.removeFromParent(); self._spaceship.removeFromParent()});
 
     }
     
@@ -111,13 +111,13 @@ class SpaceshipActor: NSObject, ISpaceship{
     func AddMissle() {
     }
     
-    func IsCollideWithSelf(actor: SpriteActor) -> Bool{
+    func IsCollideWithSelf(_ actor: SpriteActor) -> Bool{
         return self.Spaceship.frame.intersects(actor.frame);
     }
     
     
     
-    private func collideUpdate(isCollided:Bool){
+    fileprivate func collideUpdate(_ isCollided:Bool){
         if isCollided{
         }
     }

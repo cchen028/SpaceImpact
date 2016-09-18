@@ -10,29 +10,29 @@ import UIKit
 import SpriteKit
 
 struct SpriteServices {
-    static func Hide(sprite:SKNode, fadeOut:Bool = false)
+    static func Hide(_ sprite:SKNode, fadeOut:Bool = false)
     {
         
             sprite.alpha = 0;
       
     }
     
-    static func FadeOut(sprite:SKNode)
+    static func FadeOut(_ sprite:SKNode)
     {
-        let fadeOutAnimation = SKAction.fadeOutWithDuration(NSTimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
         
-        sprite.runAction(fadeOutAnimation);
+        sprite.run(fadeOutAnimation);
     }
     
-    static func Show(sprite:SKNode, fadeIn:Bool = false){
+    static func Show(_ sprite:SKNode, fadeIn:Bool = false){
             sprite.alpha = 1;
     }
     
-    static func FadeIn(sprite:SKNode)
+    static func FadeIn(_ sprite:SKNode)
     {
-        let fadeInAnimation = SKAction.fadeInWithDuration(NSTimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
         
-        sprite.runAction(fadeInAnimation);
+        sprite.run(fadeInAnimation);
     }
     
     static func GenerateRandomPosition() -> CGPoint{
@@ -42,7 +42,7 @@ struct SpriteServices {
         return position;
     }
     
-    static func GenerateRandomNumber(range:Int) -> Int{
+    static func GenerateRandomNumber(_ range:Int) -> Int{
         let randomX = Int(arc4random_uniform(UInt32(range)) + 1);
         return randomX;
     }

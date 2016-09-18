@@ -11,10 +11,10 @@ import SpriteKit
 
 class Button: SpriteActor,ITouchable{
     
-    private var _displayText:String;
-    private let _gameScene:GameScene?;
-    private var _labelNode:Label?;
-    private var _alpha:CGFloat;
+    fileprivate var _displayText:String;
+    fileprivate let _gameScene:GameScene?;
+    fileprivate var _labelNode:Label?;
+    fileprivate var _alpha:CGFloat;
     
     var DisplayText:String{get{return self._displayText}}
     var Alpha:CGFloat{get{return self._alpha}}
@@ -32,7 +32,7 @@ class Button: SpriteActor,ITouchable{
         super.init(gs:gs, imageName: imageName, position: CGPoint(x:position.x,y:position.y), scale: 1, opacity: opacity, type:ActorType.Button)
        // super.init(sprite: SKSpriteNode(imageNamed:imageName), position: CGPoint(x:position.x,y:position.y), scale:1,opacity:self._alpha);
         
-        self.name = displayText.stringByReplacingOccurrencesOfString(" ", withString: "_");
+        self.name = displayText.replacingOccurrences(of: " ", with: "_");
         
         //adjusting position
         self.position = CGPoint(x:_labelNode!.Position.x, y:_labelNode!.Position.y - ( (self.Height-_labelNode!.LabelNode.frame.height)/4));
@@ -54,11 +54,11 @@ class Button: SpriteActor,ITouchable{
         super.init(coder: aDecoder);
     }
     
-    func IsTouched(touch: UITouch, withEvent event: UIEvent?)->Bool
+    func IsTouched(_ touch: UITouch, withEvent event: UIEvent?)->Bool
     {
 
-        let location = touch.locationInNode(self._gameScene!);
-        let node = self._gameScene!.nodeAtPoint(location) as SKNode;
+        let location = touch.location(in: self._gameScene!);
+        let node = self._gameScene!.atPoint(location) as SKNode;
      //   if let temp = node as? SKSpriteNode
         if(node.position==self.position)
         {

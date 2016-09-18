@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-public class Actor {
+open class Actor {
 
     var _scale:CGFloat;
     var _position:CGPoint;

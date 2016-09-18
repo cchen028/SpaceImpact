@@ -11,17 +11,17 @@ import SpriteKit
 
  class SpriteActor: SKSpriteNode {
     
-    private var _spriteAction: SKAction!;
-    private var _spriteTextures: [SKTexture];
-    private var _isAnimation:Bool;
-    private var _gameScene:GameScene?;
-    private var _type:ActorType;
-    private var _isActive:Bool;
+    fileprivate var _spriteAction: SKAction!;
+    fileprivate var _spriteTextures: [SKTexture];
+    fileprivate var _isAnimation:Bool;
+    fileprivate var _gameScene:GameScene?;
+    fileprivate var _type:ActorType;
+    fileprivate var _isActive:Bool;
     
     var Width:CGFloat{get{return self.frame.width}}
     var Height:CGFloat{get{return self.frame.height}}
     var SpriteAction:SKAction{get{return self._spriteAction} set(val){self._spriteAction = val}}
-    var Type:ActorType{get{return _type} set(newVal){_type = newVal}};
+    var `Type`:ActorType{get{return _type} set(newVal){_type = newVal}};
     var IsActive:Bool {get{return _isActive} set(newVal){ _isActive = newVal}};
     
     init(gs:GameScene, imageName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat,type:ActorType)
@@ -33,7 +33,7 @@ import SpriteKit
         self._isActive = false;
         
         let texture = gs.AssetService?.SKTextures[imageName];
-        super.init(texture: texture, color: UIColor.clearColor(), size: texture!.size());
+        super.init(texture: texture, color: UIColor.clear, size: texture!.size());
         
         self.position = position;
         self.xScale = scale;
@@ -53,7 +53,7 @@ import SpriteKit
         
         let texture = gs.AssetService?.SKTextures[atlasName];
         
-        super.init(texture: texture, color: UIColor.clearColor(), size: texture!.size());
+        super.init(texture: texture, color: UIColor.clear, size: texture!.size());
         
         self.position = position;
         self.xScale = scale;
@@ -62,19 +62,19 @@ import SpriteKit
         
         self._spriteTextures = (gs.AssetService?.SKTexturesList[atlasName])!;
         
-        let anim = SKAction.animateWithTextures(self._spriteTextures, timePerFrame: 0.025);
+        let anim = SKAction.animate(with: self._spriteTextures, timePerFrame: 0.025);
         
         if(repeatCount == -1)
         {
-            self._spriteAction = SKAction.repeatActionForever(anim);
+            self._spriteAction = SKAction.repeatForever(anim);
         }
         else
         {
-            self._spriteAction = SKAction.repeatAction(anim, count: repeatCount);
+            self._spriteAction = SKAction.repeat(anim, count: repeatCount);
         }
         
         if(startAnimating){
-            self.runAction(self._spriteAction);
+            self.run(self._spriteAction);
         }
     }
 
@@ -90,11 +90,11 @@ import SpriteKit
     func RunAnimation(){
         if(self._isAnimation)
         {
-            self.runAction(self._spriteAction, completion: {self.InActive()});
+            self.run(self._spriteAction, completion: {self.InActive()});
         }
     }
     
-    func SetActive(isActive: Bool) {
+    func SetActive(_ isActive: Bool) {
         if(self._isActive == isActive)
         {
             return;
@@ -114,7 +114,7 @@ import SpriteKit
     
     func Explode(){
         self.alpha = 1;
-        self.runAction(self._spriteAction, completion: {self.InActive()});
+        self.run(self._spriteAction, completion: {self.InActive()});
     }
 
     
@@ -126,7 +126,7 @@ import SpriteKit
         self.removeFromParent();
     }
     
-    private func getFileName(name:String, orderNumber:Int) -> String{
+    fileprivate func getFileName(_ name:String, orderNumber:Int) -> String{
         var fileName:String = name + "_";
         if orderNumber < 10 {
             fileName += ("0" + String(orderNumber));

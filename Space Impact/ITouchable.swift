@@ -10,7 +10,7 @@ import UIKit
 
 protocol ITouchable {
     //func HandlesTouch(touches: Set<UITouch>, withEvent event: UIEvent?)
-    func IsTouched(touch: UITouch, withEvent event: UIEvent?)->Bool
+    func IsTouched(_ touch: UITouch, withEvent event: UIEvent?)->Bool
 }
 
 

@@ -10,17 +10,17 @@ import UIKit
 import SpriteKit
 
 class GameScreen: NSObject,IStage {
-    private var _gameScreenNode:SKNode;
-    private var _name:String;
-    private var _gameScene:GameScene;
-    private var _isActive:Bool;
-    private var _mySpaceShip:Spaceship;
-    private var _allOtherObjects:[IActor];
-    private var _mySpaceshipMissleTimer: NSTimer!;
-    private var rollingRock:RollingRockA;
+    fileprivate var _gameScreenNode:SKNode;
+    fileprivate var _name:String;
+    fileprivate var _gameScene:GameScene;
+    fileprivate var _isActive:Bool;
+    fileprivate var _mySpaceShip:Spaceship;
+    fileprivate var _allOtherObjects:[IActor];
+    fileprivate var _mySpaceshipMissleTimer: Timer!;
+    fileprivate var rollingRock:RollingRockA;
     
-    private var astroid:SKSpriteNode!;
-    private var astroidAction: SKAction!;
+    fileprivate var astroid:SKSpriteNode!;
+    fileprivate var astroidAction: SKAction!;
     
     
     var Name:String{get{return self._name}}
@@ -35,11 +35,11 @@ class GameScreen: NSObject,IStage {
         self._gameScreenNode = SKNode();
         self._gameScreenNode.name = GeneralGameSettings.GAMESCREEN_NAME;
         
-        let location = CGPoint(x:CGRectGetMidX(self._gameScene.frame), y:CGRectGetMinY(self._gameScene.frame) + 30);
+        let location = CGPoint(x:self._gameScene.frame.midX, y:self._gameScene.frame.minY + 30);
         self._mySpaceShip = Spaceship(gs:self._gameScene, position:location);
         self._allOtherObjects = [IActor]();
         
-        for i in 1...25{
+        for _ in 1...25{
             let tempRock = RollingRockA(gs:self._gameScene, position:SpriteServices.GenerateRandomPosition());
             _allOtherObjects.append(tempRock);
         }
@@ -48,7 +48,7 @@ class GameScreen: NSObject,IStage {
    //     _allOtherObjects.append(rollingRock);
     }
     
-    func SetActive(isActive: Bool) {
+    func SetActive(_ isActive: Bool) {
         if(self._isActive == isActive)
         {
             return;
@@ -105,7 +105,7 @@ class GameScreen: NSObject,IStage {
        // _allOtherObjects = _allOtherObjects.filter({(objectt) in objectt.IsActive == false})
     }
     
-    func HandlesTouch(touch: UITouch, withEvent event: UIEvent?, isTouched:Bool)
+    func HandlesTouch(_ touch: UITouch, withEvent event: UIEvent?, isTouched:Bool)
     {
         if !self._isActive
         {
@@ -114,19 +114,19 @@ class GameScreen: NSObject,IStage {
         
         if(!isTouched)
         {
-            self._mySpaceShip.Direction = MoveDirection.None;
+            self._mySpaceShip.Direction = MoveDirection.none;
             return;
         }
         
         
-        let location = touch.locationInNode(self._gameScene);
+        let location = touch.location(in: self._gameScene);
         
-        if location.x > CGRectGetMidX(self._gameScene.frame){
-            self._mySpaceShip.Direction = MoveDirection.Right;
+        if location.x > self._gameScene.frame.midX{
+            self._mySpaceShip.Direction = MoveDirection.right;
         }
         else
         {
-            self._mySpaceShip.Direction = MoveDirection.Left;
+            self._mySpaceShip.Direction = MoveDirection.left;
         }
         
     }
@@ -139,7 +139,7 @@ class GameScreen: NSObject,IStage {
         }
     }
     
-    func Notify(targetStage:String){
+    func Notify(_ targetStage:String){
         
     }
 }

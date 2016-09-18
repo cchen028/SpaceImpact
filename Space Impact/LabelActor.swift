@@ -10,11 +10,11 @@ import UIKit
 import SpriteKit
 
 class LabelActor {
-    private var _labelNode:SKLabelNode;
-    private var _position:CGPoint;
-    private var _fontSize:CGFloat;
-    private var _opacity:CGFloat;
-    private var _displayText:String;
+    fileprivate var _labelNode:SKLabelNode;
+    fileprivate var _position:CGPoint;
+    fileprivate var _fontSize:CGFloat;
+    fileprivate var _opacity:CGFloat;
+    fileprivate var _displayText:String;
     
     
     var LabelNode:SKLabelNode{get{return _labelNode}}

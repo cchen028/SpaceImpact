@@ -10,10 +10,10 @@ import UIKit
 import SpriteKit
 
 class Missle: MissleActor, IActor {
-    private var _misPosition:CGPoint;
-    private var _gameScene:GameScene?;
-    private let _SPEED:CGFloat = 5;
-    private let _DAMAGE:CGFloat = 1;
+    fileprivate var _misPosition:CGPoint;
+    fileprivate var _gameScene:GameScene?;
+    fileprivate let _SPEED:CGFloat = 5;
+    fileprivate let _DAMAGE:CGFloat = 1;
     
     
     var Position:CGPoint{get{return self.Missle.position}}
@@ -33,7 +33,7 @@ class Missle: MissleActor, IActor {
         }
     }
     
-    func SetActive(isActive: Bool) {
+    func SetActive(_ isActive: Bool) {
         if(self._isActive == isActive)
         {
             return;

@@ -10,6 +10,10 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+  
+    
+    static let gameScene = GameScene();
+    //var test = SpaceImpact.sharedInstance;
     var spaceship:SpriteActor?;
     var touched:Bool?;
     var touchdirection:Int?;
@@ -17,15 +21,16 @@ class GameScene: SKScene {
     var mainScreen:MainScreen?;
     var gameScreen:GameScreen?;
     var button:Button?;
-    var gameTimer: NSTimer?;
+    var gameTimer: Timer?;
+    static let sharedInstance = self;
     
-    private var _assetServices:AssetServices?;
+    fileprivate var _assetServices:AssetServices?;
     
     var AssetService:AssetServices?{ get{return self._assetServices}}
     
     var transitService:TransitionService?;
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
         /* Setup your scene here */
 
@@ -33,9 +38,9 @@ class GameScene: SKScene {
         _assetServices = AssetServices();
         
         
-        self.backgroundColor = SKColor.blackColor();
+        self.backgroundColor = SKColor.black;
         
-        self.physicsWorld.gravity = CGVectorMake(0, 0);
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0);
         
        // self.addChild(myLabel)
         
@@ -82,7 +87,7 @@ class GameScene: SKScene {
     
     
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
        /* Called when a touch begins */
     
         if(touches.count<=0)
@@ -104,10 +109,10 @@ class GameScene: SKScene {
 //        }
         
         for touch in touches {
-            let location = touch.locationInNode(self)
+            let location = touch.location(in: self)
             touched = true;
            // var action2:SKAction;
-            if location.x > CGRectGetMidX(self.frame){
+            if location.x > self.frame.midX{
              //   action2 = SKAction.moveByX(100, y: 0, duration: 1);
             
                 touchdirection = 1;
@@ -136,8 +141,8 @@ class GameScene: SKScene {
         }
     }
     
-    override func touchesCancelled(touches: Set<UITouch>!, withEvent event: UIEvent!) {
-        super.touchesCancelled(touches, withEvent: event);
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent!) {
+        super.touchesCancelled(touches, with: event);
         
         
 //        if(gameScreen!.IsActive)
@@ -148,8 +153,8 @@ class GameScene: SKScene {
       //   touchdirection = 0;
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
         let touch = touches.first;
         
@@ -161,7 +166,7 @@ class GameScene: SKScene {
     
     
    
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         
         backgroundtheme?.Update();
         
@@ -218,7 +223,7 @@ class GameScene: SKScene {
     
     
     
-    func addSpaceship(node:SpaceshipActor?)
+    func addSpaceship(_ node:SpaceshipActor?)
     {
         self.addChild(node!.Spaceship);
 //        if let shapeNode = node as? ShapeActor{
@@ -229,7 +234,7 @@ class GameScene: SKScene {
 //        }
     }
     
-    func addActor(node:IActor?)
+    func addActor(_ node:IActor?)
     {
         if let shapeNode = node as? ShapeActor{
             self.addChild(shapeNode);

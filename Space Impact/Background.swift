@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class Background:IStage {
-    private var _name:String;
+open class Background:IStage {
+    fileprivate var _name:String;
     
-    private var _stars:[Star];
-    private var _gameScene:GameScene;
-    private var _isActive:Bool;
-    private var _type:BackgroundStarAnimationType;
+    fileprivate var _stars:[Star];
+    fileprivate var _gameScene:GameScene;
+    fileprivate var _isActive:Bool;
+    fileprivate var _type:BackgroundStarAnimationType;
     
     
     var IsActive:Bool{get{return self._isActive}}
@@ -23,9 +23,9 @@ public class Background:IStage {
     var Stars:[Star]{get{return self._stars} set(val){self._stars = val}}
     init(gs:GameScene)
     {
-        self._type = BackgroundStarAnimationType.Default;
+        self._type = BackgroundStarAnimationType.default;
         self._name = "Background";
-        self._gameScene = gs;
+        self._gameScene    = gs;
         self._stars = [Star]();
         self._isActive = false;
         InitializeStars();
@@ -33,9 +33,9 @@ public class Background:IStage {
     }
     
     func InitializeStars(){
-        GenerateStars(StarType.Slow, num:10);
-        GenerateStars(StarType.Medium, num:10);
-        GenerateStars(StarType.Fast, num:10);
+        GenerateStars(StarType.slow, num:10);
+        GenerateStars(StarType.medium, num:10);
+        GenerateStars(StarType.fast, num:10);
         
     }
     
@@ -43,8 +43,8 @@ public class Background:IStage {
         
     }
     
-    func GenerateStars(type: StarType, num:Int){
-        for index in 1...num{
+    func GenerateStars(_ type: StarType, num:Int){
+        for _ in 1...num{
             let randomX = Int(arc4random_uniform(400) + 1);
             let randomY = Int(arc4random_uniform(800) + 1);
             let tempStar = Star(type: type, position: CGPoint(x:randomX , y: randomY));
@@ -53,21 +53,21 @@ public class Background:IStage {
         }
     }
     
-    func Notify(targetStage:String){
+    func Notify(_ targetStage:String){
         if(targetStage == "Main")
         {
-            self._type = BackgroundStarAnimationType.MainMenu;
+            self._type = BackgroundStarAnimationType.mainMenu;
         }
         else
         {
-           self._type = BackgroundStarAnimationType.Default;
+           self._type = BackgroundStarAnimationType.default;
         }
     }
     
-    public func Update(){
+    open func Update(){
         for star in self._stars{
             star.Update();
-            if(self._type == BackgroundStarAnimationType.MainMenu)
+            if(self._type == BackgroundStarAnimationType.mainMenu)
             {
                 star.MainMenuSpecialEffect();
             }
@@ -78,7 +78,7 @@ public class Background:IStage {
         }
     }
     
-    func SetActive(isActive: Bool) {
+    func SetActive(_ isActive: Bool) {
         if(self._isActive == isActive)
         {
             return;
@@ -108,5 +108,5 @@ public class Background:IStage {
 
 
 enum BackgroundStarAnimationType{
-    case Default, MainMenu
+    case `default`, mainMenu
 }

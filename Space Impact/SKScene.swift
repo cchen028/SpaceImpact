@@ -10,11 +10,11 @@ import UIKit
 import SpriteKit
 
 extension SKScene{
-    func addSpriteActor(object: SpriteActor){
+    func addSpriteActor(_ object: SpriteActor){
         self.addChild(object);
     }
     
-    func childNodeWithNodeType(nodeType:NodeType)->SKNode?{
-        return self.childNodeWithName(nodeType.rawValue);
+    func childNodeWithNodeType(_ nodeType:NodeType)->SKNode?{
+        return self.childNode(withName: nodeType.rawValue);
     }
 }

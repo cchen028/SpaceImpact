@@ -11,7 +11,7 @@ import SpriteKit
 
 class Label:LabelActor {
     
-    private var _gameScene:GameScene?;
+    fileprivate var _gameScene:GameScene?;
     
 
     

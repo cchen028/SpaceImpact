@@ -11,10 +11,10 @@ import SpriteKit
 
 class Spaceship: SpaceshipActor, IActor{
     
-    private var _initialPosition:CGPoint;
-    private var _gameScene:GameScene;
-    private var _moveDirection:MoveDirection;
-    private var _frameCount:CGFloat;
+    fileprivate var _initialPosition:CGPoint;
+    fileprivate var _gameScene:GameScene;
+    fileprivate var _moveDirection:MoveDirection;
+    fileprivate var _frameCount:CGFloat;
     
     
     var Position:CGPoint{get{return self.Spaceship.position}}
@@ -28,7 +28,7 @@ class Spaceship: SpaceshipActor, IActor{
         self._gameScene = gs;
         self._initialPosition = position;
         self._frameCount = 0;
-        self._moveDirection = MoveDirection.None;
+        self._moveDirection = MoveDirection.none;
         
         super.init(gs: gs, imageName: GeneralGameSettings.MYSPACESHIP_NAME, explosionName:GeneralGameSettings.MYSPACESHIP_EXPLOSION, health: 1, speed: GeneralGameSettings.MYSPACESHIP_SPEED, damage: 1, position: position, scale:0.5, type:ActorType.MySpaceship);
         
@@ -37,7 +37,7 @@ class Spaceship: SpaceshipActor, IActor{
     }
     
     func InitializeMissles(){
-        for i in 1...25{
+        for _ in 1...25{
             self._missles.append(Missle(gs:self._gameScene, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type:ActorType.MyMissle));
         }
     }
@@ -47,7 +47,7 @@ class Spaceship: SpaceshipActor, IActor{
     }
 
     
-    func Update(objects:[IActor]?){
+    func Update(_ objects:[IActor]?){
         self.spaceshipMovementUpdate();
         self.mySpaceshipUpdate(objects);
         self.myMissleUpdate(objects);
@@ -57,7 +57,7 @@ class Spaceship: SpaceshipActor, IActor{
         
     }
     
-    func SetActive(isActive:Bool){
+    func SetActive(_ isActive:Bool){
         if(self.Spaceship.IsActive == isActive)
         {
             return;
@@ -97,7 +97,7 @@ class Spaceship: SpaceshipActor, IActor{
         super.InActive();
     }
     
-    private func mySpaceshipUpdate(objects:[IActor]?){
+    fileprivate func mySpaceshipUpdate(_ objects:[IActor]?){
         if objects != nil{
             let spaceObjects = objects!;
             for object in spaceObjects{
@@ -109,7 +109,7 @@ class Spaceship: SpaceshipActor, IActor{
         }
     }
     
-    private func myMissleUpdate(objects:[IActor]?){
+    fileprivate func myMissleUpdate(_ objects:[IActor]?){
         
         if(self._missles.count <= 0)
         {
@@ -128,7 +128,7 @@ class Spaceship: SpaceshipActor, IActor{
            // let spaceObjects = objects!;
            // let spaceObjects = self._gameScene.children;
 
-            let spaceObjects = self._gameScene.childNodeWithName(GeneralGameSettings.GAMESCREEN_NAME);
+            let spaceObjects = self._gameScene.childNode(withName: GeneralGameSettings.GAMESCREEN_NAME);
             
            // for object in spaceObjects{
              //   if let gameNode = object as? SKNode {
@@ -153,27 +153,25 @@ class Spaceship: SpaceshipActor, IActor{
         }
     }
     
-    private func spaceshipMovementUpdate(){
+    fileprivate func spaceshipMovementUpdate(){
         switch self._moveDirection{
-        case .Left:
+        case .left:
             if(self.Spaceship.position.x  > (self.Spaceship.Width / 2))
             {
                 self.Spaceship.position.x -= self.Speed;
             }
                 break;
-        case .None:
+        case .none:
             break;
-        case .Right:
+        case .right:
             if(self.Spaceship.position.x  < (self._gameScene.frame.width - (self.Spaceship.Width / 2)))
             {
                 self.Spaceship.position.x  += self.Speed;
             }
-        default:
-            break;
         }
     }
     
-    func SelfCollideUpdate(actor: IActor){
+    func SelfCollideUpdate(_ actor: IActor){
      //   let collided =  self.Spaceship.frame.intersects(actor.Sprite.frame);
         let collided = self.IsCollideWithSelf(actor.Sprite);
 
@@ -185,7 +183,7 @@ class Spaceship: SpaceshipActor, IActor{
     }
     
     
-    func MissleCollideUpdate(actor: SpriteActor, missleIndex:Int){
+    func MissleCollideUpdate(_ actor: SpriteActor, missleIndex:Int){
       //  let collided =  self._missles[missleIndex].Missle.frame.intersects(actor.Sprite.frame);
         let collided = self._missles[missleIndex].IsCollideWithSelf(actor);
 
@@ -198,7 +196,7 @@ class Spaceship: SpaceshipActor, IActor{
           //  var test = actor.name!;
          //   var test2 = self._gameScene.childNodeWithName("Game")!.childNodeWithName(ActorType.Explosion.rawValue+"_"+actor.name!);
             
-            if let explosionActor = self._gameScene.childNodeWithName(GeneralGameSettings.GAMESCREEN_NAME)!.childNodeWithName(ActorType.Explosion.rawValue+"_"+actor.name!) as? SpriteActor
+            if let explosionActor = self._gameScene.childNode(withName: GeneralGameSettings.GAMESCREEN_NAME)!.childNode(withName: ActorType.Explosion.rawValue+"_"+actor.name!) as? SpriteActor
             {
                 explosionActor.Explode();
             }
@@ -212,5 +210,5 @@ class Spaceship: SpaceshipActor, IActor{
 }
 
 enum MoveDirection:Int{
-    case Left = -1, None, Right
+    case left = -1, none, right
 }
