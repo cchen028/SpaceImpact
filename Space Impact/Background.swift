@@ -11,8 +11,8 @@ import UIKit
 open class Background:IStage {
     fileprivate var _name:String;
     
-    fileprivate var _stars:[Star];
-    fileprivate var _gameScene:GameScene;
+   // fileprivate var _stars:[Star];
+   // fileprivate var _gameScene:GameScene;
     fileprivate var _isActive:Bool;
     fileprivate var _type:BackgroundStarAnimationType;
     
@@ -20,22 +20,27 @@ open class Background:IStage {
     var IsActive:Bool{get{return self._isActive}}
     var Name:String{get{return self._name}}
     
-    var Stars:[Star]{get{return self._stars} set(val){self._stars = val}}
+   // var Stars:[Star]{get{return self._stars} set(val){self._stars = val}}
     init(gs:GameScene)
     {
         self._type = BackgroundStarAnimationType.default;
         self._name = "Background";
-        self._gameScene    = gs;
-        self._stars = [Star]();
+      //  self._gameScene    = gs;
+      //  self._stars = [Star]();
         self._isActive = false;
         InitializeStars();
         
     }
     
     func InitializeStars(){
-        GenerateStars(StarType.slow, num:10);
-        GenerateStars(StarType.medium, num:10);
-        GenerateStars(StarType.fast, num:10);
+        
+        GameObjectServices.instance.CreateStarsCollection(StarType.slow, num:10);
+        GameObjectServices.instance.CreateStarsCollection(StarType.medium, num:10);
+        GameObjectServices.instance.CreateStarsCollection(StarType.fast, num:10);
+        
+     //   GenerateStars(StarType.slow, num:10);
+     //   GenerateStars(StarType.medium, num:10);
+     //   GenerateStars(StarType.fast, num:10);
         
     }
     
@@ -43,15 +48,15 @@ open class Background:IStage {
         
     }
     
-    func GenerateStars(_ type: StarType, num:Int){
-        for _ in 1...num{
-            let randomX = Int(arc4random_uniform(400) + 1);
-            let randomY = Int(arc4random_uniform(800) + 1);
-            let tempStar = Star(type: type, position: CGPoint(x:randomX , y: randomY));
-            self._gameScene.addChild(tempStar);
-            self._stars.append(tempStar);
-        }
-    }
+//    func GenerateStars(_ type: StarType, num:Int){
+//        for _ in 1...num{
+//            let randomX = Int(arc4random_uniform(400) + 1);
+//            let randomY = Int(arc4random_uniform(800) + 1);
+//            let tempStar = Star(type: type, position: CGPoint(x:randomX , y: randomY));
+//            self._gameScene.addChild(tempStar);
+//            self._stars.append(tempStar);
+//        }
+//    }
     
     func Notify(_ targetStage:String){
         if(targetStage == "Main")
@@ -65,7 +70,7 @@ open class Background:IStage {
     }
     
     open func Update(){
-        for star in self._stars{
+        for star in GameObjectServices.instance.Stars{
             star.Update();
             if(self._type == BackgroundStarAnimationType.mainMenu)
             {

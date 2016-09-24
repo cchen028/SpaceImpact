@@ -12,98 +12,131 @@ import SpriteKit
 class GameScreen: NSObject,IStage {
     fileprivate var _gameScreenNode:SKNode;
     fileprivate var _name:String;
-    fileprivate var _gameScene:GameScene;
     fileprivate var _isActive:Bool;
-    fileprivate var _mySpaceShip:Spaceship;
-    fileprivate var _allOtherObjects:[IActor];
     fileprivate var _mySpaceshipMissleTimer: Timer!;
-    fileprivate var rollingRock:RollingRockA;
     
     fileprivate var astroid:SKSpriteNode!;
     fileprivate var astroidAction: SKAction!;
+    fileprivate var _level:LevelClass;
+    fileprivate var _collidingService:CollidingServices;
+    fileprivate var _mySpaceship: Spaceship;
     
     
     var Name:String{get{return self._name}}
-    var MySpaceship:Spaceship{get{return self._mySpaceShip}}
+    var Level:LevelClass{get{return self._level}}
     var IsActive:Bool{get{return self._isActive}}
     
     
-    init(gs:GameScene){
+    override init(){
         self._name = GeneralGameSettings.GAMESCREEN_NAME;
-        self._gameScene = gs;
+        self._mySpaceship = Spaceship(position:SpriteServices.GetSpaceshipInitialPos());
+        
         self._isActive = false;
         self._gameScreenNode = SKNode();
         self._gameScreenNode.name = GeneralGameSettings.GAMESCREEN_NAME;
         
-        let location = CGPoint(x:self._gameScene.frame.midX, y:self._gameScene.frame.minY + 30);
-        self._mySpaceShip = Spaceship(gs:self._gameScene, position:location);
-        self._allOtherObjects = [IActor]();
+        GameObjectServices.instance.CreateGameScreen(gameScreen: self._gameScreenNode);
+       // GameObjectServices.instance.CreateSpaceShip();
+        self._level = LevelClass();
+        //self._mySpaceship = GameObjectServices.instance.PlayerSpaceship!;
+        self._collidingService = CollidingServices(level: self._level, spaceship: self._mySpaceship);
         
-        for _ in 1...25{
-            let tempRock = RollingRockA(gs:self._gameScene, position:SpriteServices.GenerateRandomPosition());
-            _allOtherObjects.append(tempRock);
-        }
+        //GameObjectServices.instance.CreateRollingRockA(num: 25);
+       // GameObjectServices.instance.CreateSpaceShip();
         
-       rollingRock = RollingRockA(gs:self._gameScene, position:SpriteServices.GenerateRandomPosition());
-   //     _allOtherObjects.append(rollingRock);
+        
+        super.init();
+        
     }
     
     func SetActive(_ isActive: Bool) {
-        if(self._isActive == isActive)
-        {
-            return;
-        }
-        else{
-            self._isActive = isActive;
+        
+        if(self._isActive != isActive){
+            UpdateStatus(isActive);
         }
         
-        if(isActive){
-            Active();
+    }
+    
+    func UpdateStatus(_ isActive: Bool){
+        if(!isActive){
+            self._gameScreenNode.removeFromParent();
         }
         else
         {
-            InActive();
-        }
-    }
-    
-    func Active(){
-        
-        self._gameScene.addChild(self._gameScreenNode);
-        
-        self._mySpaceShip.SetActive(true);
-        
-//        for node in self._gameScene.childNodeWithNodeType(NodeType.GameScreen)!.children{
-//          node
-//        }
-        
-        for object in _allOtherObjects{
-            object.SetActive(true);
+            GameScene.instance!.addChild(self._gameScreenNode);
         }
         
-//        for object in _allOtherObjects{
-//            if(!object.IsActive)
-//            {
-//                
+        self._mySpaceship.SetActive(isActive);
+        //GameObjectServices.instance.PlayerSpaceship!.SetActive(isActive);
+        
+//        for obj in self._level.Enemies{
+//            if let rollingRockA = obj as? RollingRockA {
+//                rollingRockA.SetActive(isActive);
 //            }
 //        }
         
-    //    _allOtherObjects = _allOtherObjects.filter({(objectt) in objectt.IsActive == false})
+        self._level.UpdateStatus(isActive);
         
+        self._isActive = isActive;
+       
     }
     
-    func InActive() {
-        
-        self._mySpaceShip.SetActive(false);
-        
-        for object in _allOtherObjects{
-            object.SetActive(false);
+    func SpaceshipAndEnemyCollisionUpdate(){
+        let objects = self._level.Enemies;
+        //  if objects != nil{
+        //     let spaceObjects = objects!;
+        for object in objects{
+            if(object.Sprite.Type == ActorType.EnemySpaceship)
+            {
+                self.SelfCollideUpdate(spaceActor: object);
+            }
         }
-        
-      //  _allOtherObjects = _allOtherObjects.filter({$0.IsActive});
-        
-        self._gameScreenNode.removeFromParent();
-       // _allOtherObjects = _allOtherObjects.filter({(objectt) in objectt.IsActive == false})
+        // }
     }
+    
+    fileprivate func SelfCollideUpdate(spaceActor: IActor){
+        let collided = self.IsCollideWithSelf(spaceActor.Sprite);
+        
+        if(collided)
+        {
+            self._mySpaceship.SetActive(false);
+            //GameObjectServices.instance.PlayerSpaceship!.SetActive(false);
+            //self.SetActive(false);
+            spaceActor.SetActive(false);
+        }
+    }
+    
+    fileprivate func IsCollideWithSelf(_ actor: SpriteActor) -> Bool{
+        //self._mySpaceship
+        //return GameObjectServices.instance.PlayerSpaceship!.Sprite.frame.intersects(actor.frame);
+        return self._mySpaceship.Sprite.frame.intersects(actor.frame);
+    }
+
+
+    
+//    func Active(){
+//        GameScene.instance!.addChild(self._gameScreenNode);
+//        
+//        for obj in GameObjectServices.instance.RollingRock{
+//            if let rollingRockA = obj as? RollingRockA {
+//                rollingRockA.SetActive(true);
+//            }
+//        }
+//        
+//        GameObjectServices.instance.PlayerSpaceship!.SetActive(true);
+//    }
+//    
+//    func InActive() {
+//        GameObjectServices.instance.PlayerSpaceship!.SetActive(false);
+//        
+//        for obj in GameObjectServices.instance.RollingRock{
+//            if let rollingRockA = obj as? RollingRockA {
+//                rollingRockA.SetActive(false);
+//            }
+//        }
+//        
+//        self._gameScreenNode.removeFromParent();
+//    }
     
     func HandlesTouch(_ touch: UITouch, withEvent event: UIEvent?, isTouched:Bool)
     {
@@ -114,30 +147,145 @@ class GameScreen: NSObject,IStage {
         
         if(!isTouched)
         {
-            self._mySpaceShip.Direction = MoveDirection.none;
+            self._mySpaceship.Direction = MoveDirection.none;
+           // GameObjectServices.instance.PlayerSpaceship!.Direction = MoveDirection.none;
             return;
         }
         
         
-        let location = touch.location(in: self._gameScene);
+        let location = touch.location(in: GameScene.instance!);
         
-        if location.x > self._gameScene.frame.midX{
-            self._mySpaceShip.Direction = MoveDirection.right;
+        if location.x > GameScene.instance!.frame.midX{
+            self._mySpaceship.Direction = MoveDirection.right;
+            //GameObjectServices.instance.PlayerSpaceship!.Direction = MoveDirection.right;
         }
         else
         {
-            self._mySpaceShip.Direction = MoveDirection.left;
+            self._mySpaceship.Direction = MoveDirection.left;
+           // GameObjectServices.instance.PlayerSpaceship!.Direction = MoveDirection.left;
         }
         
     }
     
     func Update(){
-        self._mySpaceShip.Update(_allOtherObjects);
         
-        for object in _allOtherObjects{
-            object.Update();
+       // self.SpaceshipAndEnemyCollisionUpdate();
+       // CollidingServices.SpaceshipAndEnemyCollisionUpdate();
+       // CollidingServices.SpaceshipMissleUpdate();
+      //  self.myMissleUpdate(objects);
+       // self.mySpaceshipUpdate(objects);
+        
+      // CollidingServices.SpaceshipAndEnemyCollisionUpdate();
+        
+        // GameObjectServices.instance.PlayerSpaceship!.Update(self._level.Enemies);
+        
+        self._level.Update();
+        self._mySpaceship.Update(self._level.Enemies);
+        //self.myMissleUpdate();
+      //  self.myMissleUpdate();
+        self._collidingService.Update();
+        
+//        for obj in GameObjectServices.instance.RollingRock{
+//            if let rollingRockA = obj as? RollingRockA {
+//                rollingRockA.Update();
+//            }
+//        }
+    }
+    
+//    fileprivate func mySpaceshipUpdate(_ objects:[IActor]?){
+//        if objects != nil{
+//            let spaceObjects = objects!;
+//            for object in spaceObjects{
+//                if(object.Sprite.Type == ActorType.EnemySpaceship)
+//                {
+//                    SelfCollideUpdate(object);
+//                }
+//            }
+//        }
+//    }
+ 
+    
+    
+        fileprivate func myMissleUpdate(){
+    
+            if(self._mySpaceship._missles.count <= 0)
+            {
+                return;
+            }
+            
+            
+            let spaceObjects = GameScene.instance!.childNode(withName: GeneralGameSettings.GAMESCREEN_NAME);
+    
+            for mIndex in 0...(self._mySpaceship._missles.count - 1)	{
+                let missle = self._mySpaceship._missles[mIndex];
+                missle.Update();
+    
+    
+                for eachNode in (spaceObjects?.children)!{
+                    if let spriteNode = eachNode as? SpriteActor{
+                        if(spriteNode.Type == ActorType.EnemySpaceship)
+                        {
+                            MissleCollideUpdate(spriteNode, missleIndex:mIndex);
+                        }
+                    }
+                }
+            }
+        }
+
+    fileprivate func MissleCollideUpdate(_ actor: SpriteActor, missleIndex:Int){
+        let collided = self._mySpaceship._missles[missleIndex].IsCollideWithSelf(actor);
+        
+        if(collided)
+        {
+            self._mySpaceship._missles[missleIndex].SetActive(false);
+            actor.SetActive(false);
+            
+            if let explosionActor = GameScene.instance!.childNode(withName: GeneralGameSettings.GAMESCREEN_NAME)!.childNode(withName: ActorType.Explosion.rawValue+"_"+actor.name!) as? SpriteActor
+            {
+                explosionActor.Explode();
+            }
         }
     }
+    
+    
+//    fileprivate func myMissleUpdate(_ objects:[IActor]?){
+//        
+//        if(self._mySpaceship._missles.count <= 0)
+//        {
+//            return;
+//        }
+//        
+//        for mIndex in 0...(self._mySpaceship._missles.count - 1)	{
+//            let missle = self._missles[mIndex];
+//            missle.Update();
+//            
+//            let spaceObjects = GameScene.instance!.childNode(withName: GeneralGameSettings.GAMESCREEN_NAME);
+//            
+//            for eachNode in (spaceObjects?.children)!{
+//                if let spriteNode = eachNode as? SpriteActor{
+//                    if(spriteNode.Type == ActorType.EnemySpaceship)
+//                    {
+//                        MissleCollideUpdate(spriteNode, missleIndex:mIndex);
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    
+//    func SelfCollideUpdate(_ actor: IActor){
+//        let collided = self.IsCollideWithSelf(actor.Sprite);
+//        
+//        if(collided)
+//        {
+//            self.SetActive(false);
+//            actor.SetActive(false);
+//        }
+//    }
+//    
+//    func IsCollideWithSelf(_ actor: SpriteActor) -> Bool{
+//        return self.Spaceship.frame.intersects(actor.frame);
+//    }
     
     func Notify(_ targetStage:String){
         

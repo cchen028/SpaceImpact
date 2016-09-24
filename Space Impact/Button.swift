@@ -29,7 +29,7 @@ class Button: SpriteActor,ITouchable{
         
         self._labelNode = Label(gs:self._gameScene!, displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontName, opacity: self._alpha);
         
-        super.init(gs:gs, imageName: imageName, position: CGPoint(x:position.x,y:position.y), scale: 1, opacity: opacity, type:ActorType.Button)
+        super.init(imageName: imageName, position: CGPoint(x:position.x,y:position.y), scale: 1, opacity: opacity, type:ActorType.Button)
        // super.init(sprite: SKSpriteNode(imageNamed:imageName), position: CGPoint(x:position.x,y:position.y), scale:1,opacity:self._alpha);
         
         self.name = displayText.replacingOccurrences(of: " ", with: "_");

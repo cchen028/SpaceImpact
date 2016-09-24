@@ -14,7 +14,7 @@ protocol IStage {
     
     func Notify(_ targetStage:String)
     func SetActive(_ isActive:Bool);
-    func Active();
-    func InActive();
+   // func Active();
+    //func InActive();
 }
 

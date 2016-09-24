@@ -20,11 +20,32 @@ class LevelClass {
         self.CreateRollingRockA(num:25);
     }
     
+    func Update(){
+        for obj in self._enemies{
+            if let rollingRockA = obj as? RollingRockA {
+                rollingRockA.Update();
+               
+            }
+        }
+    }
+    
+    func UpdateStatus(_ isActive:Bool){
+        for obj in self._enemies{
+            if let rollingRockA = obj as? RollingRockA {
+                rollingRockA.SetActive(isActive);
+            }
+        }
+    }
+    
     fileprivate func CreateRollingRockA(num:Int){
         for _ in 1...num{
             let tempRock = RollingRockA(position:SpriteServices.GenerateRandomPosition());
             self._enemies.append(tempRock);
         }
     }
+    
+    
+    
+    
     
 }

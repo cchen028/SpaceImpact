@@ -35,6 +35,10 @@ struct SpriteServices {
         sprite.run(fadeInAnimation);
     }
     
+    static func GetSpaceshipInitialPos() -> CGPoint{
+        return CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.minY + 30);
+    }
+    
     static func GenerateRandomPosition() -> CGPoint{
         let randomX = GenerateRandomNumber(GeneralGameSettings.SCREEN_WIDTH);
         let randomY = GenerateRandomNumber(GeneralGameSettings.SCREEN_HEIGHT)+800;

@@ -12,7 +12,7 @@ class GameScene: SKScene {
     
   
     
-    static let gameScene = GameScene();
+    static let instance = GameScene(fileNamed:"GameScene");
     //var test = SpaceImpact.sharedInstance;
     var spaceship:SpriteActor?;
     var touched:Bool?;
@@ -47,7 +47,7 @@ class GameScene: SKScene {
         backgroundtheme = Background(gs: self);
         
         mainScreen = MainScreen(gs:self);
-        gameScreen = GameScreen(gs:self);
+        gameScreen = GameScreen();
         
         transitService = TransitionService();
         transitService?.AddStage(backgroundtheme!);

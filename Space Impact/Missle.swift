@@ -11,7 +11,6 @@ import SpriteKit
 
 class Missle: MissleActor, IActor {
     fileprivate var _misPosition:CGPoint;
-    fileprivate var _gameScene:GameScene?;
     fileprivate let _SPEED:CGFloat = 5;
     fileprivate let _DAMAGE:CGFloat = 1;
     
@@ -20,10 +19,9 @@ class Missle: MissleActor, IActor {
     var IsActive:Bool{get{return _isActive}};
     var Sprite:SpriteActor { get{return self.Missle}}
     
-    init(gs:GameScene, position:CGPoint, type:ActorType) {
-        self._gameScene = gs;
+    init(position:CGPoint, type:ActorType) {
         self._misPosition = position;
-        super.init(gs:gs, missleType: type,position:position, speed: self._SPEED, damage: self._DAMAGE);
+        super.init(missleType: type,position:position, speed: self._SPEED, damage: self._DAMAGE);
     }
     
     override func Update(){
@@ -31,35 +29,27 @@ class Missle: MissleActor, IActor {
         {
             self._missle.position.y += self._SPEED;
         }
+        
+        
+        if self._missle.position.y > CGFloat(GeneralGameSettings.SCREEN_HEIGHT)
+        {
+            self._missle.SetActive(false);
+        }
     }
     
     func SetActive(_ isActive: Bool) {
-        if(self._isActive == isActive)
-        {
-            return;
-        }
-        else{
-            self._isActive = isActive;
+        if(self.IsActive != isActive){
+            UpdateStatus(isActive);
         }
         
-        if(isActive){
-            Active();
-        }
-        else
-        {
-            InActive();
-        }
+        self._isActive = isActive;
+    }
+    
+    override func UpdateStatus(_ isActive: Bool){
+        super.UpdateStatus(isActive);
     }
     
     func Explode() {
         
-    }
-    
-    override func Active() {
-        super.Active();
-    }
-    
-    override func InActive() {
-        super.InActive();
     }
 }

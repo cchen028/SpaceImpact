@@ -15,6 +15,9 @@
 		B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00487791C8D6E5C0061EC7F /* astroid1.atlas */; };
 		B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */; };
 		B018AF831C8AC576000D68A6 /* Missle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018AF821C8AC576000D68A6 /* Missle.swift */; };
+		B03125D31D8E9A90000212A0 /* LevelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D21D8E9A90000212A0 /* LevelService.swift */; };
+		B03125D51D9371CD000212A0 /* CollidingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D41D9371CD000212A0 /* CollidingServices.swift */; };
+		B03125D81D93A847000212A0 /* LevelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D71D93A847000212A0 /* LevelClass.swift */; };
 		B03BD5EB1C706BC200D14F4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD5EA1C706BC200D14F4C /* AppDelegate.swift */; };
 		B03BD5ED1C706BC200D14F4C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B03BD5EC1C706BC200D14F4C /* GameScene.sks */; };
 		B03BD5EF1C706BC200D14F4C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD5EE1C706BC200D14F4C /* GameScene.swift */; };
@@ -77,6 +80,9 @@
 		B00487791C8D6E5C0061EC7F /* astroid1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = astroid1.atlas; sourceTree = "<group>"; };
 		B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = rollingrockA.atlas; sourceTree = "<group>"; };
 		B018AF821C8AC576000D68A6 /* Missle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Missle.swift; sourceTree = "<group>"; };
+		B03125D21D8E9A90000212A0 /* LevelService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelService.swift; sourceTree = "<group>"; };
+		B03125D41D9371CD000212A0 /* CollidingServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollidingServices.swift; sourceTree = "<group>"; };
+		B03125D71D93A847000212A0 /* LevelClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelClass.swift; sourceTree = "<group>"; };
 		B03BD5E71C706BC200D14F4C /* Space Impact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space Impact.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03BD5EA1C706BC200D14F4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B03BD5EC1C706BC200D14F4C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -154,6 +160,14 @@
 			name = "Animation Assets";
 			sourceTree = "<group>";
 		};
+		B03125D61D93A81F000212A0 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				B03125D71D93A847000212A0 /* LevelClass.swift */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
 		B03BD5DE1C706BC200D14F4C = {
 			isa = PBXGroup;
 			children = (
@@ -177,13 +191,14 @@
 		B03BD5E91C706BC200D14F4C /* Space Impact */ = {
 			isa = PBXGroup;
 			children = (
-				B0EFE7411C96657A00807049 /* Enums */,
-				B0EFE73A1C961CD300807049 /* Extensions */,
 				B004876C1C8D10DD0061EC7F /* Animation Assets */,
 				B0F53E061C83C95900876394 /* Configurations */,
+				B0EFE7411C96657A00807049 /* Enums */,
+				B03BD62A1C7C4DFA00D14F4C /* Abstract Protocols */,
+				B0EFE73A1C961CD300807049 /* Extensions */,
 				B07E8E181C818E2300217260 /* Services */,
 				B03BD62D1C7D8E2D00D14F4C /* Stage */,
-				B03BD62A1C7C4DFA00D14F4C /* Abstract Protocols */,
+				B03125D61D93A81F000212A0 /* Levels */,
 				B03BD61F1C71373A00D14F4C /* Models */,
 				B03BD61C1C707E6800D14F4C /* Protocols */,
 				B03BD5EA1C706BC200D14F4C /* AppDelegate.swift */,
@@ -289,6 +304,8 @@
 				B003F4AF1C901E7500AFDF91 /* SpriteServices.swift */,
 				B0038BEC1C93EACD00870D97 /* AssetServices.swift */,
 				B07545941D848F710004E53B /* GameObjectServices.swift */,
+				B03125D21D8E9A90000212A0 /* LevelService.swift */,
+				B03125D41D9371CD000212A0 /* CollidingServices.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -387,6 +404,7 @@
 				TargetAttributes = {
 					B03BD5E61C706BC200D14F4C = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 4U996AF63T;
 						LastSwiftMigration = 0800;
 					};
 					B03BD5FE1C706BC200D14F4C = {
@@ -457,6 +475,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B03125D81D93A847000212A0 /* LevelClass.swift in Sources */,
+				B03125D31D8E9A90000212A0 /* LevelService.swift in Sources */,
 				B0EFE7401C9660CC00807049 /* SKScene.swift in Sources */,
 				B03BD62F1C7D8E5100D14F4C /* Background.swift in Sources */,
 				B07E8E201C825B1D00217260 /* LabelActor.swift in Sources */,
@@ -476,6 +496,7 @@
 				B07E8E1E1C8251BF00217260 /* Label.swift in Sources */,
 				B03BD6311C7D98D100D14F4C /* IStage.swift in Sources */,
 				B03BD6271C783F4900D14F4C /* ISpaceship.swift in Sources */,
+				B03125D51D9371CD000212A0 /* CollidingServices.swift in Sources */,
 				B003F4AE1C8EA9B700AFDF91 /* Actor.swift in Sources */,
 				B03BD5EB1C706BC200D14F4C /* AppDelegate.swift in Sources */,
 				B03BD6211C713D4200D14F4C /* SpriteActor.swift in Sources */,
@@ -636,6 +657,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4U996AF63T;
 				INFOPLIST_FILE = "Space Impact/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cchen.Space-Impact";
@@ -648,6 +670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4U996AF63T;
 				INFOPLIST_FILE = "Space Impact/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cchen.Space-Impact";

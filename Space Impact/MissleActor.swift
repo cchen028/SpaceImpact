@@ -15,39 +15,35 @@ class MissleActor: IMissle {
     
     fileprivate var _speed:CGFloat;
     fileprivate var _damage:CGFloat;
-    fileprivate var _gameScene:GameScene;
     
     var Missle:SpriteActor{get{return self._missle}};
     var Speed:CGFloat { get{return self._speed} set(val){self._speed = val}}
     var Damage:CGFloat{get{return self._damage} set(val){self._damage = val}}
     
-    init(gs:GameScene, missleType: ActorType,position:CGPoint, speed:CGFloat,damage:CGFloat) {
-        
-        self._gameScene = gs;
+    init(missleType: ActorType,position:CGPoint, speed:CGFloat,damage:CGFloat) {
         self._speed = speed;
         self._damage = damage;
         self._isActive = false;
-        self._missle = SpriteActor(gs:gs, imageName: GeneralGameSettings.MyMissle_Name, position: position, scale: 1, opacity: 1, type: missleType);
+        self._missle = SpriteActor(imageName: GeneralGameSettings.MyMissle_Name, position: position, scale: 1, opacity: 1, type: missleType);
         self._missle.name = missleType.rawValue;
     }
     
     func Update(){
 
     }
-        
-   
     
-    func Active(){
-      //  GameScene.gameScene.childNode(withName: NodeType.GameScreen.rawValue)?.addChild(self._missle);
-        self._gameScene.childNode(withName: NodeType.GameScreen.rawValue)?.addChild(self._missle);
-    }
-    
-    func InActive() {
-        self.Missle.removeFromParent();
+    func UpdateStatus(_ isActive: Bool){
+        if(isActive){
+            GameScene.instance?.childNode(withName: NodeType.GameScreen.rawValue)?.addChild(self._missle);
+        }
+        else{
+            self._missle.removeFromParent();
+            
+        }
     }
     
     func IsCollideWithSelf(_ actor: SpriteActor) -> Bool{
-        return self.Missle.frame.intersects(actor.frame);
+        return self._missle.frame.intersects(actor.frame);
     }
 }
 

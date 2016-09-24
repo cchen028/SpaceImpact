@@ -17,15 +17,30 @@ class MissleTimer: NSObject {
     
     func StartMissle(_ target:ISpaceship)
     {
-        if let node = target as? SpaceshipActor{
-            
-            _spaceshipMissleTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.MyMissle_Frequency, target: node, selector: Selector("AddMissle"), userInfo: nil, repeats: true);
-        }
+        _spaceshipMissleTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.MyMissle_Frequency, target: target, selector: "AddMissle", userInfo: nil, repeats: true);
+
+        
+//        if let node = target as? SpaceshipActor{
+//            
+//            _spaceshipMissleTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.MyMissle_Frequency, target: node, selector: Selector(("AddMissle")), userInfo: nil, repeats: true);
+//        }
     }
     
     func StopMissle()
     {
-        _spaceshipMissleTimer?.invalidate();
+        _spaceshipMissleTimer!.invalidate();
+        _spaceshipMissleTimer = nil;
+    }
+    
+    func ToggleMissleTimer(isOn:Bool, targetSpaceship:ISpaceship){
+        if(isOn){
+            _spaceshipMissleTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.MyMissle_Frequency, target: targetSpaceship, selector: "AddMissle", userInfo: nil, repeats: true);
+        }
+        else{
+            targetSpaceship.StopMissle();
+            _spaceshipMissleTimer!.invalidate();
+            _spaceshipMissleTimer = nil;
+        }
     }
 
 }

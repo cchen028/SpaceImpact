@@ -16,6 +16,7 @@ protocol ISpaceship {
     
     func Update();
     func AddMissle();
+    func StopMissle();
 }
 
 

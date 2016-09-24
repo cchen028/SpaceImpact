@@ -14,7 +14,7 @@ import SpriteKit
     fileprivate var _spriteAction: SKAction!;
     fileprivate var _spriteTextures: [SKTexture];
     fileprivate var _isAnimation:Bool;
-    fileprivate var _gameScene:GameScene?;
+   // fileprivate var _gameScene:GameScene?;
     fileprivate var _type:ActorType;
     fileprivate var _isActive:Bool;
     
@@ -24,15 +24,15 @@ import SpriteKit
     var `Type`:ActorType{get{return _type} set(newVal){_type = newVal}};
     var IsActive:Bool {get{return _isActive} set(newVal){ _isActive = newVal}};
     
-    init(gs:GameScene, imageName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat,type:ActorType)
+    init(imageName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat,type:ActorType)
     {
-        self._gameScene = gs;
+       // self._gameScene = gs;
         self._isAnimation = false;
         self._spriteTextures = [SKTexture]();
         self._type = type;
         self._isActive = false;
         
-        let texture = gs.AssetService?.SKTextures[imageName];
+        let texture = GameScene.instance?.AssetService?.SKTextures[imageName];
         super.init(texture: texture, color: UIColor.clear, size: texture!.size());
         
         self.position = position;
@@ -43,15 +43,15 @@ import SpriteKit
 
     }
     
-    init(gs:GameScene, atlasName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, frameCount:Int, type:ActorType , repeatCount:Int = -1, startAnimating:Bool = false)
+    init(atlasName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, frameCount:Int, type:ActorType , repeatCount:Int = -1, startAnimating:Bool = false)
     {
-        self._gameScene = gs;
+      //  self._gameScene = gs;
         self._isAnimation = true;
         self._spriteTextures = [SKTexture]();
         self._type = type;
         self._isActive = false;
         
-        let texture = gs.AssetService?.SKTextures[atlasName];
+        let texture = GameScene.instance?.AssetService?.SKTextures[atlasName];
         
         super.init(texture: texture, color: UIColor.clear, size: texture!.size());
         
@@ -60,7 +60,7 @@ import SpriteKit
         self.yScale = scale;
         self.alpha = opacity;
         
-        self._spriteTextures = (gs.AssetService?.SKTexturesList[atlasName])!;
+        self._spriteTextures = (GameScene.instance?.AssetService?.SKTexturesList[atlasName])!;
         
         let anim = SKAction.animate(with: self._spriteTextures, timePerFrame: 0.025);
         
@@ -79,7 +79,7 @@ import SpriteKit
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self._gameScene = nil;
+        //self._gameScene = nil;
         self._isAnimation = false;
         self._spriteTextures = [SKTexture]();
         self._type = ActorType.None;
@@ -119,7 +119,7 @@ import SpriteKit
 
     
     func Active(){
-        self._gameScene?.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self);
+        GameScene.instance!.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self);
     }
     
     func InActive(){
