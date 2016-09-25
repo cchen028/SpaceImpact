@@ -24,3 +24,5 @@ class Label:LabelActor {
         gs.addChild(self.LabelNode);
     }
 }
+
+

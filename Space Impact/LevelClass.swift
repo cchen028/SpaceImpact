@@ -24,7 +24,6 @@ class LevelClass {
         for obj in self._enemies{
             if let rollingRockA = obj as? RollingRockA {
                 rollingRockA.Update();
-               
             }
         }
     }
@@ -43,9 +42,4 @@ class LevelClass {
             self._enemies.append(tempRock);
         }
     }
-    
-    
-    
-    
-    
 }

@@ -11,19 +11,17 @@ import SpriteKit
 
 class SpaceshipActor: NSObject, ISpaceship{
     
-    //var _isActive:Bool;
-    
     fileprivate var _health:Int;
     fileprivate var _speed:CGFloat;
     fileprivate var _damage:Int;
-    var _explosion:SpriteActor;
     fileprivate var _isCollide:Bool;
     fileprivate var _spaceship:SpriteActor;
     fileprivate var _spaceshipMissleTimer: Timer!;
-    //fileprivate var _gameScene:GameScene;
     
-    var _missleTimer:MissleTimer;
-    var _missles:[Missle];
+    
+    internal var _missleTimer:MissleTimer;
+    internal var _explosion:SpriteActor;
+    internal var _missles:[Missle];
     
     var Health:Int{get{return _health} set(newVal){_health = newVal}};
     var Speed:CGFloat{get{return _speed} set(newVal){_speed = newVal}};
@@ -65,33 +63,18 @@ class SpaceshipActor: NSObject, ISpaceship{
         if(self.IsActive != isActive){
             UpdateStatus(isActive);
         }
-        self._spaceship.IsActive = isActive;
+        
+        self._spaceship.SetActive(isActive);
+        self._explosion.SetActive(isActive);
     }
     
     func Update(){
         self._explosion.position = self._spaceship.position;
     }
     
-    
-    
     func UpdateStatus(_ isActive: Bool){
-        if(!isActive){
-            self._spaceship.removeAllActions();
-            self._spaceship.removeAllChildren();
-            self._spaceship.removeFromParent();
-            
-            self._explosion.removeAllActions();
-            self._explosion.removeAllChildren();
-            self._explosion.removeFromParent();
-        }
-        else
-        {
-            self._spaceship.alpha = 1;
-            self._explosion.alpha = 0;
-            self._spaceship.Active();
-            self._explosion.Active();
-        }
-        
+        self._spaceship.alpha = isActive ? 1 : 0;
+        self._explosion.alpha = isActive ? 0 : 1;
     }
     
     func Explode(){
@@ -113,38 +96,14 @@ class SpaceshipActor: NSObject, ISpaceship{
     func StopMissle(){
         for i in 0...(_missles.count - 1){
             if(_missles[i].IsActive){
-                //_missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
                 _missles[i].SetActive(false);
                 break;
             }
         }
     }
     
-   
-    
     fileprivate func collideUpdate(_ isCollided:Bool){
         if isCollided{
         }
     }
-    
-   
-  
-    
-    
-    
-//    func MissleCollideUpdate(_ actor: SpriteActor, missleIndex:Int){
-//        let collided = self._missles[missleIndex].IsCollideWithSelf(actor);
-//        
-//        if(collided)
-//        {
-//            self._missles[missleIndex].SetActive(false);
-//            actor.SetActive(false);
-//            
-//            if let explosionActor = GameScene.instance!.childNode(withName: GeneralGameSettings.GAMESCREEN_NAME)!.childNode(withName: ActorType.Explosion.rawValue+"_"+actor.name!) as? SpriteActor
-//            {
-//                explosionActor.Explode();
-//            }
-//        }
-//    }
-
 }

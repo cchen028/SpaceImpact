@@ -90,41 +90,59 @@ import SpriteKit
     func RunAnimation(){
         if(self._isAnimation)
         {
-            self.run(self._spriteAction, completion: {self.InActive()});
+            self.run(self._spriteAction, completion: {self.UpdateStatus(false)});
         }
     }
     
     func SetActive(_ isActive: Bool) {
-        if(self._isActive == isActive)
-        {
-            return;
+        if(self.IsActive != isActive){
+            UpdateStatus(isActive);
+        }
+        self._isActive = isActive;
+        
+        
+//        if(self._isActive == isActive)
+//        {
+//            return;
+//        }
+//        else{
+//            self._isActive = isActive;
+//        }
+//        
+//        if(isActive){
+//            Active();
+//        }
+//        else
+//        {
+//            InActive();
+//        }
+    }
+    
+    func UpdateStatus(_ isActive: Bool){
+        if(isActive){
+            GameObjectServices.instance.GameScreen?.addChild(self);
         }
         else{
-            self._isActive = isActive;
-        }
-        
-        if(isActive){
-            Active();
-        }
-        else
-        {
-            InActive();
+           // self.removeFromParent();
+            self.removeAllActions();
+            self.removeAllChildren();
+            self.removeFromParent();
         }
     }
     
     func Explode(){
         self.alpha = 1;
-        self.run(self._spriteAction, completion: {self.InActive()});
+        self.run(self._spriteAction, completion: {self.UpdateStatus(false)});
     }
 
     
-    func Active(){
-        GameScene.instance!.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self);
-    }
-    
-    func InActive(){
-        self.removeFromParent();
-    }
+//    func Active(){
+//        GameScene.instance!.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self);
+//    }
+//    
+//    func InActive(){
+//        self.removeFromParent();
+//    }
     
     fileprivate func getFileName(_ name:String, orderNumber:Int) -> String{
         var fileName:String = name + "_";

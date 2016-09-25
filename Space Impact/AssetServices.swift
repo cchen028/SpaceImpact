@@ -12,13 +12,8 @@ import SpriteKit
 class AssetServices {
     fileprivate var _skTextures:[String:SKTexture];
     fileprivate var _skTexturesList:[String:[SKTexture]];
-   // private var _spriteTextures: [SKTexture];
-    
-
-    
+   
     var SKTextures:[String:SKTexture]{get{return self._skTextures}};
-    
-    
     var SKTexturesList:[String:[SKTexture]]{get{return self._skTexturesList}};
     
     init() {
@@ -28,33 +23,17 @@ class AssetServices {
         _skTextures["none"] = SKTexture(imageNamed: "none");
         _skTextures[GeneralGameSettings.MYSPACESHIP_NAME] = SKTexture(imageNamed: GeneralGameSettings.MYSPACESHIP_NAME);
         _skTextures[GeneralGameSettings.MyMissle_Name] = SKTexture(imageNamed: GeneralGameSettings.MyMissle_Name);
-        
         _skTexturesList = [String:[SKTexture]]();
-        
         
         self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKA_NAME);
         self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKA_EXPLOSION);
-      //  InitializeAtlas(GeneralGameSettings.MYSPACESHIP_NAME);
-        
-        //InitializeAtlas(GeneralGameSettings.MyMissle_Name);
-        
-        //InitializeAtlas("rollingrockA");
-        
-       // _spriteTextures = [SKTexture]();
-        
-     //   super.init(texture: texture, color: UIColor.clearColor(), size: texture.size());
-        
-        
-        
     }
     
     fileprivate func InitializeAtlas(_ atlasName:String){
         let _atlas = SKTextureAtlas(named:atlasName);
-      //  let texture = SKTexture(imageNamed: atlasName + "_01");
         let spriteTextName = self.getFileName(atlasName, orderNumber: 1);
         var spriteTextures = [SKTexture]();
         
-       
         for i in (1..._atlas.textureNames.count){
             spriteTextures.append(_atlas.textureNamed(self.getFileName(atlasName, orderNumber: i)));
         }

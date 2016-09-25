@@ -11,6 +11,6 @@ import UIKit
 protocol IMissle {
     var Speed:CGFloat { get set}
     var Damage:CGFloat{get set}
-    func UpdateStatus(_ isActive: Bool);
+  //  func UpdateStatus(_ isActive: Bool);
    // var Type:MissleType{get set}
 }

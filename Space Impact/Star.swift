@@ -52,8 +52,6 @@ open class Star: ShapeActor {
         else{
             super.position.y -= self._speed;
         }
-        
-        
     }
     
     open func MainMenuSpecialEffect(){
