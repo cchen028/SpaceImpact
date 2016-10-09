@@ -73,19 +73,13 @@ class CollidingServices {
 //    }
     
     fileprivate func MissleCollideUpdate(_ actor: SpaceshipActor, missleIndex:Int){
-        let collided = self._spaceship._missles[missleIndex].IsCollideWithSelf(actor.Spaceship);
+        let collided = self._spaceship._missles[missleIndex].IsCollidedWith(actor.Spaceship);
         
         if(collided)
         {
             self._spaceship._missles[missleIndex].SetActive(false);
-           // actor.SetActive(false);
             
             actor.Explode();
-            
-//            if let explosionActor =actor._explosion as? SpriteActor
-//            {
-//                explosionActor.Explode();
-//            }
         }
     }
     

@@ -31,8 +31,4 @@ class Missle: MissleActor, IActor {
     override func SetActive(_ isActive: Bool) {
         super.SetActive(isActive);
     }
-    
-    func Explode() {
-        
-    }
 }

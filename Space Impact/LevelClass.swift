@@ -11,13 +11,15 @@ import Foundation
 class LevelClass {
     
     fileprivate var _enemies:[IActor];
+    fileprivate var _isActive: Bool;
     
     var Enemies:[IActor]{get{return self._enemies}}
+    var IsActive:Bool{get{return self._isActive}}
     
     init(){
         self._enemies = [IActor]();
-        
-        self.CreateRollingRockA(num:25);
+        self._isActive = false;
+        self.initializeRollingRockA(num:25);
     }
     
     func Update(){
@@ -28,7 +30,7 @@ class LevelClass {
         }
     }
     
-    func UpdateStatus(_ isActive:Bool){
+    func SetActive(_ isActive:Bool){
         for obj in self._enemies{
             if let rollingRockA = obj as? RollingRockA {
                 rollingRockA.SetActive(isActive);
@@ -36,7 +38,7 @@ class LevelClass {
         }
     }
     
-    fileprivate func CreateRollingRockA(num:Int){
+    fileprivate func initializeRollingRockA(num:Int){
         for _ in 1...num{
             let tempRock = RollingRockA(position:SpriteServices.GenerateRandomPosition());
             self._enemies.append(tempRock);

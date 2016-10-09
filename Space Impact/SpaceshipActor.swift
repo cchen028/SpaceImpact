@@ -61,31 +61,32 @@ class SpaceshipActor: NSObject, ISpaceship{
     }
     
     func SetActive(_ isActive:Bool){
-        if(self.IsActive != isActive){
-            UpdateStatus(isActive);
+        if(isActive){
+            self.create();
         }
-        
-        self._spaceship.SetActive(isActive);
-        
-        
-        self._explosion.SetActive(isActive);
+        else{
+            self.destroy();
+        }
     }
     
     func Update(){
         self._explosion.position = self._spaceship.position;
     }
     
-    func UpdateStatus(_ isActive: Bool){
-        self._spaceship.alpha = isActive ? 1 : 0;
-        self._explosion.alpha = isActive ? 0 : 1;
+    fileprivate func create(){
+        self._spaceship.SetActive(true);
+        self._explosion.SetActive(true);
+        self._explosion.alpha = 0;
+    }
+    
+    fileprivate func destroy(){
+        self._spaceship.SetActive(false);
+        self._explosion.SetActive(false);
     }
     
     func Explode(){
-       // self._spaceship.alpha = 0;
-        //self._explosion.alpha = 1;
         self._spaceship.SetActive(false);
         self._explosion.RunAnimation();
-       // self._explosion.run(self._explosion.SpriteAction, completion: {self._explosion.SetActive(false); self._spaceship.removeFromParent()});
     }
     
     func AddMissle() {

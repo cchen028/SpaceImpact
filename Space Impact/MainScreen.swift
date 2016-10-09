@@ -13,9 +13,7 @@ class MainScreen: IStage,ITouchable {
     fileprivate var _name:String;
     
     fileprivate var _buttons:[Button];
-    fileprivate var _labels:[Label];
-   // fileprivate var _gameScene:GameScene;
-    
+    fileprivate var _labels:[Label];    
     fileprivate var _isStarted:Bool;
     fileprivate var _isHighScore:Bool;
     fileprivate var _isTutorial:Bool;
@@ -35,7 +33,6 @@ class MainScreen: IStage,ITouchable {
     init()
     {
         self._name = "Main";
-      //  self._gameScene = gs;
         self._buttons = [Button]();
         self._labels = [Label]();
         self._isStarted = false;
@@ -95,17 +92,6 @@ class MainScreen: IStage,ITouchable {
             InActive();
         }
     }
-    
-//    func Transition(){
-//        if !self._isActive{
-//            InActive();
-//        }
-//        else
-//        {
-//            self.Active();
-//        }
-//
-//    }
     
     func Active(){
         let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));

@@ -41,26 +41,35 @@ class GameScreen: NSObject,IStage {
         super.init();
     }
     
+    func Update(){
+        self._level.Update();
+        self._mySpaceship.Update();
+        self._collidingService.Update();
+    }
+    
     func SetActive(_ isActive: Bool) {
-        
-        if(self._isActive != isActive){
-            UpdateStatus(isActive);
+        if(isActive){
+            self.create();
         }
+        else{
+            self.destroy();
+        }
+    }
+    
+    fileprivate func create(){
+        GameScene.instance!.addChild(self._gameScreenNode);
+        self._mySpaceship.SetActive(true);
+        self._level.SetActive(true);
+        self._isActive = true;
         
     }
     
-    func UpdateStatus(_ isActive: Bool){
-        if(!isActive){
-            self._gameScreenNode.removeFromParent();
-        }
-        else
-        {
-            GameScene.instance!.addChild(self._gameScreenNode);
-        }
+    fileprivate func destroy(){
+        self._gameScreenNode.removeFromParent();
+        self._mySpaceship.SetActive(false);
+        self._level.SetActive(false);
+        self._isActive = false;
         
-        self._mySpaceship.SetActive(isActive);
-        self._level.UpdateStatus(isActive);
-        self._isActive = isActive;
     }
 
     func HandlesTouch(_ touch: UITouch, withEvent event: UIEvent?, isTouched:Bool)
@@ -87,13 +96,5 @@ class GameScreen: NSObject,IStage {
         }
     }
     
-    func Update(){
-        self._level.Update();
-        self._mySpaceship.Update();
-        self._collidingService.Update();
-    }
-    
-    func Notify(_ targetStage:String){
-        
-    }
+    func Notify(_ targetStage:String){}
 }

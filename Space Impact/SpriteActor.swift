@@ -90,6 +90,7 @@ import SpriteKit
     func RunAnimation(){
         if(self._isAnimation)
         {
+            self.alpha = 1;
             self.run(self._spriteAction, completion: {self.UpdateStatus(false)});
         }
     }

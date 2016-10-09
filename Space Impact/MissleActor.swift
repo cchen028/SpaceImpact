@@ -43,7 +43,7 @@ class MissleActor: IMissle {
         self._missle.SetActive(isActive);
     }
     
-    func IsCollideWithSelf(_ actor: SpriteActor) -> Bool{
+    func IsCollidedWith(_ actor: SpriteActor) -> Bool{
         return actor.IsActive && self._missle.frame.intersects(actor.frame);
     }
 }
