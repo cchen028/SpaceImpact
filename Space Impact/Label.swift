@@ -11,17 +11,18 @@ import SpriteKit
 
 class Label:LabelActor {
     
-    fileprivate var _gameScene:GameScene?;
+   // fileprivate var _gameScene:GameScene?;
     
 
     
-    init(gs:GameScene, displayText:String, position:CGPoint, fontSize: CGFloat, fontNamed: String?, opacity: CGFloat) {
-        self._gameScene = gs;
+    override init(displayText:String, position:CGPoint, fontSize: CGFloat, fontNamed: String?, opacity: CGFloat) {
+      //  self._gameScene = gs;
         
         super.init(displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontNamed, opacity:opacity);
 
         
-        gs.addChild(self.LabelNode);
+        //gs.addChild(self.LabelNode);
+        GameScene.instance!.addChild(self.LabelNode)
     }
 }
 

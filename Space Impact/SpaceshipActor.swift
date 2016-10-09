@@ -31,6 +31,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     var IsActive:Bool{get{return self._spaceship.IsActive} set(newVal){self._spaceship.IsActive = newVal}};
     var Spaceship:SpriteActor{get{return self._spaceship}};
     var Missles:[Missle]{get{return self._missles}};
+    var `Type`:ActorType{get{return self._spaceship.Type}};
 
     init(imageName:String, explosionName: String, health:Int, speed:CGFloat, damage:Int , position:CGPoint,scale:CGFloat = 1,type:ActorType, isSpaceShipAnimation:Bool = false)
     {
@@ -65,6 +66,8 @@ class SpaceshipActor: NSObject, ISpaceship{
         }
         
         self._spaceship.SetActive(isActive);
+        
+        
         self._explosion.SetActive(isActive);
     }
     
@@ -78,9 +81,11 @@ class SpaceshipActor: NSObject, ISpaceship{
     }
     
     func Explode(){
-        self._spaceship.alpha = 0;
-        self._explosion.alpha = 1;
-        self._explosion.run(self._explosion.SpriteAction, completion: {self._explosion.removeFromParent(); self._spaceship.removeFromParent()});
+       // self._spaceship.alpha = 0;
+        //self._explosion.alpha = 1;
+        self._spaceship.SetActive(false);
+        self._explosion.RunAnimation();
+       // self._explosion.run(self._explosion.SpriteAction, completion: {self._explosion.SetActive(false); self._spaceship.removeFromParent()});
     }
     
     func AddMissle() {

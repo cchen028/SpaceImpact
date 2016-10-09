@@ -46,7 +46,7 @@ class GameScene: SKScene {
         
         backgroundtheme = Background(gs: self);
         
-        mainScreen = MainScreen(gs:self);
+        mainScreen = MainScreen();
         gameScreen = GameScreen();
         
         transitService = TransitionService();

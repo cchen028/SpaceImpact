@@ -12,7 +12,7 @@ import SpriteKit
 class Button: SpriteActor,ITouchable{
     
     fileprivate var _displayText:String;
-    fileprivate let _gameScene:GameScene?;
+  //  fileprivate let _gameScene:GameScene?;
     fileprivate var _labelNode:Label?;
     fileprivate var _alpha:CGFloat;
     
@@ -21,13 +21,13 @@ class Button: SpriteActor,ITouchable{
     var LabelNode:Label{get{return self._labelNode!}}
     //var Label:Label{get{return self._labelNode}}
     
-    init(gs:GameScene, displayText: String, position: CGPoint, opacity: CGFloat, fontName:String?, fontSize:CGFloat, imageName:String){
+    init(displayText: String, position: CGPoint, opacity: CGFloat, fontName:String?, fontSize:CGFloat, imageName:String){
         self._displayText = displayText;
-        self._gameScene = gs;
+       // self._gameScene = gs;
         self._alpha = opacity;
        
         
-        self._labelNode = Label(gs:self._gameScene!, displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontName, opacity: self._alpha);
+        self._labelNode = Label(displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontName, opacity: self._alpha);
         
         super.init(imageName: imageName, position: CGPoint(x:position.x,y:position.y), scale: 1, opacity: opacity, type:ActorType.Button)
        // super.init(sprite: SKSpriteNode(imageNamed:imageName), position: CGPoint(x:position.x,y:position.y), scale:1,opacity:self._alpha);
@@ -42,13 +42,14 @@ class Button: SpriteActor,ITouchable{
         
    // if imageName != nil
    // {
-       gs.addChild(self);
+      // gs.addChild(self);
+        GameScene.instance!.addChild(self);
        // }
     }
 
     required init?(coder aDecoder: NSCoder) {
         self._displayText = "";
-        self._gameScene = nil;
+      //  self._gameScene = nil;
         self._alpha = 1;
         self._labelNode = nil;
         super.init(coder: aDecoder);
@@ -57,8 +58,8 @@ class Button: SpriteActor,ITouchable{
     func IsTouched(_ touch: UITouch, withEvent event: UIEvent?)->Bool
     {
 
-        let location = touch.location(in: self._gameScene!);
-        let node = self._gameScene!.atPoint(location) as SKNode;
+        let location = touch.location(in: GameScene.instance!);
+        let node = GameScene.instance!.atPoint(location) as SKNode;
      //   if let temp = node as? SKSpriteNode
         if(node.position==self.position)
         {

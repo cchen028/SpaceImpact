@@ -120,9 +120,12 @@ import SpriteKit
     
     func UpdateStatus(_ isActive: Bool){
         if(isActive){
+            self.alpha = 1;
             GameObjectServices.instance.GameScreen?.addChild(self);
         }
         else{
+            
+            self.alpha = 0;
            // self.removeFromParent();
             self.removeAllActions();
             self.removeAllChildren();

@@ -25,6 +25,8 @@ class RollingRockA: SpaceshipActor, IActor{
     }
 
     
+    
+    
     override func Update(){
         super.Update();
         if(self.IsActive)
@@ -43,9 +45,9 @@ class RollingRockA: SpaceshipActor, IActor{
         super.SetActive(isActive);
     }
     
-    override func UpdateStatus(_ isActive: Bool){
-       super.UpdateStatus(isActive);
-    }
+//    override func UpdateStatus(_ isActive: Bool){
+//       super.UpdateStatus(isActive);
+//    }
     
     override func Explode() {
         super.Explode();

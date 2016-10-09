@@ -30,49 +30,99 @@ class CollidingServices {
             return;
         }
         
-        let spaceObjects = GameObjectServices.instance.GameScreen!;
+        let spaceObjects = self._level.Enemies;
         for mIndex in 0...(self._spaceship._missles.count - 1)	{
-            for eachNode in (spaceObjects.children){
-                if let spriteNode = eachNode as? SpriteActor{
-                    if(spriteNode.Type == ActorType.EnemySpaceship)
+            for eachNode in (spaceObjects){
+                if let spaceshipActor = eachNode as? SpaceshipActor{
+                    if(spaceshipActor.Type == ActorType.EnemySpaceship)
                     {
-                        self.MissleCollideUpdate(spriteNode, missleIndex:mIndex);
-                        self.SelfCollideUpdate(spaceActor: spriteNode);
+                        self.MissleCollideUpdate(spaceshipActor, missleIndex:mIndex);
+                        self.SelfCollideUpdate(spaceActor: spaceshipActor);
                     }
                 }
             }
         }
+        
+//        let spaceObjects = GameObjectServices.instance.GameScreen!;
+//        for mIndex in 0...(self._spaceship._missles.count - 1)	{
+//            for eachNode in (spaceObjects.children){
+//                if let spriteNode = eachNode as? SpriteActor{
+//                    if(spriteNode.Type == ActorType.EnemySpaceship)
+//                    {
+//                        self.MissleCollideUpdate(spriteNode, missleIndex:mIndex);
+//                        self.SelfCollideUpdate(spaceActor: spriteNode);
+//                    }
+//                }
+//            }
+//        }
     }
 
-    fileprivate func MissleCollideUpdate(_ actor: SpriteActor, missleIndex:Int){
-        let collided = self._spaceship._missles[missleIndex].IsCollideWithSelf(actor);
+//    fileprivate func MissleCollideUpdate(_ actor: SpriteActor, missleIndex:Int){
+//        let collided = self._spaceship._missles[missleIndex].IsCollideWithSelf(actor);
+//        
+//        if(collided)
+//        {
+//            self._spaceship._missles[missleIndex].SetActive(false);
+//            actor.SetActive(false);
+//            
+//            if let explosionActor = GameObjectServices.instance.GameScreen!.childNode(withName: ActorType.Explosion.rawValue+"_"+actor.name!) as? SpriteActor
+//            {
+//                explosionActor.Explode();
+//            }
+//        }
+//    }
+    
+    fileprivate func MissleCollideUpdate(_ actor: SpaceshipActor, missleIndex:Int){
+        let collided = self._spaceship._missles[missleIndex].IsCollideWithSelf(actor.Spaceship);
         
         if(collided)
         {
             self._spaceship._missles[missleIndex].SetActive(false);
-            actor.SetActive(false);
+           // actor.SetActive(false);
             
-            if let explosionActor = GameScene.instance!.childNode(withName: GeneralGameSettings.GAMESCREEN_NAME)!.childNode(withName: ActorType.Explosion.rawValue+"_"+actor.name!) as? SpriteActor
-            {
-                explosionActor.Explode();
-            }
+            actor.Explode();
+            
+//            if let explosionActor =actor._explosion as? SpriteActor
+//            {
+//                explosionActor.Explode();
+//            }
         }
     }
-    fileprivate func SelfCollideUpdate(spaceActor: SpriteActor){
+    
+    
+//    fileprivate func SelfCollideUpdate(spaceActor: SpriteActor){
+//        let collided = self.IsCollideWithSelf(spaceActor);
+//        
+//        if(collided)
+//        {
+//            //self._spaceship.SetActive(false);
+//            //self.SetActive(false);
+//          //  spaceActor.SetActive(false);
+//            
+//            spaceActor.Explode();
+//            self._spaceship.Explode();
+//        }
+//    }
+    
+    fileprivate func SelfCollideUpdate(spaceActor: SpaceshipActor){
         let collided = self.IsCollideWithSelf(spaceActor);
         
         if(collided)
         {
             //self._spaceship.SetActive(false);
             //self.SetActive(false);
-          //  spaceActor.SetActive(false);
+            //  spaceActor.SetActive(false);
             
             spaceActor.Explode();
             self._spaceship.Explode();
         }
     }
     
-    fileprivate func IsCollideWithSelf(_ actor: SpriteActor) -> Bool{
-        return self._spaceship.Sprite.frame.intersects(actor.frame);
+//    fileprivate func IsCollideWithSelf(_ actor: SpriteActor) -> Bool{
+//        return self._spaceship.Sprite.frame.intersects(actor.frame);
+//    }
+    
+    fileprivate func IsCollideWithSelf(_ actor: SpaceshipActor) -> Bool{
+        return actor.IsActive && self._spaceship.Sprite.frame.intersects(actor.Spaceship.frame);
     }
 }
