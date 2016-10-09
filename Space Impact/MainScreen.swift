@@ -71,9 +71,6 @@ class MainScreen: IStage,ITouchable {
       
     }
     
-    func Notify(_ targetStage:String){
-        
-    }
     
     func SetActive(_ isActive: Bool) {
         if(self._isActive == isActive)
@@ -94,21 +91,15 @@ class MainScreen: IStage,ITouchable {
     }
     
     func Active(){
-        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
-        
         for button in self._buttons{
             if button.alpha < 1
             {
-                button.run(fadeInAnimation);
-                button.LabelNode.LabelNode.run(fadeInAnimation);
+                button.FadeIn();
             }
         }
         
         for label in self._labels{
-            if label.LabelNode.alpha < 1
-            {
-                label.LabelNode.run(fadeInAnimation);
-            }
+            label.FadeIn();
         }
     }
     
@@ -167,6 +158,9 @@ class MainScreen: IStage,ITouchable {
             return false;
         }
     }
+    
+    
+    func Notify(_ targetStage:String){}
 }
 
 enum MainMenuButtonType:Int{

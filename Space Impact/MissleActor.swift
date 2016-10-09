@@ -43,8 +43,8 @@ class MissleActor: IMissle {
         self._missle.SetActive(isActive);
     }
     
-    func IsCollidedWith(_ actor: SpriteActor) -> Bool{
-        return actor.IsActive && self._missle.frame.intersects(actor.frame);
+    func IsCollidedWith(_ actor: SpaceshipActor) -> Bool{
+        return actor.Spaceship.IsActive && self._missle.frame.intersects(actor.Spaceship.frame);
     }
 }
 

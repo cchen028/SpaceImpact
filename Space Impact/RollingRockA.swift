@@ -12,7 +12,6 @@ import SpriteKit
 class RollingRockA: SpaceshipActor, IActor{
     
     fileprivate var _initialPosition:CGPoint;
-    var Position:CGPoint{get{return self.Spaceship.position}}
     var Sprite:SpriteActor { get{return self.Spaceship}}
     
     init(position:CGPoint)

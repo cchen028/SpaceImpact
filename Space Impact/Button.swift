@@ -54,4 +54,10 @@ class Button: SpriteActor,ITouchable{
         }
     }
     
+    override func FadeIn(){
+        self._labelNode?.FadeIn();
+        super.FadeIn()
+    }
+
+    
 }

@@ -28,10 +28,11 @@ class SpaceshipActor: NSObject, ISpaceship{
     var Damage:Int{get{return _damage} set(newVal){_damage = newVal}};
     var Explosion:SpriteActor{get{return _explosion} set(newVal){_explosion = newVal}};
     var IsCollide:Bool{get{return _isCollide} set(newVal){_isCollide = newVal;collideUpdate(self._spaceship.IsActive)}};
-    var IsActive:Bool{get{return self._spaceship.IsActive} set(newVal){self._spaceship.IsActive = newVal}};
+    var IsActive:Bool{get{return self._spaceship.IsActive || self._explosion.IsActive}};
     var Spaceship:SpriteActor{get{return self._spaceship}};
     var Missles:[Missle]{get{return self._missles}};
     var `Type`:ActorType{get{return self._spaceship.Type}};
+    var Position:CGPoint{get{return self._spaceship.position} set(newVal){self._spaceship.position = newVal}}
 
     init(imageName:String, explosionName: String, health:Int, speed:CGFloat, damage:Int , position:CGPoint,scale:CGFloat = 1,type:ActorType, isSpaceShipAnimation:Bool = false)
     {
@@ -106,6 +107,10 @@ class SpaceshipActor: NSObject, ISpaceship{
                 break;
             }
         }
+    }
+    
+    func IsCollidedWith(_ actor: SpaceshipActor) -> Bool{
+        return actor.Spaceship.IsActive && self._spaceship.frame.intersects(actor.Spaceship.frame);
     }
     
     fileprivate func collideUpdate(_ isCollided:Bool){

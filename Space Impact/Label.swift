@@ -17,6 +17,10 @@ class Label:LabelActor {
 
         GameScene.instance!.addChild(self.LabelNode)
     }
+    
+    override func FadeIn(){
+        super.FadeIn()
+    }
 }
 
 

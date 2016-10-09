@@ -11,6 +11,7 @@ import UIKit
 struct GeneralGameSettings {
     static let SCREEN_HEIGHT: Int = 800;
     static let SCREEN_WIDTH:Int = 400;
+    static let SCREEN_EDGE_PADDINGS: CGFloat = 5;
     
     static let TRANSITION_FADEIN :CGFloat = 1;
     static let TRANSITION_FADEOUT: CGFloat = 0.5;
@@ -28,6 +29,8 @@ struct GeneralGameSettings {
     
     // Game Screen Setting
     static let GAMESCREEN_NAME = "Game";
+    static let GAMESCREEN_LABEL_FONTSIZE: CGFloat = 25;
+    static let GAMESCREEN_LABEL_FONTFAMILY: String = "AvenirNext-UltraLight"
     static let MYSPACESHIP_CATEGORY: UInt32 = 0;
     
     static let ENEMY_CATEGORY: UInt32 = 1;
@@ -46,5 +49,6 @@ struct GeneralGameSettings {
     static let ROLLINGROCKA_SPEED:CGFloat = 5;
     static let ROLLINGROCKA_HEALTH:Int = 1;
     static let ROLLINGROCKA_EXPLOSION:String = "explosionA";
+    static let ROLLINGROCKA_SPAWN: Double = 2;
     
 }

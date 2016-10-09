@@ -16,7 +16,7 @@ class Spaceship: SpaceshipActor, IActor{
     fileprivate var _frameCount:CGFloat;
     
     
-    var Position:CGPoint{get{return self.Spaceship.position}}
+   // var Position:CGPoint{get{return self.Spaceship.position}}
    // var IsActive:Bool{get{return self.Spaceship.IsActive} set(newVal){self.Spaceship.IsActive = newVal}};
     var Sprite:SpriteActor { get{return self.Spaceship}}
     

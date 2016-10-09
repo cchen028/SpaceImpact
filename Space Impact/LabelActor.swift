@@ -38,4 +38,13 @@ class LabelActor {
         self._labelNode.text = self._displayText;
         self._labelNode.alpha = self._opacity;
     }
+    
+    func FadeIn(){
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
+        if _labelNode.alpha < 1
+        {
+            _labelNode.run(fadeInAnimation);
+        }
+    }
+    
 }

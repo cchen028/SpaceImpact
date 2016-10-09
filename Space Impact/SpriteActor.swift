@@ -91,7 +91,7 @@ import SpriteKit
         if(self._isAnimation)
         {
             self.alpha = 1;
-            self.run(self._spriteAction, completion: {self.UpdateStatus(false)});
+            self.run(self._spriteAction, completion: {self.SetActive(false)});
         }
     }
     
@@ -128,8 +128,8 @@ import SpriteKit
             
             self.alpha = 0;
            // self.removeFromParent();
-            self.removeAllActions();
-            self.removeAllChildren();
+            //self.removeAllActions();
+           // self.removeAllChildren();
             self.removeFromParent();
         }
     }
@@ -137,6 +137,14 @@ import SpriteKit
     func Explode(){
         self.alpha = 1;
         self.run(self._spriteAction, completion: {self.UpdateStatus(false)});
+    }
+    
+    func FadeIn(){
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
+        if self.alpha < 1
+        {
+            self.run(fadeInAnimation);
+        }
     }
 
     
