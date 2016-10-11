@@ -29,7 +29,6 @@ open class ShapeActor: SKShapeNode {
         self.fillColor = fillColor;
         self.glowWidth = glowWidth;
         self.alpha = opacity
-        
     }
 
     required public init?(coder aDecoder: NSCoder) {

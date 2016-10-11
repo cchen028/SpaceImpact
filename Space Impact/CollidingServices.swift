@@ -56,10 +56,7 @@ class CollidingServices {
     }
     
     fileprivate func SelfCollideUpdate(spaceActor: SpaceshipActor){
-       // let collided = self.IsCollideWithSelf(spaceActor);
         let collided = self._spaceship.IsCollidedWith(spaceActor);
-        
-        
         
         if(collided)
         {
@@ -69,6 +66,6 @@ class CollidingServices {
     }
     
     fileprivate func IsCollideWithSelf(_ actor: SpaceshipActor) -> Bool{
-        return actor.Spaceship.IsActive && self._spaceship.Sprite.frame.intersects(actor.Spaceship.frame);
+        return actor.Spaceship.IsActive && self._spaceship.Spaceship.frame.intersects(actor.Spaceship.frame);
     }
 }

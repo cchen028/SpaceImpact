@@ -20,11 +20,7 @@ class Label:LabelActor {
         super.init(displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontNamed, opacity:opacity);
 
         GameScene.instance!.addChild(self.LabelNode)
-    }
-    
-    override func FadeIn(){
-        super.FadeIn()
-    }
+    }    
 }
 
 

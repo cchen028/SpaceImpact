@@ -32,7 +32,6 @@ class MissleActor: IMissle {
             self._missle.position.y += self._speed;
         }
         
-        
         if self._missle.position.y > CGFloat(GeneralGameSettings.SCREEN_HEIGHT)
         {
             self._missle.SetActive(false);

@@ -23,24 +23,18 @@ class GameScreen: NSObject,IStage {
     fileprivate var _collidingService:CollidingServices;
     fileprivate var _mySpaceship: Spaceship;
     
-   // fileprivate var _iconLife: Icon;
-    
-    
     var Name:String{get{return self._name}}
     var Level:LevelClass{get{return self._level}}
     var IsActive:Bool{get{return self._isActive}}
     
-    
     override init(){
         self._name = GeneralGameSettings.GAMESCREEN_NAME;
-        self._mySpaceship = Spaceship(position:SpriteServices.GetSpaceshipInitialPos());
+        self._mySpaceship = Spaceship(position:GameObjectServices.instance.GetSpaceshipInitialPos());
         self._isActive = false;
         self._gameScreenNode = SKNode();
         self._gameScreenNode.name = GeneralGameSettings.GAMESCREEN_NAME;
         self._labels = [Label]();
         self._icons = [Icon]();
-        
-        
         
         GameObjectServices.instance.CreateGameScreen(gameScreen: self._gameScreenNode);
         
@@ -48,7 +42,6 @@ class GameScreen: NSObject,IStage {
         self._collidingService = CollidingServices(level: self._level, spaceship: self._mySpaceship);
         super.init();
         self.createLabels();
-        
     }
     
     func Update(){
@@ -64,13 +57,14 @@ class GameScreen: NSObject,IStage {
         else{
             self.destroy();
         }
+        
+        self._isActive = isActive;
     }
     
     fileprivate func create(){
         GameScene.instance!.addChild(self._gameScreenNode);
         self._mySpaceship.SetActive(true);
-      //  self._level.SetActive(true);
-        self._isActive = true;
+        
         
         for label in self._labels{
             label.FadeIn();
@@ -81,15 +75,12 @@ class GameScreen: NSObject,IStage {
         }
         
         self._level.StartLevel(level: 1);
-        
     }
     
     fileprivate func destroy(){
         self._gameScreenNode.removeFromParent();
         self._mySpaceship.SetActive(false);
         self._level.Destroy();
-        self._isActive = false;
-        
     }
     
     fileprivate func createLabels(){
@@ -122,7 +113,6 @@ class GameScreen: NSObject,IStage {
         
         self._icons.append(iconLife);
         self._icons.append(iconBomb);
-       // self._labels.append(score);
     }
 
     func HandlesTouch(_ touch: UITouch, withEvent event: UIEvent?, isTouched:Bool)

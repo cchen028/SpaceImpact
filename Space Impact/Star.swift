@@ -35,7 +35,6 @@ open class Star: ShapeActor {
         self._type = type;
         
         super.init(type: ShapeActorType.circle, width: 1, height: 1, position: position,opacity:0.7, glowWidth: self._glow, strokeColor: SKColor.white, fillColor: SKColor.white);
-        
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -47,7 +46,7 @@ open class Star: ShapeActor {
     
     open func Update(){
         if super.position.y < 0{
-            super.position = SpriteServices.GenerateRandomPosition();
+            super.position = GameObjectServices.instance.GenerateRandomPosition();
         }
         else{
             super.position.y -= self._speed;
@@ -74,7 +73,6 @@ open class Star: ShapeActor {
         super.alpha = 0.7;
     }
 }
-
 
 enum StarType:Int{
     case fast = 1,medium,slow

@@ -17,8 +17,6 @@ class UserStatsInfo: NSObject {
     var Bomb:Int;
     
     private override init(){
-        
-        
         self.Score.value = 0;
         self.Life = 3;
         self.Bomb = 3;
@@ -29,6 +27,4 @@ class UserStatsInfo: NSObject {
         self.Life = 3;
         self.Bomb = 3;
     }
-
-
 }

@@ -103,54 +103,23 @@ class GameScene: SKScene {
         
         mainScreen?.HandlesTouch(touch!, withEvent: event);
         gameScreen?.HandlesTouch(touch!, withEvent: event, isTouched: true);
-//        if(gameScreen!.IsActive)
-//        {
-//            self.gameScreen?.MySpaceship.Direction = MoveDirection.None;
-//        }
         
         for touch in touches {
             let location = touch.location(in: self)
             touched = true;
-           // var action2:SKAction;
             if location.x > self.frame.midX{
-             //   action2 = SKAction.moveByX(100, y: 0, duration: 1);
-            
                 touchdirection = 1;
             }
             else
             {
-           //     action2 = SKAction.moveByX(-100, y: 0, duration: 1);
                 touchdirection = -1;
             }
             
-           // let spaceship = Actor(sprite: SKSpriteNode(imageNamed:"Spaceship"),position: location,scale:0.1);
-            
-             // spaceship.Position = location;
-            //let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            // sprite.xScale = 0.5
-            //sprite.yScale = 0.5
-            //sprite.position = location
-            
-           // let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            //let action2 = SKAction.moveToY(300, duration: 2)
-            
-           // spaceship.Sprite.runAction(SKAction.repeatActionForever(action))
-            //spaceship!.Sprite.runAction((action2))
-            
-           // self.addChild(spaceship!.Sprite)
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent!) {
         super.touchesCancelled(touches, with: event);
-        
-        
-//        if(gameScreen!.IsActive)
-//        {
-//            self.gameScreen?.MySpaceship.Direction = MoveDirection.None;
-//        }
-       // touched = false
-      //   touchdirection = 0;
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -160,8 +129,6 @@ class GameScene: SKScene {
         
         gameScreen?.HandlesTouch(touch!, withEvent: event, isTouched: false);
         
-//        touched = false;
-//         touchdirection = 0;
     }
     
     
@@ -234,15 +201,15 @@ class GameScene: SKScene {
 //        }
     }
     
-    func addActor(_ node:IActor?)
-    {
-        if let shapeNode = node as? ShapeActor{
-            self.addChild(shapeNode);
-        }
-        else if let spriteNode = node as? SpriteActor{
-            self.addChild(spriteNode);
-        }
-    }
+//    func addActor(_ node:IActor?)
+//    {
+//        if let shapeNode = node as? ShapeActor{
+//            self.addChild(shapeNode);
+//        }
+//        else if let spriteNode = node as? SpriteActor{
+//            self.addChild(spriteNode);
+//        }
+//    }
     
 //    func addStage(node:IStage?)
 //    {

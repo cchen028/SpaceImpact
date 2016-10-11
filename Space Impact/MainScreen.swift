@@ -22,9 +22,7 @@ class MainScreen: IStage,ITouchable {
     let _buttonPaddings:CGFloat = GeneralGameSettings.BUTTON_PADDINGS;
     
     var Name:String{get{return self._name}}
-    
     var Buttons:[Button]{get{return self._buttons} set(val){self._buttons = val}}
-    
     var IsActive:Bool{get{return self._isActive}}
     var IsStarted:Bool{get{return self._isStarted}set(val){self._isStarted = val}}
     var IsHighScore:Bool{get{return self._isHighScore}}
@@ -42,7 +40,6 @@ class MainScreen: IStage,ITouchable {
         
         generateLabels();
         generateButtons();
-        
     }
     
     fileprivate func generateButtons(){
@@ -56,8 +53,6 @@ class MainScreen: IStage,ITouchable {
         _buttons.append(btnStart);
         _buttons.append(btnHighScore);
         _buttons.append(btnTutorial);
-
-        
     }
     
     fileprivate func generateLabels(){
@@ -71,57 +66,19 @@ class MainScreen: IStage,ITouchable {
       
     }
     
-    
     func SetActive(_ isActive: Bool) {
-        if(self._isActive == isActive)
-        {
-            return;
-        }
-        else{
-            self._isActive = isActive;
-        }
-        
         if(isActive){
-            Active();
+            create();
         }
         else
         {
-            InActive();
+            destroy();
         }
+        
+        self._isActive = isActive;
     }
     
-    func Active(){
-        for button in self._buttons{
-            if button.alpha < 1
-            {
-                button.FadeIn();
-            }
-        }
-        
-        for label in self._labels{
-            label.FadeIn();
-        }
-    }
     
-    func InActive() {
-        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
-        
-        for button in self._buttons{
-            
-            if button.alpha > 0
-            {
-                button.run(fadeOutAnimation);
-                button.LabelNode.LabelNode.run(fadeOutAnimation);
-            }
-        }
-        
-        for label in self._labels{
-            if label.LabelNode.alpha>0
-            {
-                label.LabelNode.run(fadeOutAnimation);
-            }
-        }
-    }
     
     func HandlesTouch(_ touch: UITouch, withEvent event: UIEvent?)
     {
@@ -161,6 +118,26 @@ class MainScreen: IStage,ITouchable {
     
     
     func Notify(_ targetStage:String){}
+    
+    fileprivate func create(){
+        for button in self._buttons{
+            button.FadeIn();
+        }
+        
+        for label in self._labels{
+            label.FadeIn();
+        }
+    }
+    
+    fileprivate func destroy() {
+        for button in self._buttons{
+            button.FadeOut();
+        }
+        
+        for label in self._labels{
+            label.FadeOut();
+        }
+    }
 }
 
 enum MainMenuButtonType:Int{

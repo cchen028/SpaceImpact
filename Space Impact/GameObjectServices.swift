@@ -10,9 +10,7 @@ import UIKit
 import SpriteKit
 
 class GameObjectServices {
-    
     static let instance = GameObjectServices();
-    
     
     fileprivate var _stars:[Star];
     fileprivate var _gameScreen:SKNode?;
@@ -43,8 +41,20 @@ class GameObjectServices {
         }
     }
     
-    func CreateSpaceShip(){
-        self._spaceShip = Spaceship(position:SpriteServices.GetSpaceshipInitialPos());
+    func GenerateRandomPosition() -> CGPoint{
+        let randomX = generateRandomNumber(GeneralGameSettings.SCREEN_WIDTH);
+        let randomY = generateRandomNumber(GeneralGameSettings.SCREEN_HEIGHT)+800;
+        let position = CGPoint(x:randomX, y:randomY);
+        return position;
+    }
+    
+    func GetSpaceshipInitialPos() -> CGPoint{
+        return CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.minY + 30);
+    }
+    
+    fileprivate func generateRandomNumber(_ range:Int) -> Int{
+        let randomX = Int(arc4random_uniform(UInt32(range)) + 1);
+        return randomX;
     }
 }
 

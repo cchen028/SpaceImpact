@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class RollingRockA: SpaceshipActor, IActor{
+class RollingRockA: SpaceshipActor{
     
     fileprivate var _initialPosition:CGPoint;
     var Sprite:SpriteActor { get{return self.Spaceship}}

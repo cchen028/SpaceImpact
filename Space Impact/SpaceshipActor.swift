@@ -14,11 +14,9 @@ class SpaceshipActor: NSObject, ISpaceship{
     fileprivate var _health:Int;
     fileprivate var _speed:CGFloat;
     fileprivate var _damage:Int;
-    fileprivate var _isCollide:Bool;
     fileprivate var _spaceship:SpriteActor;
     fileprivate var _spaceshipMissleTimer: Timer!;
     fileprivate var _point:Int;
-    
     
     internal var _missleTimer:MissleTimer;
     internal var _explosion:SpriteActor;
@@ -28,7 +26,6 @@ class SpaceshipActor: NSObject, ISpaceship{
     var Speed:CGFloat{get{return _speed} set(newVal){_speed = newVal}};
     var Damage:Int{get{return _damage} set(newVal){_damage = newVal}};
     var Explosion:SpriteActor{get{return _explosion} set(newVal){_explosion = newVal}};
-    var IsCollide:Bool{get{return _isCollide} set(newVal){_isCollide = newVal;collideUpdate(self._spaceship.IsActive)}};
     var IsActive:Bool{get{return self._spaceship.IsActive || self._explosion.IsActive}};
     var Spaceship:SpriteActor{get{return self._spaceship}};
     var Missles:[Missle]{get{return self._missles}};
@@ -44,7 +41,6 @@ class SpaceshipActor: NSObject, ISpaceship{
         _health = health;
         _speed = speed;
         _damage = damage;
-        _isCollide = false;
         _point = point;
         _explosion = SpriteActor(atlasName:explosionName, position: position, scale: 1, opacity: 1, frameCount: 1, type:ActorType.Explosion, repeatCount: 1, startAnimating: false);
         
@@ -77,17 +73,6 @@ class SpaceshipActor: NSObject, ISpaceship{
         self._explosion.position = self._spaceship.position;
     }
     
-    fileprivate func create(){
-        self._spaceship.SetActive(true);
-        self._explosion.SetActive(true);
-        self._explosion.alpha = 0;
-    }
-    
-    fileprivate func destroy(){
-        self._spaceship.SetActive(false);
-        self._explosion.SetActive(false);
-    }
-    
     func Explode(){
         self._spaceship.SetActive(false);
         self._explosion.RunAnimation();
@@ -116,8 +101,14 @@ class SpaceshipActor: NSObject, ISpaceship{
         return actor.Spaceship.IsActive && self._spaceship.frame.intersects(actor.Spaceship.frame);
     }
     
-    fileprivate func collideUpdate(_ isCollided:Bool){
-        if isCollided{
-        }
+    fileprivate func create(){
+        self._spaceship.SetActive(true);
+        self._explosion.SetActive(true);
+        self._explosion.alpha = 0;
+    }
+    
+    fileprivate func destroy(){
+        self._spaceship.SetActive(false);
+        self._explosion.SetActive(false);
     }
 }

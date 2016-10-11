@@ -10,7 +10,6 @@
 		B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEA1C915A5C00870D97 /* MissleTimer.swift */; };
 		B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEC1C93EACD00870D97 /* AssetServices.swift */; };
 		B003F4AE1C8EA9B700AFDF91 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003F4AD1C8EA9B700AFDF91 /* Actor.swift */; };
-		B003F4B01C901E7500AFDF91 /* SpriteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003F4AF1C901E7500AFDF91 /* SpriteServices.swift */; };
 		B00487781C8D5D180061EC7F /* RollingRockA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00487771C8D5D180061EC7F /* RollingRockA.swift */; };
 		B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00487791C8D6E5C0061EC7F /* astroid1.atlas */; };
 		B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */; };
@@ -25,7 +24,6 @@
 		B03BD5F91C706BC200D14F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B03BD5F71C706BC200D14F4C /* LaunchScreen.storyboard */; };
 		B03BD6041C706BC200D14F4C /* Space_ImpactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6031C706BC200D14F4C /* Space_ImpactTests.swift */; };
 		B03BD60F1C706BC200D14F4C /* Space_ImpactUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD60E1C706BC200D14F4C /* Space_ImpactUITests.swift */; };
-		B03BD61E1C707EB300D14F4C /* IActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD61D1C707EB300D14F4C /* IActor.swift */; };
 		B03BD6211C713D4200D14F4C /* SpriteActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6201C713D4200D14F4C /* SpriteActor.swift */; };
 		B03BD6231C7580FE00D14F4C /* ITouchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6221C7580FE00D14F4C /* ITouchable.swift */; };
 		B03BD6251C783E0900D14F4C /* Spaceship.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6241C783E0900D14F4C /* Spaceship.swift */; };
@@ -37,7 +35,6 @@
 		B03BD6351C80182900D14F4C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6341C80182900D14F4C /* Button.swift */; };
 		B07545951D848F710004E53B /* GameObjectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07545941D848F710004E53B /* GameObjectServices.swift */; };
 		B076FF021DAB5947006C5C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B076FF011DAB5947006C5C7C /* Assets.xcassets */; };
-		B07E8E1A1C82499100217260 /* SpriteSheetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E191C82499100217260 /* SpriteSheetService.swift */; };
 		B07E8E1C1C824E5300217260 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E1B1C824E5300217260 /* MainScreen.swift */; };
 		B07E8E1E1C8251BF00217260 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E1D1C8251BF00217260 /* Label.swift */; };
 		B07E8E201C825B1D00217260 /* LabelActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E1F1C825B1D00217260 /* LabelActor.swift */; };
@@ -77,7 +74,6 @@
 		B0038BEA1C915A5C00870D97 /* MissleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleTimer.swift; sourceTree = "<group>"; };
 		B0038BEC1C93EACD00870D97 /* AssetServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetServices.swift; sourceTree = "<group>"; };
 		B003F4AD1C8EA9B700AFDF91 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
-		B003F4AF1C901E7500AFDF91 /* SpriteServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteServices.swift; sourceTree = "<group>"; };
 		B00487771C8D5D180061EC7F /* RollingRockA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollingRockA.swift; sourceTree = "<group>"; };
 		B00487791C8D6E5C0061EC7F /* astroid1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = astroid1.atlas; sourceTree = "<group>"; };
 		B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = rollingrockA.atlas; sourceTree = "<group>"; };
@@ -98,7 +94,6 @@
 		B03BD60A1C706BC200D14F4C /* Space ImpactUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Space ImpactUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03BD60E1C706BC200D14F4C /* Space_ImpactUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space_ImpactUITests.swift; sourceTree = "<group>"; };
 		B03BD6101C706BC200D14F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B03BD61D1C707EB300D14F4C /* IActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IActor.swift; sourceTree = "<group>"; };
 		B03BD6201C713D4200D14F4C /* SpriteActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteActor.swift; sourceTree = "<group>"; };
 		B03BD6221C7580FE00D14F4C /* ITouchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITouchable.swift; sourceTree = "<group>"; };
 		B03BD6241C783E0900D14F4C /* Spaceship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spaceship.swift; sourceTree = "<group>"; };
@@ -110,7 +105,6 @@
 		B03BD6341C80182900D14F4C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		B07545941D848F710004E53B /* GameObjectServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObjectServices.swift; sourceTree = "<group>"; };
 		B076FF011DAB5947006C5C7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B07E8E191C82499100217260 /* SpriteSheetService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheetService.swift; sourceTree = "<group>"; };
 		B07E8E1B1C824E5300217260 /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		B07E8E1D1C8251BF00217260 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		B07E8E1F1C825B1D00217260 /* LabelActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelActor.swift; sourceTree = "<group>"; };
@@ -238,7 +232,6 @@
 		B03BD61C1C707E6800D14F4C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				B03BD61D1C707EB300D14F4C /* IActor.swift */,
 				B03BD6221C7580FE00D14F4C /* ITouchable.swift */,
 				B03BD6261C783F4900D14F4C /* ISpaceship.swift */,
 				B03BD6301C7D98D100D14F4C /* IStage.swift */,
@@ -305,9 +298,7 @@
 		B07E8E181C818E2300217260 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B07E8E191C82499100217260 /* SpriteSheetService.swift */,
 				B0F53E021C83ACC400876394 /* TransitionService.swift */,
-				B003F4AF1C901E7500AFDF91 /* SpriteServices.swift */,
 				B0038BEC1C93EACD00870D97 /* AssetServices.swift */,
 				B07545941D848F710004E53B /* GameObjectServices.swift */,
 				B03125D41D9371CD000212A0 /* CollidingServices.swift */,
@@ -489,8 +480,6 @@
 				B00487781C8D5D180061EC7F /* RollingRockA.swift in Sources */,
 				B0EFE7431C9665C500807049 /* NodeType.swift in Sources */,
 				B018AF831C8AC576000D68A6 /* Missle.swift in Sources */,
-				B03BD61E1C707EB300D14F4C /* IActor.swift in Sources */,
-				B003F4B01C901E7500AFDF91 /* SpriteServices.swift in Sources */,
 				B0EF1ED61C8B894D00E24202 /* MissleActor.swift in Sources */,
 				B0F53E051C83B9AC00876394 /* GameScreen.swift in Sources */,
 				B0F4857A1C97B027001ECFA6 /* ActorType.swift in Sources */,
@@ -512,7 +501,6 @@
 				B08021331DAB2F62002AEC1F /* Icon.swift in Sources */,
 				B0EF1ED81C8B92C300E24202 /* SpaceshipActor.swift in Sources */,
 				B0F53E081C83C98300876394 /* GeneralGameSettings.swift in Sources */,
-				B07E8E1A1C82499100217260 /* SpriteSheetService.swift in Sources */,
 				B03BD6291C7C470600D14F4C /* ShapeActor.swift in Sources */,
 				B0F53E031C83ACC400876394 /* TransitionService.swift in Sources */,
 				B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */,

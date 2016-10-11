@@ -14,7 +14,6 @@ import SpriteKit
     fileprivate var _spriteAction: SKAction!;
     fileprivate var _spriteTextures: [SKTexture];
     fileprivate var _isAnimation:Bool;
-   // fileprivate var _gameScene:GameScene?;
     fileprivate var _type:ActorType;
     fileprivate var _isActive:Bool;
     
@@ -26,7 +25,6 @@ import SpriteKit
     
     init(imageName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat,type:ActorType)
     {
-       // self._gameScene = gs;
         self._isAnimation = false;
         self._spriteTextures = [SKTexture]();
         self._type = type;
@@ -39,13 +37,10 @@ import SpriteKit
         self.xScale = scale;
         self.yScale = scale;
         self.alpha = opacity;
-       
-
     }
     
     init(atlasName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, frameCount:Int, type:ActorType , repeatCount:Int = -1, startAnimating:Bool = false)
     {
-      //  self._gameScene = gs;
         self._isAnimation = true;
         self._spriteTextures = [SKTexture]();
         self._type = type;
@@ -79,7 +74,6 @@ import SpriteKit
     }
 
     required init?(coder aDecoder: NSCoder) {
-        //self._gameScene = nil;
         self._isAnimation = false;
         self._spriteTextures = [SKTexture]();
         self._type = ActorType.None;
@@ -100,23 +94,6 @@ import SpriteKit
             UpdateStatus(isActive);
         }
         self._isActive = isActive;
-        
-        
-//        if(self._isActive == isActive)
-//        {
-//            return;
-//        }
-//        else{
-//            self._isActive = isActive;
-//        }
-//        
-//        if(isActive){
-//            Active();
-//        }
-//        else
-//        {
-//            InActive();
-//        }
     }
     
     func UpdateStatus(_ isActive: Bool){
@@ -125,11 +102,7 @@ import SpriteKit
             GameObjectServices.instance.GameScreen?.addChild(self);
         }
         else{
-            
             self.alpha = 0;
-           // self.removeFromParent();
-            //self.removeAllActions();
-           // self.removeAllChildren();
             self.removeFromParent();
         }
     }
@@ -146,15 +119,14 @@ import SpriteKit
             self.run(fadeInAnimation);
         }
     }
-
     
-//    func Active(){
-//        GameScene.instance!.childNodeWithNodeType(NodeType.GameScreen)?.addChild(self);
-//    }
-//    
-//    func InActive(){
-//        self.removeFromParent();
-//    }
+    func FadeOut(){
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
+        if self.alpha > 0
+        {
+            self.run(fadeOutAnimation);
+        }
+    }
     
     fileprivate func getFileName(_ name:String, orderNumber:Int) -> String{
         var fileName:String = name + "_";

@@ -9,8 +9,12 @@
 import UIKit
 
 protocol IMissle {
+    var Missle:SpriteActor{get}
     var Speed:CGFloat { get set}
     var Damage:CGFloat{get set}
-  //  func UpdateStatus(_ isActive: Bool);
-   // var Type:MissleType{get set}
+    
+    func Update()
+    func SetActive(_ isActive: Bool)
+    func IsCollidedWith(_ actor: SpaceshipActor) -> Bool
+
 }

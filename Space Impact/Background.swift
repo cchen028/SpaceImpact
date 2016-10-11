@@ -25,7 +25,6 @@ open class Background:IStage {
     }
     
     func InitializeStars(){
-        
         GameObjectServices.instance.CreateStarsCollection(StarType.slow, num:10);
         GameObjectServices.instance.CreateStarsCollection(StarType.medium, num:10);
         GameObjectServices.instance.CreateStarsCollection(StarType.fast, num:10);

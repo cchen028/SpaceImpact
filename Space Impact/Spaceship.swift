@@ -9,16 +9,11 @@
 import UIKit
 import SpriteKit
 
-class Spaceship: SpaceshipActor, IActor{
+class Spaceship: SpaceshipActor{
     
     fileprivate var _initialPosition:CGPoint;
     fileprivate var _moveDirection:MoveDirection;
     fileprivate var _frameCount:CGFloat;
-    
-    
-   // var Position:CGPoint{get{return self.Spaceship.position}}
-   // var IsActive:Bool{get{return self.Spaceship.IsActive} set(newVal){self.Spaceship.IsActive = newVal}};
-    var Sprite:SpriteActor { get{return self.Spaceship}}
     
     var Direction:MoveDirection{get{return self._moveDirection} set(val){self._moveDirection = val}}
     

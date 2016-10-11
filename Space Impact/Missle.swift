@@ -9,11 +9,10 @@
 import UIKit
 import SpriteKit
 
-class Missle: MissleActor, IActor {
+class Missle: MissleActor {
     fileprivate var _misPosition:CGPoint;
     fileprivate let _SPEED:CGFloat = 5;
     fileprivate let _DAMAGE:CGFloat = 1;
-    
     
     var Position:CGPoint{get{return self._missle.position}}
     var IsActive:Bool{get{return self._missle.IsActive}};
