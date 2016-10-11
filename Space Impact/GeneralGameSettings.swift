@@ -25,8 +25,6 @@ struct GeneralGameSettings {
     static let BUTTON_FONTFAMILY:String = "AvenirNext-Medium";
     
     
-    
-    
     // Game Screen Setting
     static let GAMESCREEN_NAME = "Game";
     static let GAMESCREEN_LABEL_FONTSIZE: CGFloat = 25;

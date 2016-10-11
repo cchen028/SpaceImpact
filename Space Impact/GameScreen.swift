@@ -107,6 +107,10 @@ class GameScreen: NSObject,IStage {
             lblScore.DisplayText = "Score: " + String($0);
         }
         
+        UserStatsInfo.instance.Life.bind {
+            lblLife.DisplayText = "X " + String($0);
+        }
+        
         self._labels.append(lblBomb);
         self._labels.append(lblLife);
         self._labels.append(lblScore);

@@ -20,10 +20,10 @@ class CollidingServices {
     }
     
     func Update(){
-        MySpaceshipCollisionUpdate();
+        mySpaceshipCollisionUpdate();
     }
     
-    fileprivate func MySpaceshipCollisionUpdate(){
+    fileprivate func mySpaceshipCollisionUpdate(){
         
         if(self._spaceship._missles.count <= 0)
         {
@@ -36,15 +36,15 @@ class CollidingServices {
                 if let spaceshipActor = eachNode as? SpaceshipActor{
                     if(spaceshipActor.Type == ActorType.EnemySpaceship)
                     {
-                        self.MissleCollideUpdate(spaceshipActor, missleIndex:mIndex);
-                        self.SelfCollideUpdate(spaceActor: spaceshipActor);
+                        self.missleCollideUpdate(spaceshipActor, missleIndex:mIndex);
+                        self.selfCollideUpdate(spaceActor: spaceshipActor);
                     }
                 }
             }
         }
     }
     
-    fileprivate func MissleCollideUpdate(_ actor: SpaceshipActor, missleIndex:Int){
+    fileprivate func missleCollideUpdate(_ actor: SpaceshipActor, missleIndex:Int){
         let collided = self._spaceship._missles[missleIndex].IsCollidedWith(actor);
         
         if(collided)
@@ -55,7 +55,7 @@ class CollidingServices {
         }
     }
     
-    fileprivate func SelfCollideUpdate(spaceActor: SpaceshipActor){
+    fileprivate func selfCollideUpdate(spaceActor: SpaceshipActor){
         let collided = self._spaceship.IsCollidedWith(spaceActor);
         
         if(collided)

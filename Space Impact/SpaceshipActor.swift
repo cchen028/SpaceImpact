@@ -76,29 +76,34 @@ class SpaceshipActor: NSObject, ISpaceship{
     func Explode(){
         self._spaceship.SetActive(false);
         self._explosion.RunAnimation();
+        self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self);
     }
     
     func AddMissle() {
-        for i in 0...(_missles.count - 1){
-            if(!_missles[i].IsActive){
-                _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
-                _missles[i].SetActive(true);
-                break;
+        if(_missles.count > 0){
+            for i in 0...(_missles.count - 1){
+                if(!_missles[i].IsActive){
+                    _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
+                    _missles[i].SetActive(true);
+                    break;
+                }
             }
         }
     }
     
     func StopMissle(){
-        for i in 0...(_missles.count - 1){
-            if(_missles[i].IsActive){
-                _missles[i].SetActive(false);
-                break;
+        if(_missles.count > 0){
+            for i in 0...(_missles.count - 1){
+                if(_missles[i].IsActive){
+                    _missles[i].SetActive(false);
+                    // break;
+                }
             }
         }
     }
     
     func IsCollidedWith(_ actor: SpaceshipActor) -> Bool{
-        return actor.Spaceship.IsActive && self._spaceship.frame.intersects(actor.Spaceship.frame);
+        return actor.Spaceship.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(actor.Spaceship.frame);
     }
     
     fileprivate func create(){
