@@ -17,6 +17,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     fileprivate var _isCollide:Bool;
     fileprivate var _spaceship:SpriteActor;
     fileprivate var _spaceshipMissleTimer: Timer!;
+    fileprivate var _point:Int;
     
     
     internal var _missleTimer:MissleTimer;
@@ -33,8 +34,9 @@ class SpaceshipActor: NSObject, ISpaceship{
     var Missles:[Missle]{get{return self._missles}};
     var `Type`:ActorType{get{return self._spaceship.Type}};
     var Position:CGPoint{get{return self._spaceship.position} set(newVal){self._spaceship.position = newVal}}
+    var Point:Int {get{return self._point}}
 
-    init(imageName:String, explosionName: String, health:Int, speed:CGFloat, damage:Int , position:CGPoint,scale:CGFloat = 1,type:ActorType, isSpaceShipAnimation:Bool = false)
+    init(imageName:String, explosionName: String, health:Int, speed:CGFloat, damage:Int , position:CGPoint,scale:CGFloat = 1,type:ActorType, point:Int = 0, isSpaceShipAnimation:Bool = false)
     {
         self._missleTimer = MissleTimer();
         self._missles = [Missle]();
@@ -43,6 +45,7 @@ class SpaceshipActor: NSObject, ISpaceship{
         _speed = speed;
         _damage = damage;
         _isCollide = false;
+        _point = point;
         _explosion = SpriteActor(atlasName:explosionName, position: position, scale: 1, opacity: 1, frameCount: 1, type:ActorType.Explosion, repeatCount: 1, startAnimating: false);
         
         if(isSpaceShipAnimation)

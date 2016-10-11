@@ -39,6 +39,10 @@ class LabelActor {
         self._labelNode.alpha = self._opacity;
     }
     
+//    func Update(text:String){
+//        self._labelNode.observeValue(forKeyPath: String?, of: <#T##Any?#>, change: <#T##[NSKeyValueChangeKey : Any]?#>, context: <#T##UnsafeMutableRawPointer?#>)
+//    }
+    
     func FadeIn(){
         let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
         if _labelNode.alpha < 1
@@ -46,5 +50,28 @@ class LabelActor {
             _labelNode.run(fadeInAnimation);
         }
     }
+    
+    func FadeOut(){
+        let fadeOutAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
+        if _labelNode.alpha > 0
+        {
+            _labelNode.run(fadeOutAnimation);
+        }
+    }
+    
+//    func FadeInAndOut() -> SKAction{
+//        _labelNode.alpha = 0;
+//        let fadeInAnimation = SKAction.fadeAlpha(by: 0.8, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEIN));
+//        let bufferAnimation = SKAction.fadeAlpha(by: 1, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEIN));
+//        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEOUT));
+//
+//        let sequence = SKAction.sequence([fadeInAnimation,bufferAnimation, fadeOutAnimation]);
+//        
+//        
+//        return sequence;
+//        //_labelNode.run(sequence)
+//        
+//    }
+
     
 }

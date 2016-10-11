@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import SpriteKit
 
 class LevelClass: NSObject {
     
@@ -14,6 +16,7 @@ class LevelClass: NSObject {
     fileprivate var _isActive: Bool;
     fileprivate var _level:Int;
     fileprivate var _rollingRockASpawnTimer: Timer?;
+    fileprivate var _lblLevel: Label;
     
     var Enemies:[IActor]{get{return self._enemies}}
     var IsActive:Bool{get{return self._isActive}}
@@ -22,13 +25,18 @@ class LevelClass: NSObject {
         self._enemies = [IActor]();
         self._isActive = false;
         self._level = 0;
+        self._lblLevel = Label(displayText: "LEVEL ", position: CGPoint(x:GameScene.instance!.frame.midX, y: GameScene.instance!.frame.midY), fontSize: GeneralGameSettings.GAMESCREEN_LEVELLABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY, opacity: 0);
         super.init();
         self.initializeRollingRockA(num:5);
     }
     
     func StartLevel(level:Int){
         self._level = level;
-        self.EnemySpawnTimer(isOn: true);
+        self._lblLevel.DisplayText = "LEVEL " + String(level);
+       // let skFadeInandOut = self._lblLevel.FadeInAndOut()
+        self._lblLevel.LabelNode.run(self.getLevelLabelAction(), completion: {self.EnemySpawnTimer(isOn: true);});
+       // self._lblLevel.FadeIn();
+        //self.EnemySpawnTimer(isOn: true);
     }
     
     func Destroy(){
@@ -70,5 +78,19 @@ class LevelClass: NSObject {
             let tempRock = RollingRockA(position:SpriteServices.GenerateRandomPosition());
             self._enemies.append(tempRock);
         }
+    }
+    
+    fileprivate func getLevelLabelAction() -> SKAction{
+        //_labelNode.alpha = 0;
+        let fadeInAnimation = SKAction.fadeAlpha(by: 0.8, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEIN));
+        let bufferAnimation = SKAction.fadeAlpha(by: 1, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEIN));
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEOUT));
+        
+        let sequence = SKAction.sequence([fadeInAnimation,bufferAnimation, fadeOutAnimation]);
+        
+        
+        return sequence;
+        //_labelNode.run(sequence)
+        
     }
 }

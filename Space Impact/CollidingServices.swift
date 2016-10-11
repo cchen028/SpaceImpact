@@ -50,8 +50,8 @@ class CollidingServices {
         if(collided)
         {
             self._spaceship._missles[missleIndex].SetActive(false);
-            
             actor.Explode();
+            UserStatsInfo.instance.Score.value += actor.Point;
         }
     }
     

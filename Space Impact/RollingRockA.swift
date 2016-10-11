@@ -18,7 +18,7 @@ class RollingRockA: SpaceshipActor, IActor{
     {
         self._initialPosition = position;
 
-        super.init(imageName: GeneralGameSettings.ROLLINGROCKA_NAME, explosionName: GeneralGameSettings.ROLLINGROCKA_EXPLOSION, health: GeneralGameSettings.ROLLINGROCKA_HEALTH, speed: GeneralGameSettings.ROLLINGROCKA_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship, isSpaceShipAnimation: true);
+        super.init(imageName: GeneralGameSettings.ROLLINGROCKA_NAME, explosionName: GeneralGameSettings.ROLLINGROCKA_EXPLOSION, health: GeneralGameSettings.ROLLINGROCKA_HEALTH, speed: GeneralGameSettings.ROLLINGROCKA_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship,  point: GeneralGameSettings.ROLLINGROCKA_POINT, isSpaceShipAnimation: true);
         
     }
     

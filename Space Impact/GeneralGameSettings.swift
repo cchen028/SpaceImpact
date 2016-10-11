@@ -30,8 +30,15 @@ struct GeneralGameSettings {
     // Game Screen Setting
     static let GAMESCREEN_NAME = "Game";
     static let GAMESCREEN_LABEL_FONTSIZE: CGFloat = 25;
-    static let GAMESCREEN_LABEL_FONTFAMILY: String = "AvenirNext-UltraLight"
+    static let GAMESCREEN_LABEL_FONTFAMILY: String = "Copperplate"
+    static let GAMESCREEN_LEVELLABEL_FONTSIZE: CGFloat = 35;
+    static let GAMESCREEN_LEVELLABEL_FADEIN: CGFloat = 1;
+    static let GAMESCREEN_LEVELLABEL_FADEOUT: CGFloat = 0.5;
     static let MYSPACESHIP_CATEGORY: UInt32 = 0;
+    
+    
+    static let GAMESCREEN_ICON_LIFE:String = "life";
+    static let GAMESCREEN_ICON_BOMB:String = "bomb";
     
     static let ENEMY_CATEGORY: UInt32 = 1;
     // My Spaceship
@@ -50,5 +57,6 @@ struct GeneralGameSettings {
     static let ROLLINGROCKA_HEALTH:Int = 1;
     static let ROLLINGROCKA_EXPLOSION:String = "explosionA";
     static let ROLLINGROCKA_SPAWN: Double = 2;
+    static let ROLLINGROCKA_POINT: Int = 300;
     
 }
