@@ -29,6 +29,7 @@ class AssetServices {
         _skTexturesList = [String:[SKTexture]]();
         
         self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKA_NAME);
+        self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKB_NAME);
         self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKA_EXPLOSION);
     }
     

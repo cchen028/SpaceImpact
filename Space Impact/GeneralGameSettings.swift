@@ -57,4 +57,13 @@ struct GeneralGameSettings {
     static let ROLLINGROCKA_SPAWN: Double = 2;
     static let ROLLINGROCKA_POINT: Int = 300;
     
+    //ROLLING ROCK B
+    static let ROLLINGROCKB_NAME:String = "RollingRockB";
+    static let ROLLINGROCKB_SPEED:CGFloat = 5;
+    static let ROLLINGROCKB_HEALTH:Int = 1;
+    static let ROLLINGROCKB_EXPLOSION:String = "explosionA";
+    static let ROLLINGROCKB_SPAWN: Double = 2;
+    static let ROLLINGROCKB_ACC: CGFloat = 0.02;
+    static let ROLLINGROCKB_POINT: Int = 300;
+    
 }

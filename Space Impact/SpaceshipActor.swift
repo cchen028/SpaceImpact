@@ -70,6 +70,10 @@ class SpaceshipActor: NSObject, ISpaceship{
     }
     
     func Update(){
+        if(self._spaceship.position.y < GameScene.instance!.frame.minY){
+            self.destroy();
+        }
+        
         self._explosion.position = self._spaceship.position;
     }
     

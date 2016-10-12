@@ -16,6 +16,7 @@ class LevelClass: NSObject {
     fileprivate var _isActive: Bool;
     fileprivate var _level:Int;
     fileprivate var _rollingRockASpawnTimer: Timer?;
+    fileprivate var _rollingRockBSpawnTimer: Timer?;
     fileprivate var _lblLevel: Label;
     
     var Enemies:[ISpaceship]{get{return self._enemies}}
@@ -45,22 +46,25 @@ class LevelClass: NSObject {
     func EnemySpawnTimer(isOn:Bool){
         if(isOn){
             _rollingRockASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector: "SpawnRollingRockA", userInfo: nil, repeats: true);
+            _rollingRockBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: "SpawnRollingRockB", userInfo: nil, repeats: true);
         }
         else{
             _rollingRockASpawnTimer!.invalidate();
+            _rollingRockBSpawnTimer!.invalidate();
             _rollingRockASpawnTimer = nil;
         }
     }
     
     func Update(){
         for obj in self._enemies{
-            if let rollingRockA = obj as? RollingRockA {
+            if let rollingRockA = obj as? SpaceshipActor, rollingRockA.Type == ActorType.EnemySpaceship {
                 rollingRockA.Update();
             }
         }
     }
     
     func SpawnRollingRockA(){
+        
         for obj in self._enemies{
             if var rollingRockA = obj as? RollingRockA , !rollingRockA.IsActive {
                 rollingRockA.Position = GameObjectServices.instance.GenerateRandomPosition();
@@ -70,9 +74,26 @@ class LevelClass: NSObject {
         }
     }
     
+    func SpawnRollingRockB(){
+        
+        for obj in self._enemies{
+            if var rollingRockB = obj as? RollingRockB , !rollingRockB.IsActive {
+                rollingRockB.Position = GameObjectServices.instance.GenerateRandomPosition();
+                rollingRockB.SetActive(true);
+                break;
+            }
+        }
+    }
+
+    
     fileprivate func initializeRollingRockA(num:Int){
         for _ in 1...num{
             let tempRock = RollingRockA(position:GameObjectServices.instance.GenerateRandomPosition());
+            self._enemies.append(tempRock);
+        }
+        
+        for _ in 1...num{
+            let tempRock = RollingRockB(position:GameObjectServices.instance.GenerateRandomPosition());
             self._enemies.append(tempRock);
         }
     }
