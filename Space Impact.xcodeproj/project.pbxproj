@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		657459B11DAF312000200C68 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657459B01DAF312000200C68 /* IAPTableViewController.swift */; };
+		657459B31DAF313300200C68 /* IAP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657459B21DAF313300200C68 /* IAP.storyboard */; };
 		B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEA1C915A5C00870D97 /* MissleTimer.swift */; };
 		B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEC1C93EACD00870D97 /* AssetServices.swift */; };
 		B003F4AE1C8EA9B700AFDF91 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003F4AD1C8EA9B700AFDF91 /* Actor.swift */; };
@@ -73,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		657459B01DAF312000200C68 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
+		657459B21DAF313300200C68 /* IAP.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAP.storyboard; sourceTree = "<group>"; };
 		B0038BEA1C915A5C00870D97 /* MissleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleTimer.swift; sourceTree = "<group>"; };
 		B0038BEC1C93EACD00870D97 /* AssetServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetServices.swift; sourceTree = "<group>"; };
 		B003F4AD1C8EA9B700AFDF91 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
@@ -152,6 +156,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		657459AF1DAF310F00200C68 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				657459B01DAF312000200C68 /* IAPTableViewController.swift */,
+			);
+			name = ViewControllers;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +207,7 @@
 		B03BD5E91C706BC200D14F4C /* Space Impact */ = {
 			isa = PBXGroup;
 			children = (
+				657459AF1DAF310F00200C68 /* ViewControllers */,
 				B076FF011DAB5947006C5C7C /* Assets.xcassets */,
 				B004876C1C8D10DD0061EC7F /* Animation Assets */,
 				B0F53E061C83C95900876394 /* Configurations */,
@@ -211,6 +225,7 @@
 				B03BD5F01C706BC200D14F4C /* GameViewController.swift */,
 				B03BD5F21C706BC200D14F4C /* Main.storyboard */,
 				B03BD5F71C706BC200D14F4C /* LaunchScreen.storyboard */,
+				657459B21DAF313300200C68 /* IAP.storyboard */,
 				B03BD5FA1C706BC200D14F4C /* Info.plist */,
 			);
 			path = "Space Impact";
@@ -454,6 +469,7 @@
 				B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */,
 				B076FF061DADFD87006C5C7C /* RollingRockB.atlas in Resources */,
 				B076FF021DAB5947006C5C7C /* Assets.xcassets in Resources */,
+				657459B31DAF313300200C68 /* IAP.storyboard in Resources */,
 				B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +525,7 @@
 				B0EF1ED81C8B92C300E24202 /* SpaceshipActor.swift in Sources */,
 				B0F53E081C83C98300876394 /* GeneralGameSettings.swift in Sources */,
 				B076FF041DADEA52006C5C7C /* RollingRockB.swift in Sources */,
+				657459B11DAF312000200C68 /* IAPTableViewController.swift in Sources */,
 				B03BD6291C7C470600D14F4C /* ShapeActor.swift in Sources */,
 				B0F53E031C83ACC400876394 /* TransitionService.swift in Sources */,
 				B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */,

@@ -11,7 +11,10 @@ import SpriteKit
 
 
 
+
 class GameViewController: UIViewController {
+    
+    static let presentIAPModallySegueId = "presentIAPModallySegue"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,7 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
+        presentIAPViewController()
     }
 
     override var shouldAutorotate : Bool {
@@ -55,5 +59,9 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden : Bool {
         return true
+    }
+    
+    func presentIAPViewController(){
+        performSegue(withIdentifier: GameViewController.presentIAPModallySegueId, sender: self)
     }
 }
