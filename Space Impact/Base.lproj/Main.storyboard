@@ -37,7 +37,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Sjv-QM-DhP"/>
                     <connections>
-                        <segue destination="6ck-mD-xp4" kind="presentation" identifier="presentIAPModallySegue" id="0wE-Nk-vEi"/>
+                        <segue destination="6ck-mD-xp4" kind="presentation" identifier="presentIAPModallySegue" modalPresentationStyle="overCurrentContext" id="0wE-Nk-vEi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

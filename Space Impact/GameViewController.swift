@@ -18,7 +18,6 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
       //  instance
         
        // if let scene = GameScene(fileNamed:"GameScene") {
@@ -37,7 +36,16 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
-        presentIAPViewController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registerForNotification()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotificationObserver()
     }
 
     override var shouldAutorotate : Bool {
@@ -61,7 +69,17 @@ class GameViewController: UIViewController {
         return true
     }
     
-    func presentIAPViewController(){
+    
+    //MARK: - private methods
+    private func registerForNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(presentIAPViewController), name: .onPowerUpButtonPressed, object: nil)
+    }
+    
+    private func removeNotificationObserver(){
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func presentIAPViewController(){
         performSegue(withIdentifier: GameViewController.presentIAPModallySegueId, sender: self)
     }
 }
