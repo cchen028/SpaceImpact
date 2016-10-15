@@ -11,11 +11,13 @@ import SpriteKit
 
 
 
+
 class GameViewController: UIViewController {
+    
+    static let presentIAPModallySegueId = "presentIAPModallySegue"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
       //  instance
         
        // if let scene = GameScene(fileNamed:"GameScene") {
@@ -34,6 +36,16 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registerForNotification()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotificationObserver()
     }
 
     override var shouldAutorotate : Bool {
@@ -55,5 +67,19 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden : Bool {
         return true
+    }
+    
+    
+    //MARK: - private methods
+    private func registerForNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(presentIAPViewController), name: .onPowerUpButtonPressed, object: nil)
+    }
+    
+    private func removeNotificationObserver(){
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func presentIAPViewController(){
+        performSegue(withIdentifier: GameViewController.presentIAPModallySegueId, sender: self)
     }
 }
