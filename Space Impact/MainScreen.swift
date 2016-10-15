@@ -44,14 +44,14 @@ class MainScreen: IStage,ITouchable {
     
     fileprivate func generateButtons(){
         
-        let btnStart = Button(displayText: "START".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY*1.2), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnStart = Button(displayText: "START".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY*1.2),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
 
         
-        let btnHighScore = Button(displayText: "HIGH SCORE".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnStart.position.y - btnStart.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnHighScore = Button(displayText: "HIGH SCORE".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnStart.position.y - btnStart.Height - _buttonPaddings), fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
-        let btnTutorial = Button(displayText: "TUTORIAL".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnHighScore.position.y - btnHighScore.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnTutorial = Button(displayText: "TUTORIAL".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnHighScore.position.y - btnHighScore.Height - _buttonPaddings),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
-        let btnPowerUp = Button(displayText: "POWER UP".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnTutorial.position.y - btnTutorial.Height - _buttonPaddings), opacity: 0, fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnPowerUp = Button(displayText: "POWER UP".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnTutorial.position.y - btnTutorial.Height - _buttonPaddings),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
         _buttons.append(btnStart);
         _buttons.append(btnHighScore);
@@ -60,7 +60,7 @@ class MainScreen: IStage,ITouchable {
     }
     
     fileprivate func generateLabels(){
-        let lblMainTitle = Label(displayText: "SPACE IMPACT", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY+150), fontSize: GeneralGameSettings.TITLE_FONTSIZE, fontNamed: GeneralGameSettings.TITLE_FONTFAMILY,opacity: 0);
+        let lblMainTitle = Label(displayText: "SPACE IMPACT", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY+150), fontSize: GeneralGameSettings.TITLE_FONTSIZE, fontNamed: GeneralGameSettings.TITLE_FONTFAMILY);
         
         
         self._labels.append(lblMainTitle);
