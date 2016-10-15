@@ -34,7 +34,7 @@ class CollidingServices {
         for mIndex in 0...(self._spaceship._missles.count - 1)	{
             for eachNode in (spaceObjects){
                 if let spaceshipActor = eachNode as? SpaceshipActor{
-                    if(spaceshipActor.Type == ActorType.EnemySpaceship)
+                    if(spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
                     {
                         self.missleCollideUpdate(spaceshipActor, missleIndex:mIndex);
                         self.selfCollideUpdate(spaceActor: spaceshipActor);
@@ -63,9 +63,5 @@ class CollidingServices {
             spaceActor.Explode();
             self._spaceship.Explode();
         }
-    }
-    
-    fileprivate func IsCollideWithSelf(_ actor: SpaceshipActor) -> Bool{
-        return actor.Spaceship.IsActive && self._spaceship.Spaceship.frame.intersects(actor.Spaceship.frame);
     }
 }

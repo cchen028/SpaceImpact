@@ -37,7 +37,6 @@ class Spaceship: SpaceshipActor{
     override func Explode() {
         UserStatsInfo.instance.Life.value -= 1;
         super.Explode();
-       // self._explosion.RunAnimation();
     }
     
     override func Update(){

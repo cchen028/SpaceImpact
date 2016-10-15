@@ -37,6 +37,7 @@
 		B076FF021DAB5947006C5C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B076FF011DAB5947006C5C7C /* Assets.xcassets */; };
 		B076FF041DADEA52006C5C7C /* RollingRockB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B076FF031DADEA52006C5C7C /* RollingRockB.swift */; };
 		B076FF061DADFD87006C5C7C /* RollingRockB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B076FF051DADFD87006C5C7C /* RollingRockB.atlas */; };
+		B076FF091DAF0703006C5C7C /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B076FF081DAF0703006C5C7C /* Planet.swift */; };
 		B07E8E1C1C824E5300217260 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E1B1C824E5300217260 /* MainScreen.swift */; };
 		B07E8E1E1C8251BF00217260 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E1D1C8251BF00217260 /* Label.swift */; };
 		B07E8E201C825B1D00217260 /* LabelActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E8E1F1C825B1D00217260 /* LabelActor.swift */; };
@@ -109,6 +110,7 @@
 		B076FF011DAB5947006C5C7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B076FF031DADEA52006C5C7C /* RollingRockB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollingRockB.swift; sourceTree = "<group>"; };
 		B076FF051DADFD87006C5C7C /* RollingRockB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = RollingRockB.atlas; sourceTree = "<group>"; };
+		B076FF081DAF0703006C5C7C /* Planet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		B07E8E1B1C824E5300217260 /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		B07E8E1D1C8251BF00217260 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		B07E8E1F1C825B1D00217260 /* LabelActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelActor.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				B00487771C8D5D180061EC7F /* RollingRockA.swift */,
 				B076FF031DADEA52006C5C7C /* RollingRockB.swift */,
 				B0038BEA1C915A5C00870D97 /* MissleTimer.swift */,
+				B076FF081DAF0703006C5C7C /* Planet.swift */,
 			);
 			name = "Game Models";
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				B03BD6291C7C470600D14F4C /* ShapeActor.swift in Sources */,
 				B0F53E031C83ACC400876394 /* TransitionService.swift in Sources */,
 				B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */,
+				B076FF091DAF0703006C5C7C /* Planet.swift in Sources */,
 				B07E8E1C1C824E5300217260 /* MainScreen.swift in Sources */,
 				B03BD6351C80182900D14F4C /* Button.swift in Sources */,
 				B03BD6231C7580FE00D14F4C /* ITouchable.swift in Sources */,

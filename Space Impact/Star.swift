@@ -35,6 +35,7 @@ open class Star: ShapeActor {
         self._type = type;
         
         super.init(type: ShapeActorType.circle, width: 1, height: 1, position: position,opacity:0.7, glowWidth: self._glow, strokeColor: SKColor.white, fillColor: SKColor.white);
+        super.zPosition = 1;
     }
 
     required public init?(coder aDecoder: NSCoder) {

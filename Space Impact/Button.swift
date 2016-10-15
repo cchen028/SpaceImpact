@@ -13,28 +13,24 @@ class Button: SpriteActor,ITouchable{
     
     fileprivate var _displayText:String;
     fileprivate var _labelNode:Label?;
-    fileprivate var _alpha:CGFloat;
     
     var DisplayText:String{get{return self._displayText}}
-    var Alpha:CGFloat{get{return self._alpha}}
     var LabelNode:Label{get{return self._labelNode!}}
     
-    init(displayText: String, position: CGPoint, opacity: CGFloat, fontName:String?, fontSize:CGFloat, imageName:String){
+    init(displayText: String, position: CGPoint, fontName:String?, fontSize:CGFloat, imageName:String){
         self._displayText = displayText;
-        self._alpha = opacity;
-        self._labelNode = Label(displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontName, opacity: self._alpha);
+        self._labelNode = Label(displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontName);
         
-        super.init(imageName: imageName, position: CGPoint(x:position.x,y:position.y), scale: 1, opacity: opacity, type:ActorType.Button)
+        super.init(imageName: imageName, position: CGPoint(x:position.x,y:position.y), scale: 1, opacity: 0, type:ActorType.Button)
         self.name = displayText.replacingOccurrences(of: " ", with: "_");
         
         //adjusting position
         self.position = CGPoint(x:_labelNode!.Position.x, y:_labelNode!.Position.y - ( (self.Height-_labelNode!.LabelNode.frame.height)/4));
-        GameScene.instance!.addChild(self);
+        self.zPosition = 10;
     }
 
     required init?(coder aDecoder: NSCoder) {
         self._displayText = "";
-        self._alpha = 1;
         self._labelNode = nil;
         super.init(coder: aDecoder);
     }
@@ -52,6 +48,10 @@ class Button: SpriteActor,ITouchable{
         {
             return false;
         }
+    }
+    override func SetActive(_ isActive: Bool) {
+        self._labelNode?.SetActive(isActive);
+        super.SetActive(isActive);
     }
     
     override func FadeIn(){

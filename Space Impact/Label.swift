@@ -12,15 +12,19 @@ import SpriteKit
 class Label:LabelActor {
     
     init(){
-        super.init(displayText: "", position: CGPoint(x:0,y:0), fontSize: 25, fontNamed: nil, opacity: 1)
+        super.init(displayText: "", position: CGPoint(x:0,y:0), fontSize: 25, fontNamed: nil)
     }
     
-    override init(displayText:String, position:CGPoint, fontSize: CGFloat, fontNamed: String?, opacity: CGFloat) {
+    override init(displayText:String, position:CGPoint, fontSize: CGFloat, fontNamed: String?) {
         
-        super.init(displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontNamed, opacity:opacity);
+        super.init(displayText:displayText, position:position, fontSize: fontSize, fontNamed: fontNamed);
+        self.LabelNode.zPosition = 10;
+    }
+    
+    override func SetActive(_ isActive: Bool) {
+        super.SetActive(isActive);
+    }
 
-        GameScene.instance!.addChild(self.LabelNode)
-    }    
 }
 
 

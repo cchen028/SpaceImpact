@@ -33,7 +33,6 @@ class MissleTimer: NSObject {
         else{
             targetSpaceship.StopMissle();
             _spaceshipMissleTimer?.invalidate();
-            //_spaceshipMissleTimer = nil;
         }
     }
 

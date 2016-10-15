@@ -13,7 +13,6 @@ class GameScene: SKScene {
   
     
     static let instance = GameScene(fileNamed:"GameScene");
-    //var test = SpaceImpact.sharedInstance;
     var spaceship:SpriteActor?;
     var touched:Bool?;
     var touchdirection:Int?;
@@ -42,8 +41,6 @@ class GameScene: SKScene {
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0);
         
-       // self.addChild(myLabel)
-        
         backgroundtheme = Background(gs: self);
         
         mainScreen = MainScreen();
@@ -57,34 +54,7 @@ class GameScene: SKScene {
         transitService?.TransitTo(mainScreen!);
         
         
-       // gameTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "runTimedCode", userInfo: nil, repeats: true);
-        
-        
-   //     self.addStage(backgroundtheme);
-        //Circle = SKShapeNode(circleOfRadius: 10)
-      //  Circle?.position = CGPointMake(200, 200)
-    //    Circle?.name = "defaultCircle"
-       // Circle?.strokeColor = SKColor.whiteColor()
-       // Circle?.glowWidth = 10.0
-       // Circle?.fillColor = SKColor.yellowColor()
-       // Circle?.physicsBody = SKPhysicsBody(circleOfRadius: 10)
-        // Circle?.physicsBody?.dynamic = true //.physicsBody?.dynamic = true
-       // self.addChild(Circle!.Shape);
-        //self.addChild(Circle2!.Shape);
-        
-        
-        
-        
-      //  let location = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMinY(self.frame)+20);
-       // self.spaceship = Actor(sprite: SKSpriteNode(imageNamed:"Spaceship"),position: location,scale:0.1);
-       // self.spaceship = Spaceship(position: location);
-      //  self.addActor(self.spaceship);
     }
-    
-   // func runTimedCode(){
-      //  self.addActor(self.spaceship);
-   // }
-    
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -154,71 +124,9 @@ class GameScene: SKScene {
         if gameScreen!.IsActive {
             gameScreen?.Update();
         }
-        
-        
-        
-        
-     //   if(touchdirection == 1){
-     //       spaceship?.Sprite.position.x += 5;
-     //   }
-     //   else if(touchdirection == -1){
-     //       spaceship?.Sprite.position.x -= 5;
-     //   }
-      //  else{
-            
-     //   }
-        //
        
         /* Called before each frame is rendered */
         
         
     }
-    
-//    func addActor(node:Spaceship)
-//    {
-//        if let myspaceship = node as? Spaceship{
-//            self.addChild(myspaceship.Sprite);
-//            for missle in myspaceship.Missles{
-//                if missle != nil
-//                {
-//                self.addChild(missle!.Sprite);
-//                }
-//            }
-//        }
-//    }
-    
-    
-    
-    
-    func addSpaceship(_ node:SpaceshipActor?)
-    {
-        self.addChild(node!.Spaceship);
-//        if let shapeNode = node as? ShapeActor{
-//            self.addChild(shapeNode.Shape);
-//        }
-//        else if let spriteNode = node as? SpriteActor{
-//            self.addChild(spriteNode.Sprite);
-//        }
-    }
-    
-//    func addActor(_ node:IActor?)
-//    {
-//        if let shapeNode = node as? ShapeActor{
-//            self.addChild(shapeNode);
-//        }
-//        else if let spriteNode = node as? SpriteActor{
-//            self.addChild(spriteNode);
-//        }
-//    }
-    
-//    func addStage(node:IStage?)
-//    {
-//        if let background = node as? Background{
-//            for star in background.Stars{
-//                self.addActor(star);
-//            }
-//        }
-//        
-//    }
-    
 }

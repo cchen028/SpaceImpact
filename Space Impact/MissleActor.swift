@@ -24,6 +24,7 @@ class MissleActor: IMissle {
         self._damage = damage;
         self._missle = SpriteActor(imageName: GeneralGameSettings.MyMissle_Name, position: position, scale: 1, opacity: 1, type: missleType);
         self._missle.name = missleType.rawValue;
+        self._missle.zPosition = 3;
     }
     
     func Update(){

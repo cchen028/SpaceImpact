@@ -81,11 +81,10 @@ import SpriteKit
         super.init(coder: aDecoder);
     }
     
-    func RunAnimation(){
+    func RunAnimation(animationComplete: @escaping ()->Void){
         if(self._isAnimation)
         {
-            self.alpha = 1;
-            self.run(self._spriteAction, completion: {self.SetActive(false)});
+            self.run(self._spriteAction, completion: {animationComplete();});
         }
     }
     
@@ -98,24 +97,18 @@ import SpriteKit
     
     func UpdateStatus(_ isActive: Bool){
         if(isActive){
-            self.alpha = 1;
-            GameObjectServices.instance.GameScreen?.addChild(self);
+            GameScene.instance?.addChild(self);
         }
         else{
-            self.alpha = 0;
             self.removeFromParent();
         }
-    }
-    
-    func Explode(){
-        self.alpha = 1;
-        self.run(self._spriteAction, completion: {self.UpdateStatus(false)});
     }
     
     func FadeIn(){
         let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
         if self.alpha < 1
         {
+            SetActive(true);
             self.run(fadeInAnimation);
         }
     }
@@ -124,24 +117,9 @@ import SpriteKit
         let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
         if self.alpha > 0
         {
-            self.run(fadeOutAnimation);
+            self.run(fadeOutAnimation, completion:{self.SetActive(false)});
         }
     }
-    
-    fileprivate func getFileName(_ name:String, orderNumber:Int) -> String{
-        var fileName:String = name + "_";
-        if orderNumber < 10 {
-            fileName += ("0" + String(orderNumber));
-        }
-        else
-        {
-            fileName += String(orderNumber);
-            
-        }
-        
-        return fileName;
-    }
-    
 }
 
 

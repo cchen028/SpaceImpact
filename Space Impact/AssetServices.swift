@@ -25,6 +25,11 @@ class AssetServices {
         _skTextures[GeneralGameSettings.MyMissle_Name] = SKTexture(imageNamed: GeneralGameSettings.MyMissle_Name);
         _skTextures[GeneralGameSettings.GAMESCREEN_ICON_LIFE] = SKTexture(imageNamed: GeneralGameSettings.GAMESCREEN_ICON_LIFE);
         _skTextures[GeneralGameSettings.GAMESCREEN_ICON_BOMB] = SKTexture(imageNamed: GeneralGameSettings.GAMESCREEN_ICON_BOMB);
+        
+        for i in (1...5){
+            _skTextures[GeneralGameSettings.BACKGROUND_PLANET + String(i)] = SKTexture(imageNamed: GeneralGameSettings.BACKGROUND_PLANET + String(i));
+        }
+
 
         _skTexturesList = [String:[SKTexture]]();
         

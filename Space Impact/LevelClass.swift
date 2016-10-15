@@ -26,15 +26,15 @@ class LevelClass: NSObject {
         self._enemies = [ISpaceship]();
         self._isActive = false;
         self._level = 0;
-        self._lblLevel = Label(displayText: "LEVEL ", position: CGPoint(x:GameScene.instance!.frame.midX, y: GameScene.instance!.frame.midY), fontSize: GeneralGameSettings.GAMESCREEN_LEVELLABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY, opacity: 0);
+        self._lblLevel = Label(displayText: "LEVEL ", position: CGPoint(x:GameScene.instance!.frame.midX, y: GameScene.instance!.frame.midY), fontSize: GeneralGameSettings.GAMESCREEN_LEVELLABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         super.init();
-        self.initializeRollingRockA(num:5);
+        self.initializeRollingRockA(num:10);
     }
     
     func StartLevel(level:Int){
         self._level = level;
         self._lblLevel.DisplayText = "LEVEL " + String(level);
-        self._lblLevel.LabelNode.run(self.getLevelLabelAction(), completion: {self.EnemySpawnTimer(isOn: true);});
+        self._lblLevel.FadeInAndOut(animationCompleted: {self.EnemySpawnTimer(isOn: true);});
     }
     
     func Destroy(){

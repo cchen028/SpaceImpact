@@ -86,22 +86,15 @@ class GameScreen: NSObject,IStage {
     fileprivate func createLabels(){
         
         let iconBomb = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_BOMB, position: CGPoint(x:20, y:GameScene.instance!.frame.maxY - 20));
-      //  iconBomb.position = CGPoint(x: GeneralGameSettings.SCREEN_EDGE_PADDINGS + iconBomb.Width/2, y:GameScene.instance!.frame.maxY - iconBomb.Height/2 - GeneralGameSettings.SCREEN_EDGE_PADDINGS);
-        
-        
-        
-        let lblBomb = Label(displayText: "X 3", position: CGPoint(x:50, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY,opacity: 0);
-     //   lblBomb.Position = CGPoint(x: GeneralGameSettings.SCREEN_EDGE_PADDINGS + iconBomb.Width + lblBomb.LabelNode.frame.width/2, y:GameScene.instance!.frame.maxY - lblBomb.LabelNode.frame.height - GeneralGameSettings.SCREEN_EDGE_PADDINGS);
+
+        let lblBomb = Label(displayText: "X 3", position: CGPoint(x:50, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
         let iconLife = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_LIFE, position: CGPoint(x:100, y:GameScene.instance!.frame.maxY - 20));
-      //  iconLife.position = CGPoint(x: GeneralGameSettings.SCREEN_EDGE_PADDINGS + lblBomb.LabelNode.frame.maxX, y:GameScene.instance!.frame.maxY - iconLife.Height/2 - GeneralGameSettings.SCREEN_EDGE_PADDINGS);
         
         
-        let lblLife = Label(displayText: "X 3", position: CGPoint(x:135, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY,opacity: 0);
-     //   lblLife.Position = CGPoint(x: GeneralGameSettings.SCREEN_EDGE_PADDINGS + iconLife.position.x , y:GameScene.instance!.frame.maxY - lblBomb.LabelNode.frame.height - GeneralGameSettings.SCREEN_EDGE_PADDINGS);
+        let lblLife = Label(displayText: "X 3", position: CGPoint(x:135, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
-        let lblScore = Label(displayText: "Score: 0", position: CGPoint(x:250, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY,opacity: 0);
-       // lblScore.Position = CGPoint(x: GameScene.instance!.frame.maxX - lblScore.LabelNode.frame.width/2, y:GameScene.instance!.frame.maxY - 30);
+        let lblScore = Label(displayText: "Score: 0", position: CGPoint(x:250, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
         UserStatsInfo.instance.Score.bind {
             lblScore.DisplayText = "Score: " + String($0);

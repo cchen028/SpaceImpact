@@ -9,8 +9,8 @@
 import UIKit
 
 struct GeneralGameSettings {
-    static let SCREEN_HEIGHT: Int = 800;
-    static let SCREEN_WIDTH:Int = 400;
+    static let SCREEN_HEIGHT: Int = Int(GameScene.instance!.frame.height) + 100;
+    static let SCREEN_WIDTH:Int = Int(GameScene.instance!.frame.width);
     static let SCREEN_EDGE_PADDINGS: CGFloat = 5;
     
     static let TRANSITION_FADEIN :CGFloat = 1;
@@ -24,6 +24,9 @@ struct GeneralGameSettings {
     static let BUTTON_PADDINGS: CGFloat = 30;
     static let BUTTON_FONTFAMILY:String = "AvenirNext-Medium";
     
+    static let BACKGROUND_PLANET:String = "planet";
+    static let BACKGROUND_PLANET_TOTAL:Int = 5;
+    static let BACKGROUND_PLANET_SPEED:CGFloat = 0.4;
     
     // Game Screen Setting
     static let GAMESCREEN_NAME = "Game";
