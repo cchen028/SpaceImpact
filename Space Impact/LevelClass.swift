@@ -17,6 +17,7 @@ class LevelClass: NSObject {
     fileprivate var _level:Int;
     fileprivate var _rollingRockASpawnTimer: Timer?;
     fileprivate var _rollingRockBSpawnTimer: Timer?;
+    fileprivate var _eneynySpaceshipASpawnTimer: Timer?;
     fileprivate var _lblLevel: Label;
     
     var Enemies:[ISpaceship]{get{return self._enemies}}
@@ -47,6 +48,7 @@ class LevelClass: NSObject {
         if(isOn){
             _rollingRockASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector: "SpawnRollingRockA", userInfo: nil, repeats: true);
             _rollingRockBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: "SpawnRollingRockB", userInfo: nil, repeats: true);
+            _eneynySpaceshipASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: "SpawnEnemySpaceshipA", userInfo: nil, repeats: true);
         }
         else{
             _rollingRockASpawnTimer!.invalidate();
@@ -84,6 +86,16 @@ class LevelClass: NSObject {
             }
         }
     }
+    func SpawnEnemySpaceshipA(){
+        
+        for obj in self._enemies{
+            if var enemySpaceshipA = obj as? EnemySpaceshipA , !enemySpaceshipA.IsActive {
+                enemySpaceshipA.Position = GameObjectServices.instance.GenerateRandomPosition();
+                enemySpaceshipA.SetActive(true);
+                break;
+            }
+        }
+    }
 
     
     fileprivate func initializeRollingRockA(num:Int){
@@ -96,6 +108,12 @@ class LevelClass: NSObject {
             let tempRock = RollingRockB(position:GameObjectServices.instance.GenerateRandomPosition());
             self._enemies.append(tempRock);
         }
+        
+        for _ in 1...num{
+            let tempRock = EnemySpaceshipA(position:GameObjectServices.instance.GenerateRandomPosition());
+            self._enemies.append(tempRock);
+        }
+
     }
     
     fileprivate func getLevelLabelAction() -> SKAction{

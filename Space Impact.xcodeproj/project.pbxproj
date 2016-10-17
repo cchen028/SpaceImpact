@@ -16,9 +16,16 @@
 		B00487781C8D5D180061EC7F /* RollingRockA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00487771C8D5D180061EC7F /* RollingRockA.swift */; };
 		B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00487791C8D6E5C0061EC7F /* astroid1.atlas */; };
 		B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */; };
+		B007F9531DB46A3A002455D4 /* EnemySpaceshipA_left.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9521DB46A3A002455D4 /* EnemySpaceshipA_left.atlas */; };
+		B007F9551DB46A53002455D4 /* EnemySpaceshipA_right.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9541DB46A53002455D4 /* EnemySpaceshipA_right.atlas */; };
+		B007F9571DB46E5A002455D4 /* ExplosionB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9561DB46E5A002455D4 /* ExplosionB.atlas */; };
 		B018AF831C8AC576000D68A6 /* Missle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018AF821C8AC576000D68A6 /* Missle.swift */; };
 		B03125D51D9371CD000212A0 /* CollidingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D41D9371CD000212A0 /* CollidingServices.swift */; };
 		B03125D81D93A847000212A0 /* LevelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D71D93A847000212A0 /* LevelClass.swift */; };
+		B03562E21DB1F2D200361924 /* Explosion0100.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B03562E11DB1F2D200361924 /* Explosion0100.atlas */; };
+		B03562E81DB2F01900361924 /* spaceship_right.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B03562E71DB2F01900361924 /* spaceship_right.atlas */; };
+		B03562EA1DB2FB2E00361924 /* spaceship_left.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B03562E91DB2FB2E00361924 /* spaceship_left.atlas */; };
+		B03562EC1DB357E500361924 /* EnemySpaceshipA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03562EB1DB357E500361924 /* EnemySpaceshipA.swift */; };
 		B03BD5EB1C706BC200D14F4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD5EA1C706BC200D14F4C /* AppDelegate.swift */; };
 		B03BD5ED1C706BC200D14F4C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B03BD5EC1C706BC200D14F4C /* GameScene.sks */; };
 		B03BD5EF1C706BC200D14F4C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD5EE1C706BC200D14F4C /* GameScene.swift */; };
@@ -86,9 +93,16 @@
 		B00487771C8D5D180061EC7F /* RollingRockA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollingRockA.swift; sourceTree = "<group>"; };
 		B00487791C8D6E5C0061EC7F /* astroid1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = astroid1.atlas; sourceTree = "<group>"; };
 		B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = rollingrockA.atlas; sourceTree = "<group>"; };
+		B007F9521DB46A3A002455D4 /* EnemySpaceshipA_left.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipA_left.atlas; sourceTree = "<group>"; };
+		B007F9541DB46A53002455D4 /* EnemySpaceshipA_right.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipA_right.atlas; sourceTree = "<group>"; };
+		B007F9561DB46E5A002455D4 /* ExplosionB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ExplosionB.atlas; sourceTree = "<group>"; };
 		B018AF821C8AC576000D68A6 /* Missle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Missle.swift; sourceTree = "<group>"; };
 		B03125D41D9371CD000212A0 /* CollidingServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollidingServices.swift; sourceTree = "<group>"; };
 		B03125D71D93A847000212A0 /* LevelClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelClass.swift; sourceTree = "<group>"; };
+		B03562E11DB1F2D200361924 /* Explosion0100.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Explosion0100.atlas; sourceTree = "<group>"; };
+		B03562E71DB2F01900361924 /* spaceship_right.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = spaceship_right.atlas; sourceTree = "<group>"; };
+		B03562E91DB2FB2E00361924 /* spaceship_left.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = spaceship_left.atlas; sourceTree = "<group>"; };
+		B03562EB1DB357E500361924 /* EnemySpaceshipA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemySpaceshipA.swift; sourceTree = "<group>"; };
 		B03BD5E71C706BC200D14F4C /* Space Impact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space Impact.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03BD5EA1C706BC200D14F4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B03BD5EC1C706BC200D14F4C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -172,6 +186,12 @@
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B007F9561DB46E5A002455D4 /* ExplosionB.atlas */,
+				B007F9541DB46A53002455D4 /* EnemySpaceshipA_right.atlas */,
+				B007F9521DB46A3A002455D4 /* EnemySpaceshipA_left.atlas */,
+				B03562E91DB2FB2E00361924 /* spaceship_left.atlas */,
+				B03562E71DB2F01900361924 /* spaceship_right.atlas */,
+				B03562E11DB1F2D200361924 /* Explosion0100.atlas */,
 				B076FF051DADFD87006C5C7C /* RollingRockB.atlas */,
 				B0F4857B1C9FA92B001ECFA6 /* explosionA.atlas */,
 				B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */,
@@ -217,8 +237,8 @@
 				B0F53E061C83C95900876394 /* Configurations */,
 				B0EFE7411C96657A00807049 /* Enums */,
 				B03BD62A1C7C4DFA00D14F4C /* Abstract Protocols */,
-				B03125D61D93A81F000212A0 /* Levels */,
 				B0EFE73A1C961CD300807049 /* Extensions */,
+				B03125D61D93A81F000212A0 /* Levels */,
 				B07E8E181C818E2300217260 /* Services */,
 				B03BD62D1C7D8E2D00D14F4C /* Stage */,
 				B03BD61F1C71373A00D14F4C /* Models */,
@@ -278,8 +298,8 @@
 			children = (
 				B003F4AD1C8EA9B700AFDF91 /* Actor.swift */,
 				B03BD6281C7C470600D14F4C /* ShapeActor.swift */,
-				B03BD6201C713D4200D14F4C /* SpriteActor.swift */,
 				B07E8E1F1C825B1D00217260 /* LabelActor.swift */,
+				B03BD6201C713D4200D14F4C /* SpriteActor.swift */,
 				B0EF1ED51C8B894D00E24202 /* MissleActor.swift */,
 				B0EF1ED71C8B92C300E24202 /* SpaceshipActor.swift */,
 			);
@@ -301,11 +321,12 @@
 			children = (
 				B03BD6241C783E0900D14F4C /* Spaceship.swift */,
 				B03BD62B1C7C4E4B00D14F4C /* Star.swift */,
-				B018AF821C8AC576000D68A6 /* Missle.swift */,
 				B00487771C8D5D180061EC7F /* RollingRockA.swift */,
 				B076FF031DADEA52006C5C7C /* RollingRockB.swift */,
+				B018AF821C8AC576000D68A6 /* Missle.swift */,
 				B0038BEA1C915A5C00870D97 /* MissleTimer.swift */,
 				B076FF081DAF0703006C5C7C /* Planet.swift */,
+				B03562EB1DB357E500361924 /* EnemySpaceshipA.swift */,
 			);
 			name = "Game Models";
 			sourceTree = "<group>";
@@ -473,10 +494,16 @@
 				B0F4857C1C9FA92B001ECFA6 /* explosionA.atlas in Resources */,
 				B03BD5F41C706BC200D14F4C /* Main.storyboard in Resources */,
 				B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */,
+				B03562EA1DB2FB2E00361924 /* spaceship_left.atlas in Resources */,
+				B007F9551DB46A53002455D4 /* EnemySpaceshipA_right.atlas in Resources */,
+				B03562E81DB2F01900361924 /* spaceship_right.atlas in Resources */,
 				B076FF061DADFD87006C5C7C /* RollingRockB.atlas in Resources */,
 				B076FF021DAB5947006C5C7C /* Assets.xcassets in Resources */,
+				B007F9531DB46A3A002455D4 /* EnemySpaceshipA_left.atlas in Resources */,
+				B03562E21DB1F2D200361924 /* Explosion0100.atlas in Resources */,
 				657459B31DAF313300200C68 /* IAP.storyboard in Resources */,
 				B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */,
+				B007F9571DB46E5A002455D4 /* ExplosionB.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +565,7 @@
 				B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */,
 				B076FF091DAF0703006C5C7C /* Planet.swift in Sources */,
 				B07E8E1C1C824E5300217260 /* MainScreen.swift in Sources */,
+				B03562EC1DB357E500361924 /* EnemySpaceshipA.swift in Sources */,
 				B03BD6351C80182900D14F4C /* Button.swift in Sources */,
 				B03BD6231C7580FE00D14F4C /* ITouchable.swift in Sources */,
 			);

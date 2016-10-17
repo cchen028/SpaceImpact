@@ -14,8 +14,9 @@ class MissleActor: IMissle {
     
     fileprivate var _speed:CGFloat;
     fileprivate var _damage:CGFloat;
+   // fileprivate var _missleType: MissleType;
     
-    var Missle:SpriteActor{get{return self._missle}};
+    var Missle:SpriteActor{get{return self._missle}}
     var Speed:CGFloat { get{return self._speed} set(val){self._speed = val}}
     var Damage:CGFloat{get{return self._damage} set(val){self._damage = val}}
     
@@ -28,15 +29,33 @@ class MissleActor: IMissle {
     }
     
     func Update(){
-        if(self._missle.IsActive)
-        {
-            self._missle.position.y += self._speed;
+        switch self.Missle.Type {
+        case .MyMissle:
+            if(self._missle.IsActive)
+            {
+                self._missle.position.y += self._speed;
+            }
+            
+            if self._missle.position.y > CGFloat(GeneralGameSettings.SCREEN_HEIGHT)
+            {
+                self._missle.SetActive(false);
+            }
+            break;
+        case  .EnemyMissle:
+            if(self._missle.IsActive)
+            {
+                self._missle.position.y -= self._speed;
+            }
+            
+            if self._missle.position.y < 0
+            {
+                self._missle.SetActive(false);
+            }
+            break;
+        default :
+            break;
         }
         
-        if self._missle.position.y > CGFloat(GeneralGameSettings.SCREEN_HEIGHT)
-        {
-            self._missle.SetActive(false);
-        }
     }
     
     func SetActive(_ isActive: Bool) {
@@ -50,5 +69,5 @@ class MissleActor: IMissle {
 
 
 enum MissleType: Int{
-    case missleDefault = 1, enemyMissle
+    case missleDefault = 1, enemyMissle = 2
 }

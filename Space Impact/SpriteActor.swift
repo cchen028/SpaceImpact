@@ -23,6 +23,23 @@ import SpriteKit
     var `Type`:ActorType{get{return _type} set(newVal){_type = newVal}};
     var IsActive:Bool {get{return _isActive} set(newVal){ _isActive = newVal}};
     
+    init(imageName:String,positionX:CGFloat, positionY: CGFloat)
+    {
+        self._isAnimation = false;
+        self._spriteTextures = [SKTexture]();
+        self._type = ActorType.None;
+        self._isActive = false;
+        
+        let texture = GameScene.instance?.AssetService?.SKTextures[imageName];
+        super.init(texture: texture, color: UIColor.clear, size: texture!.size());
+        
+        self.position = CGPoint(x:positionX,y:positionY);
+        self.xScale = 1;
+        self.yScale = 1;
+        self.alpha = 1;
+    }
+
+    
     init(imageName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat,type:ActorType)
     {
         self._isAnimation = false;
@@ -39,7 +56,43 @@ import SpriteKit
         self.alpha = opacity;
     }
     
-    init(atlasName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, frameCount:Int, type:ActorType , repeatCount:Int = -1, startAnimating:Bool = false)
+    init(atlasName:String,positionX:CGFloat, positionY: CGFloat ,zIndex:CGFloat = 7, timePerFrame:Double = 0.25, isRepeat:Bool = false)
+    {
+        self._isAnimation = true;
+        self._spriteTextures = [SKTexture]();
+        self._type = ActorType.Animation;
+        self._isActive = false;
+        
+        let texture = GameScene.instance?.AssetService?.SKTextures[atlasName];
+        
+        super.init(texture: texture, color: UIColor.clear, size: texture!.size());
+        
+        self.position = CGPoint(x:positionX, y:positionY);
+        self.xScale = 1;
+        self.yScale = 1;
+        self.alpha = 1;
+        self.zPosition = zIndex;
+        
+        self._spriteTextures = (GameScene.instance?.AssetService?.SKTexturesList[atlasName])!;
+        
+        let anim = SKAction.animate(with: self._spriteTextures, timePerFrame: GeneralGameSettings.SPACESHIP_EXPLOSION_FRAMES);
+        
+        if(isRepeat)
+        {
+            self._spriteAction = SKAction.repeatForever(anim);
+        }
+        else
+        {
+            self._spriteAction = SKAction.repeat(anim, count: 1);
+        }
+        
+//        if(startAnimating){
+//            self.run(self._spriteAction);
+//        }
+    }
+
+    
+    init(atlasName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, type:ActorType , repeatCount:Int = -1, startAnimating:Bool = false)
     {
         self._isAnimation = true;
         self._spriteTextures = [SKTexture]();
@@ -57,7 +110,7 @@ import SpriteKit
         
         self._spriteTextures = (GameScene.instance?.AssetService?.SKTexturesList[atlasName])!;
         
-        let anim = SKAction.animate(with: self._spriteTextures, timePerFrame: 0.025);
+        let anim = SKAction.animate(with: self._spriteTextures, timePerFrame: GeneralGameSettings.SPACESHIP_EXPLOSION_FRAMES);
         
         if(repeatCount == -1)
         {
@@ -87,6 +140,14 @@ import SpriteKit
             self.run(self._spriteAction, completion: {animationComplete();});
         }
     }
+    
+    func RunReverseAnimation(animationComplete: @escaping ()->Void){
+        if(self._isAnimation)
+        {
+            self.run(self._spriteAction.reversed(), completion: {animationComplete();});
+        }
+    }
+
     
     func SetActive(_ isActive: Bool) {
         if(self.IsActive != isActive){
@@ -120,6 +181,11 @@ import SpriteKit
             self.run(fadeOutAnimation, completion:{self.SetActive(false)});
         }
     }
+    
+    open func SyncPositionWith(actor: SpriteActor, offsetX: CGFloat = 0, offsetY: CGFloat = 0){
+        self.position = CGPoint(x:actor.position.x + offsetX , y:actor.position.y + offsetY);
+    }
+
 }
 
 

@@ -41,32 +41,62 @@ struct GeneralGameSettings {
     static let GAMESCREEN_ICON_LIFE:String = "life";
     static let GAMESCREEN_ICON_BOMB:String = "bomb";
     
+    
+    static let SPACESHIP_EXPLOSION_FRAMES: Double = 0.02;
+    static let SPACESHIP_MOVEMENT_FRAMES: Double = 0.05;
+    
     static let ENEMY_CATEGORY: UInt32 = 1;
+    
+    // GENERAL
+    
+    
+    
     // My Spaceship
     
-    static let MYSPACESHIP_NAME:String = "Spaceship";
+    static let MYSPACESHIP_NAME:String = "spaceship-1";
+    static let MYSPACESHIP_LEFT_NAME:String = "spaceship-1_left";
+    static let MYSPACESHIP_RIGHT_NAME:String = "spaceship-1_right";
+    static let MYSPACESHIP_THRUSTER_NAME:String = "thruster01";
     static let MYSPACESHIP_SPEED: CGFloat = 7;
-    static let MYSPACESHIP_EXPLOSION: String = "explosionA";
+    static let MYSPACESHIP_EXPLOSION: String = "Explosion0100";
+    static let MYSPACESHIP_TILTLEFT_NAME:String = "spaceship_left";
+    static let MYSPACESHIP_TILTRIGHT_NAME:String = "spaceship_right";
+
     
     static let MyMissle_Name:String = "missle";
-    static let MyMissle_Frequency:Double = 0.25;
+    static let MyMissle_Frequency:Double = 0.35;
     
     
     //ROLLING ROCK A
     static let ROLLINGROCKA_NAME:String = "rollingrockA";
     static let ROLLINGROCKA_SPEED:CGFloat = 5;
     static let ROLLINGROCKA_HEALTH:Int = 1;
-    static let ROLLINGROCKA_EXPLOSION:String = "explosionA";
+    static let ROLLINGROCKA_EXPLOSION:String = "Explosion0100";
     static let ROLLINGROCKA_SPAWN: Double = 2;
-    static let ROLLINGROCKA_POINT: Int = 300;
+    static let ROLLINGROCKA_POINT: Int = 200;
     
     //ROLLING ROCK B
     static let ROLLINGROCKB_NAME:String = "RollingRockB";
     static let ROLLINGROCKB_SPEED:CGFloat = 5;
     static let ROLLINGROCKB_HEALTH:Int = 1;
-    static let ROLLINGROCKB_EXPLOSION:String = "explosionA";
+    static let ROLLINGROCKB_EXPLOSION:String = "Explosion0100";
     static let ROLLINGROCKB_SPAWN: Double = 2;
     static let ROLLINGROCKB_ACC: CGFloat = 0.02;
     static let ROLLINGROCKB_POINT: Int = 300;
+    
+    //ENEMY SPACESHIP A
+    static let ENEMYA_NAME:String = "EnemySpaceshipA";
+    static let ENEMYA_SPEED:CGFloat = 2;
+    static let ENEMYA_HEALTH:Int = 2;
+    static let ENEMYA_EXPLOSION:String = "ExplosionB";
+    static let ENEMYA_SPAWN: Double = 3;
+    static let ENEMYA_POINT: Int = 500;
+    static let ENEMYA_TILTLEFT_NAME:String = "EnemySpaceshipA_left";
+    static let ENEMYA_TILTRIGHT_NAME:String = "EnemySpaceshipA_right";
+
+    static let ENEMYA_Missle_Frequency:Double = 1;
+    
+    
+    
     
 }
