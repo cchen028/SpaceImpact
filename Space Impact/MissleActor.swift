@@ -14,16 +14,20 @@ class MissleActor: IMissle {
     
     fileprivate var _speed:CGFloat;
     fileprivate var _damage:CGFloat;
+    fileprivate var _initialPosition: CGPoint;
    // fileprivate var _missleType: MissleType;
     
     var Missle:SpriteActor{get{return self._missle}}
     var Speed:CGFloat { get{return self._speed} set(val){self._speed = val}}
     var Damage:CGFloat{get{return self._damage} set(val){self._damage = val}}
+    var InitialPosition: CGPoint{get{return self._initialPosition} set(val){self._initialPosition = val}}
+
     
-    init(missleType: ActorType,position:CGPoint, speed:CGFloat,damage:CGFloat) {
+    init(missleName:String, missleType: ActorType,position:CGPoint, speed:CGFloat,damage:CGFloat) {
         self._speed = speed;
         self._damage = damage;
-        self._missle = SpriteActor(imageName: GeneralGameSettings.MyMissle_Name, position: position, scale: 1, opacity: 1, type: missleType);
+        self._initialPosition = position;
+        self._missle = SpriteActor(imageName: missleName, position: position, scale: 1, opacity: 1, type: missleType);
         self._missle.name = missleType.rawValue;
         self._missle.zPosition = 3;
     }

@@ -31,6 +31,7 @@ class AssetServices {
         _skTextures[GeneralGameSettings.ENEMYA_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMYA_NAME);
         
         _skTextures[GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME] = SKTexture(imageNamed: GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME);
+        _skTextures[GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME);
         
         
         

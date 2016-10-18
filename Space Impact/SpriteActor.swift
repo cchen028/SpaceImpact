@@ -135,6 +135,7 @@ import SpriteKit
     }
     
     func RunAnimation(animationComplete: @escaping ()->Void){
+        
         if(self._isAnimation)
         {
             self.run(self._spriteAction, completion: {animationComplete();});

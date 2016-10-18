@@ -42,7 +42,7 @@ class Spaceship: SpaceshipActor{
     
     func InitializeMissles(){
         for _ in 1...25{
-            self._missles.append(Missle(position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type:ActorType.MyMissle));
+            self._missles.append(Missle(missleName: GeneralGameSettings.MyMissle_Name, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type:ActorType.MyMissle));
         }
     }
     
@@ -51,6 +51,7 @@ class Spaceship: SpaceshipActor{
         self._thruster.SetActive(false);
         self._tiltLeft.SetActive(false);
         self._tiltRight.SetActive(false);
+        
         super.Explode();
     }
     

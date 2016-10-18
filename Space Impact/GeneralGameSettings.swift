@@ -66,6 +66,11 @@ struct GeneralGameSettings {
     static let MyMissle_Name:String = "missle";
     static let MyMissle_Frequency:Double = 0.35;
     
+    //Enemy
+    
+    static let ENEMY_MOVEMENT_TIMEPERFRAME: Double = 0.02;
+    static let ENEMY_DEFAULTMISSLE_NAME:String = "enemy_default_missle";
+    
     
     //ROLLING ROCK A
     static let ROLLINGROCKA_NAME:String = "rollingrockA";
@@ -93,7 +98,7 @@ struct GeneralGameSettings {
     static let ENEMYA_POINT: Int = 500;
     static let ENEMYA_TILTLEFT_NAME:String = "EnemySpaceshipA_left";
     static let ENEMYA_TILTRIGHT_NAME:String = "EnemySpaceshipA_right";
-
+    static let ENEMYA_MOVEBYX: CGFloat = 200;
     static let ENEMYA_Missle_Frequency:Double = 1;
     
     
