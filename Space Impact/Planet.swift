@@ -17,9 +17,17 @@ class Planet: SpriteActor {
     
     init(planetType:Int)
     {
+        
         self._speed = GeneralGameSettings.BACKGROUND_PLANET_SPEED;
-        super.init(imageName: GeneralGameSettings.BACKGROUND_PLANET + String(planetType), position: GameObjectServices.instance.GenerateRandomPosition(), scale: 1, opacity: 1, type:ActorType.None);
-        super.zPosition = 1;
+        super.init(imageName: GeneralGameSettings.BACKGROUND_PLANET + GameObjectServices.instance.GetTwoDigitNumber(orderNumber: planetType), position: GameObjectServices.instance.GenerateRandomPosition(), scale: 1, opacity: 1, type:ActorType.None);
+        super.zPosition = -1;
+    }
+    
+    init(planetType:Int, scale:CGFloat)
+    {
+        self._speed = GeneralGameSettings.BACKGROUND_PLANET_SPEED + scale;
+    super.init(imageName: GeneralGameSettings.BACKGROUND_PLANET + GameObjectServices.instance.GetTwoDigitNumber(orderNumber: planetType), position: GameObjectServices.instance.GenerateRandomPosition(), scale: scale, opacity: 1, type:ActorType.None);
+    super.zPosition = -2 + self._speed ;
     }
     
     required init?(coder aDecoder: NSCoder) {

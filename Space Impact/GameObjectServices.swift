@@ -34,6 +34,20 @@ class GameObjectServices {
         self._gameScreen = gameScreen;
     }
     
+    func GetTwoDigitNumber(orderNumber:Int) -> String{
+        var fileName:String = "";
+        if orderNumber < 10 {
+            fileName += ("0" + String(orderNumber));
+        }
+        else
+        {
+            fileName += String(orderNumber);
+            
+        }
+        
+        return fileName;
+    }
+    
         
     func GenerateRandomPosition() -> CGPoint{
         let randomX = generateRandomNumber(GeneralGameSettings.SCREEN_WIDTH);
@@ -48,6 +62,10 @@ class GameObjectServices {
     
     func GetRandomNumber( endRange:Int) -> Int{
         return generateRandomNumber(endRange);
+    }
+    
+    func GetRandomPercentage() -> CGFloat{
+        return CGFloat(generateRandomNumber(5))/5;
     }
     
     fileprivate func generateRandomNumber(_ range:Int) -> Int{

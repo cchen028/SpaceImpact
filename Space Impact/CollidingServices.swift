@@ -61,7 +61,8 @@ class CollidingServices {
         if(collided)
         {
             spaceActor.Explode();
-            self._spaceship.Explode();
+            self._spaceship.Health = self._spaceship.Health - 1;
+          //  self._spaceship.Explode();
         }
     }
 }

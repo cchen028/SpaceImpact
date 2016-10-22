@@ -19,6 +19,12 @@ class Spaceship: SpaceshipActor{
     
     fileprivate var _tiltLeft:SpriteActor;
     fileprivate var _tiltRight:SpriteActor;
+    fileprivate var _shield:SpriteActor;
+    fileprivate var _shield2:SpriteActor;
+    
+    fileprivate var _shield1:SpriteActor;
+    
+   // fileprivate var _shield3:SpriteActor;
     
     fileprivate var _previousMovementIndex: Int;
     
@@ -35,7 +41,18 @@ class Spaceship: SpaceshipActor{
         self._tiltRight = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_TILTRIGHT_NAME, positionX: position.x, positionY: position.y);
         
         self._thruster = SpriteActor(imageName: GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME, positionX: position.x, positionY: position.y-25);
+        
+        //self._shield = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDA_NAME, positionX: position.x, positionY: position.y);
+        self._shield = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
+        self._shield.zPosition = 15;
+        self._shield2 = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_02_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
+        self._shield2.zPosition = 15;
+        self._shield1 = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_01_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
+        self._shield1.zPosition = 15;
         super.init(imageName: GeneralGameSettings.MYSPACESHIP_NAME, explosionName:GeneralGameSettings.MYSPACESHIP_EXPLOSION, health: 1, speed: GeneralGameSettings.MYSPACESHIP_SPEED, damage: 1, position: position, scale:1, type:ActorType.MySpaceship, isSpaceShipAnimation: false, spaceshipHasAnimation:true);
+        self.Health = 4;
+        
+        
         
         self.InitializeMissles();
     }
@@ -58,11 +75,17 @@ class Spaceship: SpaceshipActor{
     override func Update(){
         self.spaceshipMovementUpdate();
         self.animateSpaceship();
+        self.shieldUpdate(health:self.Health);
         
         self._tiltLeft.SyncPositionWith(actor: self.Spaceship);
         self._tiltRight.SyncPositionWith(actor: self.Spaceship);
+        
+        self._shield2.SyncPositionWith(actor: self.Spaceship);
+        self._shield1.SyncPositionWith(actor: self.Spaceship);
+        self._shield.SyncPositionWith(actor: self.Spaceship);
         self._thruster.SyncPositionWith(actor: self.Spaceship, offsetX:0,offsetY:-25);
-
+        
+        
         super.Update();
     }
     
@@ -71,6 +94,15 @@ class Spaceship: SpaceshipActor{
         self._thruster.SetActive(isActive);
         self._tiltLeft.SetActive(isActive);
         self._tiltRight.SetActive(isActive);
+        self._shield.SetActive(isActive);
+        self._shield1.SetActive(isActive);
+        self._shield2.SetActive(isActive);
+        self._shield2.RunAnimation {};
+        self._shield1.RunAnimation {};
+        self._shield.RunAnimation {};
+        self._shield2.alpha = 0;
+        self._shield1.alpha = 0;
+        self._shield.alpha = 0;
         super.SetActive(isActive);
     }
     
@@ -97,6 +129,35 @@ class Spaceship: SpaceshipActor{
             {
                 self.Spaceship.position.x  += self.Speed;
             }
+        }
+    }
+    
+    fileprivate func shieldUpdate(health:Int){
+        if health == 4, self._shield2.alpha != CGFloat(1){
+            // self._shield2.SetActive(true);
+            self._shield2.alpha = 1;
+            self._shield1.alpha = 0;
+            self._shield.alpha = 0;
+            self._shield2.RunAnimation {};
+            
+        }
+        else if health  == 3, self._shield.alpha != CGFloat(1){
+            //self._shield.SetActive(true);
+            self._shield2.alpha = 0;
+            self._shield1.alpha = 0;
+            self._shield.alpha = 1;
+            self._shield.RunAnimation {};
+            
+        }
+        else if health == 2, self._shield1.alpha != CGFloat(1){
+            // self._shield1.SetActive(true)1
+            self._shield2.alpha = 0;
+            self._shield1.alpha = 1;
+            self._shield.alpha = 0;
+            self._shield1.RunAnimation {};
+            
+            
+            
         }
     }
     
