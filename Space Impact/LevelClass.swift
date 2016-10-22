@@ -13,6 +13,7 @@ import SpriteKit
 class LevelClass: NSObject {
     
     fileprivate var _enemies:[ISpaceship];
+    fileprivate var _items:[ItemActor];
     fileprivate var _isActive: Bool;
     fileprivate var _level:Int;
     fileprivate var _rollingRockASpawnTimer: Timer?;
@@ -21,15 +22,19 @@ class LevelClass: NSObject {
     fileprivate var _lblLevel: Label;
     
     var Enemies:[ISpaceship]{get{return self._enemies}}
+    
+    var Items:[ItemActor]{get{return self._items}}
     var IsActive:Bool{get{return self._isActive}}
     
     override init(){
         self._enemies = [ISpaceship]();
+        self._items = [ItemActor]();
         self._isActive = false;
         self._level = 0;
         self._lblLevel = Label(displayText: "LEVEL ", position: CGPoint(x:GameScene.instance!.frame.midX, y: GameScene.instance!.frame.midY), fontSize: GeneralGameSettings.GAMESCREEN_LEVELLABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         super.init();
         self.initializeRollingRockA(num:10);
+        self.initializeItems();
     }
     
     func StartLevel(level:Int){
@@ -63,6 +68,14 @@ class LevelClass: NSObject {
                 rollingRockA.Update();
             }
         }
+        
+        for obj in self._items{
+            if let item = obj as? ItemActor{
+                item.Update();
+            }
+        }
+        
+        
     }
     
     func SpawnRollingRockA(){
@@ -95,8 +108,20 @@ class LevelClass: NSObject {
                 break;
             }
         }
+        
+        if !self._items[0]._item.IsActive {
+            self._items[0].Item.position = GameObjectServices.instance.GenerateRandomPosition();
+            self._items[0].SetActive(true);
+
+        }
     }
 
+    fileprivate func initializeItems(){
+       // for _ in 1...num{
+        let tempItem = Item(atlasItemName: GeneralGameSettings.ITEM_SHIELD_NAME, exposionName: GeneralGameSettings.ITEM_CAPTUREB_NAME, position: GameObjectServices.instance.GenerateRandomPosition(), itemType: ActorType.ItemShield);
+            self._items.append(tempItem);
+       // }
+    }
     
     fileprivate func initializeRollingRockA(num:Int){
         for _ in 1...num{

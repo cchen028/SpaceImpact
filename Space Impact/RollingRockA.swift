@@ -29,5 +29,4 @@ class RollingRockA: SpaceshipActor{
             self.Spaceship.position.y -= self.Speed;
         }
     }
-    
 }

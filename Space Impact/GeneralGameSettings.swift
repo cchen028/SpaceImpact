@@ -49,9 +49,13 @@ struct GeneralGameSettings {
     
     // GENERAL
     
+    static let EXPLOSIONC_NAME:String = "ExplosionC";
     
     // Items
     static let ITEM_SHIELD_NAME:String = "Item-Shield";
+    
+    static let ITEM_CAPTUREA_NAME:String = "CaptureA";
+    static let ITEM_CAPTUREB_NAME:String = "CaptureB";
     
     
     // My Spaceship

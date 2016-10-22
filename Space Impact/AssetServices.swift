@@ -57,6 +57,14 @@ class AssetServices {
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDB_02_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDB_01_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_SHIELD_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREA_NAME);
+        
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREB_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.EXPLOSIONC_NAME);
+        
+        
+        
+        
     }
     
     fileprivate func InitializeAtlas(_ atlasName:String){

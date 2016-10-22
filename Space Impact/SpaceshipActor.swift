@@ -160,8 +160,17 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     
     
-    func IsCollidedWith(_ actor: SpaceshipActor) -> Bool{
-        return actor.Spaceship.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(actor.Spaceship.frame);
+    func IsCollidedWith<T>(_ actor: T) -> Bool{
+        
+        if let spaceShipActor = actor as? SpaceshipActor{
+            return spaceShipActor.Spaceship.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(spaceShipActor.Spaceship.frame);
+        }
+        
+        if let itemActor = actor as? ItemActor{
+            return itemActor.Item.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(itemActor.Item.frame);
+        }
+        
+        return false;
     }
     
     fileprivate func misslesUpdate(){

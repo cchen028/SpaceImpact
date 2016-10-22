@@ -50,7 +50,7 @@ class Spaceship: SpaceshipActor{
         self._shield1 = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_01_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
         self._shield1.zPosition = 15;
         super.init(imageName: GeneralGameSettings.MYSPACESHIP_NAME, explosionName:GeneralGameSettings.MYSPACESHIP_EXPLOSION, health: 1, speed: GeneralGameSettings.MYSPACESHIP_SPEED, damage: 1, position: position, scale:1, type:ActorType.MySpaceship, isSpaceShipAnimation: false, spaceshipHasAnimation:true);
-        self.Health = 4;
+        self.Health = 1;
         
         
         
@@ -155,10 +155,15 @@ class Spaceship: SpaceshipActor{
             self._shield1.alpha = 1;
             self._shield.alpha = 0;
             self._shield1.RunAnimation {};
-            
-            
-            
         }
+        else if health == 1{
+            // self._shield1.SetActive(true)1
+            self._shield2.alpha = 0;
+            self._shield1.alpha = 0;
+            self._shield.alpha = 0;
+            //self._shield1.RunAnimation {};
+        }
+
     }
     
     fileprivate func animateSpaceship(){

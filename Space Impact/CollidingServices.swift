@@ -42,6 +42,23 @@ class CollidingServices {
                 }
             }
         }
+        
+        let items = self._level.Items;
+        
+        for eachItem in items{
+            self.itemCollideUpdate(eachItem);
+        }
+    }
+    
+    fileprivate func itemCollideUpdate(_ item: ItemActor){
+        let collided = self._spaceship.IsCollidedWith(item);
+        
+        if(collided)
+        {
+            item.Explode();
+            self._spaceship.Health = min(4, self._spaceship.Health + 1);
+            UserStatsInfo.instance.Score.value += item.Point;
+        }
     }
     
     fileprivate func missleCollideUpdate(_ actor: SpaceshipActor, missleIndex:Int){
@@ -61,8 +78,7 @@ class CollidingServices {
         if(collided)
         {
             spaceActor.Explode();
-            self._spaceship.Health = self._spaceship.Health - 1;
-          //  self._spaceship.Explode();
+            self._spaceship.Health = max(0, self._spaceship.Health - 1);
         }
     }
 }
