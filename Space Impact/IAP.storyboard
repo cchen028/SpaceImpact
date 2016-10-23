@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Container View Controller-->
         <scene sceneID="h8o-jj-7OR">
             <objects>
-                <viewController id="wQX-dA-wlU" sceneMemberID="viewController">
+                <viewController id="wQX-dA-wlU" customClass="IAPContainerViewController" customModule="Space_Impact" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="shz-8w-rXZ"/>
                         <viewControllerLayoutGuide type="bottom" id="F1z-8W-Vhz"/>
@@ -22,6 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop-background" translatesAutoresizingMaskIntoConstraints="NO" id="anu-0L-ohW">
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="579.33000000000004" id="0fL-g1-nza"/>
                                     <constraint firstAttribute="width" secondItem="anu-0L-ohW" secondAttribute="height" multiplier="539:428" id="YE2-EH-wgf"/>
@@ -34,6 +35,7 @@
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VtD-aQ-IHm" firstAttribute="height" secondItem="anu-0L-ohW" secondAttribute="height" multiplier="0.65" id="CaK-1w-Pjq"/>
                             <constraint firstItem="anu-0L-ohW" firstAttribute="centerY" secondItem="R5i-Zx-gJ6" secondAttribute="centerY" id="Sjq-p8-suf"/>
@@ -43,10 +45,23 @@
                             <constraint firstItem="VtD-aQ-IHm" firstAttribute="width" secondItem="anu-0L-ohW" secondAttribute="width" multiplier="0.5" id="h0d-nS-A0h"/>
                             <constraint firstItem="VtD-aQ-IHm" firstAttribute="centerX" secondItem="anu-0L-ohW" secondAttribute="centerX" id="vgI-io-y7e"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Sox-q2-cVg" appends="YES" id="W6V-aa-2Qi"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="dJC-Gw-dZ6"/>
+                    <connections>
+                        <outlet property="contentView" destination="VtD-aQ-IHm" id="Pys-K1-D23"/>
+                        <outlet property="dismissGestureRecognizer" destination="Sox-q2-cVg" id="gWH-3H-iGo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUx-7h-BTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Sox-q2-cVg" userLabel="Dismiss Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="mainViewTapped:" destination="wQX-dA-wlU" id="tbH-vb-gj3"/>
+                        <outlet property="delegate" destination="wQX-dA-wlU" id="0So-zk-Njk"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-903.75" y="1040"/>
         </scene>
