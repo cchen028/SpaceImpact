@@ -16,6 +16,7 @@
 		B00149401DBC28C300FB961B /* CaptureA.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B001493F1DBC28C300FB961B /* CaptureA.atlas */; };
 		B00149421DBC300B00FB961B /* CaptureB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149411DBC300B00FB961B /* CaptureB.atlas */; };
 		B00149441DBC32B700FB961B /* ExplosionC.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149431DBC32B700FB961B /* ExplosionC.atlas */; };
+		B00149461DBC4A7A00FB961B /* GameConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00149451DBC4A7A00FB961B /* GameConfiguration.swift */; };
 		B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEA1C915A5C00870D97 /* MissleTimer.swift */; };
 		B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEC1C93EACD00870D97 /* AssetServices.swift */; };
 		B003F4AE1C8EA9B700AFDF91 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003F4AD1C8EA9B700AFDF91 /* Actor.swift */; };
@@ -103,6 +104,7 @@
 		B001493F1DBC28C300FB961B /* CaptureA.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureA.atlas; sourceTree = "<group>"; };
 		B00149411DBC300B00FB961B /* CaptureB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureB.atlas; sourceTree = "<group>"; };
 		B00149431DBC32B700FB961B /* ExplosionC.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ExplosionC.atlas; sourceTree = "<group>"; };
+		B00149451DBC4A7A00FB961B /* GameConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConfiguration.swift; sourceTree = "<group>"; };
 		B0038BEA1C915A5C00870D97 /* MissleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleTimer.swift; sourceTree = "<group>"; };
 		B0038BEC1C93EACD00870D97 /* AssetServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetServices.swift; sourceTree = "<group>"; };
 		B003F4AD1C8EA9B700AFDF91 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			children = (
 				B0F53E071C83C98300876394 /* GeneralGameSettings.swift */,
 				657459B41DAF379C00200C68 /* NotificationNames.swift */,
+				B00149451DBC4A7A00FB961B /* GameConfiguration.swift */,
 			);
 			name = Configurations;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				B0EF1ED41C8B88EB00E24202 /* IMissle.swift in Sources */,
 				B03BD6251C783E0900D14F4C /* Spaceship.swift in Sources */,
 				B07E8E1E1C8251BF00217260 /* Label.swift in Sources */,
+				B00149461DBC4A7A00FB961B /* GameConfiguration.swift in Sources */,
 				B03BD6311C7D98D100D14F4C /* IStage.swift in Sources */,
 				B03BD6271C783F4900D14F4C /* ISpaceship.swift in Sources */,
 				B03125D51D9371CD000212A0 /* CollidingServices.swift in Sources */,

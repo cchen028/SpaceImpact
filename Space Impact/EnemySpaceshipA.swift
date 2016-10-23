@@ -92,6 +92,8 @@ class EnemySpaceshipA: SpaceshipActor{
     }
     
     override func Explode() {
+        self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: GeneralGameSettings.ENEMYA_Missle_Frequency);
+
         self.moveSpaceShip(isOn: false);
         super.Explode();
     }

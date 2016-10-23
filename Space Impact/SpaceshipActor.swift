@@ -30,6 +30,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     var Damage:Int{get{return _damage} set(newVal){_damage = newVal}};
     var Explosion:SpriteActor{get{return _explosion} set(newVal){_explosion = newVal}};
     var IsActive:Bool{get{return self._spaceship.IsActive && (self._explosion.IsActive || self._explosion.hasActions())}};
+    //var IsActive:Bool{get{return self._spaceship.alpha > 0 || (self._explosion.alpha > 0)}};
     var Spaceship:SpriteActor{get{return self._spaceship}};
     var Missles:[Missle]{get{return self._missles}};
     var `Type`:ActorType{get{return self._spaceship.Type}};
@@ -116,13 +117,13 @@ class SpaceshipActor: NSObject, ISpaceship{
     }
     
     func Explode(){
-        self._spaceship.SetActive(false);
-        
         self._explosion.alpha = 1;
-        self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
+       // self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
         self._explosion.RunAnimation(animationComplete: {
             self._explosion.removeAllActions();
         });
+        self._spaceship.SetActive(false);
+        
     }
     
     func AddMissle() {
@@ -190,6 +191,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     fileprivate func destroy(){
         self._spaceship.SetActive(false);
+        //self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
         self._spaceship_left?.SetActive(false);
         self._spaceship_right?.SetActive(false);
         self._explosion.SetActive(false);

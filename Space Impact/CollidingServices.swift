@@ -78,7 +78,7 @@ class CollidingServices {
         if(collided)
         {
             spaceActor.Explode();
-            self._spaceship.Health = max(0, self._spaceship.Health - 1);
+            self._spaceship.Health = max(1, self._spaceship.Health - 1);
         }
     }
 }

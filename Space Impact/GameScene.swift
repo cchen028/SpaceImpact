@@ -65,28 +65,47 @@ class GameScene: SKScene {
             touched = false;
             touchdirection = 0;
             return;
-        
         }
         
         let touch = touches.first;
         
         
         mainScreen?.HandlesTouch(touch!, withEvent: event);
-        gameScreen?.HandlesTouch(touch!, withEvent: event, isTouched: true);
         
-        for touch in touches {
-            let location = touch.location(in: self)
-            touched = true;
+        let location = touch!.location(in: self);
+        
+        
+        if(GameConfiguration.instance.MoveMentType == .Classic)
+        {
             if location.x > self.frame.midX{
-                touchdirection = 1;
+                gameScreen?.HandlesTouch(position: touch!.location(in: self),direction: MoveDirection.right , isTouched: true);
             }
             else
             {
-                touchdirection = -1;
+                gameScreen?.HandlesTouch(position: touch!.location(in: self),direction: MoveDirection.left , isTouched: true);
             }
-            
         }
+        else if( GameConfiguration.instance.MoveMentType == .FreeDrag){
+            gameScreen?.HandlesTouch(position: touch!.location(in: self),direction: MoveDirection.none , isTouched: true);
+        }
+        
     }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch = touches.first;
+        let positionInScene = touch!.location(in: self)
+        let previousPosition = touch!.previousLocation(in: self)
+        let translation = CGPoint(x: positionInScene.x - previousPosition.x, y: positionInScene.y - previousPosition.y)
+        let direction = translation.x > 0 ? MoveDirection.right : MoveDirection.left;
+        
+        if(GameConfiguration.instance.MoveMentType == .FreeDrag)
+        {
+            gameScreen?.HandlesTouch(position: positionInScene, direction: direction, isTouched: true);
+        }
+        
+    }
+
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent!) {
         super.touchesCancelled(touches, with: event);
@@ -97,7 +116,7 @@ class GameScene: SKScene {
         
         let touch = touches.first;
         
-        gameScreen?.HandlesTouch(touch!, withEvent: event, isTouched: false);
+        gameScreen?.HandlesTouch(position: touch!.location(in: self), direction: MoveDirection.none, isTouched: false);
         
     }
     

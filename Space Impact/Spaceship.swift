@@ -14,21 +14,20 @@ class Spaceship: SpaceshipActor{
     fileprivate var _initialPosition:CGPoint;
     fileprivate var _moveDirection:MoveDirection;
     fileprivate var _previousMoveDirection:MoveDirection;
+    fileprivate var _isTouched:Bool;
     fileprivate var _frameCount:CGFloat;
     fileprivate var _thruster:SpriteActor;
-    
     fileprivate var _tiltLeft:SpriteActor;
     fileprivate var _tiltRight:SpriteActor;
     fileprivate var _shield:SpriteActor;
     fileprivate var _shield2:SpriteActor;
-    
     fileprivate var _shield1:SpriteActor;
     
-   // fileprivate var _shield3:SpriteActor;
     
     fileprivate var _previousMovementIndex: Int;
     
     var Direction:MoveDirection{get{return self._moveDirection} set(val){self._moveDirection = val}}
+    var IsTouched:Bool{get{return self._isTouched} set(val){self._isTouched = val}}
     
     init(position:CGPoint)
     {
@@ -39,7 +38,7 @@ class Spaceship: SpaceshipActor{
         self._previousMoveDirection = MoveDirection.none;
         self._tiltLeft = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_TILTLEFT_NAME, positionX: position.x, positionY: position.y);
         self._tiltRight = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_TILTRIGHT_NAME, positionX: position.x, positionY: position.y);
-        
+        self._isTouched = false;
         self._thruster = SpriteActor(imageName: GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME, positionX: position.x, positionY: position.y-25);
         
         //self._shield = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDA_NAME, positionX: position.x, positionY: position.y);
@@ -73,7 +72,9 @@ class Spaceship: SpaceshipActor{
     }
     
     override func Update(){
-        self.spaceshipMovementUpdate();
+        if(GameConfiguration.instance.MoveMentType == .Classic){
+            self.spaceshipMovementUpdate();
+        }
         self.animateSpaceship();
         self.shieldUpdate(health:self.Health);
         
@@ -122,7 +123,7 @@ class Spaceship: SpaceshipActor{
                 self.Spaceship.position.x -= self.Speed;
             }
                 break;
-        case .none:
+        case .none, .inActive, .active:
             break;
         case .right:
             if(self.Spaceship.position.x   < (GameScene.instance!.frame.width - (self.Spaceship.Width / 2)))
@@ -180,7 +181,7 @@ class Spaceship: SpaceshipActor{
             
             self._previousMoveDirection = .left;
             break;
-        case .none:
+        case .none, .inActive:
             if(!self._tiltRight.hasActions() && !self._tiltLeft.hasActions())
             {
                 if(self._previousMoveDirection == .left)
@@ -205,11 +206,14 @@ class Spaceship: SpaceshipActor{
             }
             
             self._previousMoveDirection = .right;
+            break;
+        default:
+            break;
         }
     }
     
 }
 
 enum MoveDirection:Int{
-    case left = -1, none, right
+    case left = -1, none, right, active, inActive
 }

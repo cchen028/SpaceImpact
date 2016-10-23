@@ -16,6 +16,8 @@ struct GeneralGameSettings {
     static let TRANSITION_FADEIN :CGFloat = 1;
     static let TRANSITION_FADEOUT: CGFloat = 0.5;
     
+    // Touch Settings
+    
     // Main Menu Settings
     static let TITLE_FONTSIZE: CGFloat = 45;
     static let TITLE_FONTFAMILY: String = "AvenirNext-UltraLight"
