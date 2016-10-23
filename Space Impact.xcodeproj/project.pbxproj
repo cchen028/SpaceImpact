@@ -10,6 +10,13 @@
 		657459B11DAF312000200C68 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657459B01DAF312000200C68 /* IAPTableViewController.swift */; };
 		657459B31DAF313300200C68 /* IAP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657459B21DAF313300200C68 /* IAP.storyboard */; };
 		657459B51DAF379C00200C68 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657459B41DAF379C00200C68 /* NotificationNames.swift */; };
+		B001493A1DBBE95000FB961B /* Item-Shield.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149391DBBE95000FB961B /* Item-Shield.atlas */; };
+		B001493C1DBBEA0700FB961B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001493B1DBBEA0700FB961B /* Item.swift */; };
+		B001493E1DBBEE1800FB961B /* ItemActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001493D1DBBEE1800FB961B /* ItemActor.swift */; };
+		B00149401DBC28C300FB961B /* CaptureA.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B001493F1DBC28C300FB961B /* CaptureA.atlas */; };
+		B00149421DBC300B00FB961B /* CaptureB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149411DBC300B00FB961B /* CaptureB.atlas */; };
+		B00149441DBC32B700FB961B /* ExplosionC.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149431DBC32B700FB961B /* ExplosionC.atlas */; };
+		B00149461DBC4A7A00FB961B /* GameConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00149451DBC4A7A00FB961B /* GameConfiguration.swift */; };
 		B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEA1C915A5C00870D97 /* MissleTimer.swift */; };
 		B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEC1C93EACD00870D97 /* AssetServices.swift */; };
 		B003F4AE1C8EA9B700AFDF91 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003F4AD1C8EA9B700AFDF91 /* Actor.swift */; };
@@ -19,6 +26,10 @@
 		B007F9531DB46A3A002455D4 /* EnemySpaceshipA_left.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9521DB46A3A002455D4 /* EnemySpaceshipA_left.atlas */; };
 		B007F9551DB46A53002455D4 /* EnemySpaceshipA_right.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9541DB46A53002455D4 /* EnemySpaceshipA_right.atlas */; };
 		B007F9571DB46E5A002455D4 /* ExplosionB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9561DB46E5A002455D4 /* ExplosionB.atlas */; };
+		B007F95B1DB894D7002455D4 /* ShieldA.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F95A1DB894D7002455D4 /* ShieldA.atlas */; };
+		B007F95D1DB89C0E002455D4 /* ShieldB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F95C1DB89C0E002455D4 /* ShieldB.atlas */; };
+		B007F9611DB9E509002455D4 /* ShieldB-2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9601DB9E509002455D4 /* ShieldB-2.atlas */; };
+		B007F9631DB9E654002455D4 /* ShieldB-1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9621DB9E653002455D4 /* ShieldB-1.atlas */; };
 		B018AF831C8AC576000D68A6 /* Missle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018AF821C8AC576000D68A6 /* Missle.swift */; };
 		B03125D51D9371CD000212A0 /* CollidingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D41D9371CD000212A0 /* CollidingServices.swift */; };
 		B03125D81D93A847000212A0 /* LevelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D71D93A847000212A0 /* LevelClass.swift */; };
@@ -87,6 +98,13 @@
 		657459B01DAF312000200C68 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
 		657459B21DAF313300200C68 /* IAP.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAP.storyboard; sourceTree = "<group>"; };
 		657459B41DAF379C00200C68 /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		B00149391DBBE95000FB961B /* Item-Shield.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Shield.atlas"; sourceTree = "<group>"; };
+		B001493B1DBBEA0700FB961B /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		B001493D1DBBEE1800FB961B /* ItemActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemActor.swift; sourceTree = "<group>"; };
+		B001493F1DBC28C300FB961B /* CaptureA.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureA.atlas; sourceTree = "<group>"; };
+		B00149411DBC300B00FB961B /* CaptureB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureB.atlas; sourceTree = "<group>"; };
+		B00149431DBC32B700FB961B /* ExplosionC.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ExplosionC.atlas; sourceTree = "<group>"; };
+		B00149451DBC4A7A00FB961B /* GameConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConfiguration.swift; sourceTree = "<group>"; };
 		B0038BEA1C915A5C00870D97 /* MissleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleTimer.swift; sourceTree = "<group>"; };
 		B0038BEC1C93EACD00870D97 /* AssetServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetServices.swift; sourceTree = "<group>"; };
 		B003F4AD1C8EA9B700AFDF91 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
@@ -96,6 +114,10 @@
 		B007F9521DB46A3A002455D4 /* EnemySpaceshipA_left.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipA_left.atlas; sourceTree = "<group>"; };
 		B007F9541DB46A53002455D4 /* EnemySpaceshipA_right.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipA_right.atlas; sourceTree = "<group>"; };
 		B007F9561DB46E5A002455D4 /* ExplosionB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ExplosionB.atlas; sourceTree = "<group>"; };
+		B007F95A1DB894D7002455D4 /* ShieldA.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ShieldA.atlas; sourceTree = "<group>"; };
+		B007F95C1DB89C0E002455D4 /* ShieldB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ShieldB.atlas; sourceTree = "<group>"; };
+		B007F9601DB9E509002455D4 /* ShieldB-2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "ShieldB-2.atlas"; sourceTree = "<group>"; };
+		B007F9621DB9E653002455D4 /* ShieldB-1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "ShieldB-1.atlas"; sourceTree = "<group>"; };
 		B018AF821C8AC576000D68A6 /* Missle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Missle.swift; sourceTree = "<group>"; };
 		B03125D41D9371CD000212A0 /* CollidingServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollidingServices.swift; sourceTree = "<group>"; };
 		B03125D71D93A847000212A0 /* LevelClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelClass.swift; sourceTree = "<group>"; };
@@ -186,6 +208,14 @@
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B00149431DBC32B700FB961B /* ExplosionC.atlas */,
+				B00149411DBC300B00FB961B /* CaptureB.atlas */,
+				B001493F1DBC28C300FB961B /* CaptureA.atlas */,
+				B00149391DBBE95000FB961B /* Item-Shield.atlas */,
+				B007F9621DB9E653002455D4 /* ShieldB-1.atlas */,
+				B007F9601DB9E509002455D4 /* ShieldB-2.atlas */,
+				B007F95C1DB89C0E002455D4 /* ShieldB.atlas */,
+				B007F95A1DB894D7002455D4 /* ShieldA.atlas */,
 				B007F9561DB46E5A002455D4 /* ExplosionB.atlas */,
 				B007F9541DB46A53002455D4 /* EnemySpaceshipA_right.atlas */,
 				B007F9521DB46A3A002455D4 /* EnemySpaceshipA_left.atlas */,
@@ -302,6 +332,7 @@
 				B03BD6201C713D4200D14F4C /* SpriteActor.swift */,
 				B0EF1ED51C8B894D00E24202 /* MissleActor.swift */,
 				B0EF1ED71C8B92C300E24202 /* SpaceshipActor.swift */,
+				B001493D1DBBEE1800FB961B /* ItemActor.swift */,
 			);
 			name = "Abstract Protocols";
 			sourceTree = "<group>";
@@ -327,6 +358,7 @@
 				B0038BEA1C915A5C00870D97 /* MissleTimer.swift */,
 				B076FF081DAF0703006C5C7C /* Planet.swift */,
 				B03562EB1DB357E500361924 /* EnemySpaceshipA.swift */,
+				B001493B1DBBEA0700FB961B /* Item.swift */,
 			);
 			name = "Game Models";
 			sourceTree = "<group>";
@@ -376,6 +408,7 @@
 			children = (
 				B0F53E071C83C98300876394 /* GeneralGameSettings.swift */,
 				657459B41DAF379C00200C68 /* NotificationNames.swift */,
+				B00149451DBC4A7A00FB961B /* GameConfiguration.swift */,
 			);
 			name = Configurations;
 			sourceTree = "<group>";
@@ -491,19 +524,27 @@
 			files = (
 				B03BD5ED1C706BC200D14F4C /* GameScene.sks in Resources */,
 				B03BD5F91C706BC200D14F4C /* LaunchScreen.storyboard in Resources */,
+				B007F9611DB9E509002455D4 /* ShieldB-2.atlas in Resources */,
 				B0F4857C1C9FA92B001ECFA6 /* explosionA.atlas in Resources */,
 				B03BD5F41C706BC200D14F4C /* Main.storyboard in Resources */,
 				B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */,
+				B007F9631DB9E654002455D4 /* ShieldB-1.atlas in Resources */,
+				B00149421DBC300B00FB961B /* CaptureB.atlas in Resources */,
 				B03562EA1DB2FB2E00361924 /* spaceship_left.atlas in Resources */,
 				B007F9551DB46A53002455D4 /* EnemySpaceshipA_right.atlas in Resources */,
 				B03562E81DB2F01900361924 /* spaceship_right.atlas in Resources */,
 				B076FF061DADFD87006C5C7C /* RollingRockB.atlas in Resources */,
 				B076FF021DAB5947006C5C7C /* Assets.xcassets in Resources */,
+				B007F95B1DB894D7002455D4 /* ShieldA.atlas in Resources */,
+				B001493A1DBBE95000FB961B /* Item-Shield.atlas in Resources */,
+				B00149441DBC32B700FB961B /* ExplosionC.atlas in Resources */,
 				B007F9531DB46A3A002455D4 /* EnemySpaceshipA_left.atlas in Resources */,
+				B00149401DBC28C300FB961B /* CaptureA.atlas in Resources */,
 				B03562E21DB1F2D200361924 /* Explosion0100.atlas in Resources */,
 				657459B31DAF313300200C68 /* IAP.storyboard in Resources */,
 				B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */,
 				B007F9571DB46E5A002455D4 /* ExplosionB.atlas in Resources */,
+				B007F95D1DB89C0E002455D4 /* ShieldB.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +572,7 @@
 				B03125D81D93A847000212A0 /* LevelClass.swift in Sources */,
 				B0EFE7401C9660CC00807049 /* SKScene.swift in Sources */,
 				B03BD62F1C7D8E5100D14F4C /* Background.swift in Sources */,
+				B001493C1DBBEA0700FB961B /* Item.swift in Sources */,
 				B07E8E201C825B1D00217260 /* LabelActor.swift in Sources */,
 				B03BD5EF1C706BC200D14F4C /* GameScene.swift in Sources */,
 				B00487781C8D5D180061EC7F /* RollingRockA.swift in Sources */,
@@ -545,6 +587,7 @@
 				B0EF1ED41C8B88EB00E24202 /* IMissle.swift in Sources */,
 				B03BD6251C783E0900D14F4C /* Spaceship.swift in Sources */,
 				B07E8E1E1C8251BF00217260 /* Label.swift in Sources */,
+				B00149461DBC4A7A00FB961B /* GameConfiguration.swift in Sources */,
 				B03BD6311C7D98D100D14F4C /* IStage.swift in Sources */,
 				B03BD6271C783F4900D14F4C /* ISpaceship.swift in Sources */,
 				B03125D51D9371CD000212A0 /* CollidingServices.swift in Sources */,
@@ -557,6 +600,7 @@
 				B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */,
 				B08021331DAB2F62002AEC1F /* Icon.swift in Sources */,
 				B0EF1ED81C8B92C300E24202 /* SpaceshipActor.swift in Sources */,
+				B001493E1DBBEE1800FB961B /* ItemActor.swift in Sources */,
 				B0F53E081C83C98300876394 /* GeneralGameSettings.swift in Sources */,
 				B076FF041DADEA52006C5C7C /* RollingRockB.swift in Sources */,
 				657459B11DAF312000200C68 /* IAPTableViewController.swift in Sources */,

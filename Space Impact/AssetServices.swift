@@ -17,6 +17,9 @@ class AssetServices {
     var SKTexturesList:[String:[SKTexture]]{get{return self._skTexturesList}};
     
     init() {
+        
+        _skTexturesList = [String:[SKTexture]]();
+        
         _skTextures = [String:SKTexture]();
         _skTextures["button"] = SKTexture(imageNamed: "button");
         _skTextures["missle"] = SKTexture(imageNamed: "missle");
@@ -31,15 +34,14 @@ class AssetServices {
         _skTextures[GeneralGameSettings.ENEMYA_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMYA_NAME);
         
         _skTextures[GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME] = SKTexture(imageNamed: GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME);
+        _skTextures[GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME);
         
         
-        
-        for i in (1...5){
-            _skTextures[GeneralGameSettings.BACKGROUND_PLANET + String(i)] = SKTexture(imageNamed: GeneralGameSettings.BACKGROUND_PLANET + String(i));
+        for i in (0...GeneralGameSettings.BACKGROUND_PLANET_TOTAL){
+            let tempPlanetName = self.getFileName(GeneralGameSettings.BACKGROUND_PLANET, orderNumber: i, split: "");
+            _skTextures[tempPlanetName] = SKTexture(imageNamed: tempPlanetName);
         }
 
-
-        _skTexturesList = [String:[SKTexture]]();
         
         self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKA_NAME);
         self.InitializeAtlas(GeneralGameSettings.ROLLINGROCKB_NAME);
@@ -49,7 +51,18 @@ class AssetServices {
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYA_TILTLEFT_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYA_TILTRIGHT_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYA_EXPLOSION);
-
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDA_NAME);
+        
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDB_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDB_02_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDB_01_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_SHIELD_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREA_NAME);
+        
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREB_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.EXPLOSIONC_NAME);
+        
+        
         
         
     }

@@ -16,6 +16,7 @@ class GameObjectServices {
     fileprivate var _gameScreen:SKNode?;
     fileprivate var _spaceShip:Spaceship?;
     fileprivate var _planet:[Planet];
+
     
     var Stars:[Star]{get{return self._stars}}
     var GameScreen:SKNode?{get{return self._gameScreen}}
@@ -34,6 +35,20 @@ class GameObjectServices {
         self._gameScreen = gameScreen;
     }
     
+    func GetTwoDigitNumber(orderNumber:Int) -> String{
+        var fileName:String = "";
+        if orderNumber < 10 {
+            fileName += ("0" + String(orderNumber));
+        }
+        else
+        {
+            fileName += String(orderNumber);
+            
+        }
+        
+        return fileName;
+    }
+    
         
     func GenerateRandomPosition() -> CGPoint{
         let randomX = generateRandomNumber(GeneralGameSettings.SCREEN_WIDTH);
@@ -43,11 +58,15 @@ class GameObjectServices {
     }
     
     func GetSpaceshipInitialPos() -> CGPoint{
-        return CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.minY + 30);
+        return CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.minY + 50);
     }
     
     func GetRandomNumber( endRange:Int) -> Int{
         return generateRandomNumber(endRange);
+    }
+    
+    func GetRandomPercentage() -> CGFloat{
+        return CGFloat(generateRandomNumber(5))/5;
     }
     
     fileprivate func generateRandomNumber(_ range:Int) -> Int{

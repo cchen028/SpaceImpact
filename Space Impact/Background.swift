@@ -49,8 +49,9 @@ open class Background:IStage {
     }
     
     func CreatePlanetsCollection(){
-        for i in 1...GeneralGameSettings.BACKGROUND_PLANET_TOTAL{
-            let planet = Planet(planetType:i);
+        for i in 0...GeneralGameSettings.BACKGROUND_PLANET_TOTAL{
+            let scale = GameObjectServices.instance.GetRandomPercentage();
+            let planet = Planet(planetType:i, scale:scale);
             _planet.append(planet);
         }
     }
@@ -69,6 +70,7 @@ open class Background:IStage {
     
     open func Update(){
         var hasActivePlanet:Bool = false;
+        var totalPlanet:Int = 0;
 
         for star in self._stars{
             star.Update();
@@ -85,12 +87,16 @@ open class Background:IStage {
         for planet in self._planet{
             if(planet.IsActive){
                 planet.Update();
+                totalPlanet = totalPlanet + 1;
+            }
+            
+            if totalPlanet == 2{
                 hasActivePlanet = true;
             }
         }
         
         if(!hasActivePlanet){
-            let planetType = GameObjectServices.instance.GetRandomNumber(endRange: 5);
+            let planetType = GameObjectServices.instance.GetRandomNumber(endRange: GeneralGameSettings.BACKGROUND_PLANET_TOTAL+1);
             self._planet[planetType-1].SetActive(true);
         }
     }

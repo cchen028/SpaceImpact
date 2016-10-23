@@ -19,6 +19,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     internal var _spaceship_right:SpriteActor?;
     fileprivate var _spaceshipMissleTimer: Timer!;
     fileprivate var _point:Int;
+    internal var _movement:SKAction?;
     
     internal var _missleTimer:MissleTimer;
     internal var _explosion:SpriteActor;
@@ -29,6 +30,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     var Damage:Int{get{return _damage} set(newVal){_damage = newVal}};
     var Explosion:SpriteActor{get{return _explosion} set(newVal){_explosion = newVal}};
     var IsActive:Bool{get{return self._spaceship.IsActive && (self._explosion.IsActive || self._explosion.hasActions())}};
+    //var IsActive:Bool{get{return self._spaceship.alpha > 0 || (self._explosion.alpha > 0)}};
     var Spaceship:SpriteActor{get{return self._spaceship}};
     var Missles:[Missle]{get{return self._missles}};
     var `Type`:ActorType{get{return self._spaceship.Type}};
@@ -70,8 +72,28 @@ class SpaceshipActor: NSObject, ISpaceship{
         self._spaceship.name = uniqueID;
         self._explosion.zPosition = 5;
         self._spaceship.zPosition = 5;
-        
+                
         super.init();
+    }
+    
+    func RunParelle(action1: SKAction, action2: SKAction) -> SKAction{
+        var longAction:SKAction = SKAction();
+        var shortAction:SKAction = SKAction();
+        
+        if(action1.duration >= action2.duration){
+            longAction = action1;
+            shortAction = action2;
+        }
+        else{
+            longAction = action2;
+            shortAction = action1;
+        }
+        
+        let difference = longAction.duration - shortAction.duration;
+        let shortWithWait = SKAction.sequence([shortAction, SKAction.wait(forDuration: difference)]);
+        let group = SKAction.group([longAction, shortWithWait])
+        
+        return group;
     }
     
     func SetActive(_ isActive:Bool){
@@ -85,30 +107,37 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     func Update(){
         if(self._spaceship.position.y < GameScene.instance!.frame.minY){
-            self.destroy();
+            self.SetActive(false);
         }
         
         self.misslesUpdate();
         self._explosion.SyncPositionWith(actor: self._spaceship);
         self._spaceship_left?.SyncPositionWith(actor: self._spaceship);
         self._spaceship_right?.SyncPositionWith(actor: self._spaceship);
-       // self._explosion.position = self._spaceship.position;
     }
     
     func Explode(){
-        self._spaceship.SetActive(false);
         self._explosion.alpha = 1;
-        self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
+       // self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
         self._explosion.RunAnimation(animationComplete: {
-           // self._explosion.SetActive(false)
+            self._explosion.removeAllActions();
         });
+        self._spaceship.SetActive(false);
+        
     }
     
     func AddMissle() {
         if(_missles.count > 0){
             for i in 0...(_missles.count - 1){
                 if(!_missles[i].IsActive){
-                    _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
+                    switch _missles[i].Sprite.Type {
+                    case .MyMissle:
+                        _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
+                    case .EnemyMissle:
+                        _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2));
+                    default:
+                        _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
+                    }
                     _missles[i].SetActive(true);
                     break;
                 }
@@ -126,10 +155,23 @@ class SpaceshipActor: NSObject, ISpaceship{
         }
     }
     
+    open func moveLeft(){
+        
+    }
     
     
-    func IsCollidedWith(_ actor: SpaceshipActor) -> Bool{
-        return actor.Spaceship.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(actor.Spaceship.frame);
+    
+    func IsCollidedWith<T>(_ actor: T) -> Bool{
+        
+        if let spaceShipActor = actor as? SpaceshipActor{
+            return spaceShipActor.Spaceship.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(spaceShipActor.Spaceship.frame);
+        }
+        
+        if let itemActor = actor as? ItemActor{
+            return itemActor.Item.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(itemActor.Item.frame);
+        }
+        
+        return false;
     }
     
     fileprivate func misslesUpdate(){
@@ -149,8 +191,11 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     fileprivate func destroy(){
         self._spaceship.SetActive(false);
+        //self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
         self._spaceship_left?.SetActive(false);
         self._spaceship_right?.SetActive(false);
         self._explosion.SetActive(false);
+        self._explosion.removeAllActions();
+
     }
 }

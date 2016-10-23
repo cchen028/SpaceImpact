@@ -19,7 +19,7 @@ class RollingRockB: SpaceshipActor{
     init(position:CGPoint)
     {
         self._acceleration = GeneralGameSettings.ROLLINGROCKB_ACC;
-        super.init(imageName: GeneralGameSettings.ROLLINGROCKB_NAME, explosionName: GeneralGameSettings.ROLLINGROCKB_EXPLOSION, health: GeneralGameSettings.ROLLINGROCKB_HEALTH, speed: GeneralGameSettings.ROLLINGROCKB_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship,  point: GeneralGameSettings.ROLLINGROCKB_POINT, isSpaceShipAnimation: true);
+        super.init(imageName: GeneralGameSettings.ROLLINGROCKB_NAME, explosionName: GeneralGameSettings.EXPLOSIONC_NAME, health: GeneralGameSettings.ROLLINGROCKB_HEALTH, speed: GeneralGameSettings.ROLLINGROCKB_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship,  point: GeneralGameSettings.ROLLINGROCKB_POINT, isSpaceShipAnimation: true);
         
     }
     

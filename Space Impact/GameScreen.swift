@@ -111,8 +111,8 @@ class GameScreen: NSObject,IStage {
         self._icons.append(iconLife);
         self._icons.append(iconBomb);
     }
-
-    func HandlesTouch(_ touch: UITouch, withEvent event: UIEvent?, isTouched:Bool)
+    
+    func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool)
     {
         if !self._isActive
         {
@@ -122,18 +122,20 @@ class GameScreen: NSObject,IStage {
         if(!isTouched)
         {
             self._mySpaceship.Direction = MoveDirection.none;
+            self._mySpaceship.IsTouched = false;
             return;
         }
         
-        let location = touch.location(in: GameScene.instance!);
+        if(self._mySpaceship.Spaceship.frame.contains(position)){
+            self._mySpaceship.IsTouched = true;
+        }
         
-        if location.x > GameScene.instance!.frame.midX{
-            self._mySpaceship.Direction = MoveDirection.right;
+        if((self._mySpaceship.IsTouched && GameConfiguration.instance.MoveMentType == .FreeDrag)){
+            self._mySpaceship.Position = position;
         }
-        else
-        {
-            self._mySpaceship.Direction = MoveDirection.left;
-        }
+        
+        self._mySpaceship.Direction = direction;
+
     }
     
     func Notify(_ targetStage:String){}
