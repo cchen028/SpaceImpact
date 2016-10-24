@@ -65,15 +65,14 @@ class CollidingServices {
                 self._spaceship.Health = min(4, self._spaceship.Health + 1);
                 break;
             case .ItemLightning:
-                if UserStatsInfo.instance.Bomb.value < 10{
+                if UserStatsInfo.instance.Bomb.value < 5{
                     UserStatsInfo.instance.Bomb.value += 1;
                 }
                 break;
             default:
                 break;
             }
-          //  item.Explode();
-          //  self._spaceship.Health = min(4, self._spaceship.Health + 1);
+            
             UserStatsInfo.instance.Score.value += item.Point;
         }
     }
@@ -96,8 +95,6 @@ class CollidingServices {
         {
             spaceActor.Explode();
             self._spaceship.Health = max(1, self._spaceship.Health - 1);
-
-            
         }
     }
 }

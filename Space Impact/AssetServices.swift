@@ -67,10 +67,6 @@ class AssetServices {
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_HEART_NAME);
         
         //ITEM_HEART_NAME
-        
-        
-        
-        
     }
     
     fileprivate func InitializeAtlas(_ atlasName:String){

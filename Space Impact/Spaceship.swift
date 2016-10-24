@@ -134,40 +134,58 @@ class Spaceship: SpaceshipActor{
     }
     
     fileprivate func shieldUpdate(health:Int){
-        if health == 4, self._shield2.alpha != CGFloat(1){
+        if health == 4, self._shield2.alpha == CGFloat(0){
             // self._shield2.SetActive(true);
-            self._shield2.alpha = 1;
-            self._shield1.alpha = 0;
-            self._shield.alpha = 0;
+            self._shield2.alpha = 0.01;
+            //self._shield1.alpha = 0;
+            //self._shield.alpha = 0;
+            
+            
+            self._shield.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
+            self._shield1.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
+
+            self._shield2.FadeIn(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield2.RunAnimation {};
             
         }
-        else if health  == 3, self._shield.alpha != CGFloat(1){
+        else if health  == 3, self._shield.alpha == CGFloat(0){
             //self._shield.SetActive(true);
-            self._shield2.alpha = 0;
-            self._shield1.alpha = 0;
-            self._shield.alpha = 1;
+           // self._shield2.alpha = 0;
+            //self._shield1.alpha = 0;
+            self._shield.alpha = 0.01;
+            
+            
+            self._shield2.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
+            self._shield1.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
+            self._shield.FadeIn(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield.RunAnimation {};
             
         }
-        else if health == 2, self._shield1.alpha != CGFloat(1){
+        else if health == 2, self._shield1.alpha == CGFloat(0){
             // self._shield1.SetActive(true)1
-            self._shield2.alpha = 0;
-            self._shield1.alpha = 1;
-            self._shield.alpha = 0;
+           // self._shield2.alpha = 0;
+            self._shield1.alpha = 0.01;
+            //self._shield.alpha = 0;
             
+            
+            self._shield.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
+            self._shield2.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
+            self._shield1.FadeIn(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield1.RunAnimation {};
-          //  self._shield1.run(SKAction.sequence([self._shield1.GetFadeIn(), self._shield1._spriteAction]));
+            
+            //self._shield1.run(SKAction.group([self._shield1.GetFadeIn(), self._shield1._spriteAction]));
+           // self._shield1.RunAnimation {};
            // self._shield1.FadeIn();
            // self._shield.FadeOut();
            // self._shield2.FadeOut();
         }
-        else if health == 1{
+        else if health == 1, (self._shield1.alpha == CGFloat(1) || self._shield.alpha == CGFloat(1) || self._shield2.alpha == CGFloat(1)){
             // self._shield1.SetActive(true)1
             self._shield2.alpha = 0;
-            self._shield1.alpha = 0;
+            self._shield1.alpha = 0.99;
             self._shield.alpha = 0;
             //self._shield1.RunAnimation {};
+            self._shield1.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT );
         }
 
     }

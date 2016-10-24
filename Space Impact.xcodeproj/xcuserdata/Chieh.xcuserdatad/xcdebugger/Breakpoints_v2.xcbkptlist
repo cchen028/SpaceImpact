@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/CollidingServices.swift"
-            timestampString = "498980170.529365"
+            timestampString = "498991014.513054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "missleCollideUpdate(_:missleIndex:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/CollidingServices.swift"
-            timestampString = "498980170.529365"
+            timestampString = "498991014.513054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "missleCollideUpdate(_:missleIndex:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -933,11 +933,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/GameScreen.swift"
-            timestampString = "498980734.615436"
+            timestampString = "498987263.371451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "SetActive(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -949,11 +949,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/GameScreen.swift"
-            timestampString = "498980734.615436"
+            timestampString = "498987474.48589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "create()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1061,11 +1061,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/AssetServices.swift"
-            timestampString = "498985438.301232"
+            timestampString = "498991014.513054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "InitializeAtlas_ZeroBase(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1077,11 +1077,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/AssetServices.swift"
-            timestampString = "498985438.301232"
+            timestampString = "498991014.513054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "AssetServices"
             landmarkType = "3">
          </BreakpointContent>
@@ -1093,11 +1093,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/AssetServices.swift"
-            timestampString = "498985438.301232"
+            timestampString = "498991014.513054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "InitializeAtlas(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1109,11 +1109,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/AssetServices.swift"
-            timestampString = "498985438.301232"
+            timestampString = "498991014.513054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "InitializeAtlas_ZeroBase(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1157,11 +1157,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/Spaceship.swift"
-            timestampString = "498971077.669781"
+            timestampString = "498991911.477484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "animateSpaceship()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1173,11 +1173,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/Spaceship.swift"
-            timestampString = "498971077.669781"
+            timestampString = "498991911.477484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "animateSpaceship()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1205,11 +1205,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/Spaceship.swift"
-            timestampString = "498971077.669781"
+            timestampString = "498991911.477484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "animateSpaceship()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1445,11 +1445,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/GameScreen.swift"
-            timestampString = "498980734.615436"
+            timestampString = "498989016.608735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "GameScreen"
             landmarkType = "3">
          </BreakpointContent>
@@ -1473,15 +1473,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/GameScreen.swift"
-            timestampString = "498980734.615436"
+            timestampString = "498989016.608735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "HandlesTouch(position:direction:isTouched:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1489,7 +1489,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/GameScene.swift"
@@ -1515,6 +1515,22 @@
             startingLineNumber = "62"
             endingLineNumber = "62"
             landmarkName = "itemCollideUpdate(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Space Impact/Spaceship.swift"
+            timestampString = "498991911.477484"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "shieldUpdate(health:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

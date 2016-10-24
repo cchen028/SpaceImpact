@@ -55,6 +55,7 @@ struct GeneralGameSettings {
     
     // Items
     static let ITEM_SHIELD_NAME:String = "Item-Shield";
+    static let ITEM_SHIELD_FADEINOUT:CGFloat = 0.25;
     static let ITEM_LIGHTNING_NAME:String = "Item-Lightning";
     static let ITEM_HEART_NAME:String = "Item-Heart";
     

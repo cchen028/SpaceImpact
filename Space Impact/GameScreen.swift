@@ -51,28 +51,26 @@ class GameScreen: NSObject,IStage {
         self._mySpaceship.Update();
         self._collidingService.Update();
         
-        for lightning in 0...9{
-            
-            if(lightning <= (UserStatsInfo.instance.Bomb.value - 1)){
-                self._lightning[lightning].FadeIn(customTime: 0.25);
-            }
-            else{
-                self._lightning[lightning].FadeOut(customTime: 0.25);
-            }
-            //lightning.FadeIn();
-        }
-        
-        for life in 0...9{
-            
-            if(life <= (UserStatsInfo.instance.Life.value - 1)){
-                self._life[life].FadeIn(customTime: 0.25);
-            }
-            else{
-                self._life[life].FadeOut(customTime: 0.25);
-            }
-            //lightning.FadeIn();
-        }
-
+//        for lightning in 0...9{
+//            
+//            if(lightning <= (UserStatsInfo.instance.Bomb.value - 1)){
+//                self._lightning[lightning].FadeIn(customTime: 0.25);
+//            }
+//            else{
+//                self._lightning[lightning].FadeOut(customTime: 0.25);
+//            }
+//        }
+//        
+//        for life in 0...9{
+//            
+//            if(life <= (UserStatsInfo.instance.Life.value - 1)){
+//                self._life[life].FadeIn(customTime: 0.25);
+//            }
+//            else{
+//                self._life[life].FadeOut(customTime: 0.25);
+//            }
+//        }
+//
         
     }
     
@@ -96,19 +94,25 @@ class GameScreen: NSObject,IStage {
             label.FadeIn();
         }
         
-//        for icon in 0...2{
-//            self._life[icon].FadeIn();
+        for lightning in self._lightning{
+            lightning.FadeIn();
+        }
+
+        for heart in self._life{
+            heart.FadeIn();
+        }
+
+        
+        
+        
+
+//        for lightning in 0...(UserStatsInfo.instance.Bomb.value - 1){
+//            self._lightning[lightning].FadeIn();
 //        }
-        
-        for lightning in 0...(UserStatsInfo.instance.Bomb.value - 1){
-            self._lightning[lightning].FadeIn();
-            //lightning.FadeIn();
-        }
-        
-        for heart in 0...(UserStatsInfo.instance.Life.value - 1){
-            self._life[heart].FadeIn();
-            //lightning.FadeIn();
-        }
+//        
+//        for heart in 0...(UserStatsInfo.instance.Life.value - 1){
+//            self._life[heart].FadeIn();
+//        }
         
         self._level.StartLevel(level: 1);
     }
@@ -119,27 +123,64 @@ class GameScreen: NSObject,IStage {
         self._level.Destroy();
     }
     
+//    fileprivate func createLabels(){
+//        let lblScore = Label(displayText: "Score: 0", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
+//        
+//        UserStatsInfo.instance.Score.bind {
+//            lblScore.DisplayText = "Score: " + String($0);
+//        }
+//        
+//        self._labels.append(lblScore);
+//         
+//        for i in 1...10{
+//            let iconBomb = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_BOMB, position: CGPoint(x:20, y:GameScene.instance!.frame.maxY - CGFloat(27 * i)));
+//            self._lightning.append(iconBomb);
+//        }
+//        
+//        for i in 1...10{
+//            let iconLife = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_LIFE, position: CGPoint(x:GameScene.instance!.frame.maxX - 25, y:GameScene.instance!.frame.maxY - CGFloat(27 * i)));
+//            
+//            self._life.append(iconLife);
+//        }
+//        
+//    }
+    
     fileprivate func createLabels(){
+        
+        let iconBomb = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_BOMB, position: CGPoint(x:20, y:GameScene.instance!.frame.maxY - 23));
+        
+        let lblBomb = Label(displayText: "X 3", position: CGPoint(x:55, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
+        
+        
+        let lblLife = Label(displayText: "X 3", position: CGPoint(x:GameScene.instance!.frame.maxX - 25, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
+        
+        let iconLife = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_LIFE, position: CGPoint(x:GameScene.instance!.frame.maxX - 60, y:GameScene.instance!.frame.maxY - 23));
+        
+        
+        
         let lblScore = Label(displayText: "Score: 0", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
         UserStatsInfo.instance.Score.bind {
             lblScore.DisplayText = "Score: " + String($0);
         }
         
+        UserStatsInfo.instance.Life.bind {
+            lblLife.DisplayText = "X " + String($0);
+        }
+        
+        UserStatsInfo.instance.Bomb.bind {
+            lblBomb.DisplayText = "X " + String($0);
+        }
+
+        
+        self._labels.append(lblBomb);
+        self._labels.append(lblLife);
         self._labels.append(lblScore);
-         
-        for i in 1...10{
-            let iconBomb = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_BOMB, position: CGPoint(x:20, y:GameScene.instance!.frame.maxY - CGFloat(27 * i)));
-            self._lightning.append(iconBomb);
-        }
         
-        for i in 1...10{
-            let iconLife = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_LIFE, position: CGPoint(x:GameScene.instance!.frame.maxX - 25, y:GameScene.instance!.frame.maxY - CGFloat(27 * i)));
-            
-            self._life.append(iconLife);
-        }
-        
+        self._life.append(iconLife);
+        self._lightning.append(iconBomb);
     }
+
     
     func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool)
     {

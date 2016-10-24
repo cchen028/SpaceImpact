@@ -49,7 +49,7 @@ open class Background:IStage {
     }
     
     func CreatePlanetsCollection(){
-        for i in 0...GeneralGameSettings.BACKGROUND_PLANET_TOTAL{
+        for i in 0...GeneralGameSettings.BACKGROUND_PLANET_TOTAL-1{
             let scale = GameObjectServices.instance.GetRandomPercentage();
             let planet = Planet(planetType:i, scale:scale);
             _planet.append(planet);
