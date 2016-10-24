@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		657459B11DAF312000200C68 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657459B01DAF312000200C68 /* IAPTableViewController.swift */; };
 		657459B31DAF313300200C68 /* IAP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657459B21DAF313300200C68 /* IAP.storyboard */; };
 		657459B51DAF379C00200C68 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657459B41DAF379C00200C68 /* NotificationNames.swift */; };
+		657AE7BB1DBC7DA000A38315 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AE7BA1DBC7DA000A38315 /* IAPTableViewController.swift */; };
+		657AE7BD1DBC7F2100A38315 /* IAPContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AE7BC1DBC7F2100A38315 /* IAPContainerViewController.swift */; };
+		657AE7BF1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */; };
 		B001493A1DBBE95000FB961B /* Item-Shield.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149391DBBE95000FB961B /* Item-Shield.atlas */; };
 		B001493C1DBBEA0700FB961B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001493B1DBBEA0700FB961B /* Item.swift */; };
 		B001493E1DBBEE1800FB961B /* ItemActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001493D1DBBEE1800FB961B /* ItemActor.swift */; };
@@ -99,9 +101,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		657459B01DAF312000200C68 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
 		657459B21DAF313300200C68 /* IAP.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAP.storyboard; sourceTree = "<group>"; };
 		657459B41DAF379C00200C68 /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		657AE7BA1DBC7DA000A38315 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
+		657AE7BC1DBC7F2100A38315 /* IAPContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPContainerViewController.swift; sourceTree = "<group>"; };
+		657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		B00149391DBBE95000FB961B /* Item-Shield.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Shield.atlas"; sourceTree = "<group>"; };
 		B001493B1DBBEA0700FB961B /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B001493D1DBBEE1800FB961B /* ItemActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemActor.swift; sourceTree = "<group>"; };
@@ -207,7 +211,8 @@
 		657459AF1DAF310F00200C68 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				657459B01DAF312000200C68 /* IAPTableViewController.swift */,
+				657AE7BA1DBC7DA000A38315 /* IAPTableViewController.swift */,
+				657AE7BC1DBC7F2100A38315 /* IAPContainerViewController.swift */,
 			);
 			name = ViewControllers;
 			path = ..;
@@ -402,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				B0EFE73F1C9660CC00807049 /* SKScene.swift */,
+				657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -584,13 +590,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657AE7BF1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift in Sources */,
 				B03125D81D93A847000212A0 /* LevelClass.swift in Sources */,
 				B0EFE7401C9660CC00807049 /* SKScene.swift in Sources */,
 				B03BD62F1C7D8E5100D14F4C /* Background.swift in Sources */,
 				B001493C1DBBEA0700FB961B /* Item.swift in Sources */,
 				B07E8E201C825B1D00217260 /* LabelActor.swift in Sources */,
 				B03BD5EF1C706BC200D14F4C /* GameScene.swift in Sources */,
+				657AE7BD1DBC7F2100A38315 /* IAPContainerViewController.swift in Sources */,
 				B00487781C8D5D180061EC7F /* RollingRockA.swift in Sources */,
+				657AE7BB1DBC7DA000A38315 /* IAPTableViewController.swift in Sources */,
 				B0EFE7431C9665C500807049 /* NodeType.swift in Sources */,
 				B018AF831C8AC576000D68A6 /* Missle.swift in Sources */,
 				B0EF1ED61C8B894D00E24202 /* MissleActor.swift in Sources */,
@@ -619,7 +628,6 @@
 				B001493E1DBBEE1800FB961B /* ItemActor.swift in Sources */,
 				B0F53E081C83C98300876394 /* GeneralGameSettings.swift in Sources */,
 				B076FF041DADEA52006C5C7C /* RollingRockB.swift in Sources */,
-				657459B11DAF312000200C68 /* IAPTableViewController.swift in Sources */,
 				B03BD6291C7C470600D14F4C /* ShapeActor.swift in Sources */,
 				B0F53E031C83ACC400876394 /* TransitionService.swift in Sources */,
 				B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */,
