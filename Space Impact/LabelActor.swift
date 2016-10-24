@@ -56,8 +56,8 @@ class LabelActor {
     }
     
     
-    func FadeIn(){
-        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
+    func FadeIn(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN){
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(customTime));
         if _labelNode.alpha < 1
         {
             SetActive(true);
@@ -65,8 +65,8 @@ class LabelActor {
         }
     }
     
-    func FadeOut(){
-        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
+    func FadeOut(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN){
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(customTime));
         if _labelNode.alpha > 0
         {
             

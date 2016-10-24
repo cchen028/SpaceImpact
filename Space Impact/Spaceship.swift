@@ -58,7 +58,7 @@ class Spaceship: SpaceshipActor{
     
     func InitializeMissles(){
         for _ in 1...25{
-            self._missles.append(Missle(missleName: GeneralGameSettings.MyMissle_Name, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type:ActorType.MyMissle));
+            self._missles.append(Missle(missleName: GeneralGameSettings.MyMissle_Name, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type:ActorType.MyMissle, speed: GeneralGameSettings.MyMissle_Speed));
         }
     }
     
@@ -155,7 +155,12 @@ class Spaceship: SpaceshipActor{
             self._shield2.alpha = 0;
             self._shield1.alpha = 1;
             self._shield.alpha = 0;
+            
             self._shield1.RunAnimation {};
+          //  self._shield1.run(SKAction.sequence([self._shield1.GetFadeIn(), self._shield1._spriteAction]));
+           // self._shield1.FadeIn();
+           // self._shield.FadeOut();
+           // self._shield2.FadeOut();
         }
         else if health == 1{
             // self._shield1.SetActive(true)1

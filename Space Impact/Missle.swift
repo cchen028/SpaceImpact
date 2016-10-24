@@ -18,9 +18,9 @@ class Missle: MissleActor {
     var IsActive:Bool{get{return self._missle.IsActive}};
     var Sprite:SpriteActor { get{return self._missle}}
     
-    init(missleName:String, position:CGPoint, type:ActorType) {
+    init(missleName:String, position:CGPoint, type:ActorType, speed:CGFloat) {
         self._misPosition = position;
-        super.init(missleName: missleName, missleType: type,position:position, speed: self._SPEED, damage: self._DAMAGE);
+        super.init(missleName: missleName, missleType: type,position:position, speed: speed, damage: self._DAMAGE);
     }
     
     override func Update(){

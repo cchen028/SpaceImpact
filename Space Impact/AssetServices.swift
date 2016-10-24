@@ -60,7 +60,13 @@ class AssetServices {
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREA_NAME);
         
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREB_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREC_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.EXPLOSIONC_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_LIGHTNING_NAME);
+        
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_HEART_NAME);
+        
+        //ITEM_HEART_NAME
         
         
         

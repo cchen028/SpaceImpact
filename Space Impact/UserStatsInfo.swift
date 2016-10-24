@@ -13,18 +13,18 @@ class UserStatsInfo: NSObject {
     
     static let instance = UserStatsInfo();
     var Score = DynamicInt(0);
-    var Life = DynamicInt(3);;
-    var Bomb:Int;
+    var Life = DynamicInt(3);
+    var Bomb = DynamicInt(3);
     
     private override init(){
         self.Score.value = 0;
         self.Life.value = 3;
-        self.Bomb = 3;
+        self.Bomb.value = 3;
     }
     
     func Reset(){
         self.Score.value = 0;
         self.Life.value = 3;
-        self.Bomb = 3;
+        self.Bomb.value = 3;
     }
 }

@@ -42,7 +42,7 @@ class EnemySpaceshipA: SpaceshipActor{
     
     func InitializeMissles(){
         for _ in 1...25{
-            self._missles.append(Missle(missleName: GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2)), type: ActorType.EnemyMissle));
+            self._missles.append(Missle(missleName: GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2)), type: ActorType.EnemyMissle, speed: GeneralGameSettings.ENEMY_Speed));
         }
     }
     

@@ -17,6 +17,10 @@
 		B00149421DBC300B00FB961B /* CaptureB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149411DBC300B00FB961B /* CaptureB.atlas */; };
 		B00149441DBC32B700FB961B /* ExplosionC.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149431DBC32B700FB961B /* ExplosionC.atlas */; };
 		B00149461DBC4A7A00FB961B /* GameConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00149451DBC4A7A00FB961B /* GameConfiguration.swift */; };
+		B00149481DBC598600FB961B /* RollingRockC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00149471DBC598600FB961B /* RollingRockC.swift */; };
+		B001494C1DBCA6EA00FB961B /* Item-Lightning.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B001494B1DBCA6EA00FB961B /* Item-Lightning.atlas */; };
+		B001494E1DBDD13D00FB961B /* Item-Heart.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B001494D1DBDD13D00FB961B /* Item-Heart.atlas */; };
+		B00149501DBDE8FC00FB961B /* CaptureC.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B001494F1DBDE8FC00FB961B /* CaptureC.atlas */; };
 		B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEA1C915A5C00870D97 /* MissleTimer.swift */; };
 		B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEC1C93EACD00870D97 /* AssetServices.swift */; };
 		B003F4AE1C8EA9B700AFDF91 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003F4AD1C8EA9B700AFDF91 /* Actor.swift */; };
@@ -105,6 +109,10 @@
 		B00149411DBC300B00FB961B /* CaptureB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureB.atlas; sourceTree = "<group>"; };
 		B00149431DBC32B700FB961B /* ExplosionC.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ExplosionC.atlas; sourceTree = "<group>"; };
 		B00149451DBC4A7A00FB961B /* GameConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConfiguration.swift; sourceTree = "<group>"; };
+		B00149471DBC598600FB961B /* RollingRockC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollingRockC.swift; sourceTree = "<group>"; };
+		B001494B1DBCA6EA00FB961B /* Item-Lightning.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Lightning.atlas"; sourceTree = "<group>"; };
+		B001494D1DBDD13D00FB961B /* Item-Heart.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Heart.atlas"; sourceTree = "<group>"; };
+		B001494F1DBDE8FC00FB961B /* CaptureC.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureC.atlas; sourceTree = "<group>"; };
 		B0038BEA1C915A5C00870D97 /* MissleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleTimer.swift; sourceTree = "<group>"; };
 		B0038BEC1C93EACD00870D97 /* AssetServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetServices.swift; sourceTree = "<group>"; };
 		B003F4AD1C8EA9B700AFDF91 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
@@ -208,6 +216,9 @@
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B001494F1DBDE8FC00FB961B /* CaptureC.atlas */,
+				B001494D1DBDD13D00FB961B /* Item-Heart.atlas */,
+				B001494B1DBCA6EA00FB961B /* Item-Lightning.atlas */,
 				B00149431DBC32B700FB961B /* ExplosionC.atlas */,
 				B00149411DBC300B00FB961B /* CaptureB.atlas */,
 				B001493F1DBC28C300FB961B /* CaptureA.atlas */,
@@ -359,6 +370,7 @@
 				B076FF081DAF0703006C5C7C /* Planet.swift */,
 				B03562EB1DB357E500361924 /* EnemySpaceshipA.swift */,
 				B001493B1DBBEA0700FB961B /* Item.swift */,
+				B00149471DBC598600FB961B /* RollingRockC.swift */,
 			);
 			name = "Game Models";
 			sourceTree = "<group>";
@@ -535,16 +547,19 @@
 				B03562E81DB2F01900361924 /* spaceship_right.atlas in Resources */,
 				B076FF061DADFD87006C5C7C /* RollingRockB.atlas in Resources */,
 				B076FF021DAB5947006C5C7C /* Assets.xcassets in Resources */,
+				B001494E1DBDD13D00FB961B /* Item-Heart.atlas in Resources */,
 				B007F95B1DB894D7002455D4 /* ShieldA.atlas in Resources */,
 				B001493A1DBBE95000FB961B /* Item-Shield.atlas in Resources */,
 				B00149441DBC32B700FB961B /* ExplosionC.atlas in Resources */,
 				B007F9531DB46A3A002455D4 /* EnemySpaceshipA_left.atlas in Resources */,
+				B00149501DBDE8FC00FB961B /* CaptureC.atlas in Resources */,
 				B00149401DBC28C300FB961B /* CaptureA.atlas in Resources */,
 				B03562E21DB1F2D200361924 /* Explosion0100.atlas in Resources */,
 				657459B31DAF313300200C68 /* IAP.storyboard in Resources */,
 				B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */,
 				B007F9571DB46E5A002455D4 /* ExplosionB.atlas in Resources */,
 				B007F95D1DB89C0E002455D4 /* ShieldB.atlas in Resources */,
+				B001494C1DBCA6EA00FB961B /* Item-Lightning.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +598,7 @@
 				B0F53E051C83B9AC00876394 /* GameScreen.swift in Sources */,
 				B0F4857A1C97B027001ECFA6 /* ActorType.swift in Sources */,
 				B03BD5F11C706BC200D14F4C /* GameViewController.swift in Sources */,
+				B00149481DBC598600FB961B /* RollingRockC.swift in Sources */,
 				B03BD62C1C7C4E4B00D14F4C /* Star.swift in Sources */,
 				B0EF1ED41C8B88EB00E24202 /* IMissle.swift in Sources */,
 				B03BD6251C783E0900D14F4C /* Spaceship.swift in Sources */,

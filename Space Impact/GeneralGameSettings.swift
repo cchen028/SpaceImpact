@@ -41,7 +41,7 @@ struct GeneralGameSettings {
     
     
     static let GAMESCREEN_ICON_LIFE:String = "life";
-    static let GAMESCREEN_ICON_BOMB:String = "bomb";
+    static let GAMESCREEN_ICON_BOMB:String = "lightning-icon";
     
     
     static let SPACESHIP_EXPLOSION_FRAMES: Double = 0.02;
@@ -55,9 +55,13 @@ struct GeneralGameSettings {
     
     // Items
     static let ITEM_SHIELD_NAME:String = "Item-Shield";
+    static let ITEM_LIGHTNING_NAME:String = "Item-Lightning";
+    static let ITEM_HEART_NAME:String = "Item-Heart";
     
     static let ITEM_CAPTUREA_NAME:String = "CaptureA";
     static let ITEM_CAPTUREB_NAME:String = "CaptureB";
+    
+    static let ITEM_CAPTUREC_NAME:String = "CaptureC";
     
     
     // My Spaceship
@@ -76,10 +80,12 @@ struct GeneralGameSettings {
     static let MYSPACESHIP_SHIEDB_01_NAME:String = "ShieldB-1";
     static let MyMissle_Name:String = "missle";
     static let MyMissle_Frequency:Double = 0.35;
+    static let MyMissle_Speed:CGFloat = 7;
     
     //Enemy
     static let ENEMY_MOVEMENT_TIMEPERFRAME: Double = 0.02;
     static let ENEMY_DEFAULTMISSLE_NAME:String = "enemy_default_missle";
+    static let ENEMY_Speed:CGFloat = 3;
     
     
     //ROLLING ROCK A

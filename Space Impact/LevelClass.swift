@@ -109,11 +109,14 @@ class LevelClass: NSObject {
             }
         }
         
-        if !self._items[0]._item.IsActive {
-            self._items[0].Item.position = GameObjectServices.instance.GenerateRandomPosition();
-            self._items[0].SetActive(true);
-
+        for item in self._items{
+            if !item._item.IsActive {
+                item.Item.position = GameObjectServices.instance.GenerateRandomPosition();
+                item.SetActive(true);
+                
+            }
         }
+        
     }
 
     fileprivate func initializeItems(){
@@ -121,6 +124,13 @@ class LevelClass: NSObject {
         let tempItem = Item(atlasItemName: GeneralGameSettings.ITEM_SHIELD_NAME, exposionName: GeneralGameSettings.ITEM_CAPTUREB_NAME, position: GameObjectServices.instance.GenerateRandomPosition(), itemType: ActorType.ItemShield);
             self._items.append(tempItem);
        // }
+        
+        let tempItem2 = Item(atlasItemName: GeneralGameSettings.ITEM_LIGHTNING_NAME, exposionName: GeneralGameSettings.ITEM_CAPTUREA_NAME, position: GameObjectServices.instance.GenerateRandomPosition(), itemType: ActorType.ItemLightning);
+        self._items.append(tempItem2);
+        
+        let tempItem3 = Item(atlasItemName: GeneralGameSettings.ITEM_HEART_NAME, exposionName: GeneralGameSettings.ITEM_CAPTUREC_NAME, position: GameObjectServices.instance.GenerateRandomPosition(), itemType: ActorType.ItemHeart);
+        self._items.append(tempItem3);
+
     }
     
     fileprivate func initializeRollingRockA(num:Int){

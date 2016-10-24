@@ -56,7 +56,24 @@ class CollidingServices {
         if(collided)
         {
             item.Explode();
-            self._spaceship.Health = min(4, self._spaceship.Health + 1);
+
+            switch(item.Item.Type){
+            case .ItemHeart:
+                UserStatsInfo.instance.Life.value = min(5, UserStatsInfo.instance.Life.value + 1);
+                break;
+            case .ItemShield:
+                self._spaceship.Health = min(4, self._spaceship.Health + 1);
+                break;
+            case .ItemLightning:
+                if UserStatsInfo.instance.Bomb.value < 10{
+                    UserStatsInfo.instance.Bomb.value += 1;
+                }
+                break;
+            default:
+                break;
+            }
+          //  item.Explode();
+          //  self._spaceship.Health = min(4, self._spaceship.Health + 1);
             UserStatsInfo.instance.Score.value += item.Point;
         }
     }
@@ -79,6 +96,8 @@ class CollidingServices {
         {
             spaceActor.Explode();
             self._spaceship.Health = max(1, self._spaceship.Health - 1);
+
+            
         }
     }
 }

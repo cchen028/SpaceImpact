@@ -11,7 +11,7 @@ import SpriteKit
 
  class SpriteActor: SKSpriteNode {
     
-    fileprivate var _spriteAction: SKAction!;
+    internal var _spriteAction: SKAction!;
     fileprivate var _spriteTextures: [SKTexture];
     fileprivate var _isAnimation:Bool;
     fileprivate var _type:ActorType;
@@ -166,8 +166,8 @@ import SpriteKit
         }
     }
     
-    func FadeIn(){
-        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEIN));
+    func FadeIn(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN){
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(customTime));
         if self.alpha < 1
         {
             SetActive(true);
@@ -175,12 +175,26 @@ import SpriteKit
         }
     }
     
-    func FadeOut(){
-        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.TRANSITION_FADEOUT));
+    func FadeOut(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN){
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(customTime));
         if self.alpha > 0
         {
             self.run(fadeOutAnimation, completion:{self.SetActive(false)});
         }
+    }
+    
+    func GetFadeIn(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN) -> SKAction{
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(customTime));
+        return fadeInAnimation;
+    }
+    
+    func GetFadeOut(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN) -> SKAction{
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(customTime));
+        return fadeOutAnimation;
+//        if self.alpha > 0
+//        {
+//            self.run(fadeOutAnimation, completion:{self.SetActive(false)});
+//        }
     }
     
     open func SyncPositionWith(actor: SpriteActor, offsetX: CGFloat = 0, offsetY: CGFloat = 0){
