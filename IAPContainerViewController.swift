@@ -25,10 +25,12 @@ class IAPContainerViewController: UIViewController {
     }
     
     @IBAction func mainViewTapped(_ sender: AnyObject) {
-        
-        self.dismiss(animated: true, completion: nil)
+//        self.dismissViewController()
     }
 
+    @IBAction func closeButtonTapped(_ sender: AnyObject) {
+        self.dismissViewController()
+    }
     /*
     // MARK: - Navigation
 
@@ -39,6 +41,13 @@ class IAPContainerViewController: UIViewController {
     }
     */
 
+}
+
+//MARK: - private methods
+extension IAPContainerViewController{
+    fileprivate func dismissViewController(){
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension IAPContainerViewController: UIGestureRecognizerDelegate{
