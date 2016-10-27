@@ -23,6 +23,8 @@
 		B001494C1DBCA6EA00FB961B /* Item-Lightning.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B001494B1DBCA6EA00FB961B /* Item-Lightning.atlas */; };
 		B001494E1DBDD13D00FB961B /* Item-Heart.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B001494D1DBDD13D00FB961B /* Item-Heart.atlas */; };
 		B00149501DBDE8FC00FB961B /* CaptureC.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B001494F1DBDE8FC00FB961B /* CaptureC.atlas */; };
+		B00149521DBEE44E00FB961B /* LevelActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00149511DBEE44E00FB961B /* LevelActor.swift */; };
+		B00149541DBEE70F00FB961B /* LevelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00149531DBEE70F00FB961B /* LevelClass.swift */; };
 		B0038BEB1C915A5C00870D97 /* MissleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEA1C915A5C00870D97 /* MissleTimer.swift */; };
 		B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0038BEC1C93EACD00870D97 /* AssetServices.swift */; };
 		B003F4AE1C8EA9B700AFDF91 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003F4AD1C8EA9B700AFDF91 /* Actor.swift */; };
@@ -38,7 +40,6 @@
 		B007F9631DB9E654002455D4 /* ShieldB-1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9621DB9E653002455D4 /* ShieldB-1.atlas */; };
 		B018AF831C8AC576000D68A6 /* Missle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018AF821C8AC576000D68A6 /* Missle.swift */; };
 		B03125D51D9371CD000212A0 /* CollidingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D41D9371CD000212A0 /* CollidingServices.swift */; };
-		B03125D81D93A847000212A0 /* LevelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03125D71D93A847000212A0 /* LevelClass.swift */; };
 		B03562E21DB1F2D200361924 /* Explosion0100.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B03562E11DB1F2D200361924 /* Explosion0100.atlas */; };
 		B03562E81DB2F01900361924 /* spaceship_right.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B03562E71DB2F01900361924 /* spaceship_right.atlas */; };
 		B03562EA1DB2FB2E00361924 /* spaceship_left.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B03562E91DB2FB2E00361924 /* spaceship_left.atlas */; };
@@ -71,6 +72,10 @@
 		B080212F1DAB18A0002AEC1F /* UserStatsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080212E1DAB18A0002AEC1F /* UserStatsInfo.swift */; };
 		B08021311DAB27D6002AEC1F /* DynamicInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08021301DAB27D6002AEC1F /* DynamicInt.swift */; };
 		B08021331DAB2F62002AEC1F /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08021321DAB2F62002AEC1F /* Icon.swift */; };
+		B0A9156A1DC03CEB00C54937 /* EnemySpaceshipB_left.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B0A915681DC03CEB00C54937 /* EnemySpaceshipB_left.atlas */; };
+		B0A9156B1DC03CEB00C54937 /* EnemySpaceshipB_right.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B0A915691DC03CEB00C54937 /* EnemySpaceshipB_right.atlas */; };
+		B0A9156D1DC03D7700C54937 /* EnemySpaceshipB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A9156C1DC03D7700C54937 /* EnemySpaceshipB.swift */; };
+		B0A9156F1DC1A04000C54937 /* SKSpriteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A9156E1DC1A04000C54937 /* SKSpriteExtension.swift */; };
 		B0EF1ED41C8B88EB00E24202 /* IMissle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF1ED31C8B88EB00E24202 /* IMissle.swift */; };
 		B0EF1ED61C8B894D00E24202 /* MissleActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF1ED51C8B894D00E24202 /* MissleActor.swift */; };
 		B0EF1ED81C8B92C300E24202 /* SpaceshipActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF1ED71C8B92C300E24202 /* SpaceshipActor.swift */; };
@@ -117,6 +122,8 @@
 		B001494B1DBCA6EA00FB961B /* Item-Lightning.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Lightning.atlas"; sourceTree = "<group>"; };
 		B001494D1DBDD13D00FB961B /* Item-Heart.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Heart.atlas"; sourceTree = "<group>"; };
 		B001494F1DBDE8FC00FB961B /* CaptureC.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureC.atlas; sourceTree = "<group>"; };
+		B00149511DBEE44E00FB961B /* LevelActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelActor.swift; sourceTree = "<group>"; };
+		B00149531DBEE70F00FB961B /* LevelClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelClass.swift; sourceTree = "<group>"; };
 		B0038BEA1C915A5C00870D97 /* MissleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleTimer.swift; sourceTree = "<group>"; };
 		B0038BEC1C93EACD00870D97 /* AssetServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetServices.swift; sourceTree = "<group>"; };
 		B003F4AD1C8EA9B700AFDF91 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
@@ -132,7 +139,6 @@
 		B007F9621DB9E653002455D4 /* ShieldB-1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "ShieldB-1.atlas"; sourceTree = "<group>"; };
 		B018AF821C8AC576000D68A6 /* Missle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Missle.swift; sourceTree = "<group>"; };
 		B03125D41D9371CD000212A0 /* CollidingServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollidingServices.swift; sourceTree = "<group>"; };
-		B03125D71D93A847000212A0 /* LevelClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelClass.swift; sourceTree = "<group>"; };
 		B03562E11DB1F2D200361924 /* Explosion0100.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Explosion0100.atlas; sourceTree = "<group>"; };
 		B03562E71DB2F01900361924 /* spaceship_right.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = spaceship_right.atlas; sourceTree = "<group>"; };
 		B03562E91DB2FB2E00361924 /* spaceship_left.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = spaceship_left.atlas; sourceTree = "<group>"; };
@@ -171,6 +177,10 @@
 		B080212E1DAB18A0002AEC1F /* UserStatsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStatsInfo.swift; sourceTree = "<group>"; };
 		B08021301DAB27D6002AEC1F /* DynamicInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicInt.swift; sourceTree = "<group>"; };
 		B08021321DAB2F62002AEC1F /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		B0A915681DC03CEB00C54937 /* EnemySpaceshipB_left.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipB_left.atlas; sourceTree = "<group>"; };
+		B0A915691DC03CEB00C54937 /* EnemySpaceshipB_right.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipB_right.atlas; sourceTree = "<group>"; };
+		B0A9156C1DC03D7700C54937 /* EnemySpaceshipB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemySpaceshipB.swift; sourceTree = "<group>"; };
+		B0A9156E1DC1A04000C54937 /* SKSpriteExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpriteExtension.swift; sourceTree = "<group>"; };
 		B0EF1ED31C8B88EB00E24202 /* IMissle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMissle.swift; sourceTree = "<group>"; };
 		B0EF1ED51C8B894D00E24202 /* MissleActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleActor.swift; sourceTree = "<group>"; };
 		B0EF1ED71C8B92C300E24202 /* SpaceshipActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceshipActor.swift; sourceTree = "<group>"; };
@@ -221,6 +231,8 @@
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B0A915681DC03CEB00C54937 /* EnemySpaceshipB_left.atlas */,
+				B0A915691DC03CEB00C54937 /* EnemySpaceshipB_right.atlas */,
 				B001494F1DBDE8FC00FB961B /* CaptureC.atlas */,
 				B001494D1DBDD13D00FB961B /* Item-Heart.atlas */,
 				B001494B1DBCA6EA00FB961B /* Item-Lightning.atlas */,
@@ -249,7 +261,7 @@
 		B03125D61D93A81F000212A0 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				B03125D71D93A847000212A0 /* LevelClass.swift */,
+				B00149531DBEE70F00FB961B /* LevelClass.swift */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -349,6 +361,7 @@
 				B0EF1ED51C8B894D00E24202 /* MissleActor.swift */,
 				B0EF1ED71C8B92C300E24202 /* SpaceshipActor.swift */,
 				B001493D1DBBEE1800FB961B /* ItemActor.swift */,
+				B00149511DBEE44E00FB961B /* LevelActor.swift */,
 			);
 			name = "Abstract Protocols";
 			sourceTree = "<group>";
@@ -376,6 +389,7 @@
 				B03562EB1DB357E500361924 /* EnemySpaceshipA.swift */,
 				B001493B1DBBEA0700FB961B /* Item.swift */,
 				B00149471DBC598600FB961B /* RollingRockC.swift */,
+				B0A9156C1DC03D7700C54937 /* EnemySpaceshipB.swift */,
 			);
 			name = "Game Models";
 			sourceTree = "<group>";
@@ -398,7 +412,6 @@
 				B0038BEC1C93EACD00870D97 /* AssetServices.swift */,
 				B07545941D848F710004E53B /* GameObjectServices.swift */,
 				B03125D41D9371CD000212A0 /* CollidingServices.swift */,
-				B08021301DAB27D6002AEC1F /* DynamicInt.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -408,6 +421,8 @@
 			children = (
 				B0EFE73F1C9660CC00807049 /* SKScene.swift */,
 				657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */,
+				B08021301DAB27D6002AEC1F /* DynamicInt.swift */,
+				B0A9156E1DC1A04000C54937 /* SKSpriteExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -547,6 +562,7 @@
 				B03BD5F41C706BC200D14F4C /* Main.storyboard in Resources */,
 				B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */,
 				B007F9631DB9E654002455D4 /* ShieldB-1.atlas in Resources */,
+				B0A9156B1DC03CEB00C54937 /* EnemySpaceshipB_right.atlas in Resources */,
 				B00149421DBC300B00FB961B /* CaptureB.atlas in Resources */,
 				B03562EA1DB2FB2E00361924 /* spaceship_left.atlas in Resources */,
 				B007F9551DB46A53002455D4 /* EnemySpaceshipA_right.atlas in Resources */,
@@ -559,6 +575,7 @@
 				B00149441DBC32B700FB961B /* ExplosionC.atlas in Resources */,
 				B007F9531DB46A3A002455D4 /* EnemySpaceshipA_left.atlas in Resources */,
 				B00149501DBDE8FC00FB961B /* CaptureC.atlas in Resources */,
+				B0A9156A1DC03CEB00C54937 /* EnemySpaceshipB_left.atlas in Resources */,
 				B00149401DBC28C300FB961B /* CaptureA.atlas in Resources */,
 				B03562E21DB1F2D200361924 /* Explosion0100.atlas in Resources */,
 				657459B31DAF313300200C68 /* IAP.storyboard in Resources */,
@@ -590,8 +607,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0A9156D1DC03D7700C54937 /* EnemySpaceshipB.swift in Sources */,
+				B00149541DBEE70F00FB961B /* LevelClass.swift in Sources */,
 				657AE7BF1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift in Sources */,
-				B03125D81D93A847000212A0 /* LevelClass.swift in Sources */,
 				B0EFE7401C9660CC00807049 /* SKScene.swift in Sources */,
 				B03BD62F1C7D8E5100D14F4C /* Background.swift in Sources */,
 				B001493C1DBBEA0700FB961B /* Item.swift in Sources */,
@@ -599,6 +617,7 @@
 				B03BD5EF1C706BC200D14F4C /* GameScene.swift in Sources */,
 				657AE7BD1DBC7F2100A38315 /* IAPContainerViewController.swift in Sources */,
 				B00487781C8D5D180061EC7F /* RollingRockA.swift in Sources */,
+				B00149521DBEE44E00FB961B /* LevelActor.swift in Sources */,
 				657AE7BB1DBC7DA000A38315 /* IAPTableViewController.swift in Sources */,
 				B0EFE7431C9665C500807049 /* NodeType.swift in Sources */,
 				B018AF831C8AC576000D68A6 /* Missle.swift in Sources */,
@@ -621,6 +640,7 @@
 				B08021311DAB27D6002AEC1F /* DynamicInt.swift in Sources */,
 				B03BD6211C713D4200D14F4C /* SpriteActor.swift in Sources */,
 				B080212F1DAB18A0002AEC1F /* UserStatsInfo.swift in Sources */,
+				B0A9156F1DC1A04000C54937 /* SKSpriteExtension.swift in Sources */,
 				B07545951D848F710004E53B /* GameObjectServices.swift in Sources */,
 				B0038BED1C93EACD00870D97 /* AssetServices.swift in Sources */,
 				B08021331DAB2F62002AEC1F /* Icon.swift in Sources */,

@@ -32,9 +32,14 @@ class AssetServices {
         _skTextures[GeneralGameSettings.GAMESCREEN_ICON_BOMB] = SKTexture(imageNamed: GeneralGameSettings.GAMESCREEN_ICON_BOMB);
         
         _skTextures[GeneralGameSettings.ENEMYA_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMYA_NAME);
+        _skTextures[GeneralGameSettings.ENEMYB_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMYB_NAME);
         
         _skTextures[GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME] = SKTexture(imageNamed: GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME);
         _skTextures[GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME);
+        
+        _skTextures[GeneralGameSettings.BACKGROUND_NAME] = SKTexture(imageNamed: GeneralGameSettings.BACKGROUND_NAME);
+        
+        
         
         
         for i in (0...GeneralGameSettings.BACKGROUND_PLANET_TOTAL){
@@ -51,6 +56,9 @@ class AssetServices {
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYA_TILTLEFT_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYA_TILTRIGHT_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYA_EXPLOSION);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYB_TILTLEFT_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYB_TILTRIGHT_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ENEMYB_EXPLOSION);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDA_NAME);
         
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDB_NAME);

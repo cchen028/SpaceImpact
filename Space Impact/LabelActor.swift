@@ -74,18 +74,20 @@ class LabelActor {
         }
     }
     
-    func FadeInAndOut(animationCompleted: @escaping () -> Void) {
+    func FadeInAndOut(animationCompleted: ((() -> Void)?)) {
         
         SetActive(true);
-        self.LabelNode.run(self.getLevelLabelAction(), completion: {self.SetActive(false); animationCompleted();});
+        self.LabelNode.run(self.getLevelLabelAction(), completion: {self.SetActive(false); animationCompleted?();});
     }
     
     fileprivate func getLevelLabelAction() -> SKAction{
         
-        let fadeInAnimation = SKAction.fadeAlpha(by: 0.8, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEIN));
-        let bufferAnimation = SKAction.fadeAlpha(by: 1, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEIN));
-        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEOUT));
-        let sequence = SKAction.sequence([fadeInAnimation,bufferAnimation, fadeOutAnimation]);
+        let fadeInAnimation = SKAction.fadeAlpha(by: 0, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEINOUT));
+        let fadeInAnimation1 = SKAction.fadeAlpha(by: 0.01, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEINOUT));
+        let bufferAnimation = SKAction.fadeAlpha(by: 0.7, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEINOUT));
+        let bufferAnimation2 = SKAction.fadeAlpha(by: 1, duration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEINOUT));
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(GeneralGameSettings.GAMESCREEN_LEVELLABEL_FADEINOUT));
+        let sequence = SKAction.sequence([fadeInAnimation,fadeInAnimation1,bufferAnimation,bufferAnimation2, fadeOutAnimation]);
         
         return sequence;
     }

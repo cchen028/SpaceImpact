@@ -13,6 +13,8 @@ struct GeneralGameSettings {
     static let SCREEN_WIDTH:Int = Int(GameScene.instance!.frame.width);
     static let SCREEN_EDGE_PADDINGS: CGFloat = 5;
     
+    static let BACKGROUND_NAME: String = "galaxy1";
+    
     static let TRANSITION_FADEIN :CGFloat = 1;
     static let TRANSITION_FADEOUT: CGFloat = 0.5;
     
@@ -37,6 +39,7 @@ struct GeneralGameSettings {
     static let GAMESCREEN_LEVELLABEL_FONTSIZE: CGFloat = 35;
     static let GAMESCREEN_LEVELLABEL_FADEIN: CGFloat = 1;
     static let GAMESCREEN_LEVELLABEL_FADEOUT: CGFloat = 0.5;
+    static let GAMESCREEN_LEVELLABEL_FADEINOUT: CGFloat = 1.5;
     static let MYSPACESHIP_CATEGORY: UInt32 = 0;
     
     
@@ -117,4 +120,17 @@ struct GeneralGameSettings {
     static let ENEMYA_TILTRIGHT_NAME:String = "EnemySpaceshipA_right";
     static let ENEMYA_MOVEBYX: CGFloat = 200;
     static let ENEMYA_Missle_Frequency:Double = 1;
+    
+    //ENEMY SPACESHIP B
+    static let ENEMYB_NAME:String = "EnemySpaceshipB";
+    static let ENEMYB_SPEED:CGFloat = 2;
+    static let ENEMYB_HEALTH:Int = 2;
+    static let ENEMYB_EXPLOSION:String = "ExplosionB";
+    static let ENEMYB_SPAWN: Double = 3;
+    static let ENEMYB_POINT: Int = 500;
+    static let ENEMYB_TILTLEFT_NAME:String = "EnemySpaceshipB_left";
+    static let ENEMYB_TILTRIGHT_NAME:String = "EnemySpaceshipB_right";
+    static let ENEMYB_MOVEBYX: CGFloat = 200;
+    static let ENEMYB_Missle_Frequency:Double = 1;
+    static let ENEMYB_MOVEMENT_TIMEPERFRAME: Double = 0.1;
 }

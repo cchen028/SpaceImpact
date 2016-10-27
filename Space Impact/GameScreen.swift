@@ -20,13 +20,15 @@ class GameScreen: NSObject,IStage {
     
     fileprivate var astroid:SKSpriteNode!;
     fileprivate var astroidAction: SKAction!;
-    fileprivate var _level:LevelClass;
+    fileprivate var _level:LevelActor;
     fileprivate var _collidingService:CollidingServices;
     fileprivate var _mySpaceship: Spaceship;
     
     var Name:String{get{return self._name}}
-    var Level:LevelClass{get{return self._level}}
+    var Level:LevelActor{get{return self._level}}
     var IsActive:Bool{get{return self._isActive}}
+    
+    var test:Int = 5000;
     
     override init(){
         self._name = GeneralGameSettings.GAMESCREEN_NAME;
@@ -50,7 +52,12 @@ class GameScreen: NSObject,IStage {
         self._level.Update();
         self._mySpaceship.Update();
         self._collidingService.Update();
-        
+        if UserStatsInfo.instance.Score.value > test{
+            self._level.Stop();
+            self._level.Level += 1;
+            self._level.Start(level:self._level.Level, animationCompleted: nil);
+            test = test * 2;
+        }
 //        for lightning in 0...9{
 //            
 //            if(lightning <= (UserStatsInfo.instance.Bomb.value - 1)){
@@ -101,26 +108,14 @@ class GameScreen: NSObject,IStage {
         for heart in self._life{
             heart.FadeIn();
         }
-
         
-        
-        
-
-//        for lightning in 0...(UserStatsInfo.instance.Bomb.value - 1){
-//            self._lightning[lightning].FadeIn();
-//        }
-//        
-//        for heart in 0...(UserStatsInfo.instance.Life.value - 1){
-//            self._life[heart].FadeIn();
-//        }
-        
-        self._level.StartLevel(level: 1);
+        self._level.Start(level:self._level.Level, animationCompleted: nil);
     }
     
     fileprivate func destroy(){
         self._gameScreenNode.removeFromParent();
         self._mySpaceship.SetActive(false);
-        self._level.Destroy();
+        self._level.Stop();
     }
     
 //    fileprivate func createLabels(){

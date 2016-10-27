@@ -11,10 +11,10 @@ import Foundation
 
 class CollidingServices {
     
-    fileprivate var _level:LevelClass;
+    fileprivate var _level:LevelActor;
     fileprivate var _spaceship:Spaceship;
     
-    init(level:LevelClass, spaceship:Spaceship){
+    init(level:LevelActor, spaceship:Spaceship){
         self._level = level;
         self._spaceship = spaceship;
     }
