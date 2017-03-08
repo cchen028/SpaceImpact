@@ -63,25 +63,14 @@ class EnemySpaceshipB: SpaceshipActor{
     }
     
     fileprivate func initializeMovementAction(){
-//        let tiltLeft = super.RunParelle(action1: SKAction.sequence([self._animateRight.reversed(),self._animateLeft]), action2: self._moveLeft!);
-//        tiltLeft.timingMode = SKActionTimingMode.easeInEaseOut;
-//        
-//        let tiltRight = super.RunParelle(action1: SKAction.sequence([self._animateLeft.reversed(), self._animateRight]), action2: self._moveRight!);
-//        tiltRight.timingMode = SKActionTimingMode.easeInEaseOut;
-        
         self._moveLeft = SKAction.sequence([self._animateRight.reversed(),self._animateLeft])
-       // self._moveLeft = SKAction.repeatForever(self._moveLeft!);
         self._moveLeft?.timingMode = SKActionTimingMode.easeInEaseOut;
-      //  self._moveLeft = SKAction.repeatForever(self._moveLeft!);
         
         self._moveRight = SKAction.sequence([self._animateLeft.reversed(), self._animateRight]);
         self._moveRight?.timingMode = SKActionTimingMode.easeInEaseOut;
         
-        
-        //self._movement = SKAction.sequence([tiltLeft,tiltRight]);
         self._movement = SKAction();
         self._movement = SKAction.repeatForever(self._movement!);
-        
     }
     
     fileprivate func misslesUpdate(){
@@ -96,28 +85,15 @@ class EnemySpaceshipB: SpaceshipActor{
         self._missleTimer.ToggleMissleTimer(isOn: isActive, targetSpaceship: self, missleFz: GeneralGameSettings.ENEMYA_Missle_Frequency);
         self.moveSpaceShip(isOn: isActive);
         super.SetActive(isActive);
-    
-        //var circle = SKShapeNode.init(circleOfRadius: 200);
         
-       // let circularMove = SKAction.follow(circle.path!, asOffset: false, orientToPath: true, duration: 5)
-       // let bezierPath = UIBezierPath(arcCenter: CGPoint(x:GameScene.instance!.frame.midX, y: GameScene.instance!.frame.maxY - 100), radius: 100, startAngle: CGFloat(M_PI_2), endAngle: CGFloat(M_PI_4), clockwise: true);
+        let isFromLeft = self.Position.x <= 0;
         
-        let bezierPath = UIBezierPath(arcCenter: CGPoint(x:0, y: GameScene.instance!.frame.midY * 1.7), radius: 200, startAngle:CGFloat(M_PI_2) , endAngle:CGFloat(0) , clockwise: true);
+        let bezierPath = isFromLeft ? UIBezierPath(arcCenter: CGPoint(x:0, y: 0), radius: self.Position.x + 250, startAngle:CGFloat(M_PI_2 * 3) , endAngle:CGFloat(0) , clockwise: true) : UIBezierPath(arcCenter: CGPoint(x:0, y: 0), radius: CGFloat(250) - (self.Position.x - CGFloat(GeneralGameSettings.SCREEN_WIDTH)), startAngle:CGFloat(M_PI_2 * 3) , endAngle:CGFloat(M_PI) , clockwise: false);
+        let circularMove = SKAction.group([SKAction.follow(bezierPath.cgPath, asOffset: true, orientToPath: true, duration: 2), isFromLeft ? self._moveLeft! : self._moveRight!]);
+        let rotateMove = SKAction.group([SKAction.rotate(toAngle: CGFloat(M_PI), duration: 1)]);
+        let dropMove = SKAction.move(to: CGPoint(x:GameScene.instance!.frame.midX, y:-30), duration: 2);
         
-      //  let bPath = UIBezierPath(rect: CGRect(x: 100, y: 100, width: 20, height: 30));
-        
-        let circularMove = SKAction.group([SKAction.follow(bezierPath.cgPath, asOffset: false, orientToPath: true, duration: 2), self._moveLeft!]);
-      //  let rectMove = SKAction.follow(bPath.cgPath, asOffset: true, orientToPath: true, duration: 2)
-        
-        
-       // let dropMove = SKAction.move(to: CGPoint(x: GameScene.instance!.frame.midX, y: -30 ), duration: 2);
-        let dropMove = SKAction.group([SKAction.rotateVersus(destPoint: CGPoint(x: GameScene.instance!.frame.midX, y: GameScene.instance!.frame.minY ), position: self.Position, durationRotation: 0.5, durationMove: 2), self._moveLeft!]);
-        //dropMove.timingMode = SKActionTimingMode.easeIn;
-        
-        //let dropMove2 = SKAction.rotateVersus(destPoint: CGPoint(x: GameScene.instance!.frame.midX, y: -30 ), position: self.Position, durationRotation: 1, durationMove: 5);
-        
-        
-        let combinationMovement = SKAction.sequence([circularMove, dropMove]);
+        let combinationMovement = SKAction.sequence([circularMove,rotateMove, dropMove]);
         
         if(isActive){
             self.Sprite.run(combinationMovement);
@@ -131,10 +107,6 @@ class EnemySpaceshipB: SpaceshipActor{
     
     override func Update(){
         super.Update();
-//        if(self.IsActive)
-//        {
-//            self.Spaceship.position.y -= 2;
-//        }
     }
     
     override func Explode() {

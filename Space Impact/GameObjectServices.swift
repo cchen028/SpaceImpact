@@ -57,6 +57,20 @@ class GameObjectServices {
         return position;
     }
     
+    func GenerateRandomPositionFromSide() -> CGPoint{
+        var randomX = generateRandomNumber(GeneralGameSettings.SCREEN_WIDTH);
+        let side = generateRandomNumber(2, zeroBase: true);
+        
+        if(side == 1){
+            randomX = 0 - (generateRandomNumber(10) + 15);
+        }else{
+            randomX = GeneralGameSettings.SCREEN_WIDTH + (generateRandomNumber(10) + 15);
+        }
+        let randomY = GeneralGameSettings.SCREEN_HEIGHT - generateRandomNumber(GeneralGameSettings.SCREEN_HEIGHT/2);
+        let position = CGPoint(x:randomX, y:randomY);
+        return position;
+    }
+    
     func GetSpaceshipInitialPos() -> CGPoint{
         return CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.minY + 50);
     }
@@ -69,9 +83,10 @@ class GameObjectServices {
         return CGFloat(generateRandomNumber(5))/5;
     }
     
-    fileprivate func generateRandomNumber(_ range:Int) -> Int{
+    fileprivate func generateRandomNumber(_ range:Int, zeroBase:Bool = false) -> Int{
+        
         var randomX = Int(arc4random_uniform(UInt32(range)));
-        randomX = max(1,randomX);
+        randomX = max(zeroBase ? 0 : 1,randomX);
         return randomX;
     }
 }

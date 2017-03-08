@@ -31,13 +31,14 @@ class CollidingServices {
         }
         
         let spaceObjects = self._level.Enemies;
-        for mIndex in 0...(self._spaceship._missles.count - 1)	{
-            for eachNode in (spaceObjects){
+        for eachNode in (spaceObjects){
+            for mIndex in 0...(self._spaceship._missles.count - 1)	{
                 if let spaceshipActor = eachNode as? SpaceshipActor{
                     if(spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
                     {
                         self.missleCollideUpdate(spaceshipActor, missleIndex:mIndex);
                         self.selfCollideUpdate(spaceActor: spaceshipActor);
+                       // break;
                     }
                 }
             }
@@ -94,7 +95,22 @@ class CollidingServices {
         if(collided)
         {
             spaceActor.Explode();
-            self._spaceship.Health = max(1, self._spaceship.Health - 1);
+            spaceshipDamageHitUpdate(damage: 1);
+           // self._spaceship.Health = max(1, self._spaceship.Health - 1);
         }
+    }
+    
+    fileprivate func spaceshipDamageHitUpdate(damage:Int){
+        var curHealthLeft = self._spaceship.Health - damage;
+        if(curHealthLeft < 1){
+            self._spaceship.Explode();
+            UserStatsInfo.instance.Life.value -= 1;
+            self._spaceship.Respawn(isOn: true);
+        }
+        else{
+            self._spaceship.Health = curHealthLeft;
+        }
+        
+        
     }
 }

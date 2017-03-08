@@ -28,7 +28,7 @@ class GameScreen: NSObject,IStage {
     var Level:LevelActor{get{return self._level}}
     var IsActive:Bool{get{return self._isActive}}
     
-    var test:Int = 5000;
+    fileprivate var _levelThres:Int;
     
     override init(){
         self._name = GeneralGameSettings.GAMESCREEN_NAME;
@@ -39,6 +39,7 @@ class GameScreen: NSObject,IStage {
         self._labels = [Label]();
         self._life = [Icon]();
         self._lightning = [Icon]();
+        self._levelThres = GeneralGameSettings.GAMELEVEL_THRES;
         
         GameObjectServices.instance.CreateGameScreen(gameScreen: self._gameScreenNode);
         
@@ -48,37 +49,19 @@ class GameScreen: NSObject,IStage {
         self.createLabels();
     }
     
-    func Update(){
-        self._level.Update();
+    func Update(_ currentTime: TimeInterval){
+        self._level.Update(currentTime);
         self._mySpaceship.Update();
         self._collidingService.Update();
-        if UserStatsInfo.instance.Score.value > test{
+        if UserStatsInfo.instance.Score.value > _levelThres{
             self._level.Stop();
+            for enemy in self._level.Enemies{
+                enemy.Explode();
+            }
             self._level.Level += 1;
             self._level.Start(level:self._level.Level, animationCompleted: nil);
-            test = test * 2;
+            _levelThres = _levelThres + (Int)((Double)(_levelThres) * 1.3);
         }
-//        for lightning in 0...9{
-//            
-//            if(lightning <= (UserStatsInfo.instance.Bomb.value - 1)){
-//                self._lightning[lightning].FadeIn(customTime: 0.25);
-//            }
-//            else{
-//                self._lightning[lightning].FadeOut(customTime: 0.25);
-//            }
-//        }
-//        
-//        for life in 0...9{
-//            
-//            if(life <= (UserStatsInfo.instance.Life.value - 1)){
-//                self._life[life].FadeIn(customTime: 0.25);
-//            }
-//            else{
-//                self._life[life].FadeOut(customTime: 0.25);
-//            }
-//        }
-//
-        
     }
     
     func SetActive(_ isActive: Bool) {
@@ -117,28 +100,6 @@ class GameScreen: NSObject,IStage {
         self._mySpaceship.SetActive(false);
         self._level.Stop();
     }
-    
-//    fileprivate func createLabels(){
-//        let lblScore = Label(displayText: "Score: 0", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
-//        
-//        UserStatsInfo.instance.Score.bind {
-//            lblScore.DisplayText = "Score: " + String($0);
-//        }
-//        
-//        self._labels.append(lblScore);
-//         
-//        for i in 1...10{
-//            let iconBomb = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_BOMB, position: CGPoint(x:20, y:GameScene.instance!.frame.maxY - CGFloat(27 * i)));
-//            self._lightning.append(iconBomb);
-//        }
-//        
-//        for i in 1...10{
-//            let iconLife = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_LIFE, position: CGPoint(x:GameScene.instance!.frame.maxX - 25, y:GameScene.instance!.frame.maxY - CGFloat(27 * i)));
-//            
-//            self._life.append(iconLife);
-//        }
-//        
-//    }
     
     fileprivate func createLabels(){
         
@@ -200,33 +161,6 @@ class GameScreen: NSObject,IStage {
         
         self._mySpaceship.Direction = direction;
     }
-
-    
-//    func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool)
-//    {
-//        if !self._isActive
-//        {
-//            return;
-//        }
-//        
-//        if(!isTouched)
-//        {
-//            self._mySpaceship.Direction = MoveDirection.none;
-//            self._mySpaceship.IsTouched = false;
-//            return;
-//        }
-//        
-//        if(self._mySpaceship.Spaceship.frame.contains(position)){
-//            self._mySpaceship.IsTouched = true;
-//        }
-//        
-//        if((self._mySpaceship.IsTouched && GameConfiguration.instance.MoveMentType == .FreeDrag)){
-//            self._mySpaceship.Position = position;
-//        }
-//        
-//        self._mySpaceship.Direction = direction;
-//
-//    }
     
     func Notify(_ targetStage:String){}
 }

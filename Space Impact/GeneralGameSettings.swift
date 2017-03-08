@@ -53,6 +53,7 @@ struct GeneralGameSettings {
     static let ENEMY_CATEGORY: UInt32 = 1;
     
     // GENERAL
+    static let GAMELEVEL_THRES: Int = 10000;
     
     static let EXPLOSIONC_NAME:String = "ExplosionC";
     
@@ -61,7 +62,7 @@ struct GeneralGameSettings {
     static let ITEM_SHIELD_FADEINOUT:CGFloat = 0.25;
     static let ITEM_LIGHTNING_NAME:String = "Item-Lightning";
     static let ITEM_HEART_NAME:String = "Item-Heart";
-    
+    static let ITEM_SCORE_THRES: Int = 10000;
     static let ITEM_CAPTUREA_NAME:String = "CaptureA";
     static let ITEM_CAPTUREB_NAME:String = "CaptureB";
     

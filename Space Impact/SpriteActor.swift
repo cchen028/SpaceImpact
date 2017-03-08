@@ -191,10 +191,6 @@ import SpriteKit
     func GetFadeOut(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN) -> SKAction{
         let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(customTime));
         return fadeOutAnimation;
-//        if self.alpha > 0
-//        {
-//            self.run(fadeOutAnimation, completion:{self.SetActive(false)});
-//        }
     }
     
     open func SyncPositionWith(actor: SpriteActor, offsetX: CGFloat = 0, offsetY: CGFloat = 0){

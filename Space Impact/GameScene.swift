@@ -113,12 +113,9 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        
+        super.touchesEnded(touches, with: event);
         let touch = touches.first;
-        
         gameScreen?.HandlesTouch(position: touch!.location(in: self), direction: MoveDirection.none, isTouched: false);
-        
     }
     
     
@@ -142,7 +139,7 @@ class GameScene: SKScene {
         
         
         if gameScreen!.IsActive {
-            gameScreen?.Update();
+            gameScreen?.Update(currentTime);
         }
        
         /* Called before each frame is rendered */

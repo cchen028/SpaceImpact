@@ -22,16 +22,13 @@ class ItemActor {
     var _item_explosion:SpriteActor;
     
     fileprivate var _speed:CGFloat;
-    //fileprivate var _damage:CGFloat;
     fileprivate var _initialPosition: CGPoint;
-    // fileprivate var _missleType: MissleType;
     fileprivate var _point:Int;
 
     
     var Item:SpriteActor{get{return self._item}}
     var ItemExplosion:SpriteActor{get{return self._item_explosion}}
     var Speed:CGFloat { get{return self._speed} set(val){self._speed = val}}
-    //var Damage:CGFloat{get{return self._damage} set(val){self._damage = val}}
     var InitialPosition: CGPoint{get{return self._initialPosition} set(val){self._initialPosition = val}}
     var Point:Int {get{return self._point}}
 
@@ -40,11 +37,9 @@ class ItemActor {
     init(itemName:String,exposionName:String, itemType: ActorType,position:CGPoint, speed:CGFloat, point:Int = 1000) {
         self._speed = speed;
         self._point = point;
-      //  self._damage = damage;
         self._initialPosition = position;
         self._item = SpriteActor(imageName: itemName, position: position, scale: 1, opacity: 1, type: itemType);
         self._item_explosion = SpriteActor(atlasName: exposionName, position: position, scale: 1, opacity: 0, type: ActorType.Explosion, repeatCount: 1, startAnimating: false);
-       // self._item = SpriteActor(atlasName: itemName, position: position, scale: 1, opacity: 1, type: itemType, repeatCount: -1, startAnimating: true)
         self._item.name = itemType.rawValue;
         self._item.zPosition = 3;
     }
@@ -52,9 +47,7 @@ class ItemActor {
     init(atlasItemName:String,exposionName:String, itemType: ActorType, position:CGPoint, speed:CGFloat, point:Int = 1000){
         self._speed = speed;
         self._point = point;
-        //  self._damage = damage;
         self._initialPosition = position;
-        //self._item = SpriteActor(imageName: itemName, position: position, scale: 1, opacity: 1, type: itemType);
         self._item = SpriteActor(atlasName: atlasItemName, position: position, scale: 1, opacity: 1, type: itemType, repeatCount: -1, startAnimating: true)
         self._item_explosion = SpriteActor(atlasName: exposionName, position: position, scale: 1, opacity: 0, type: ActorType.Explosion, repeatCount: 1, startAnimating: false);
         self._item.name = itemType.rawValue;
@@ -63,9 +56,7 @@ class ItemActor {
     
     func Explode(){
         self._item.SetActive(false);
-        
         self._item_explosion.alpha = 1;
-        //self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
         self._item_explosion.RunAnimation(animationComplete: {
             self._item_explosion.removeAllActions();
         });
@@ -85,16 +76,10 @@ class ItemActor {
             {
                 self._item.SetActive(false);
             }
-    
-        
     }
     
     func SetActive(_ isActive: Bool) {
         self._item.SetActive(isActive);
         self._item_explosion.SetActive(isActive);
     }
-    
-//    func IsCollidedWith(_ actor: SpaceshipActor) -> Bool{
-//        return self._item.IsActive && actor.Spaceship.IsActive && self._item.frame.intersects(actor.Spaceship.frame);
-//    }
 }

@@ -16,48 +16,45 @@ class LevelClass: LevelActor {
     }
     
     
+    
     override func Start(level:Int, animationCompleted: ((() -> Void)?)){
         let cur = self;
         self._level = level;
+        self._isActive = false;
         super.Start(level: level, animationCompleted: {
             let curlevel = level > 4 ? 4: level;
             let selectorMe = "Level"+String(curlevel);
+            self._isActive = true;
             cur._levelCreateTimer = Timer.scheduledTimer(timeInterval: 0, target: cur, selector: NSSelectorFromString(selectorMe), userInfo: nil, repeats: false);
         });
     }
     
-    
-    override func Update(){
-        super.Update();
+    override func Update(_ currentTime: TimeInterval){
+        if(self._isActive)
+        {
+            super.Update(currentTime);
+        }
     }
     
-    
-    
     func Level1(){
-        self.ToggleEnemySpaceshipB(isOn: true, num:3);
-       // self.ToggleRollingRockA(isOn: true, num:3);
-       // self.ToggleRollingRockB(isOn: true, num:3);
+        self.ToggleRollingRockA(isOn: true, num:2);
     }
     
     func Level2(){
-        self.ToggleRollingRockA(isOn: true, num:3);
-       // self.ToggleRollingRockB(isOn: true, num:3);
-      //  self.ToggleEnemySpaceshipA(isOn: true, num:3);
+        self.ToggleRollingRockA(isOn: true, num:2);
+        self.ToggleRollingRockB(isOn: true, num:2);
     }
     
     func Level3(){
-//        self.ToggleRollingRockA(isOn: true, num:3);
-//        self.ToggleRollingRockB(isOn: true, num:3);
-//        self.ToggleEnemySpaceshipA(isOn: true, num:1);
-        self.ToggleEnemySpaceshipB(isOn: true, num:3);
+        self.ToggleRollingRockA(isOn: true, num:2);
+        self.ToggleRollingRockB(isOn: true, num:2);
+        self.ToggleEnemySpaceshipA(isOn: true, num:1);
     }
     
     func Level4(){
-//        self.ToggleRollingRockA(isOn: true, num:1);
-//        self.ToggleRollingRockB(isOn: true, num:1);
-//        self.ToggleEnemySpaceshipA(isOn: true, num:1);
-        self.ToggleEnemySpaceshipB(isOn: true, num:3);
+        self.ToggleRollingRockA(isOn: true, num:1);
+        self.ToggleRollingRockB(isOn: true, num:1);
+        self.ToggleEnemySpaceshipA(isOn: true, num:1);
+        self.ToggleEnemySpaceshipB(isOn: true, num:2);
     }
-
-
 }

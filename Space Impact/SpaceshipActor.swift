@@ -118,7 +118,6 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     func Explode(){
         self._explosion.alpha = 1;
-       // self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
         self._explosion.RunAnimation(animationComplete: {
             self._explosion.removeAllActions();
         });
@@ -191,7 +190,6 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     fileprivate func destroy(){
         self._spaceship.SetActive(false);
-        //self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
         self._spaceship_left?.SetActive(false);
         self._spaceship_right?.SetActive(false);
         self._explosion.SetActive(false);

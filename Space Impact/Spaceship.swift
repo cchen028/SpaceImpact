@@ -22,10 +22,12 @@ class Spaceship: SpaceshipActor{
     fileprivate var _shield:SpriteActor;
     fileprivate var _shield2:SpriteActor;
     fileprivate var _shield1:SpriteActor;
+    fileprivate var _respawnTimer: Timer?;
     
     
     fileprivate var _previousMovementIndex: Int;
     
+    var RespawnTimer: Timer?;
     var Direction:MoveDirection{get{return self._moveDirection} set(val){self._moveDirection = val}}
     var IsTouched:Bool{get{return self._isTouched} set(val){self._isTouched = val}}
     
@@ -40,8 +42,6 @@ class Spaceship: SpaceshipActor{
         self._tiltRight = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_TILTRIGHT_NAME, positionX: position.x, positionY: position.y);
         self._isTouched = false;
         self._thruster = SpriteActor(imageName: GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME, positionX: position.x, positionY: position.y-25);
-        
-        //self._shield = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDA_NAME, positionX: position.x, positionY: position.y);
         self._shield = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
         self._shield.zPosition = 15;
         self._shield2 = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_02_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
@@ -50,9 +50,6 @@ class Spaceship: SpaceshipActor{
         self._shield1.zPosition = 15;
         super.init(imageName: GeneralGameSettings.MYSPACESHIP_NAME, explosionName:GeneralGameSettings.MYSPACESHIP_EXPLOSION, health: 1, speed: GeneralGameSettings.MYSPACESHIP_SPEED, damage: 1, position: position, scale:1, type:ActorType.MySpaceship, isSpaceShipAnimation: false, spaceshipHasAnimation:true);
         self.Health = 1;
-        
-        
-        
         self.InitializeMissles();
     }
     
@@ -63,11 +60,10 @@ class Spaceship: SpaceshipActor{
     }
     
     override func Explode() {
-        UserStatsInfo.instance.Life.value -= 1;
+        self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: GeneralGameSettings.MyMissle_Frequency);
         self._thruster.SetActive(false);
         self._tiltLeft.SetActive(false);
         self._tiltRight.SetActive(false);
-        
         super.Explode();
     }
     
@@ -104,6 +100,7 @@ class Spaceship: SpaceshipActor{
         self._shield2.alpha = 0;
         self._shield1.alpha = 0;
         self._shield.alpha = 0;
+        self.Position = self._initialPosition;
         super.SetActive(isActive);
     }
     
@@ -113,6 +110,22 @@ class Spaceship: SpaceshipActor{
     
     override func StopMissle(){
         super.StopMissle();
+    }
+    
+    func Respawn(isOn: Bool){
+        
+        if(isOn){
+            _respawnTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.respawn), userInfo: nil, repeats: false);
+        }
+        else{
+            _respawnTimer!.invalidate();
+        }
+    }
+    
+    func respawn(){
+        if(UserStatsInfo.instance.Life.value > 0){
+            self.SetActive(true);
+        }
     }
         
     fileprivate func spaceshipMovementUpdate(){
@@ -163,9 +176,9 @@ class Spaceship: SpaceshipActor{
         }
         else if health == 2, self._shield1.alpha == CGFloat(0){
             // self._shield1.SetActive(true)1
-           // self._shield2.alpha = 0;
+            // self._shield2.alpha = 0;
             self._shield1.alpha = 0.01;
-            //self._shield.alpha = 0;
+            // self._shield.alpha = 0;
             
             
             self._shield.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
@@ -173,7 +186,7 @@ class Spaceship: SpaceshipActor{
             self._shield1.FadeIn(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield1.RunAnimation {};
             
-            //self._shield1.run(SKAction.group([self._shield1.GetFadeIn(), self._shield1._spriteAction]));
+           // self._shield1.run(SKAction.group([self._shield1.GetFadeIn(), self._shield1._spriteAction]));
            // self._shield1.RunAnimation {};
            // self._shield1.FadeIn();
            // self._shield.FadeOut();
@@ -184,7 +197,7 @@ class Spaceship: SpaceshipActor{
             self._shield2.alpha = 0;
             self._shield1.alpha = 0.99;
             self._shield.alpha = 0;
-            //self._shield1.RunAnimation {};
+            // self._shield1.RunAnimation {};
             self._shield1.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT );
         }
 

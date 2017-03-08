@@ -24,6 +24,7 @@ protocol ISpaceship {
     
     
     func SetActive(_ isActive:Bool);
+    func Explode();
     func Update();
     func AddMissle();
     func StopMissle();

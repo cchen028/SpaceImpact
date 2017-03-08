@@ -22,7 +22,7 @@ class LevelActor: NSObject {
     
     fileprivate var _enemies:[ISpaceship];
     fileprivate var _items:[ItemActor];
-    fileprivate var _isActive: Bool;
+    internal var _isActive: Bool;
     internal var _level:Int;
     fileprivate var _rollingRockASpawnTimer: Timer?;
     fileprivate var _rollingRockBSpawnTimer: Timer?;
@@ -30,8 +30,11 @@ class LevelActor: NSObject {
     fileprivate var _eneynySpaceshipBSpawnTimer: Timer?;
     internal var _levelCreateTimer: Timer?;
     fileprivate var _lblLevel: Label;
-    
     internal var _background: SpriteActor?;
+    fileprivate var _itemScore: Int;
+    
+    
+    var _enemySpaceshipBTimer:SpawnTimer?;
     
     
     var Level:Int{get{return self._level} set(val){self._level = val}}
@@ -44,12 +47,15 @@ class LevelActor: NSObject {
         self._background = SpriteActor(imageName: GeneralGameSettings.BACKGROUND_NAME, positionX: GameScene.instance!.frame.maxX, positionY: GameScene.instance!.frame.minY);
         self._background?.alpha = 0;
         self._background?.zPosition = -20;
-        //self._background?.size = GameScene.instance!.frame.size;
         self._enemies = [ISpaceship]();
         self._items = [ItemActor]();
         self._isActive = false;
         self._level = 1;
         self._lblLevel = Label(displayText: "LEVEL ", position: CGPoint(x:GameScene.instance!.frame.midX, y: GameScene.instance!.frame.midY), fontSize: GeneralGameSettings.GAMESCREEN_LEVELLABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
+        
+        self._enemySpaceshipBTimer = SpawnTimer(interval: 3000);
+        self._itemScore = GeneralGameSettings.ITEM_SCORE_THRES;
+        
         super.init();
         
         self.initializeRollingRockA(num:20);
@@ -77,7 +83,7 @@ class LevelActor: NSObject {
         
     }
     
-    func Update(){
+    func Update(_ currentTime: TimeInterval){
         for obj in self._enemies{
             if let enemy = obj as? SpaceshipActor {
                 enemy.Update();
@@ -89,38 +95,19 @@ class LevelActor: NSObject {
                 item.Update();
             }
         }
+        
+        for item in self._items{
+            if UserStatsInfo.instance.Score.value > self._itemScore {
+                item.Item.position = GameObjectServices.instance.GenerateRandomPosition();
+                item.SetActive(true);
+                self._itemScore += GeneralGameSettings.ITEM_SCORE_THRES;
+            }
+        }
     }
-    
-//    func InitializeRollingRockA(num: Int){
-//        for _ in 1...num{
-//            let tempRock = RollingRockA(position:GameObjectServices.instance.GenerateRandomPosition());
-//            self._enemies.append(tempRock);
-//        }
-//    }
-//        
-//    func InitializeRollingRockB(num: Int){
-//        for _ in 1...num{
-//            let tempRock = RollingRockB(position:GameObjectServices.instance.GenerateRandomPosition());
-//            self._enemies.append(tempRock);
-//        }
-//    }
-//
-//    
-//    func InitializeEnemySpaceshipA(num: Int){
-//        for _ in 1...num{
-//            let tempRock = EnemySpaceshipA(position:GameObjectServices.instance.GenerateRandomPosition());
-//            self._enemies.append(tempRock);
-//        }
-//    }
-
     
     func ToggleRollingRockA(isOn: Bool, num:Int){
         if(isOn){
-            
-         //   _rollingRockASpawnTimer = Timer.scheduledTimer(timeInterval: 0, target: cur, selector: NSSelectorFromString(selectorMe), userInfo: nil, repeats: false);
-            
-            
-            _rollingRockASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector: "SpawnRollingRockA", userInfo: num, repeats: true);
+            _rollingRockASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector:  #selector(LevelActor.SpawnRollingRockA), userInfo: num, repeats: true);
         }
         else{
             _rollingRockASpawnTimer!.invalidate();
@@ -129,7 +116,7 @@ class LevelActor: NSObject {
     
     func ToggleRollingRockB(isOn: Bool, num:Int){
         if(isOn){
-            _rollingRockBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: "SpawnRollingRockB", userInfo: num, repeats: true);
+            _rollingRockBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: #selector(LevelActor.SpawnRollingRockB), userInfo: num, repeats: true);
         }
         else{
             _rollingRockBSpawnTimer!.invalidate();
@@ -138,7 +125,7 @@ class LevelActor: NSObject {
     
     func ToggleEnemySpaceshipA(isOn: Bool, num:Int){
         if(isOn){
-            _eneynySpaceshipASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: "SpawnEnemySpaceshipA", userInfo: num, repeats: true);
+            _eneynySpaceshipASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: #selector(LevelActor.SpawnEnemySpaceshipA), userInfo: num, repeats: true);
         }
         else{
             _eneynySpaceshipASpawnTimer!.invalidate();
@@ -148,7 +135,7 @@ class LevelActor: NSObject {
     func ToggleEnemySpaceshipB(isOn: Bool, num:Int){
         if(isOn){
             
-            _eneynySpaceshipBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ENEMYB_SPAWN, target: self, selector: "SpawnEnemySpaceshipB", userInfo: num, repeats: true);
+            _eneynySpaceshipBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ENEMYB_SPAWN, target: self, selector: #selector(LevelActor.SpawnEnemySpaceshipB), userInfo: num, repeats: true);
         }
         else{
             _eneynySpaceshipBSpawnTimer!.invalidate();
@@ -158,6 +145,7 @@ class LevelActor: NSObject {
     func SpawnRollingRockA(){
         var num = 0;
         let total = _rollingRockASpawnTimer?.userInfo as? Int
+        
         for obj in self._enemies{
             if var rollingRockA = obj as? RollingRockA , !rollingRockA.IsActive {
                 rollingRockA.Position = GameObjectServices.instance.GenerateRandomPosition();
@@ -202,13 +190,7 @@ class LevelActor: NSObject {
             }
         }
         
-        for item in self._items{
-            if !item._item.IsActive {
-                item.Item.position = GameObjectServices.instance.GenerateRandomPosition();
-                item.SetActive(true);
-                
-            }
-        }
+
         
     }
     
@@ -217,7 +199,7 @@ class LevelActor: NSObject {
         let total = _eneynySpaceshipBSpawnTimer?.userInfo as? Int
         for obj in self._enemies{
             if var enemySpaceshipB = obj as? EnemySpaceshipB , !enemySpaceshipB.IsActive {
-                enemySpaceshipB.Position = GameObjectServices.instance.GenerateRandomPosition();
+                enemySpaceshipB.Position = GameObjectServices.instance.GenerateRandomPositionFromSide();
                 enemySpaceshipB.SetActive(true);
                 num += 1;
                 if(total == nil || num == total)

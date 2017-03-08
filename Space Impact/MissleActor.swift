@@ -15,7 +15,6 @@ class MissleActor: IMissle {
     fileprivate var _speed:CGFloat;
     fileprivate var _damage:CGFloat;
     fileprivate var _initialPosition: CGPoint;
-   // fileprivate var _missleType: MissleType;
     
     var Missle:SpriteActor{get{return self._missle}}
     var Speed:CGFloat { get{return self._speed} set(val){self._speed = val}}
