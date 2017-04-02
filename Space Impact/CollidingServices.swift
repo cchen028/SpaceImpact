@@ -95,7 +95,9 @@ class CollidingServices {
         if(collided)
         {
             spaceActor.Explode();
-            spaceshipDamageHitUpdate(damage: 1);
+            if(!self._spaceship.IsInvincible){
+                spaceshipDamageHitUpdate(damage: 1);
+            }
            // self._spaceship.Health = max(1, self._spaceship.Health - 1);
         }
     }
@@ -105,7 +107,7 @@ class CollidingServices {
         if(curHealthLeft < 1){
             self._spaceship.Explode();
             UserStatsInfo.instance.Life.value -= 1;
-            self._spaceship.Respawn(isOn: true);
+            self._spaceship.Respawn();
         }
         else{
             self._spaceship.Health = curHealthLeft;

@@ -56,6 +56,7 @@ struct GeneralGameSettings {
     static let GAMELEVEL_THRES: Int = 10000;
     
     static let EXPLOSIONC_NAME:String = "ExplosionC";
+    static let EXPLOSIOND_NAME:String = "ExplosionD";
     
     // Items
     static let ITEM_SHIELD_NAME:String = "Item-Shield";
@@ -76,7 +77,7 @@ struct GeneralGameSettings {
     static let MYSPACESHIP_RIGHT_NAME:String = "spaceship-1_right";
     static let MYSPACESHIP_THRUSTER_NAME:String = "thruster01";
     static let MYSPACESHIP_SPEED: CGFloat = 7;
-    static let MYSPACESHIP_EXPLOSION: String = "Explosion0100";
+    static let MYSPACESHIP_EXPLOSION: String = "ExplosionD";
     static let MYSPACESHIP_TILTLEFT_NAME:String = "spaceship_left";
     static let MYSPACESHIP_TILTRIGHT_NAME:String = "spaceship_right";
     static let MYSPACESHIP_SHIEDA_NAME:String = "ShieldA";

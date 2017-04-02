@@ -23,6 +23,11 @@ class Spaceship: SpaceshipActor{
     fileprivate var _shield2:SpriteActor;
     fileprivate var _shield1:SpriteActor;
     fileprivate var _respawnTimer: Timer?;
+    fileprivate var _invincibleTimer: Timer?;
+    
+    fileprivate var _isInvincible:Bool;
+    fileprivate var _invicibleDim:Bool;
+    fileprivate var _alpha: CGFloat;
     
     
     fileprivate var _previousMovementIndex: Int;
@@ -30,6 +35,7 @@ class Spaceship: SpaceshipActor{
     var RespawnTimer: Timer?;
     var Direction:MoveDirection{get{return self._moveDirection} set(val){self._moveDirection = val}}
     var IsTouched:Bool{get{return self._isTouched} set(val){self._isTouched = val}}
+    var IsInvincible:Bool{get{return self._isInvincible} set(val){self._isInvincible = val}}
     
     init(position:CGPoint)
     {
@@ -48,6 +54,9 @@ class Spaceship: SpaceshipActor{
         self._shield2.zPosition = 15;
         self._shield1 = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_01_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
         self._shield1.zPosition = 15;
+        self._isInvincible = false;
+        self._invicibleDim = false;
+        self._alpha = 0;
         super.init(imageName: GeneralGameSettings.MYSPACESHIP_NAME, explosionName:GeneralGameSettings.MYSPACESHIP_EXPLOSION, health: 1, speed: GeneralGameSettings.MYSPACESHIP_SPEED, damage: 1, position: position, scale:1, type:ActorType.MySpaceship, isSpaceShipAnimation: false, spaceshipHasAnimation:true);
         self.Health = 1;
         self.InitializeMissles();
@@ -68,20 +77,10 @@ class Spaceship: SpaceshipActor{
     }
     
     override func Update(){
-        if(GameConfiguration.instance.MoveMentType == .Classic){
-            self.spaceshipMovementUpdate();
-        }
-        self.animateSpaceship();
+        self.movementUpdate();
         self.shieldUpdate(health:self.Health);
-        
-        self._tiltLeft.SyncPositionWith(actor: self.Spaceship);
-        self._tiltRight.SyncPositionWith(actor: self.Spaceship);
-        
-        self._shield2.SyncPositionWith(actor: self.Spaceship);
-        self._shield1.SyncPositionWith(actor: self.Spaceship);
-        self._shield.SyncPositionWith(actor: self.Spaceship);
-        self._thruster.SyncPositionWith(actor: self.Spaceship, offsetX:0,offsetY:-25);
-        
+        self.positionUpdate();
+        self.invincibleUpdate();
         
         super.Update();
     }
@@ -100,6 +99,7 @@ class Spaceship: SpaceshipActor{
         self._shield2.alpha = 0;
         self._shield1.alpha = 0;
         self._shield.alpha = 0;
+        self._alpha = 0;
         self.Position = self._initialPosition;
         super.SetActive(isActive);
     }
@@ -112,47 +112,98 @@ class Spaceship: SpaceshipActor{
         super.StopMissle();
     }
     
-    func Respawn(isOn: Bool){
-        
-        if(isOn){
-            _respawnTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.respawn), userInfo: nil, repeats: false);
-        }
-        else{
-            _respawnTimer!.invalidate();
+    
+    //Public Methods
+    func Respawn(){
+            _respawnTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.respawnTimerCallback), userInfo: nil, repeats: false);
+    }
+    
+    func Invincible(seconds:Double)
+    {
+        _invincibleTimer = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(self.invincibleTimerCallback), userInfo: nil, repeats: false);
+    }
+    
+    func invincibleTimerCallback(){
+        self._isInvincible = false;
+    }
+    
+    func respawnTimerCallback(){
+        if(UserStatsInfo.instance.Life.value > 0){
+            self.SetActive(true);
+            self.Invincible(seconds: 3);
+            self._isInvincible = true;
         }
     }
     
-    func respawn(){
-        if(UserStatsInfo.instance.Life.value > 0){
-            self.SetActive(true);
-        }
-    }
-        
-    fileprivate func spaceshipMovementUpdate(){
-        switch self._moveDirection{
-        case .left:
-            if(self.Spaceship.position.x  > (self.Spaceship.Width / 2))
-            {
-                self.Spaceship.position.x -= self.Speed;
-            }
+    // Private Methods
+    fileprivate func movementUpdate(){
+        if(GameConfiguration.instance.MoveMentType == .Classic){
+            switch self._moveDirection{
+            case .left:
+                if(self.Spaceship.position.x  > (self.Spaceship.Width / 2))
+                {
+                    self.Spaceship.position.x -= self.Speed;
+                }
+                
                 break;
-        case .none, .inActive, .active:
-            break;
-        case .right:
-            if(self.Spaceship.position.x   < (GameScene.instance!.frame.width - (self.Spaceship.Width / 2)))
-            {
-                self.Spaceship.position.x  += self.Speed;
+            case .none, .inActive, .active:
+                break;
+            case .right:
+                if(self.Spaceship.position.x   < (GameScene.instance!.frame.width - (self.Spaceship.Width / 2)))
+                {
+                    self.Spaceship.position.x  += self.Speed;
+                }
+            }
+        }
+        else{
+            switch self._moveDirection{
+            case .left:
+                if(!self._tiltLeft.hasActions() && self._previousMoveDirection != .left){
+                    
+                    self.Spaceship.alpha = 0;
+                    self._tiltLeft.alpha = 1;
+                    self._tiltRight.alpha = 0;
+                    self._tiltLeft.RunAnimation(animationComplete: {});
+                }
+                
+                self._previousMoveDirection = .left;
+                break;
+            case .none, .inActive:
+                if(!self._tiltRight.hasActions() && !self._tiltLeft.hasActions())
+                {
+                    if(self._previousMoveDirection == .left)
+                    {
+                        self._tiltLeft.RunReverseAnimation(animationComplete: {});
+                    }
+                    
+                    if(self._previousMoveDirection == .right)
+                    {
+                        self._tiltRight.RunReverseAnimation(animationComplete: {});
+                    }
+                    
+                    self._previousMoveDirection = .none;
+                }
+                
+                break;
+            case .right:
+                if(!self._tiltRight.hasActions() && self._previousMoveDirection != .right){
+                    self.Spaceship.alpha = 0;
+                    self._tiltLeft.alpha = 0;
+                    self._tiltRight.alpha = 1;
+                    self._tiltRight.RunAnimation(animationComplete: {});
+                }
+                
+                self._previousMoveDirection = .right;
+                break;
+            default:
+                break;
             }
         }
     }
     
     fileprivate func shieldUpdate(health:Int){
         if health == 4, self._shield2.alpha == CGFloat(0){
-            // self._shield2.SetActive(true);
             self._shield2.alpha = 0.01;
-            //self._shield1.alpha = 0;
-            //self._shield.alpha = 0;
-            
             
             self._shield.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield1.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
@@ -162,11 +213,7 @@ class Spaceship: SpaceshipActor{
             
         }
         else if health  == 3, self._shield.alpha == CGFloat(0){
-            //self._shield.SetActive(true);
-           // self._shield2.alpha = 0;
-            //self._shield1.alpha = 0;
             self._shield.alpha = 0.01;
-            
             
             self._shield2.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield1.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
@@ -175,77 +222,60 @@ class Spaceship: SpaceshipActor{
             
         }
         else if health == 2, self._shield1.alpha == CGFloat(0){
-            // self._shield1.SetActive(true)1
-            // self._shield2.alpha = 0;
             self._shield1.alpha = 0.01;
-            // self._shield.alpha = 0;
-            
-            
+
             self._shield.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield2.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield1.FadeIn(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT);
             self._shield1.RunAnimation {};
-            
-           // self._shield1.run(SKAction.group([self._shield1.GetFadeIn(), self._shield1._spriteAction]));
-           // self._shield1.RunAnimation {};
-           // self._shield1.FadeIn();
-           // self._shield.FadeOut();
-           // self._shield2.FadeOut();
         }
         else if health == 1, (self._shield1.alpha == CGFloat(1) || self._shield.alpha == CGFloat(1) || self._shield2.alpha == CGFloat(1)){
-            // self._shield1.SetActive(true)1
             self._shield2.alpha = 0;
             self._shield1.alpha = 0.99;
             self._shield.alpha = 0;
-            // self._shield1.RunAnimation {};
+            
             self._shield1.FadeOut(customTime: GeneralGameSettings.ITEM_SHIELD_FADEINOUT );
         }
 
     }
     
-    fileprivate func animateSpaceship(){
-        
-        switch self._moveDirection{
-        case .left:
-            if(!self._tiltLeft.hasActions() && self._previousMoveDirection != .left){
-                
-                self.Spaceship.alpha = 0;
-                self._tiltLeft.alpha = 1;
-                self._tiltRight.alpha = 0;
-                self._tiltLeft.RunAnimation(animationComplete: {});
-            }
-            
-            self._previousMoveDirection = .left;
-            break;
-        case .none, .inActive:
-            if(!self._tiltRight.hasActions() && !self._tiltLeft.hasActions())
+    fileprivate func invincibleUpdate(){
+        if(_isInvincible){
+            if(self._alpha <= 0)
             {
-                if(self._previousMoveDirection == .left)
-                {
-                    self._tiltLeft.RunReverseAnimation(animationComplete: {});
-                }
-                
-                if(self._previousMoveDirection == .right)
-                {
-                    self._tiltRight.RunReverseAnimation(animationComplete: {});
-                }
-                
-                self._previousMoveDirection = .none;
-            }
-            break;
-        case .right:
-            if(!self._tiltRight.hasActions() && self._previousMoveDirection != .right){
-                self.Spaceship.alpha = 0;
-                self._tiltLeft.alpha = 0;
-                self._tiltRight.alpha = 1;
-                self._tiltRight.RunAnimation(animationComplete: {});
+                _invicibleDim = false;
             }
             
-            self._previousMoveDirection = .right;
-            break;
-        default:
-            break;
+            if(self._alpha >= 1)
+            {
+                _invicibleDim = true;
+            }
+            self._alpha = _invicibleDim ? self._alpha - 0.15 : self._alpha + 0.15;
         }
+        
+        if(!self._tiltLeft.hasActions() && !self._tiltRight.hasActions()){
+            self.Spaceship.alpha = self._isInvincible ? self._alpha : self.Spaceship.alpha;
+            self._tiltLeft.alpha = self._isInvincible ? self._alpha : self._tiltLeft.alpha;
+            self._tiltRight.alpha = self._isInvincible ? self._alpha : self._tiltRight.alpha;
+        }
+        else if(self._tiltLeft.hasActions()){
+            self._tiltLeft.alpha = self._isInvincible ? self._alpha : self._tiltLeft.alpha;
+            
+        }
+        else if(self._tiltRight.hasActions()){
+            self._tiltRight.alpha = self._isInvincible ? self._alpha : self._tiltRight.alpha;
+        }
+        
+        self._thruster.alpha = self._isInvincible ? self._alpha : self._thruster.alpha;
+    }
+    
+    fileprivate func positionUpdate(){
+        self._tiltLeft.SyncPositionWith(actor: self.Spaceship);
+        self._tiltRight.SyncPositionWith(actor: self.Spaceship);
+        self._shield2.SyncPositionWith(actor: self.Spaceship);
+        self._shield1.SyncPositionWith(actor: self.Spaceship);
+        self._shield.SyncPositionWith(actor: self.Spaceship);
+        self._thruster.SyncPositionWith(actor: self.Spaceship, offsetX:0,offsetY:-25);
     }
     
 }

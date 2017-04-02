@@ -61,6 +61,7 @@
 		B03BD62F1C7D8E5100D14F4C /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD62E1C7D8E5100D14F4C /* Background.swift */; };
 		B03BD6311C7D98D100D14F4C /* IStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6301C7D98D100D14F4C /* IStage.swift */; };
 		B03BD6351C80182900D14F4C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD6341C80182900D14F4C /* Button.swift */; };
+		B06FF7EE1E7399E100769711 /* ExplosionD.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B06FF7ED1E7399E100769711 /* ExplosionD.atlas */; };
 		B07545951D848F710004E53B /* GameObjectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07545941D848F710004E53B /* GameObjectServices.swift */; };
 		B076FF021DAB5947006C5C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B076FF011DAB5947006C5C7C /* Assets.xcassets */; };
 		B076FF041DADEA52006C5C7C /* RollingRockB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B076FF031DADEA52006C5C7C /* RollingRockB.swift */; };
@@ -168,6 +169,7 @@
 		B03BD62E1C7D8E5100D14F4C /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		B03BD6301C7D98D100D14F4C /* IStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IStage.swift; sourceTree = "<group>"; };
 		B03BD6341C80182900D14F4C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		B06FF7ED1E7399E100769711 /* ExplosionD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ExplosionD.atlas; sourceTree = "<group>"; };
 		B07545941D848F710004E53B /* GameObjectServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObjectServices.swift; sourceTree = "<group>"; };
 		B076FF011DAB5947006C5C7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B076FF031DADEA52006C5C7C /* RollingRockB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollingRockB.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B06FF7ED1E7399E100769711 /* ExplosionD.atlas */,
 				B0A915681DC03CEB00C54937 /* EnemySpaceshipB_left.atlas */,
 				B0A915691DC03CEB00C54937 /* EnemySpaceshipB_right.atlas */,
 				B001494F1DBDE8FC00FB961B /* CaptureC.atlas */,
@@ -567,6 +570,7 @@
 				B007F9611DB9E509002455D4 /* ShieldB-2.atlas in Resources */,
 				B0F4857C1C9FA92B001ECFA6 /* explosionA.atlas in Resources */,
 				B03BD5F41C706BC200D14F4C /* Main.storyboard in Resources */,
+				B06FF7EE1E7399E100769711 /* ExplosionD.atlas in Resources */,
 				B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */,
 				B007F9631DB9E654002455D4 /* ShieldB-1.atlas in Resources */,
 				B0A9156B1DC03CEB00C54937 /* EnemySpaceshipB_right.atlas in Resources */,
