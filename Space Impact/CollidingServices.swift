@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import SpriteKit
 
 
 class CollidingServices {
@@ -20,90 +22,128 @@ class CollidingServices {
     }
     
     func Update(){
-        mySpaceshipCollisionUpdate();
+        myMisslesCollidesEnemyUpdate();
+        enemyMisslesCollidesMeUpdate();
+        enemyCollidesMeUpdate();
+        itemCollideUpdate();
     }
     
-    fileprivate func mySpaceshipCollisionUpdate(){
+    fileprivate func myMisslesCollidesEnemyUpdate(){
+        let spaceObjects = self._level.Enemies;
         
         if(self._spaceship._missles.count <= 0)
         {
             return;
         }
         
-        let spaceObjects = self._level.Enemies;
         for eachNode in (spaceObjects){
             for mIndex in 0...(self._spaceship._missles.count - 1)	{
                 if let spaceshipActor = eachNode as? SpaceshipActor{
                     if(spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
                     {
-                        self.missleCollideUpdate(spaceshipActor, missleIndex:mIndex);
-                        self.selfCollideUpdate(spaceActor: spaceshipActor);
-                       // break;
+                        let missle = self._spaceship._missles[mIndex];
+                        let collided = missle.IsCollidedWith(spaceshipActor);
+                        
+                        if(collided)
+                        {
+                            missle.SetActive(false);
+                            spaceshipDamageHitUpdate(actor: spaceshipActor, damagePosition: missle.Position, damage: (Int)(missle.Damage));
+                        }
                     }
                 }
             }
         }
+    }
+    
+    fileprivate func enemyMisslesCollidesMeUpdate(){
         
+        let spaceObjects = self._level.Enemies;
+        for eachNode in (spaceObjects){
+            
+            if let spaceshipActor = eachNode as? SpaceshipActor{
+                if(spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive && spaceshipActor._missles.count > 0)
+                {
+                    for mIndex in 0...(spaceshipActor._missles.count - 1)	{
+                        let missle = spaceshipActor._missles[mIndex];
+                        let collided = missle.IsCollidedWith(self._spaceship);
+                        
+                        if(collided)
+                        {
+                            missle.SetActive(false);
+                            spaceshipDamageHitUpdate(actor: self._spaceship, damagePosition: missle.Position, damage: (Int)(missle.Damage));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func enemyCollidesMeUpdate(){
+        
+        let spaceObjects = self._level.Enemies;
+        for eachNode in (spaceObjects){
+                if let spaceshipActor = eachNode as? SpaceshipActor{
+                    let collided = self._spaceship.IsCollidedWith(spaceshipActor);
+                    if(collided && spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
+                    {
+                        spaceshipDamageHitUpdate(actor: spaceshipActor, damagePosition: self._spaceship.Position, damage: 2);
+                    }
+                }
+        }
+        
+    }
+    
+    fileprivate func itemCollideUpdate(){
         let items = self._level.Items;
         
-        for eachItem in items{
-            self.itemCollideUpdate(eachItem);
+        
+        for item in items{
+            let collided = self._spaceship.IsCollidedWith(item);
+            
+            if(collided)
+            {
+                item.Explode();
+                
+                switch(item.Item.Type){
+                case .ItemHeart:
+                    UserStatsInfo.instance.Life.value = min(5, UserStatsInfo.instance.Life.value + 1);
+                    break;
+                case .ItemShield:
+                    self._spaceship.Health = min(4, self._spaceship.Health + 1);
+                    break;
+                case .ItemLightning:
+                    if UserStatsInfo.instance.Bomb.value < 5{
+                        UserStatsInfo.instance.Bomb.value += 1;
+                    }
+                    break;
+                default:
+                    break;
+                }
+                
+                UserStatsInfo.instance.Score.value += item.Point;
+            }
         }
     }
     
-    fileprivate func itemCollideUpdate(_ item: ItemActor){
-        let collided = self._spaceship.IsCollidedWith(item);
-        
-        if(collided)
-        {
-            item.Explode();
-
-            switch(item.Item.Type){
-            case .ItemHeart:
-                UserStatsInfo.instance.Life.value = min(5, UserStatsInfo.instance.Life.value + 1);
-                break;
-            case .ItemShield:
-                self._spaceship.Health = min(4, self._spaceship.Health + 1);
-                break;
-            case .ItemLightning:
-                if UserStatsInfo.instance.Bomb.value < 5{
-                    UserStatsInfo.instance.Bomb.value += 1;
-                }
-                break;
-            default:
-                break;
+    fileprivate func spaceshipDamageHitUpdate(actor: SpaceshipActor, damagePosition:CGPoint, damage:Int){
+        actor.Health = actor.Health - damage;
+        if(actor.Health < 1){
+            if(actor.Type == .EnemySpaceship){
+                actor.Explode();
+                UserStatsInfo.instance.Score.value += actor.Point;
             }
             
-            UserStatsInfo.instance.Score.value += item.Point;
-        }
-    }
-    
-    fileprivate func missleCollideUpdate(_ actor: SpaceshipActor, missleIndex:Int){
-        let collided = self._spaceship._missles[missleIndex].IsCollidedWith(actor);
-        
-        if(collided)
-        {
-            self._spaceship._missles[missleIndex].SetActive(false);
-            actor.Explode();
-            UserStatsInfo.instance.Score.value += actor.Point;
-        }
-    }
-    
-    fileprivate func selfCollideUpdate(spaceActor: SpaceshipActor){
-        let collided = self._spaceship.IsCollidedWith(spaceActor);
-        
-        if(collided)
-        {
-            spaceActor.Explode();
-            if(!self._spaceship.IsInvincible){
-                spaceshipDamageHitUpdate(damage: 1);
+            if(actor.Type == .MySpaceship && !self._spaceship.IsInvincible){
+                mySpaceshipDamageHitUpdate(damage: damage);
             }
-           // self._spaceship.Health = max(1, self._spaceship.Health - 1);
+        }
+        else{
+            actor.Injure(position: damagePosition);
         }
     }
     
-    fileprivate func spaceshipDamageHitUpdate(damage:Int){
-        var curHealthLeft = self._spaceship.Health - damage;
+    fileprivate func mySpaceshipDamageHitUpdate(damage:Int){
+        let curHealthLeft = self._spaceship.Health - damage;
         if(curHealthLeft < 1){
             self._spaceship.Explode();
             UserStatsInfo.instance.Life.value -= 1;
@@ -112,7 +152,5 @@ class CollidingServices {
         else{
             self._spaceship.Health = curHealthLeft;
         }
-        
-        
     }
 }

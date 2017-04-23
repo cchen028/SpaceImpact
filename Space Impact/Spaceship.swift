@@ -47,7 +47,9 @@ class Spaceship: SpaceshipActor{
         self._tiltLeft = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_TILTLEFT_NAME, positionX: position.x, positionY: position.y);
         self._tiltRight = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_TILTRIGHT_NAME, positionX: position.x, positionY: position.y);
         self._isTouched = false;
-        self._thruster = SpriteActor(imageName: GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME, positionX: position.x, positionY: position.y-25);
+        
+        self._thruster = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_THRUSTER, position: CGPoint(x:position.x, y:position.y-20), scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: true)
+        
         self._shield = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
         self._shield.zPosition = 15;
         self._shield2 = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_02_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
@@ -64,7 +66,9 @@ class Spaceship: SpaceshipActor{
     
     func InitializeMissles(){
         for _ in 1...25{
-            self._missles.append(Missle(missleName: GeneralGameSettings.MyMissle_Name, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type:ActorType.MyMissle, speed: GeneralGameSettings.MyMissle_Speed));
+         //   self._missles.append(Missle(missleName: GeneralGameSettings.MyMissle_Name, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type:ActorType.MyMissle, speed: GeneralGameSettings.MyMissle_Speed));
+            
+            self._missles.append(Missle(missleAtlasName: GeneralGameSettings.MyMissle_Name, position: CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type: ActorType.MyMissle, speed: GeneralGameSettings.MyMissle_Speed));
         }
     }
     
@@ -96,6 +100,7 @@ class Spaceship: SpaceshipActor{
         self._shield2.RunAnimation {};
         self._shield1.RunAnimation {};
         self._shield.RunAnimation {};
+        self._thruster.RunAnimation {};
         self._shield2.alpha = 0;
         self._shield1.alpha = 0;
         self._shield.alpha = 0;

@@ -27,17 +27,16 @@ class AssetServices {
         _skTextures[GeneralGameSettings.MYSPACESHIP_NAME] = SKTexture(imageNamed: GeneralGameSettings.MYSPACESHIP_NAME);
         _skTextures[GeneralGameSettings.MYSPACESHIP_RIGHT_NAME] = SKTexture(imageNamed: GeneralGameSettings.MYSPACESHIP_RIGHT_NAME);
         _skTextures[GeneralGameSettings.MYSPACESHIP_LEFT_NAME] = SKTexture(imageNamed: GeneralGameSettings.MYSPACESHIP_LEFT_NAME);
-        _skTextures[GeneralGameSettings.MyMissle_Name] = SKTexture(imageNamed: GeneralGameSettings.MyMissle_Name);
         _skTextures[GeneralGameSettings.GAMESCREEN_ICON_LIFE] = SKTexture(imageNamed: GeneralGameSettings.GAMESCREEN_ICON_LIFE);
         _skTextures[GeneralGameSettings.GAMESCREEN_ICON_BOMB] = SKTexture(imageNamed: GeneralGameSettings.GAMESCREEN_ICON_BOMB);
         
         _skTextures[GeneralGameSettings.ENEMYA_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMYA_NAME);
         _skTextures[GeneralGameSettings.ENEMYB_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMYB_NAME);
         
-        _skTextures[GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME] = SKTexture(imageNamed: GeneralGameSettings.MYSPACESHIP_THRUSTER_NAME);
         _skTextures[GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME] = SKTexture(imageNamed: GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME);
         
         _skTextures[GeneralGameSettings.BACKGROUND_NAME] = SKTexture(imageNamed: GeneralGameSettings.BACKGROUND_NAME);
+        _skTextures[GeneralGameSettings.BOSS_NAME] = SKTexture(imageNamed: GeneralGameSettings.BOSS_NAME);
         
         
         
@@ -72,9 +71,12 @@ class AssetServices {
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.EXPLOSIONC_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.EXPLOSIOND_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_LIGHTNING_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.BOSS_MISSLE);
         
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_HEART_NAME);
-        
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.INJUREA_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_THRUSTER);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.MyMissle_Name);
         //ITEM_HEART_NAME
     }
     

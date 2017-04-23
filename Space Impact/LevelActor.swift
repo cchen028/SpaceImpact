@@ -24,6 +24,7 @@ class LevelActor: NSObject {
     fileprivate var _items:[ItemActor];
     internal var _isActive: Bool;
     internal var _level:Int;
+    fileprivate var _bossSpawnTimer: Timer?;
     fileprivate var _rollingRockASpawnTimer: Timer?;
     fileprivate var _rollingRockBSpawnTimer: Timer?;
     fileprivate var _eneynySpaceshipASpawnTimer: Timer?;
@@ -50,7 +51,7 @@ class LevelActor: NSObject {
         self._enemies = [ISpaceship]();
         self._items = [ItemActor]();
         self._isActive = false;
-        self._level = 1;
+        self._level = 5;
         self._lblLevel = Label(displayText: "LEVEL ", position: CGPoint(x:GameScene.instance!.frame.midX, y: GameScene.instance!.frame.midY), fontSize: GeneralGameSettings.GAMESCREEN_LEVELLABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
         self._enemySpaceshipBTimer = SpawnTimer(interval: 3000);
@@ -142,6 +143,10 @@ class LevelActor: NSObject {
         }
     }
     
+    func ToggleBoss(playerSpaceship:Spaceship){
+        _bossSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ENEMYB_SPAWN, target: self, selector: #selector(LevelActor.SpawnBoss), userInfo: playerSpaceship, repeats: false);
+    }
+    
     func SpawnRollingRockA(){
         var num = 0;
         let total = _rollingRockASpawnTimer?.userInfo as? Int
@@ -189,9 +194,18 @@ class LevelActor: NSObject {
                 }
             }
         }
-        
-
-        
+    }
+    
+    func SpawnBoss(){
+        let playerSpaceship = _bossSpawnTimer?.userInfo as? Spaceship
+        for obj in self._enemies{
+            if var boss = obj as? Boss , !boss.IsActive {
+                boss.Position = GameObjectServices.instance.GenerateRandomPosition();
+                boss.Target = playerSpaceship;
+                boss.SetActive(true);
+                break;
+            }
+        }
     }
     
     func SpawnEnemySpaceshipB(){
@@ -246,6 +260,9 @@ class LevelActor: NSObject {
             let tempRock = EnemySpaceshipB(position:GameObjectServices.instance.GenerateRandomPosition());
             self._enemies.append(tempRock);
         }
+        
+        let tempBoss = Boss(position:GameObjectServices.instance.GenerateRandomPosition());
+        self._enemies.append(tempBoss);
     }
     
     fileprivate func getLevelLabelAction() -> SKAction{

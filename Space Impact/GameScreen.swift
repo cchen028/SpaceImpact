@@ -43,7 +43,7 @@ class GameScreen: NSObject,IStage {
         
         GameObjectServices.instance.CreateGameScreen(gameScreen: self._gameScreenNode);
         
-        self._level = LevelClass();
+        self._level = LevelClass(userSpaceship: self._mySpaceship);
         self._collidingService = CollidingServices(level: self._level, spaceship: self._mySpaceship);
         super.init();
         self.createLabels();
@@ -107,12 +107,9 @@ class GameScreen: NSObject,IStage {
         
         let lblBomb = Label(displayText: "X 3", position: CGPoint(x:55, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
-        
         let lblLife = Label(displayText: "X 3", position: CGPoint(x:GameScene.instance!.frame.maxX - 25, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
         let iconLife = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_LIFE, position: CGPoint(x:GameScene.instance!.frame.maxX - 60, y:GameScene.instance!.frame.maxY - 23));
-        
-        
         
         let lblScore = Label(displayText: "Score: 0", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
@@ -132,7 +129,6 @@ class GameScreen: NSObject,IStage {
         self._labels.append(lblBomb);
         self._labels.append(lblLife);
         self._labels.append(lblScore);
-        
         self._life.append(iconLife);
         self._lightning.append(iconBomb);
     }

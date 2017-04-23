@@ -58,6 +58,8 @@ struct GeneralGameSettings {
     static let EXPLOSIONC_NAME:String = "ExplosionC";
     static let EXPLOSIOND_NAME:String = "ExplosionD";
     
+    static let INJUREA_NAME:String = "InjureA";
+    
     // Items
     static let ITEM_SHIELD_NAME:String = "Item-Shield";
     static let ITEM_SHIELD_FADEINOUT:CGFloat = 0.25;
@@ -75,7 +77,6 @@ struct GeneralGameSettings {
     static let MYSPACESHIP_NAME:String = "spaceship-1";
     static let MYSPACESHIP_LEFT_NAME:String = "spaceship-1_left";
     static let MYSPACESHIP_RIGHT_NAME:String = "spaceship-1_right";
-    static let MYSPACESHIP_THRUSTER_NAME:String = "thruster01";
     static let MYSPACESHIP_SPEED: CGFloat = 7;
     static let MYSPACESHIP_EXPLOSION: String = "ExplosionD";
     static let MYSPACESHIP_TILTLEFT_NAME:String = "spaceship_left";
@@ -84,7 +85,9 @@ struct GeneralGameSettings {
     static let MYSPACESHIP_SHIEDB_NAME:String = "ShieldB";
     static let MYSPACESHIP_SHIEDB_02_NAME:String = "ShieldB-2";
     static let MYSPACESHIP_SHIEDB_01_NAME:String = "ShieldB-1";
-    static let MyMissle_Name:String = "missle";
+    static let MYSPACESHIP_THRUSTER:String = "thruster";
+
+    static let MyMissle_Name:String = "MyMissleA";
     static let MyMissle_Frequency:Double = 0.35;
     static let MyMissle_Speed:CGFloat = 7;
     
@@ -135,4 +138,14 @@ struct GeneralGameSettings {
     static let ENEMYB_MOVEBYX: CGFloat = 200;
     static let ENEMYB_Missle_Frequency:Double = 1;
     static let ENEMYB_MOVEMENT_TIMEPERFRAME: Double = 0.1;
+    
+    //BOSS
+    
+    static let BOSS_NAME:String = "boss";
+    static let BOSS_MISSLE:String = "bossMissle";
+    static let BOSS_SPEED:CGFloat = 4;
+    static let BOSS_HEALTH:Int = 50;
+    static let BOSS_EXPLOSION:String = "ExplosionB";
+    static let BOSS_POINT: Int = 4000;
+    static let BOSS_Missle_Frequency:Double = 0.75;
 }

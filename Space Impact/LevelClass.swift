@@ -10,10 +10,16 @@ import UIKit
 import SpriteKit
 
 class LevelClass: LevelActor {
-
-    override init(){
+    fileprivate var _playerSpaceship:Spaceship;
+    
+    init(userSpaceship:Spaceship){
+        self._playerSpaceship = userSpaceship;
         super.init();
     }
+    
+//    override init(){
+//        super.init();
+//    }
     
     
     
@@ -22,7 +28,7 @@ class LevelClass: LevelActor {
         self._level = level;
         self._isActive = false;
         super.Start(level: level, animationCompleted: {
-            let curlevel = level > 4 ? 4: level;
+            let curlevel = level > 5 ? 5: level;
             let selectorMe = "Level"+String(curlevel);
             self._isActive = true;
             cur._levelCreateTimer = Timer.scheduledTimer(timeInterval: 0, target: cur, selector: NSSelectorFromString(selectorMe), userInfo: nil, repeats: false);
@@ -56,5 +62,9 @@ class LevelClass: LevelActor {
         self.ToggleRollingRockB(isOn: true, num:1);
         self.ToggleEnemySpaceshipA(isOn: true, num:1);
         self.ToggleEnemySpaceshipB(isOn: true, num:2);
+    }
+    
+    func Level5(){
+        self.ToggleBoss(playerSpaceship: self._playerSpaceship);
     }
 }

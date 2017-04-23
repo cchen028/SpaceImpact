@@ -23,12 +23,14 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     internal var _missleTimer:MissleTimer;
     internal var _explosion:SpriteActor;
+    internal var _injured:SpriteActor?;
     internal var _missles:[Missle];
     
     var Health:Int{get{return _health} set(newVal){_health = newVal}};
     var Speed:CGFloat{get{return _speed} set(newVal){_speed = newVal}};
     var Damage:Int{get{return _damage} set(newVal){_damage = newVal}};
     var Explosion:SpriteActor{get{return _explosion} set(newVal){_explosion = newVal}};
+    var Injured:SpriteActor?{get{return _injured} set(newVal){_injured = newVal}};
     var IsActive:Bool{get{return self._spaceship.IsActive && (self._explosion.IsActive || self._explosion.hasActions())}};
     //var IsActive:Bool{get{return self._spaceship.alpha > 0 || (self._explosion.alpha > 0)}};
     var Spaceship:SpriteActor{get{return self._spaceship}};
@@ -36,16 +38,19 @@ class SpaceshipActor: NSObject, ISpaceship{
     var `Type`:ActorType{get{return self._spaceship.Type}};
     var Position:CGPoint{get{return self._spaceship.position} set(newVal){self._spaceship.position = newVal}}
     var Point:Int {get{return self._point}}
+    var Target:Spaceship?;
 
     init(imageName:String, explosionName: String, health:Int, speed:CGFloat, damage:Int , position:CGPoint,scale:CGFloat = 1,type:ActorType, point:Int = 0,isSpaceShipAnimation:Bool = false, spaceshipHasAnimation:Bool = false)
     {
         self._missleTimer = MissleTimer();
         self._missles = [Missle]();
-        
+        self._injured = nil;
         _health = health;
         _speed = speed;
         _damage = damage;
         _point = point;
+        
+        
         _explosion = SpriteActor(atlasName:explosionName, position: position, scale: 1, opacity: 0, type:ActorType.Explosion, repeatCount: 1, startAnimating: false);
         
         
@@ -67,10 +72,8 @@ class SpaceshipActor: NSObject, ISpaceship{
             _spaceship = SpriteActor(imageName: imageName, position: position, scale: scale, opacity: 1, type:type);
         }
         
-        let uniqueID = UUID().uuidString;
-        self._explosion.name = ActorType.Explosion.rawValue + "_" + uniqueID ;
-        self._spaceship.name = uniqueID;
         self._explosion.zPosition = 5;
+        self._injured?.zPosition = 6;
         self._spaceship.zPosition = 5;
                 
         super.init();
@@ -96,6 +99,10 @@ class SpaceshipActor: NSObject, ISpaceship{
         return group;
     }
     
+    func CreateInjure(atlasName:String){
+        self._injured = SpriteActor(atlasName:atlasName, position: self.Position, scale: 1, opacity: 0, type:ActorType.Injured, repeatCount: 1, startAnimating: false);
+    }
+    
     func SetActive(_ isActive:Bool){
         if(isActive){
             self.create();
@@ -116,6 +123,15 @@ class SpaceshipActor: NSObject, ISpaceship{
         self._spaceship_right?.SyncPositionWith(actor: self._spaceship);
     }
     
+    func Injure(position:CGPoint){
+        self._injured?.alpha = 1;
+        self._injured?.position = position;
+        self._injured?.RunAnimation(animationComplete: {
+            self._injured?.removeAllActions();
+            self._injured?.alpha = 0;
+        });
+    }
+    
     func Explode(){
         self._explosion.alpha = 1;
         self._explosion.RunAnimation(animationComplete: {
@@ -134,6 +150,9 @@ class SpaceshipActor: NSObject, ISpaceship{
                         _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
                     case .EnemyMissle:
                         _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2));
+                    case .BlueBossMissle:
+                        _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2));
+                        _missles[i]._misEndPosition = (self.Target?.Position)!;
                     default:
                         _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
                     }
@@ -186,6 +205,7 @@ class SpaceshipActor: NSObject, ISpaceship{
         self._spaceship_left?.SetActive(true);
         self._spaceship_right?.SetActive(true);
         self._explosion.SetActive(true);
+        self._injured?.SetActive(true);
     }
     
     fileprivate func destroy(){
@@ -193,7 +213,9 @@ class SpaceshipActor: NSObject, ISpaceship{
         self._spaceship_left?.SetActive(false);
         self._spaceship_right?.SetActive(false);
         self._explosion.SetActive(false);
+        self._injured?.SetActive(false);
         self._explosion.removeAllActions();
+        self._injured?.removeAllActions();
 
     }
 }
