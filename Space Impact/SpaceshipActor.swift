@@ -20,6 +20,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     fileprivate var _spaceshipMissleTimer: Timer!;
     fileprivate var _point:Int;
     internal var _movement:SKAction?;
+    internal var _missleType:ActorType;
     
     internal var _missleTimer:MissleTimer;
     internal var _explosion:SpriteActor;
@@ -39,12 +40,14 @@ class SpaceshipActor: NSObject, ISpaceship{
     var Position:CGPoint{get{return self._spaceship.position} set(newVal){self._spaceship.position = newVal}}
     var Point:Int {get{return self._point}}
     var Target:Spaceship?;
+    var MyMissleType:ActorType{get{return self._missleType}}
 
-    init(imageName:String, explosionName: String, health:Int, speed:CGFloat, damage:Int , position:CGPoint,scale:CGFloat = 1,type:ActorType, point:Int = 0,isSpaceShipAnimation:Bool = false, spaceshipHasAnimation:Bool = false)
+    init(imageName:String, explosionName: String, health:Int, speed:CGFloat, damage:Int , position:CGPoint,scale:CGFloat = 1,type:ActorType, point:Int = 0,missleType:ActorType = ActorType.None , isSpaceShipAnimation:Bool = false, spaceshipHasAnimation:Bool = false)
     {
         self._missleTimer = MissleTimer();
         self._missles = [Missle]();
         self._injured = nil;
+        self._missleType = missleType;
         _health = health;
         _speed = speed;
         _damage = damage;
@@ -56,10 +59,13 @@ class SpaceshipActor: NSObject, ISpaceship{
         
         
         
+        
         if(spaceshipHasAnimation)
         {
             _spaceship_left = SpriteActor(imageName: imageName+"_left", position: position, scale: scale, opacity: 0, type:type);
             _spaceship_right = SpriteActor(imageName: imageName+"_right", position: position, scale: scale, opacity: 0, type:type);
+            
+            
             _spaceship_right!.zPosition = 8;
             _spaceship_left!.zPosition = 8;
         }
@@ -143,20 +149,34 @@ class SpaceshipActor: NSObject, ISpaceship{
     
     func AddMissle() {
         if(_missles.count > 0){
+            var count = 0;
             for i in 0...(_missles.count - 1){
-                if(!_missles[i].IsActive){
+                if(!_missles[i].IsActive && self._missleType == _missles[i].Sprite.Type){
+                    count = count + 1;
                     switch _missles[i].Sprite.Type {
                     case .MyMissle:
                         _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
+                        _missles[i].SetActive(true);
+                    case .MyMissleSpeed:
+                        _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
+                        _missles[i].SetActive(true);
+                    case .MyMissleTriple:
+                        _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
+                        _missles[i].SetActive(true);
+                        if(count <= 3){
+                            continue;
+                        }
                     case .EnemyMissle:
                         _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2));
+                        _missles[i].SetActive(true);
                     case .BlueBossMissle:
                         _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2));
                         _missles[i]._misEndPosition = (self.Target?.Position)!;
+                        _missles[i].SetActive(true);
                     default:
                         _missles[i].Missle.position = CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2));
+                        _missles[i].SetActive(true);
                     }
-                    _missles[i].SetActive(true);
                     break;
                 }
             }
@@ -182,7 +202,15 @@ class SpaceshipActor: NSObject, ISpaceship{
     func IsCollidedWith<T>(_ actor: T) -> Bool{
         
         if let spaceShipActor = actor as? SpaceshipActor{
-            return spaceShipActor.Spaceship.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(spaceShipActor.Spaceship.frame);
+            let pct = CGFloat(0.8);
+            let mySPFrame = GameObjectServices.instance.GetAdjustedSpriteFrame(frame: self._spaceship.frame, scaleX: 0.9, scaleY: 0.8);
+            let spFrame = GameObjectServices.instance.GetAdjustedSpriteFrame(frame: spaceShipActor._spaceship.frame, scaleX: 0.9, scaleY: 0.8);
+            //  let mySPFrame = self._spaceship.frame.offsetBy(dx: self._spaceship.Width * -0.5, dy: self._spaceship.Height * -0.5);
+           // let spFrame = spaceShipActor._spaceship.frame.offsetBy(dx: spaceShipActor._spaceship.Width * -0.5, dy: spaceShipActor._spaceship.Height * -0.5);
+            //let circlePath = UIBezierPath(ovalInRect: CGRectInset(mySPFrame, 0.5, 0.5 ));
+           // spFrame.
+           // return spaceShipActor.Spaceship.IsActive && self._spaceship.IsActive && self._spaceship.frame.intersects(spaceShipActor.Spaceship.frame);
+            return spaceShipActor.Spaceship.IsActive && self._spaceship.IsActive && mySPFrame.intersects(spFrame);
         }
         
         if let itemActor = actor as? ItemActor{

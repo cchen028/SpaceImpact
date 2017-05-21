@@ -25,7 +25,7 @@ class Boss: SpaceshipActor{
         self._xSpeed = GeneralGameSettings.BOSS_SPEED;
         self._ySpeed = GeneralGameSettings.BOSS_SPEED;
         self._isWithingScreen = false;
-        super.init(imageName: GeneralGameSettings.BOSS_NAME, explosionName: GeneralGameSettings.BOSS_EXPLOSION, health: GeneralGameSettings.BOSS_HEALTH, speed: GeneralGameSettings.BOSS_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship,  point: GeneralGameSettings.BOSS_POINT, isSpaceShipAnimation: false, spaceshipHasAnimation: false);
+        super.init(imageName: GeneralGameSettings.BOSS_NAME, explosionName: GeneralGameSettings.BOSS_EXPLOSION, health: GeneralGameSettings.BOSS_HEALTH, speed: GeneralGameSettings.BOSS_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship,  point: GeneralGameSettings.BOSS_POINT, missleType: ActorType.BlueBossMissle, isSpaceShipAnimation: false, spaceshipHasAnimation: false);
         
         self.CreateInjure(atlasName: GeneralGameSettings.INJUREA_NAME)
         self.InitializeMissles();
@@ -34,7 +34,7 @@ class Boss: SpaceshipActor{
     func InitializeMissles(){
 
         for _ in 1...4{
-            self._missles.append(Missle(missleAtlasName: GeneralGameSettings.BOSS_MISSLE, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2)), type: ActorType.BlueBossMissle, speed: GeneralGameSettings.ENEMY_Speed));
+            self._missles.append(Missle(missleAtlasName: GeneralGameSettings.BOSS_MISSLE, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2)), type: ActorType.BlueBossMissle, speed: GeneralGameSettings.ENEMY_Speed, damage: 1));
         }
     }
     

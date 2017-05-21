@@ -54,13 +54,13 @@ class Button: SpriteActor,ITouchable{
         super.SetActive(isActive);
     }
     
-    override func FadeIn(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN){
-        self._labelNode?.FadeIn(customTime:customTime);
-        super.FadeIn();
+    override func FadeIn(customTime:CGFloat? = GeneralGameSettings.TRANSITION_FADEIN){
+        self._labelNode?.FadeIn(customTime:customTime!);
+        super.FadeIn(customTime: customTime!);
     }
     
-    override func FadeOut(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN){
-        self._labelNode?.FadeOut(customTime:customTime);
-        super.FadeOut();
+    override func FadeOut(customTime:CGFloat? = GeneralGameSettings.TRANSITION_FADEIN){
+        self._labelNode?.FadeOut(customTime:customTime!);
+        super.FadeOut(customTime: customTime!);
     }
 }

@@ -35,14 +35,14 @@ class EnemySpaceshipA: SpaceshipActor{
         self._moveRight = SKAction.moveBy(x: GeneralGameSettings.ENEMYA_MOVEBYX, y: 3, duration: 2);
 
         
-        super.init(imageName: GeneralGameSettings.ENEMYA_NAME, explosionName: GeneralGameSettings.ENEMYA_EXPLOSION, health: GeneralGameSettings.ENEMYA_HEALTH, speed: GeneralGameSettings.ENEMYA_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship,  point: GeneralGameSettings.ENEMYA_POINT, isSpaceShipAnimation: false);
+        super.init(imageName: GeneralGameSettings.ENEMYA_NAME, explosionName: GeneralGameSettings.ENEMYA_EXPLOSION, health: GeneralGameSettings.ENEMYA_HEALTH, speed: GeneralGameSettings.ENEMYA_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship,  point: GeneralGameSettings.ENEMYA_POINT, missleType: ActorType.EnemyMissle, isSpaceShipAnimation: false);
         self.initializeMovementAction();
         self.InitializeMissles();
     }
     
     func InitializeMissles(){
         for _ in 1...25{
-            self._missles.append(Missle(missleName: GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2)), type: ActorType.EnemyMissle, speed: GeneralGameSettings.ENEMY_Speed));
+            self._missles.append(Missle(missleName: GeneralGameSettings.ENEMY_DEFAULTMISSLE_NAME, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y - (self.Spaceship.Height / 2)), type: ActorType.EnemyMissle, speed: GeneralGameSettings.ENEMY_Speed, damage: 1));
         }
     }
     

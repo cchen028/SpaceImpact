@@ -31,6 +31,9 @@
 		B00487781C8D5D180061EC7F /* RollingRockA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00487771C8D5D180061EC7F /* RollingRockA.swift */; };
 		B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00487791C8D6E5C0061EC7F /* astroid1.atlas */; };
 		B004877C1C8D6FA80061EC7F /* rollingrockA.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */; };
+		B00531AC1EC9166900046C57 /* Item-MissleUpgrade.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00531AB1EC9166900046C57 /* Item-MissleUpgrade.atlas */; };
+		B00531AE1EC9201300046C57 /* CaptureD.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00531AD1EC9201300046C57 /* CaptureD.atlas */; };
+		B00531B01EC920A500046C57 /* MissleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00531AF1EC920A500046C57 /* MissleType.swift */; };
 		B007F9531DB46A3A002455D4 /* EnemySpaceshipA_left.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9521DB46A3A002455D4 /* EnemySpaceshipA_left.atlas */; };
 		B007F9551DB46A53002455D4 /* EnemySpaceshipA_right.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9541DB46A53002455D4 /* EnemySpaceshipA_right.atlas */; };
 		B007F9571DB46E5A002455D4 /* ExplosionB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9561DB46E5A002455D4 /* ExplosionB.atlas */; };
@@ -82,6 +85,8 @@
 		B0A9156B1DC03CEB00C54937 /* EnemySpaceshipB_right.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B0A915691DC03CEB00C54937 /* EnemySpaceshipB_right.atlas */; };
 		B0A9156D1DC03D7700C54937 /* EnemySpaceshipB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A9156C1DC03D7700C54937 /* EnemySpaceshipB.swift */; };
 		B0A9156F1DC1A04000C54937 /* SKSpriteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A9156E1DC1A04000C54937 /* SKSpriteExtension.swift */; };
+		B0C1461F1ED1062200B9141E /* MyMissleB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B0C1461E1ED1062200B9141E /* MyMissleB.atlas */; };
+		B0C146211ED112D700B9141E /* MyMissleC.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B0C146201ED112D700B9141E /* MyMissleC.atlas */; };
 		B0DF3D601DC318DD00B26375 /* SpawnTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF3D5F1DC318DD00B26375 /* SpawnTimer.swift */; };
 		B0EF1ED41C8B88EB00E24202 /* IMissle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF1ED31C8B88EB00E24202 /* IMissle.swift */; };
 		B0EF1ED61C8B894D00E24202 /* MissleActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF1ED51C8B894D00E24202 /* MissleActor.swift */; };
@@ -137,6 +142,9 @@
 		B00487771C8D5D180061EC7F /* RollingRockA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollingRockA.swift; sourceTree = "<group>"; };
 		B00487791C8D6E5C0061EC7F /* astroid1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = astroid1.atlas; sourceTree = "<group>"; };
 		B004877B1C8D6FA80061EC7F /* rollingrockA.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = rollingrockA.atlas; sourceTree = "<group>"; };
+		B00531AB1EC9166900046C57 /* Item-MissleUpgrade.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-MissleUpgrade.atlas"; sourceTree = "<group>"; };
+		B00531AD1EC9201300046C57 /* CaptureD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureD.atlas; sourceTree = "<group>"; };
+		B00531AF1EC920A500046C57 /* MissleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleType.swift; sourceTree = "<group>"; };
 		B007F9521DB46A3A002455D4 /* EnemySpaceshipA_left.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipA_left.atlas; sourceTree = "<group>"; };
 		B007F9541DB46A53002455D4 /* EnemySpaceshipA_right.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipA_right.atlas; sourceTree = "<group>"; };
 		B007F9561DB46E5A002455D4 /* ExplosionB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ExplosionB.atlas; sourceTree = "<group>"; };
@@ -194,6 +202,8 @@
 		B0A915691DC03CEB00C54937 /* EnemySpaceshipB_right.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemySpaceshipB_right.atlas; sourceTree = "<group>"; };
 		B0A9156C1DC03D7700C54937 /* EnemySpaceshipB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemySpaceshipB.swift; sourceTree = "<group>"; };
 		B0A9156E1DC1A04000C54937 /* SKSpriteExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpriteExtension.swift; sourceTree = "<group>"; };
+		B0C1461E1ED1062200B9141E /* MyMissleB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MyMissleB.atlas; sourceTree = "<group>"; };
+		B0C146201ED112D700B9141E /* MyMissleC.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MyMissleC.atlas; sourceTree = "<group>"; };
 		B0DF3D5F1DC318DD00B26375 /* SpawnTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpawnTimer.swift; sourceTree = "<group>"; };
 		B0EF1ED31C8B88EB00E24202 /* IMissle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMissle.swift; sourceTree = "<group>"; };
 		B0EF1ED51C8B894D00E24202 /* MissleActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissleActor.swift; sourceTree = "<group>"; };
@@ -245,6 +255,10 @@
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B0C146201ED112D700B9141E /* MyMissleC.atlas */,
+				B0C1461E1ED1062200B9141E /* MyMissleB.atlas */,
+				B00531AD1EC9201300046C57 /* CaptureD.atlas */,
+				B00531AB1EC9166900046C57 /* Item-MissleUpgrade.atlas */,
 				B01DF0491EAC39D100DF4F54 /* MyMissleA.atlas */,
 				B01DF0471EAC333D00DF4F54 /* thruster.atlas */,
 				B01DF0451EAC10C000DF4F54 /* InjureA.atlas */,
@@ -453,6 +467,7 @@
 			children = (
 				B0EFE7421C9665C500807049 /* NodeType.swift */,
 				B0F485791C97B027001ECFA6 /* ActorType.swift */,
+				B00531AF1EC920A500046C57 /* MissleType.swift */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
@@ -577,8 +592,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00531AE1EC9201300046C57 /* CaptureD.atlas in Resources */,
 				B03BD5ED1C706BC200D14F4C /* GameScene.sks in Resources */,
 				B01DF04A1EAC39D100DF4F54 /* MyMissleA.atlas in Resources */,
+				B0C1461F1ED1062200B9141E /* MyMissleB.atlas in Resources */,
 				B03BD5F91C706BC200D14F4C /* LaunchScreen.storyboard in Resources */,
 				B007F9611DB9E509002455D4 /* ShieldB-2.atlas in Resources */,
 				B0F4857C1C9FA92B001ECFA6 /* explosionA.atlas in Resources */,
@@ -607,8 +624,10 @@
 				657459B31DAF313300200C68 /* IAP.storyboard in Resources */,
 				B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */,
 				B007F9571DB46E5A002455D4 /* ExplosionB.atlas in Resources */,
+				B00531AC1EC9166900046C57 /* Item-MissleUpgrade.atlas in Resources */,
 				B007F95D1DB89C0E002455D4 /* ShieldB.atlas in Resources */,
 				B001494C1DBCA6EA00FB961B /* Item-Lightning.atlas in Resources */,
+				B0C146211ED112D700B9141E /* MyMissleC.atlas in Resources */,
 				B02EC5891EA4371F008E3535 /* bossMissle.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,6 +663,7 @@
 				B03BD5EF1C706BC200D14F4C /* GameScene.swift in Sources */,
 				B04B5AB11E9178F700546B63 /* Boss.swift in Sources */,
 				657AE7BD1DBC7F2100A38315 /* IAPContainerViewController.swift in Sources */,
+				B00531B01EC920A500046C57 /* MissleType.swift in Sources */,
 				B00487781C8D5D180061EC7F /* RollingRockA.swift in Sources */,
 				B00149521DBEE44E00FB961B /* LevelActor.swift in Sources */,
 				657AE7BB1DBC7DA000A38315 /* IAPTableViewController.swift in Sources */,

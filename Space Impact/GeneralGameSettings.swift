@@ -39,7 +39,7 @@ struct GeneralGameSettings {
     static let GAMESCREEN_LEVELLABEL_FONTSIZE: CGFloat = 35;
     static let GAMESCREEN_LEVELLABEL_FADEIN: CGFloat = 1;
     static let GAMESCREEN_LEVELLABEL_FADEOUT: CGFloat = 0.5;
-    static let GAMESCREEN_LEVELLABEL_FADEINOUT: CGFloat = 1.5;
+    static let GAMESCREEN_LEVELLABEL_FADEINOUT: CGFloat = 0.7;
     static let MYSPACESHIP_CATEGORY: UInt32 = 0;
     
     
@@ -65,11 +65,13 @@ struct GeneralGameSettings {
     static let ITEM_SHIELD_FADEINOUT:CGFloat = 0.25;
     static let ITEM_LIGHTNING_NAME:String = "Item-Lightning";
     static let ITEM_HEART_NAME:String = "Item-Heart";
-    static let ITEM_SCORE_THRES: Int = 10000;
+    static let ITEM_MISSLEUPGRADE_NAME:String = "Item-MissleUpgrade";
+    static let ITEM_SCORE_THRES: Int = 3000;
     static let ITEM_CAPTUREA_NAME:String = "CaptureA";
     static let ITEM_CAPTUREB_NAME:String = "CaptureB";
     
     static let ITEM_CAPTUREC_NAME:String = "CaptureC";
+    static let ITEM_CAPTURED_NAME:String = "CaptureD";
     
     
     // My Spaceship
@@ -88,8 +90,20 @@ struct GeneralGameSettings {
     static let MYSPACESHIP_THRUSTER:String = "thruster";
 
     static let MyMissle_Name:String = "MyMissleA";
-    static let MyMissle_Frequency:Double = 0.35;
+    static let MyMissle_ShootingSpeed:Double = 0.3;
+    static let MyMissle_Frequency:Double = 0.05;
     static let MyMissle_Speed:CGFloat = 7;
+    
+    
+    static let MyMissleB_Name:String = "MyMissleB";
+    static let MyMissleB_Frequency:Double = 0.035;
+    static let MyMissleB_ShootingSpeed:Double = 0.15;
+    static let MyMissleB_Speed:CGFloat = 12;
+    
+    static let MyMissleC_Name:String = "MyMissleC";
+    static let MyMissleC_Frequency:Double = 0.03;
+    static let MyMissleC_ShootingSpeed:Double = 0.15;
+    static let MyMissleC_Speed:CGFloat = 12;
     
     //Enemy
     static let ENEMY_MOVEMENT_TIMEPERFRAME: Double = 0.02;

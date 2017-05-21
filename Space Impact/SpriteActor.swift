@@ -50,6 +50,8 @@ import SpriteKit
         let texture = GameScene.instance?.AssetService?.SKTextures[imageName];
         super.init(texture: texture, color: UIColor.clear, size: texture!.size());
         
+        
+        
         self.position = position;
         self.xScale = scale;
         self.yScale = scale;
@@ -75,6 +77,8 @@ import SpriteKit
         
         self._spriteTextures = (GameScene.instance?.AssetService?.SKTexturesList[atlasName])!;
         
+    
+        
         let anim = SKAction.animate(with: self._spriteTextures, timePerFrame: GeneralGameSettings.SPACESHIP_EXPLOSION_FRAMES);
         
         if(isRepeat)
@@ -92,7 +96,7 @@ import SpriteKit
     }
 
     
-    init(atlasName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, type:ActorType , repeatCount:Int = -1, startAnimating:Bool = false)
+    init(atlasName:String,position:CGPoint, scale:CGFloat, opacity:CGFloat, type:ActorType, timePerFrame: Double = GeneralGameSettings.SPACESHIP_EXPLOSION_FRAMES , repeatCount:Int = -1, startAnimating:Bool = false)
     {
         self._isAnimation = true;
         self._spriteTextures = [SKTexture]();
@@ -110,7 +114,7 @@ import SpriteKit
         
         self._spriteTextures = (GameScene.instance?.AssetService?.SKTexturesList[atlasName])!;
         
-        let anim = SKAction.animate(with: self._spriteTextures, timePerFrame: GeneralGameSettings.SPACESHIP_EXPLOSION_FRAMES);
+        let anim = SKAction.animate(with: self._spriteTextures, timePerFrame: timePerFrame);
         
         if(repeatCount == -1)
         {
@@ -166,8 +170,10 @@ import SpriteKit
         }
     }
     
-    func FadeIn(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN){
-        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(customTime));
+    
+    
+    func FadeIn(customTime:CGFloat? = GeneralGameSettings.TRANSITION_FADEIN){
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(customTime!));
         if self.alpha < 1
         {
             SetActive(true);
@@ -175,12 +181,30 @@ import SpriteKit
         }
     }
     
-    func FadeOut(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN){
-        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(customTime));
+    func FadeOut(customTime:CGFloat? = GeneralGameSettings.TRANSITION_FADEIN){
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(customTime!));
         if self.alpha > 0
         {
             self.run(fadeOutAnimation, completion:{self.SetActive(false)});
         }
+    }
+    
+    func FadeInAndOut(customTimeIn:CGFloat = GeneralGameSettings.TRANSITION_FADEIN,customTimeOut:CGFloat = GeneralGameSettings.TRANSITION_FADEIN, animationCompleted: ((() -> Void)?)) {
+        
+        //SetActive(true);
+        self.run(self.getLevelLabelAction(customTimeIn: customTimeIn, customTimeOut:customTimeOut), completion: {animationCompleted?();});
+    }
+    
+    fileprivate func getLevelLabelAction(customTimeIn:CGFloat, customTimeOut:CGFloat) -> SKAction{
+        
+        let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(customTimeIn));
+     //   let fadeInAnimation1 = SKAction.fadeAlpha(by: 0.01, duration: TimeInterval(customTime));
+      //  let bufferAnimation = SKAction.fadeAlpha(by: 0.7, duration: TimeInterval(customTime));
+     //   let bufferAnimation2 = SKAction.fadeAlpha(by: 1, duration: TimeInterval(customTime));
+        let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(customTimeOut));
+        let sequence = SKAction.sequence([fadeOutAnimation,fadeInAnimation]);
+        
+        return sequence;
     }
     
     func GetFadeIn(customTime:CGFloat = GeneralGameSettings.TRANSITION_FADEIN) -> SKAction{

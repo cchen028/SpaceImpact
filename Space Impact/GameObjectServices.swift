@@ -31,6 +31,10 @@ class GameObjectServices {
         _spaceShip = Spaceship(position: location);
     }
     
+    func GetAdjustedSpriteFrame(frame:CGRect, scaleX:CGFloat, scaleY:CGFloat) -> CGRect{
+        return frame.insetBy(dx: frame.width*CGFloat(1-scaleX), dy: frame.height*CGFloat(1-scaleY));
+    }
+    
     func CreateGameScreen(gameScreen:SKNode){
         self._gameScreen = gameScreen;
     }
@@ -75,8 +79,8 @@ class GameObjectServices {
         return CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.minY + 50);
     }
     
-    func GetRandomNumber( endRange:Int) -> Int{
-        return generateRandomNumber(endRange);
+    func GetRandomNumber( endRange:Int, zeroBase:Bool = false) -> Int{
+        return generateRandomNumber(endRange, zeroBase: zeroBase);
     }
     
     func GetRandomPercentage() -> CGFloat{
@@ -85,7 +89,7 @@ class GameObjectServices {
     
     fileprivate func generateRandomNumber(_ range:Int, zeroBase:Bool = false) -> Int{
         
-        var randomX = Int(arc4random_uniform(UInt32(range)));
+        var randomX = Int(arc4random_uniform(UInt32((range))));
         randomX = max(zeroBase ? 0 : 1,randomX);
         return randomX;
     }

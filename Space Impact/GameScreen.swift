@@ -134,11 +134,17 @@ class GameScreen: NSObject,IStage {
     }
 
     
-    func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool)
+    func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool, multipleTouch:Bool = false)
     {
         if !self._isActive
         {
             return;
+        }
+        
+        if(multipleTouch && UserStatsInfo.instance.Bomb.value > 0){
+             UserStatsInfo.instance.Bomb.value -= 1;
+            _mySpaceship.IsBigLazer = true;
+            self._level._background?.FadeInAndOut(customTimeIn: 0.4, customTimeOut: 0.2, animationCompleted: nil);
         }
         
         if(!isTouched)
@@ -154,6 +160,8 @@ class GameScreen: NSObject,IStage {
             
             self._mySpaceship.Position = postion;
         }
+        
+       
         
         self._mySpaceship.Direction = direction;
     }

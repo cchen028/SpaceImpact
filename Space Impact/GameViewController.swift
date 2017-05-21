@@ -20,6 +20,8 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
       //  instance
         
+        self.view.isMultipleTouchEnabled = true;
+        
        // if let scene = GameScene(fileNamed:"GameScene") {
           if let scene = GameScene.instance {
             // Configure the view.
@@ -29,6 +31,8 @@ class GameViewController: UIViewController {
 
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
+            
+          
             
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .aspectFill

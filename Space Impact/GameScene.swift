@@ -68,6 +68,7 @@ class GameScene: SKScene {
         }
         
         let touch = touches.first;
+        let sdfasdf = touch?.tapCount;
         
         
         mainScreen?.HandlesTouch(touch!, withEvent: event);
@@ -86,7 +87,7 @@ class GameScene: SKScene {
             }
         }
         else if( GameConfiguration.instance.MoveMentType == .FreeDrag){
-            gameScreen?.HandlesTouch(position: touch!.location(in: self),direction: MoveDirection.none , isTouched: false);
+            gameScreen?.HandlesTouch(position: touch!.location(in: self),direction: MoveDirection.none , isTouched: false, multipleTouch: sdfasdf! > 1);
         }
         
     }
@@ -101,7 +102,6 @@ class GameScene: SKScene {
         
         if(GameConfiguration.instance.MoveMentType == .FreeDrag)
         {
-           // gameScreen?.HandlesTouch(position: positionInScene, direction: direction, isTouched: true);
             gameScreen?.HandlesTouch(position: translation, direction: direction, isTouched: true);
         }
         

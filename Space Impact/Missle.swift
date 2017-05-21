@@ -17,19 +17,16 @@ class Missle: MissleActor {
     var Position:CGPoint{get{return self._missle.position}}
     var IsActive:Bool{get{return self._missle.IsActive}};
     var Sprite:SpriteActor { get{return self._missle}}
-    
-    init(missleName:String, position:CGPoint, type:ActorType, speed:CGFloat) {
-        self._misPosition = position;
-        //self._misEndPosition = CGPoint(x:0, y:0);
 
-        super.init(missleName: missleName, missleType: type,position:position, speed: speed, damage: self._DAMAGE);
+    init(missleName:String, position:CGPoint, type:ActorType, speed:CGFloat, damage:CGFloat, xspeed:CGFloat = 0) {
+        self._misPosition = position;
+        super.init(missleName: missleName, missleType: type,position:position, speed: speed, damage: damage, xspeed: xspeed);
     }
     
-    init(missleAtlasName:String, position:CGPoint, type:ActorType, speed:CGFloat) {
+    init(missleAtlasName:String, position:CGPoint, type:ActorType, speed:CGFloat, damage:CGFloat, xspeed:CGFloat = 0, timePerFrame: Double = GeneralGameSettings.MyMissle_Frequency)
+    {
         self._misPosition = position;
-       // self._misEndPosition = CGPoint(x:0, y:0);
-
-        super.init(missleAtlasName: missleAtlasName, missleType: type,position:position, speed: speed, damage: self._DAMAGE);
+        super.init(missleAtlasName: missleAtlasName, missleType:  type,position:position, speed: speed, damage: damage, xspeed: xspeed,timePerFrame: timePerFrame);
     }
     
     override func Update(){
@@ -39,7 +36,6 @@ class Missle: MissleActor {
     override func SetActive(_ isActive: Bool) {
         super.SetActive(isActive);
     }
-    
     
     func SetMissleEndPosition(targetPos: CGPoint){
         self._misEndPosition = targetPos;

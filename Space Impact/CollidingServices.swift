@@ -28,6 +28,7 @@ class CollidingServices {
         itemCollideUpdate();
     }
     
+    
     fileprivate func myMisslesCollidesEnemyUpdate(){
         let spaceObjects = self._level.Enemies;
         
@@ -37,10 +38,16 @@ class CollidingServices {
         }
         
         for eachNode in (spaceObjects){
-            for mIndex in 0...(self._spaceship._missles.count - 1)	{
-                if let spaceshipActor = eachNode as? SpaceshipActor{
-                    if(spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
-                    {
+            if let spaceshipActor = eachNode as? SpaceshipActor{
+                if(spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
+                {
+                    
+                    if(self._spaceship.IsBigLazer){
+                        spaceshipDamageHitUpdate(actor: spaceshipActor, damagePosition: spaceshipActor.Position, damage: 2);
+                    }
+                    
+                    for mIndex in 0...(self._spaceship._missles.count - 1)	{
+                        
                         let missle = self._spaceship._missles[mIndex];
                         let collided = missle.IsCollidedWith(spaceshipActor);
                         
@@ -53,6 +60,7 @@ class CollidingServices {
                 }
             }
         }
+        self._spaceship.IsBigLazer = false;
     }
     
     fileprivate func enemyMisslesCollidesMeUpdate(){
@@ -87,6 +95,7 @@ class CollidingServices {
                     if(collided && spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
                     {
                         spaceshipDamageHitUpdate(actor: spaceshipActor, damagePosition: self._spaceship.Position, damage: 2);
+                        spaceshipDamageHitUpdate(actor: self._spaceship, damagePosition: self._spaceship.Position, damage: 1);
                     }
                 }
         }
@@ -115,6 +124,10 @@ class CollidingServices {
                     if UserStatsInfo.instance.Bomb.value < 5{
                         UserStatsInfo.instance.Bomb.value += 1;
                     }
+                    break;
+                case .ItemMissleUpgrade:
+                    let newType = self._spaceship.MyMissleType == ActorType.MyMissle ? ActorType.MyMissleSpeed : ActorType.MyMissleTriple;
+                    self._spaceship.SetMissleType(missleType: newType);
                     break;
                 default:
                     break;

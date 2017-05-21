@@ -24,6 +24,7 @@ class Spaceship: SpaceshipActor{
     fileprivate var _shield1:SpriteActor;
     fileprivate var _respawnTimer: Timer?;
     fileprivate var _invincibleTimer: Timer?;
+    fileprivate var _isBigLazer: Bool;
     
     fileprivate var _isInvincible:Bool;
     fileprivate var _invicibleDim:Bool;
@@ -36,6 +37,7 @@ class Spaceship: SpaceshipActor{
     var Direction:MoveDirection{get{return self._moveDirection} set(val){self._moveDirection = val}}
     var IsTouched:Bool{get{return self._isTouched} set(val){self._isTouched = val}}
     var IsInvincible:Bool{get{return self._isInvincible} set(val){self._isInvincible = val}}
+    var IsBigLazer:Bool{get{return self._isBigLazer} set(val){self._isBigLazer = val}}
     
     init(position:CGPoint)
     {
@@ -47,7 +49,7 @@ class Spaceship: SpaceshipActor{
         self._tiltLeft = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_TILTLEFT_NAME, positionX: position.x, positionY: position.y);
         self._tiltRight = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_TILTRIGHT_NAME, positionX: position.x, positionY: position.y);
         self._isTouched = false;
-        
+        self._isBigLazer = false;
         self._thruster = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_THRUSTER, position: CGPoint(x:position.x, y:position.y-20), scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: true)
         
         self._shield = SpriteActor(atlasName: GeneralGameSettings.MYSPACESHIP_SHIEDB_NAME, position: position, scale: 1, opacity: 1, type: ActorType.None, repeatCount: -1, startAnimating: false)
@@ -59,16 +61,25 @@ class Spaceship: SpaceshipActor{
         self._isInvincible = false;
         self._invicibleDim = false;
         self._alpha = 0;
-        super.init(imageName: GeneralGameSettings.MYSPACESHIP_NAME, explosionName:GeneralGameSettings.MYSPACESHIP_EXPLOSION, health: 1, speed: GeneralGameSettings.MYSPACESHIP_SPEED, damage: 1, position: position, scale:1, type:ActorType.MySpaceship, isSpaceShipAnimation: false, spaceshipHasAnimation:true);
+        super.init(imageName: GeneralGameSettings.MYSPACESHIP_NAME, explosionName:GeneralGameSettings.MYSPACESHIP_EXPLOSION, health: 1, speed: GeneralGameSettings.MYSPACESHIP_SPEED, damage: 1, position: position, scale:1, type:ActorType.MySpaceship, missleType: ActorType.MyMissle, isSpaceShipAnimation: false, spaceshipHasAnimation:true);
         self.Health = 1;
         self.InitializeMissles();
     }
     
     func InitializeMissles(){
-        for _ in 1...25{
-         //   self._missles.append(Missle(missleName: GeneralGameSettings.MyMissle_Name, position:CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type:ActorType.MyMissle, speed: GeneralGameSettings.MyMissle_Speed));
+        for var count in 1...30{
+            self._missles.append(Missle(missleAtlasName: GeneralGameSettings.MyMissle_Name, position: CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type: ActorType.MyMissle, speed: GeneralGameSettings.MyMissle_Speed, damage:1, timePerFrame: GeneralGameSettings.MyMissle_Frequency));
+            self._missles.append(Missle(missleAtlasName: GeneralGameSettings.MyMissleC_Name, position: CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type: ActorType.MyMissleSpeed, speed: GeneralGameSettings.MyMissleC_Speed, damage:2, timePerFrame: GeneralGameSettings.MyMissleC_Frequency));
             
-            self._missles.append(Missle(missleAtlasName: GeneralGameSettings.MyMissle_Name, position: CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type: ActorType.MyMissle, speed: GeneralGameSettings.MyMissle_Speed));
+            if(count % 3 == 0){
+                self._missles.append(Missle(missleAtlasName: GeneralGameSettings.MyMissleB_Name, position: CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type: ActorType.MyMissleTriple, speed: GeneralGameSettings.MyMissleB_Speed, damage:2, timePerFrame: GeneralGameSettings.MyMissleB_Frequency));
+            }
+            else if(count % 3 == 1){
+                self._missles.append(Missle(missleAtlasName: GeneralGameSettings.MyMissleB_Name, position: CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type: ActorType.MyMissleTriple, speed: GeneralGameSettings.MyMissleB_Speed, damage:2, xspeed: 3, timePerFrame: GeneralGameSettings.MyMissleB_Frequency));
+            }
+            else{
+                self._missles.append(Missle(missleAtlasName: GeneralGameSettings.MyMissleB_Name, position: CGPoint(x:self.Spaceship.position.x, y:self.Spaceship.position.y + (self.Spaceship.Height / 2)), type: ActorType.MyMissleTriple, speed: GeneralGameSettings.MyMissleB_Speed, damage:2, xspeed: -3, timePerFrame: GeneralGameSettings.MyMissleB_Frequency));
+            }
         }
     }
     
@@ -90,7 +101,7 @@ class Spaceship: SpaceshipActor{
     }
     
     override func SetActive(_ isActive:Bool){
-        self._missleTimer.ToggleMissleTimer(isOn: isActive, targetSpaceship: self, missleFz: GeneralGameSettings.MyMissle_Frequency);
+        self._missleTimer.ToggleMissleTimer(isOn: isActive, targetSpaceship: self, missleFz: GeneralGameSettings.MyMissle_ShootingSpeed);
         self._thruster.SetActive(isActive);
         self._tiltLeft.SetActive(isActive);
         self._tiltRight.SetActive(isActive);
@@ -141,6 +152,22 @@ class Spaceship: SpaceshipActor{
     }
     
     // Private Methods
+    func SetMissleType(missleType: ActorType){
+        self._missleTimer.ToggleMissleTimer(isOn: false, targetSpaceship: self, missleFz: 0);
+        self._missleType = missleType;
+        switch missleType {
+        case .MyMissle:
+            self._missleTimer.ToggleMissleTimer(isOn: true, targetSpaceship: self, missleFz: GeneralGameSettings.MyMissle_ShootingSpeed);
+        case .MyMissleSpeed:
+            self._missleTimer.ToggleMissleTimer(isOn: true, targetSpaceship: self, missleFz: GeneralGameSettings.MyMissleC_ShootingSpeed);
+        case .MyMissleTriple:
+            self._missleTimer.ToggleMissleTimer(isOn: true, targetSpaceship: self, missleFz: GeneralGameSettings.MyMissleB_ShootingSpeed);
+        default:
+            break;
+          //  self._missleTimer.ToggleMissleTimer(isOn: true, targetSpaceship: self, missleFz: GeneralGameSettings.MyMissle_ShootingSpeed);
+        }
+    }
+    
     fileprivate func movementUpdate(){
         if(GameConfiguration.instance.MoveMentType == .Classic){
             switch self._moveDirection{

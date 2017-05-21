@@ -43,6 +43,7 @@ class LevelActor: NSObject {
     
     var Items:[ItemActor]{get{return self._items}}
     var IsActive:Bool{get{return self._isActive}}
+    var Background:SpriteActor?{get{return self._background} set(val){self._background = val}};
     
     override init(){
         self._background = SpriteActor(imageName: GeneralGameSettings.BACKGROUND_NAME, positionX: GameScene.instance!.frame.maxX, positionY: GameScene.instance!.frame.minY);
@@ -51,7 +52,7 @@ class LevelActor: NSObject {
         self._enemies = [ISpaceship]();
         self._items = [ItemActor]();
         self._isActive = false;
-        self._level = 5;
+        self._level = 1;
         self._lblLevel = Label(displayText: "LEVEL ", position: CGPoint(x:GameScene.instance!.frame.midX, y: GameScene.instance!.frame.midY), fontSize: GeneralGameSettings.GAMESCREEN_LEVELLABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
         
         self._enemySpaceshipBTimer = SpawnTimer(interval: 3000);
@@ -68,7 +69,6 @@ class LevelActor: NSObject {
     func Start(level:Int, animationCompleted: ((() -> Void)?)){
        //s self._background?.SetActive(true);
         self._background?.FadeIn();
-        
         self._level = level;
         
         self._lblLevel.DisplayText = "LEVEL " + String(level);
@@ -97,13 +97,14 @@ class LevelActor: NSObject {
             }
         }
         
-        for item in self._items{
+        //for item in self._items{
             if UserStatsInfo.instance.Score.value > self._itemScore {
+                var item = self._items[GameObjectServices.instance.GetRandomNumber(endRange: 4, zeroBase: true)];
                 item.Item.position = GameObjectServices.instance.GenerateRandomPosition();
                 item.SetActive(true);
                 self._itemScore += GeneralGameSettings.ITEM_SCORE_THRES;
             }
-        }
+        //}
     }
     
     func ToggleRollingRockA(isOn: Bool, num:Int){
@@ -236,6 +237,9 @@ class LevelActor: NSObject {
         
         let tempItem3 = Item(atlasItemName: GeneralGameSettings.ITEM_HEART_NAME, exposionName: GeneralGameSettings.ITEM_CAPTUREC_NAME, position: GameObjectServices.instance.GenerateRandomPosition(), itemType: ActorType.ItemHeart);
         self._items.append(tempItem3);
+        
+        let tempItem4 = Item(atlasItemName: GeneralGameSettings.ITEM_MISSLEUPGRADE_NAME, exposionName: GeneralGameSettings.ITEM_CAPTURED_NAME, position: GameObjectServices.instance.GenerateRandomPosition(), itemType: ActorType.ItemMissleUpgrade);
+        self._items.append(tempItem4);
         
         
     }

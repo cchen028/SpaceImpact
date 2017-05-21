@@ -65,18 +65,24 @@ class AssetServices {
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_SHIEDB_01_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_SHIELD_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREA_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTURED_NAME);
         
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREB_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREC_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.EXPLOSIONC_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.EXPLOSIOND_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_LIGHTNING_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_MISSLEUPGRADE_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.BOSS_MISSLE);
         
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_HEART_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.INJUREA_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_THRUSTER);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MyMissle_Name);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.MyMissleB_Name);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.MyMissleC_Name);
+        
+        
         //ITEM_HEART_NAME
     }
     
