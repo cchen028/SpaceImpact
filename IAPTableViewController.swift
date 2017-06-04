@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import StoreKit
 
 class IAPTableViewController: UITableViewController {
+    
+    var products: [SKProduct] = []
+    let supportedProductIds: Set<String> = ["com.cchen.Space-Impact.g50", "com.cchen.Space-Impact.g100"]
+        
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.loadProducts()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,6 +34,21 @@ class IAPTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return products.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        guard let iapCell = cell as? IAPProductTableViewCell else{
+            return cell
+        }
+        let product = self.products[indexPath.row]
+        iapCell.setProduct(product: product)
+        
+        return iapCell
     }
 
     /*
@@ -85,4 +106,33 @@ class IAPTableViewController: UITableViewController {
     }
     */
 
+}
+
+
+//MARK: - Private methods
+extension IAPTableViewController{
+    fileprivate func loadProducts(){
+        if(SKPaymentQueue.canMakePayments()){
+            let request = SKProductsRequest(productIdentifiers: self.supportedProductIds)
+            request.delegate = self
+            request.start()
+        }else{
+            
+        }
+    }
+}
+
+
+extension IAPTableViewController: SKProductsRequestDelegate{
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse){
+        self.products = []
+        self.products.append(contentsOf: response.products)
+        self.tableView.reloadData()
+    }
+}
+
+extension IAPTableViewController: SKPaymentTransactionObserver{
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]){
+        
+    }
 }
