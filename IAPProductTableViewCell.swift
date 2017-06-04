@@ -10,10 +10,13 @@ import UIKit
 import StoreKit
 
 class IAPProductTableViewCell: UITableViewCell {
+    
+    static let reuseIdentifier = "IAPProductTableViewCell"
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var purchaseButton: UIButton!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     var product: SKProduct! //we NEED product before we can do anything
     
@@ -30,10 +33,13 @@ class IAPProductTableViewCell: UITableViewCell {
     
     func setProduct(product: SKProduct){
         self.product = product
+        setDisplayContent()
     }
     
     func setDisplayContent(){
         self.productTitleLabel.text = self.product.localizedTitle
+        self.descriptionLabel.text = "" //TODO: fill this with other stuff later
+        self.purchaseButton.setTitle(self.product.localizedPrice(), for: .normal)
         
     }
 

@@ -13,6 +13,7 @@
 		657AE7BD1DBC7F2100A38315 /* IAPContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AE7BC1DBC7F2100A38315 /* IAPContainerViewController.swift */; };
 		657AE7BF1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */; };
 		65BBA6711EDD2A0900848289 /* IAPProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BBA6701EDD2A0900848289 /* IAPProductTableViewCell.swift */; };
+		65BBA6731EE38CA300848289 /* SKProductExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BBA6721EE38CA300848289 /* SKProductExtensions.swift */; };
 		B001493A1DBBE95000FB961B /* Item-Shield.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149391DBBE95000FB961B /* Item-Shield.atlas */; };
 		B001493C1DBBEA0700FB961B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001493B1DBBEA0700FB961B /* Item.swift */; };
 		B001493E1DBBEE1800FB961B /* ItemActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001493D1DBBEE1800FB961B /* ItemActor.swift */; };
@@ -125,6 +126,7 @@
 		657AE7BC1DBC7F2100A38315 /* IAPContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPContainerViewController.swift; sourceTree = "<group>"; };
 		657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		65BBA6701EDD2A0900848289 /* IAPProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPProductTableViewCell.swift; sourceTree = "<group>"; };
+		65BBA6721EE38CA300848289 /* SKProductExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKProductExtensions.swift; sourceTree = "<group>"; };
 		B00149391DBBE95000FB961B /* Item-Shield.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Shield.atlas"; sourceTree = "<group>"; };
 		B001493B1DBBEA0700FB961B /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B001493D1DBBEE1800FB961B /* ItemActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemActor.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */,
 				B08021301DAB27D6002AEC1F /* DynamicInt.swift */,
 				B0A9156E1DC1A04000C54937 /* SKSpriteExtension.swift */,
+				65BBA6721EE38CA300848289 /* SKProductExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				B03BD62F1C7D8E5100D14F4C /* Background.swift in Sources */,
 				B001493C1DBBEA0700FB961B /* Item.swift in Sources */,
 				B07E8E201C825B1D00217260 /* LabelActor.swift in Sources */,
+				65BBA6731EE38CA300848289 /* SKProductExtensions.swift in Sources */,
 				B03BD5EF1C706BC200D14F4C /* GameScene.swift in Sources */,
 				B04B5AB11E9178F700546B63 /* Boss.swift in Sources */,
 				657AE7BD1DBC7F2100A38315 /* IAPContainerViewController.swift in Sources */,

@@ -12,12 +12,14 @@ import StoreKit
 class IAPTableViewController: UITableViewController {
     
     var products: [SKProduct] = []
-    let supportedProductIds: Set<String> = ["com.cchen.Space-Impact.g50", "com.cchen.Space-Impact.g100"]
+    let supportedProductIds: Set<String> = ["g50", "g100"]
         
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 80
         self.loadProducts()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -41,7 +43,7 @@ class IAPTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: IAPProductTableViewCell.reuseIdentifier, for: indexPath)
         guard let iapCell = cell as? IAPProductTableViewCell else{
             return cell
         }
