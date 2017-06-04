@@ -124,7 +124,7 @@ extension IAPTableViewController{
     }
 }
 
-
+//MARK: - SK IAP
 extension IAPTableViewController: SKProductsRequestDelegate{
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse){
         self.products = []
@@ -134,7 +134,29 @@ extension IAPTableViewController: SKProductsRequestDelegate{
 }
 
 extension IAPTableViewController: SKPaymentTransactionObserver{
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]){
+    
+    func processPurchasedProductById(productId: String){
         
     }
+    
+    func processTransactionUpdate(transaction: SKPaymentTransaction){
+        switch transaction.transactionState{
+        case .purchased:
+            processPurchasedProductById(productId: transaction.payment.productIdentifier)
+            break
+        default:
+            break
+        }
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]){
+        for transaction in transactions{
+            
+        }
+    }
+}
+
+//MARK: - UIAlertDelegate
+extension IAPTableViewController: UIAlertViewDelegate{
+    
 }
