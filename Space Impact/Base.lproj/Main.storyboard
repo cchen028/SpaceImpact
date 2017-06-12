@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7gO-TO-yJz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7gO-TO-yJz">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,7 +13,7 @@
         <scene sceneID="ViG-2L-5kG">
             <objects>
                 <navigationController navigationBarHidden="YES" id="7gO-TO-yJz" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OWZ-IR-ssP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OWZ-IR-ssP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -25,24 +28,27 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Space_Impact" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" wantsFullScreenLayout="YES" id="BV1-FR-VrT" customClass="GameViewController" customModule="Space_Impact" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                    <view key="view" autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Sjv-QM-DhP"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="500" height="1000"/>
                     <connections>
                         <segue destination="6ck-mD-xp4" kind="presentation" identifier="presentIAPModallySegue" modalPresentationStyle="overCurrentContext" id="0wE-Nk-vEi"/>
+                        <segue destination="CF1-he-EUe" kind="presentation" identifier="presentPauseMenuModallySegue" modalPresentationStyle="overCurrentContext" id="31h-tv-Wbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135" y="157"/>
+            <point key="canvasLocation" x="133.59999999999999" y="156.97151424287858"/>
         </scene>
         <!--IAP-->
         <scene sceneID="3dN-ze-W05">
@@ -51,6 +57,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kff-vf-uoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="713" y="157"/>
+        </scene>
+        <!--PauseMenu-->
+        <scene sceneID="bMq-0K-px6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PauseMenu" id="CF1-he-EUe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UOm-ru-4gB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="712" y="243"/>
         </scene>
     </scenes>
 </document>

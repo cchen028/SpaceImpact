@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/GameScreen.swift"
-            timestampString = "515894733.853134"
+            timestampString = "518831916.770277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "HandlesTouch(position:direction:isTouched:multipleTouch:)"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "HandlesTouch(position:direction:isTouched:multipleTouch:touch:event:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/LevelActor.swift"
-            timestampString = "516494465.183661"
+            timestampString = "517702422.495338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "Update(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Space Impact/SpaceshipActor.swift"
-            timestampString = "517021914.719092"
+            timestampString = "517625000.198334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "AddMissle()"
             landmarkType = "7">
          </BreakpointContent>

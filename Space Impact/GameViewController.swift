@@ -15,10 +15,20 @@ import SpriteKit
 class GameViewController: UIViewController {
     
     static let presentIAPModallySegueId = "presentIAPModallySegue"
+    static let presentPauseMenuModallySegueId = "presentPauseMenuModallySegue"
 
     override func viewDidLoad() {
         super.viewDidLoad()
       //  instance
+
+//        for family: String in UIFont.familyNames
+//        {
+//            print("\(family)")
+//            for names: String in UIFont.fontNames(forFamilyName: family)
+//            {
+//                print("== \(names)")
+//            }
+//        }
         
         self.view.isMultipleTouchEnabled = true;
         
@@ -77,6 +87,7 @@ class GameViewController: UIViewController {
     //MARK: - private methods
     private func registerForNotification(){
         NotificationCenter.default.addObserver(self, selector: #selector(presentIAPViewController), name: .onPowerUpButtonPressed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentPauseMenuViewController), name: .onPauseMenuButtonPressed, object: nil)
     }
     
     private func removeNotificationObserver(){
@@ -84,6 +95,10 @@ class GameViewController: UIViewController {
     }
     
     @objc private func presentIAPViewController(){
-        performSegue(withIdentifier: GameViewController.presentIAPModallySegueId, sender: self)
+        performSegue(withIdentifier: GameViewController.presentIAPModallySegueId, sender: self);
+    }
+    
+    @objc private func presentPauseMenuViewController(){
+        performSegue(withIdentifier: GameViewController.presentPauseMenuModallySegueId, sender: self);
     }
 }

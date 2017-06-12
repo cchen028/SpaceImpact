@@ -21,22 +21,29 @@ struct GeneralGameSettings {
     // Touch Settings
     
     // Main Menu Settings
-    static let TITLE_FONTSIZE: CGFloat = 45;
-    static let TITLE_FONTFAMILY: String = "AvenirNext-UltraLight"
+    static let TITLE_NAME: String = "MainTitle_White";
+    static let TITLE_FONTSIZE: CGFloat = 50;
+    static let TITLE_FONTFAMILY: String = "Neuropol-Regular"
     
     static let BUTTON_FONTSIZE: CGFloat = 25;
-    static let BUTTON_PADDINGS: CGFloat = 30;
-    static let BUTTON_FONTFAMILY:String = "AvenirNext-Medium";
+    static let BUTTON_PADDINGS: CGFloat = 0;
+    static let BUTTON_FONTFAMILY:String = "Neuropol-Regular";
     
     static let BACKGROUND_PLANET:String = "planet";
     static let BACKGROUND_PLANET_TOTAL:Int = 24;
     static let BACKGROUND_PLANET_SPEED:CGFloat = 0.2;
     
+    static let NEWGAME_NAME: String = "NewGame";
+    static let HIGHSCORE_NAME: String = "HighScore";
+    static let RESUMEGAME_NAME: String = "ResumeGame";
+    static let SETTINGS_NAME: String = "Settings";
+    static let SHOP_NAME: String = "Shop";
+    
     // Game Screen Setting
     static let GAMESCREEN_NAME = "Game";
-    static let GAMESCREEN_LABEL_FONTSIZE: CGFloat = 25;
-    static let GAMESCREEN_LABEL_FONTFAMILY: String = "Copperplate"
-    static let GAMESCREEN_LEVELLABEL_FONTSIZE: CGFloat = 35;
+    static let GAMESCREEN_LABEL_FONTSIZE: CGFloat = 15;
+    static let GAMESCREEN_LABEL_FONTFAMILY: String = "Neuropol-Regular"
+    static let GAMESCREEN_LEVELLABEL_FONTSIZE: CGFloat = 25;
     static let GAMESCREEN_LEVELLABEL_FADEIN: CGFloat = 1;
     static let GAMESCREEN_LEVELLABEL_FADEOUT: CGFloat = 0.5;
     static let GAMESCREEN_LEVELLABEL_FADEINOUT: CGFloat = 0.7;
@@ -59,6 +66,7 @@ struct GeneralGameSettings {
     static let EXPLOSIOND_NAME:String = "ExplosionD";
     
     static let INJUREA_NAME:String = "InjureA";
+    static let INJUREB_NAME:String = "InjureB";
     
     // Items
     static let ITEM_SHIELD_NAME:String = "Item-Shield";
@@ -152,6 +160,19 @@ struct GeneralGameSettings {
     static let ENEMYB_MOVEBYX: CGFloat = 200;
     static let ENEMYB_Missle_Frequency:Double = 1;
     static let ENEMYB_MOVEMENT_TIMEPERFRAME: Double = 0.1;
+    
+    //Beacon A
+    static let BEACONA_NAME:String = "BeaconA";
+    static let BEACONA_SPEED:CGFloat = 2;
+    static let BEACONA_HEALTH:Int = 10;
+    static let BEACONA_EXPLOSION:String = "ExplosionB";
+    static let BEACONA_POINT: Int = 3000;
+    //Beacon B
+    static let BEACONB_NAME:String = "BeaconB";
+    static let BEACONB_SPEED:CGFloat = 0.7;
+    static let BEACONB_HEALTH:Int = 20;
+    static let BEACONB_EXPLOSION:String = "ExplosionB";
+    static let BEACONB_POINT: Int = 3000;
     
     //BOSS
     

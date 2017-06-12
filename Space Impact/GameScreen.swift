@@ -15,6 +15,7 @@ class GameScreen: NSObject,IStage {
     fileprivate var _isActive:Bool;
     fileprivate var _mySpaceshipMissleTimer: Timer!;
     fileprivate var _labels:[Label];
+    fileprivate var _buttons:[Button];
     fileprivate var _life:[Icon];
     fileprivate var _lightning:[Icon];
     
@@ -39,6 +40,7 @@ class GameScreen: NSObject,IStage {
         self._labels = [Label]();
         self._life = [Icon]();
         self._lightning = [Icon]();
+        self._buttons = [Button]();
         self._levelThres = GeneralGameSettings.GAMELEVEL_THRES;
         
         GameObjectServices.instance.CreateGameScreen(gameScreen: self._gameScreenNode);
@@ -47,6 +49,7 @@ class GameScreen: NSObject,IStage {
         self._collidingService = CollidingServices(level: self._level, spaceship: self._mySpaceship);
         super.init();
         self.createLabels();
+        self.createButtons();
     }
     
     func Update(_ currentTime: TimeInterval){
@@ -92,6 +95,10 @@ class GameScreen: NSObject,IStage {
             heart.FadeIn();
         }
         
+        for button in self._buttons{
+            button.FadeIn();
+        }
+        
         self._level.Start(level:self._level.Level, animationCompleted: nil);
     }
     
@@ -99,6 +106,13 @@ class GameScreen: NSObject,IStage {
         self._gameScreenNode.removeFromParent();
         self._mySpaceship.SetActive(false);
         self._level.Stop();
+    }
+    
+    fileprivate func createButtons(){
+        let pauseMenu = Button(displayText: "⊜", position: CGPoint(x:GameScene.instance!.frame.maxX - 10, y:GameScene.instance!.frame.minY + 20), fontName: GeneralGameSettings.BUTTON_FONTFAMILY, fontSize: 40, imageName: "none");
+        pauseMenu.LabelNode.LabelNode.zRotation = CGFloat(Double.pi/2);
+        pauseMenu.name = "PauseMenu";
+        self._buttons.append(pauseMenu);
     }
     
     fileprivate func createLabels(){
@@ -134,11 +148,28 @@ class GameScreen: NSObject,IStage {
     }
 
     
-    func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool, multipleTouch:Bool = false)
+    func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool, multipleTouch:Bool = false, touch: UITouch? = nil, event:UIEvent? = nil)
     {
         if !self._isActive
         {
             return;
+        }
+        
+        
+        if((touch) != nil){
+            for button in self._buttons{
+                if button.IsTouched(touch!, withEvent: event)
+                {
+                    let curNodeName = button.name == nil ? "" : button.name!;
+                    switch curNodeName {
+                    case "PauseMenu":
+                        NotificationCenter.default.post(name: .onPauseMenuButtonPressed, object: nil);
+                    default:
+                        return;
+                    }
+                }
+            }
+
         }
         
         if(multipleTouch && UserStatsInfo.instance.Bomb.value > 0){
@@ -160,8 +191,6 @@ class GameScreen: NSObject,IStage {
             
             self._mySpaceship.Position = postion;
         }
-        
-       
         
         self._mySpaceship.Direction = direction;
     }

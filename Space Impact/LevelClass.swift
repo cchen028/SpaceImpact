@@ -44,6 +44,7 @@ class LevelClass: LevelActor {
     
     func Level1(){
         self.ToggleRollingRockA(isOn: true, num:2);
+        self.ToggleBeaconB(isOn: true, num: 1);
     }
     
     func Level2(){

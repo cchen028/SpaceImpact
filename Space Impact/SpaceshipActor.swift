@@ -12,6 +12,7 @@ import SpriteKit
 class SpaceshipActor: NSObject, ISpaceship{
     
     fileprivate var _health:Int;
+    fileprivate var _initialHealth:Int;
     fileprivate var _speed:CGFloat;
     fileprivate var _damage:Int;
     fileprivate var _spaceship:SpriteActor;
@@ -49,6 +50,7 @@ class SpaceshipActor: NSObject, ISpaceship{
         self._injured = nil;
         self._missleType = missleType;
         _health = health;
+        _initialHealth = health;
         _speed = speed;
         _damage = damage;
         _point = point;
@@ -106,7 +108,8 @@ class SpaceshipActor: NSObject, ISpaceship{
     }
     
     func CreateInjure(atlasName:String){
-        self._injured = SpriteActor(atlasName:atlasName, position: self.Position, scale: 1, opacity: 0, type:ActorType.Injured, repeatCount: 1, startAnimating: false);
+        self._injured = SpriteActor(atlasName:atlasName, position: self.Position, scale: 1, opacity: 0, type:ActorType.Injured, timePerFrame:0.05, repeatCount: 1, startAnimating: false);
+        self._injured?.zPosition = 19;
     }
     
     func SetActive(_ isActive:Bool){
@@ -229,6 +232,7 @@ class SpaceshipActor: NSObject, ISpaceship{
     }
     
     fileprivate func create(){
+        self._health = self._initialHealth;
         self._spaceship.SetActive(true);
         self._spaceship_left?.SetActive(true);
         self._spaceship_right?.SetActive(true);

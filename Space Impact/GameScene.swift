@@ -115,7 +115,7 @@ class GameScene: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event);
         let touch = touches.first;
-        gameScreen?.HandlesTouch(position: touch!.location(in: self), direction: MoveDirection.none, isTouched: false);
+        gameScreen?.HandlesTouch(position: touch!.location(in: self), direction: MoveDirection.none, isTouched: false, touch: touch, event:event);
     }
     
     

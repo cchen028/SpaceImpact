@@ -29,6 +29,8 @@ class LevelActor: NSObject {
     fileprivate var _rollingRockBSpawnTimer: Timer?;
     fileprivate var _eneynySpaceshipASpawnTimer: Timer?;
     fileprivate var _eneynySpaceshipBSpawnTimer: Timer?;
+    fileprivate var _beaconASpawnTimer: Timer?;
+    fileprivate var _beaconBSpawnTimer: Timer?;
     internal var _levelCreateTimer: Timer?;
     fileprivate var _lblLevel: Label;
     internal var _background: SpriteActor?;
@@ -81,6 +83,9 @@ class LevelActor: NSObject {
         _eneynySpaceshipASpawnTimer?.invalidate();
         _eneynySpaceshipBSpawnTimer?.invalidate();
         _levelCreateTimer?.invalidate();
+        _beaconASpawnTimer?.invalidate();
+        
+        _beaconBSpawnTimer?.invalidate();
         
     }
     
@@ -97,14 +102,33 @@ class LevelActor: NSObject {
             }
         }
         
+//        if(GameObjectServices.instance.GiveItem){
+//            GameObjectServices.instance.GiveItem = false;
+//            var item = self._items[GameObjectServices.instance.GetRandomNumber(endRange: 4, zeroBase: true)];
+//            item.Item.position = GameObjectServices.instance.GenerateRandomPosition();
+//            item.SetActive(true);
+//            self._itemScore += GeneralGameSettings.ITEM_SCORE_THRES;
+//        }
+        
         //for item in self._items{
-            if UserStatsInfo.instance.Score.value > self._itemScore {
-                var item = self._items[GameObjectServices.instance.GetRandomNumber(endRange: 4, zeroBase: true)];
-                item.Item.position = GameObjectServices.instance.GenerateRandomPosition();
-                item.SetActive(true);
-                self._itemScore += GeneralGameSettings.ITEM_SCORE_THRES;
-            }
+//            if UserStatsInfo.instance.Score.value > self._itemScore {
+//                var item = self._items[GameObjectServices.instance.GetRandomNumber(endRange: 4, zeroBase: true)];
+//                item.Item.position = GameObjectServices.instance.GenerateRandomPosition();
+//                item.SetActive(true);
+//                self._itemScore += GeneralGameSettings.ITEM_SCORE_THRES;
+//            }
         //}
+    }
+    
+//    func checkForNewItem(beacon:BeaconB){
+//        beacon.events.listenTo(eventName: "GiveItem", action: <#T##(() -> ())##(() -> ())##() -> ()#>)
+//    }
+    
+    func SpawnItem(position:CGPoint, itemIndex: Int){
+        let item = self._items[itemIndex];
+        item.Item.position = position;
+        item.SetActive(true);
+        self._itemScore += GeneralGameSettings.ITEM_SCORE_THRES;
     }
     
     func ToggleRollingRockA(isOn: Bool, num:Int){
@@ -141,6 +165,24 @@ class LevelActor: NSObject {
         }
         else{
             _eneynySpaceshipBSpawnTimer!.invalidate();
+        }
+    }
+    
+    func ToggleBeaconA(isOn: Bool, num:Int){
+        if(isOn){
+            _beaconASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector:  #selector(LevelActor.SpawnBeaconA), userInfo: num, repeats: true);
+        }
+        else{
+            _beaconASpawnTimer!.invalidate();
+        }
+    }
+    
+    func ToggleBeaconB(isOn: Bool, num:Int){
+        if(isOn){
+            _beaconBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector:  #selector(LevelActor.SpawnBeaconB), userInfo: num, repeats: true);
+        }
+        else{
+            _beaconBSpawnTimer!.invalidate();
         }
     }
     
@@ -196,6 +238,39 @@ class LevelActor: NSObject {
             }
         }
     }
+    
+    func SpawnBeaconA(){
+        var num = 0;
+        let total = _beaconASpawnTimer?.userInfo as? Int
+        for obj in self._enemies{
+            if var beaconA = obj as? BeaconA , !beaconA.IsActive {
+                beaconA.Position = GameObjectServices.instance.GenerateRandomPosition();
+                beaconA.SetActive(true);
+                num += 1;
+                if(total == nil || num == total)
+                {
+                    break;
+                }
+            }
+        }
+    }
+    
+    func SpawnBeaconB(){
+        var num = 0;
+        let total = _beaconBSpawnTimer?.userInfo as? Int
+        for obj in self._enemies{
+            if var beaconB = obj as? BeaconB , !beaconB.IsActive {
+                beaconB.Position = GameObjectServices.instance.GenerateRandomPosition();
+                beaconB.SetActive(true);
+                num += 1;
+                if(total == nil || num == total)
+                {
+                    break;
+                }
+            }
+        }
+    }
+
     
     func SpawnBoss(){
         let playerSpaceship = _bossSpawnTimer?.userInfo as? Spaceship
@@ -264,6 +339,11 @@ class LevelActor: NSObject {
             let tempRock = EnemySpaceshipB(position:GameObjectServices.instance.GenerateRandomPosition());
             self._enemies.append(tempRock);
         }
+        
+        let tempBeaconA = BeaconA(position:GameObjectServices.instance.GenerateRandomPosition());
+        self._enemies.append(tempBeaconA);
+        let tempBeaconB = BeaconB(position:GameObjectServices.instance.GenerateRandomPosition());
+        self._enemies.append(tempBeaconB);
         
         let tempBoss = Boss(position:GameObjectServices.instance.GenerateRandomPosition());
         self._enemies.append(tempBoss);

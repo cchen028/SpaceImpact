@@ -27,7 +27,7 @@ class Boss: SpaceshipActor{
         self._isWithingScreen = false;
         super.init(imageName: GeneralGameSettings.BOSS_NAME, explosionName: GeneralGameSettings.BOSS_EXPLOSION, health: GeneralGameSettings.BOSS_HEALTH, speed: GeneralGameSettings.BOSS_SPEED, damage: 1, position: position, scale:1, type:ActorType.EnemySpaceship,  point: GeneralGameSettings.BOSS_POINT, missleType: ActorType.BlueBossMissle, isSpaceShipAnimation: false, spaceshipHasAnimation: false);
         
-        self.CreateInjure(atlasName: GeneralGameSettings.INJUREA_NAME)
+        self.CreateInjure(atlasName: GeneralGameSettings.INJUREA_NAME);
         self.InitializeMissles();
     }
     

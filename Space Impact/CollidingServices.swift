@@ -39,7 +39,7 @@ class CollidingServices {
         
         for eachNode in (spaceObjects){
             if let spaceshipActor = eachNode as? SpaceshipActor{
-                if(spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
+                if((spaceshipActor.Type == ActorType.EnemySpaceship || spaceshipActor.Type == ActorType.Beacon) && spaceshipActor.IsActive)
                 {
                     
                     if(self._spaceship.IsBigLazer){
@@ -69,7 +69,7 @@ class CollidingServices {
         for eachNode in (spaceObjects){
             
             if let spaceshipActor = eachNode as? SpaceshipActor{
-                if(spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive && spaceshipActor._missles.count > 0)
+                if((spaceshipActor.Type == ActorType.EnemySpaceship || spaceshipActor.Type == ActorType.Beacon) && spaceshipActor.IsActive && spaceshipActor._missles.count > 0)
                 {
                     for mIndex in 0...(spaceshipActor._missles.count - 1)	{
                         let missle = spaceshipActor._missles[mIndex];
@@ -92,7 +92,7 @@ class CollidingServices {
         for eachNode in (spaceObjects){
                 if let spaceshipActor = eachNode as? SpaceshipActor{
                     let collided = self._spaceship.IsCollidedWith(spaceshipActor);
-                    if(collided && spaceshipActor.Type == ActorType.EnemySpaceship && spaceshipActor.IsActive)
+                    if(collided && (spaceshipActor.Type == ActorType.EnemySpaceship || spaceshipActor.Type == ActorType.Beacon) && spaceshipActor.IsActive)
                     {
                         spaceshipDamageHitUpdate(actor: spaceshipActor, damagePosition: self._spaceship.Position, damage: 2);
                         spaceshipDamageHitUpdate(actor: self._spaceship, damagePosition: self._spaceship.Position, damage: 1);
@@ -141,6 +141,13 @@ class CollidingServices {
     fileprivate func spaceshipDamageHitUpdate(actor: SpaceshipActor, damagePosition:CGPoint, damage:Int){
         actor.Health = actor.Health - damage;
         if(actor.Health < 1){
+            if(actor.Type == .Beacon){
+                let beacon = actor as! BeaconB;
+                beacon.Explode();
+                UserStatsInfo.instance.Score.value += actor.Point;
+                _level.SpawnItem(position: actor.Position, itemIndex: GameObjectServices.instance.GetRandomNumber(endRange: 4, zeroBase: true));
+            }
+            
             if(actor.Type == .EnemySpaceship){
                 actor.Explode();
                 UserStatsInfo.instance.Score.value += actor.Point;

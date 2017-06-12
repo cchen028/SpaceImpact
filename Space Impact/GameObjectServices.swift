@@ -16,12 +16,12 @@ class GameObjectServices {
     fileprivate var _gameScreen:SKNode?;
     fileprivate var _spaceShip:Spaceship?;
     fileprivate var _planet:[Planet];
-
     
     var Stars:[Star]{get{return self._stars}}
     var GameScreen:SKNode?{get{return self._gameScreen}}
     var PlayerSpaceship:Spaceship?{get{return self._spaceShip}}
     var Planets:[Planet]{get{return self._planet}}
+    
     
     private init(){
         self._planet = [Planet]();
