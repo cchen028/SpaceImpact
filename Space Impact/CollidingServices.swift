@@ -129,6 +129,9 @@ class CollidingServices {
                     let newType = self._spaceship.MyMissleType == ActorType.MyMissle ? ActorType.MyMissleSpeed : ActorType.MyMissleTriple;
                     self._spaceship.SetMissleType(missleType: newType);
                     break;
+                case .ItemGem:
+                    UserStatsInfo.instance.Gem.value = UserStatsInfo.instance.Gem.value + 1;
+                    break;
                 default:
                     break;
                 }
@@ -145,7 +148,9 @@ class CollidingServices {
                 let beacon = actor as! BeaconB;
                 beacon.Explode();
                 UserStatsInfo.instance.Score.value += actor.Point;
-                _level.SpawnItem(position: actor.Position, itemIndex: GameObjectServices.instance.GetRandomNumber(endRange: 4, zeroBase: true));
+                _level.SpawnItem(position: actor.Position, itemIndex: GameObjectServices.instance.GetRandomNumber(endRange: 5, zeroBase: true));
+                
+              //   _level.SpawnItem(position: actor.Position, itemIndex: 4);
             }
             
             if(actor.Type == .EnemySpaceship){

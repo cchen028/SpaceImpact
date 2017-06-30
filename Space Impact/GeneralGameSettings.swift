@@ -52,6 +52,7 @@ struct GeneralGameSettings {
     
     static let GAMESCREEN_ICON_LIFE:String = "life";
     static let GAMESCREEN_ICON_BOMB:String = "lightning-icon";
+    static let GAMESCREEN_ICON_GEM:String = "gem";
     
     
     static let SPACESHIP_EXPLOSION_FRAMES: Double = 0.02;
@@ -74,12 +75,14 @@ struct GeneralGameSettings {
     static let ITEM_LIGHTNING_NAME:String = "Item-Lightning";
     static let ITEM_HEART_NAME:String = "Item-Heart";
     static let ITEM_MISSLEUPGRADE_NAME:String = "Item-MissleUpgrade";
+    static let ITEM_GEM_NAME:String = "Item-Gem";
     static let ITEM_SCORE_THRES: Int = 3000;
     static let ITEM_CAPTUREA_NAME:String = "CaptureA";
     static let ITEM_CAPTUREB_NAME:String = "CaptureB";
     
     static let ITEM_CAPTUREC_NAME:String = "CaptureC";
     static let ITEM_CAPTURED_NAME:String = "CaptureD";
+    static let ITEM_CAPTUREE_NAME:String = "CaptureE";
     
     
     // My Spaceship

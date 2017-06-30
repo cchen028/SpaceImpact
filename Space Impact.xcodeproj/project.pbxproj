@@ -43,6 +43,11 @@
 		B007F9631DB9E654002455D4 /* ShieldB-1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B007F9621DB9E653002455D4 /* ShieldB-1.atlas */; };
 		B00D2E6A1EECC23600EC44A2 /* PauseMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B00D2E691EECC23600EC44A2 /* PauseMenu.storyboard */; };
 		B00D2E6D1EEDE39600EC44A2 /* neuropol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B00D2E6C1EEDE39600EC44A2 /* neuropol.ttf */; };
+		B00D2E6F1EEF752700EC44A2 /* Item-Gem.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00D2E6E1EEF752700EC44A2 /* Item-Gem.atlas */; };
+		B00D2E711EEF78DA00EC44A2 /* CaptureE.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00D2E701EEF78DA00EC44A2 /* CaptureE.atlas */; };
+		B00D2E731EF4927600EC44A2 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00D2E721EF4927600EC44A2 /* TransitionManager.swift */; };
+		B00D2E751EF5E58C00EC44A2 /* PauseMenuContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00D2E741EF5E58C00EC44A2 /* PauseMenuContainerViewController.swift */; };
+		B00D2E771EF5E5B200EC44A2 /* PauseMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00D2E761EF5E5B200EC44A2 /* PauseMenuTableViewController.swift */; };
 		B018AF831C8AC576000D68A6 /* Missle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018AF821C8AC576000D68A6 /* Missle.swift */; };
 		B01DF0461EAC10C000DF4F54 /* InjureA.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B01DF0451EAC10C000DF4F54 /* InjureA.atlas */; };
 		B01DF0481EAC333D00DF4F54 /* thruster.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B01DF0471EAC333D00DF4F54 /* thruster.atlas */; };
@@ -161,6 +166,11 @@
 		B007F9621DB9E653002455D4 /* ShieldB-1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "ShieldB-1.atlas"; sourceTree = "<group>"; };
 		B00D2E691EECC23600EC44A2 /* PauseMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PauseMenu.storyboard; sourceTree = "<group>"; };
 		B00D2E6C1EEDE39600EC44A2 /* neuropol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = neuropol.ttf; sourceTree = "<group>"; };
+		B00D2E6E1EEF752700EC44A2 /* Item-Gem.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Gem.atlas"; sourceTree = "<group>"; };
+		B00D2E701EEF78DA00EC44A2 /* CaptureE.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CaptureE.atlas; sourceTree = "<group>"; };
+		B00D2E721EF4927600EC44A2 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		B00D2E741EF5E58C00EC44A2 /* PauseMenuContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenuContainerViewController.swift; sourceTree = "<group>"; };
+		B00D2E761EF5E5B200EC44A2 /* PauseMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenuTableViewController.swift; sourceTree = "<group>"; };
 		B018AF821C8AC576000D68A6 /* Missle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Missle.swift; sourceTree = "<group>"; };
 		B01DF0451EAC10C000DF4F54 /* InjureA.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = InjureA.atlas; sourceTree = "<group>"; };
 		B01DF0471EAC333D00DF4F54 /* thruster.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = thruster.atlas; sourceTree = "<group>"; };
@@ -261,6 +271,8 @@
 			children = (
 				657AE7BA1DBC7DA000A38315 /* IAPTableViewController.swift */,
 				657AE7BC1DBC7F2100A38315 /* IAPContainerViewController.swift */,
+				B00D2E741EF5E58C00EC44A2 /* PauseMenuContainerViewController.swift */,
+				B00D2E761EF5E5B200EC44A2 /* PauseMenuTableViewController.swift */,
 			);
 			name = ViewControllers;
 			path = ..;
@@ -269,6 +281,8 @@
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B00D2E701EEF78DA00EC44A2 /* CaptureE.atlas */,
+				B00D2E6E1EEF752700EC44A2 /* Item-Gem.atlas */,
 				B0C146281EDA521E00B9141E /* InjureB.atlas */,
 				B0C146221EDA3FFE00B9141E /* BeaconA.atlas */,
 				B0C146201ED112D700B9141E /* MyMissleC.atlas */,
@@ -363,6 +377,7 @@
 				B03BD5EC1C706BC200D14F4C /* GameScene.sks */,
 				B03BD5EE1C706BC200D14F4C /* GameScene.swift */,
 				B03BD5F01C706BC200D14F4C /* GameViewController.swift */,
+				B00D2E721EF4927600EC44A2 /* TransitionManager.swift */,
 				B03BD5F21C706BC200D14F4C /* Main.storyboard */,
 				B00D2E691EECC23600EC44A2 /* PauseMenu.storyboard */,
 				B03BD5F71C706BC200D14F4C /* LaunchScreen.storyboard */,
@@ -657,6 +672,8 @@
 				657459B31DAF313300200C68 /* IAP.storyboard in Resources */,
 				B004877A1C8D6E5C0061EC7F /* astroid1.atlas in Resources */,
 				B007F9571DB46E5A002455D4 /* ExplosionB.atlas in Resources */,
+				B00D2E6F1EEF752700EC44A2 /* Item-Gem.atlas in Resources */,
+				B00D2E711EEF78DA00EC44A2 /* CaptureE.atlas in Resources */,
 				B00531AC1EC9166900046C57 /* Item-MissleUpgrade.atlas in Resources */,
 				B007F95D1DB89C0E002455D4 /* ShieldB.atlas in Resources */,
 				B001494C1DBCA6EA00FB961B /* Item-Lightning.atlas in Resources */,
@@ -694,6 +711,8 @@
 				B001493C1DBBEA0700FB961B /* Item.swift in Sources */,
 				B07E8E201C825B1D00217260 /* LabelActor.swift in Sources */,
 				B03BD5EF1C706BC200D14F4C /* GameScene.swift in Sources */,
+				B00D2E751EF5E58C00EC44A2 /* PauseMenuContainerViewController.swift in Sources */,
+				B00D2E771EF5E5B200EC44A2 /* PauseMenuTableViewController.swift in Sources */,
 				B04B5AB11E9178F700546B63 /* Boss.swift in Sources */,
 				657AE7BD1DBC7F2100A38315 /* IAPContainerViewController.swift in Sources */,
 				B00531B01EC920A500046C57 /* MissleType.swift in Sources */,
@@ -702,6 +721,7 @@
 				657AE7BB1DBC7DA000A38315 /* IAPTableViewController.swift in Sources */,
 				B0EFE7431C9665C500807049 /* NodeType.swift in Sources */,
 				B018AF831C8AC576000D68A6 /* Missle.swift in Sources */,
+				B00D2E731EF4927600EC44A2 /* TransitionManager.swift in Sources */,
 				B0EF1ED61C8B894D00E24202 /* MissleActor.swift in Sources */,
 				657459B51DAF379C00200C68 /* NotificationNames.swift in Sources */,
 				B0F53E051C83B9AC00876394 /* GameScreen.swift in Sources */,

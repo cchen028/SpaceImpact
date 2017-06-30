@@ -172,7 +172,7 @@ import SpriteKit
     
     
     
-    func FadeIn(customTime:CGFloat? = GeneralGameSettings.TRANSITION_FADEIN){
+    func FadeIn(customTime:CGFloat? = GeneralGameSettings.TRANSITION_FADEIN, animationCompleted: (() -> Void)? = nil){
         let fadeInAnimation = SKAction.fadeIn(withDuration: TimeInterval(customTime!));
         if self.alpha < 1
         {
@@ -181,7 +181,7 @@ import SpriteKit
         }
     }
     
-    func FadeOut(customTime:CGFloat? = GeneralGameSettings.TRANSITION_FADEIN){
+    func FadeOut(customTime:CGFloat? = GeneralGameSettings.TRANSITION_FADEIN, animationCompleted: (() -> Void)? = nil){
         let fadeOutAnimation = SKAction.fadeOut(withDuration: TimeInterval(customTime!));
         if self.alpha > 0
         {

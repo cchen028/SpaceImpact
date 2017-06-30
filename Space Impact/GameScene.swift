@@ -121,6 +121,9 @@ class GameScene: SKScene {
     
    
     override func update(_ currentTime: TimeInterval) {
+        if(GameObjectServices.instance.IsPaused){
+            return;
+        }
         
         backgroundtheme?.Update();
         

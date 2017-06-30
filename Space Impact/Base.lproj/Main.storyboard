@@ -36,14 +36,14 @@
                     <view key="view" autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Sjv-QM-DhP"/>
                     <value key="contentSizeForViewInPopover" type="size" width="500" height="1000"/>
                     <connections>
-                        <segue destination="6ck-mD-xp4" kind="presentation" identifier="presentIAPModallySegue" modalPresentationStyle="overCurrentContext" id="0wE-Nk-vEi"/>
-                        <segue destination="CF1-he-EUe" kind="presentation" identifier="presentPauseMenuModallySegue" modalPresentationStyle="overCurrentContext" id="31h-tv-Wbc"/>
+                        <segue destination="6ck-mD-xp4" kind="presentation" identifier="presentIAPModallySegue" modalPresentationStyle="overFullScreen" id="0wE-Nk-vEi"/>
+                        <segue destination="CF1-he-EUe" kind="presentation" identifier="presentPauseMenuModallySegue" modalPresentationStyle="overFullScreen" id="31h-tv-Wbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

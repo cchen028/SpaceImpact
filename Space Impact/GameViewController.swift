@@ -12,11 +12,12 @@ import SpriteKit
 
 
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController  {
     
     static let presentIAPModallySegueId = "presentIAPModallySegue"
     static let presentPauseMenuModallySegueId = "presentPauseMenuModallySegue"
-
+    let transitionManager = TransitionManager();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       //  instance
@@ -29,7 +30,6 @@ class GameViewController: UIViewController {
 //                print("== \(names)")
 //            }
 //        }
-        
         self.view.isMultipleTouchEnabled = true;
         
        // if let scene = GameScene(fileNamed:"GameScene") {
@@ -50,6 +50,34 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
+    }
+    
+//    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+//        <#code#>
+//    }
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+      //  if segue.identifier == "showImagePicker" {
+            
+        //print(segue.destination.tr);
+        
+      //  }
+
+        
+        // this gets a reference to the screen that we're about to transition to
+        let toViewController = segue.destination as UIViewController
+        
+        // instead of using the default transition animation, we'll ask
+        // the segue to use our custom TransitionManager object to manage the transition animation
+        toViewController.transitioningDelegate = self.transitionManager
+        
+        
+        
+        //self.transitionManager.animateTransition(using: <#T##UIViewControllerContextTransitioning#>)
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -34,6 +34,7 @@ class LevelActor: NSObject {
     internal var _levelCreateTimer: Timer?;
     fileprivate var _lblLevel: Label;
     internal var _background: SpriteActor?;
+    internal var _transitionBackground: SpriteActor?;
     fileprivate var _itemScore: Int;
     
     
@@ -49,8 +50,11 @@ class LevelActor: NSObject {
     
     override init(){
         self._background = SpriteActor(imageName: GeneralGameSettings.BACKGROUND_NAME, positionX: GameScene.instance!.frame.maxX, positionY: GameScene.instance!.frame.minY);
+        self._transitionBackground = SpriteActor(imageName: GeneralGameSettings.BACKGROUND_NAME, positionX: GameScene.instance!.frame.maxX, positionY: GameScene.instance!.frame.minY);
         self._background?.alpha = 0;
         self._background?.zPosition = -20;
+        self._transitionBackground?.alpha = 0;
+        self._transitionBackground?.zPosition = -21;
         self._enemies = [ISpaceship]();
         self._items = [ItemActor]();
         self._isActive = false;
@@ -66,27 +70,42 @@ class LevelActor: NSObject {
         self.initializeItems();
     }
     
+    func TransitToBackground(imageName:String){
+        self._transitionBackground?.texture = SKTexture(imageNamed: imageName);
+        self._transitionBackground?.FadeIn(customTime: GeneralGameSettings.TRANSITION_FADEIN, animationCompleted: {
+        
+        });
+        self._background?.FadeOut(customTime: GeneralGameSettings.TRANSITION_FADEIN, animationCompleted: {
+            self._background?.texture = SKTexture(imageNamed: imageName);
+            self._background?.alpha = 1;
+            self.self._transitionBackground?.alpha = 0;
+        });
+    }
    
     
     func Start(level:Int, animationCompleted: ((() -> Void)?)){
        //s self._background?.SetActive(true);
         self._background?.FadeIn();
         self._level = level;
+        self._isActive = true;
         
         self._lblLevel.DisplayText = "LEVEL " + String(level);
         self._lblLevel.FadeInAndOut(animationCompleted: animationCompleted);
     }
     
+    func Resume(){
+        self._isActive = true;
+    }
+
+    
     func Stop(){
+        self._isActive = false;
         _rollingRockASpawnTimer?.invalidate();
         _rollingRockBSpawnTimer?.invalidate();
         _eneynySpaceshipASpawnTimer?.invalidate();
         _eneynySpaceshipBSpawnTimer?.invalidate();
-        _levelCreateTimer?.invalidate();
         _beaconASpawnTimer?.invalidate();
-        
         _beaconBSpawnTimer?.invalidate();
-        
     }
     
     func Update(_ currentTime: TimeInterval){
@@ -132,7 +151,7 @@ class LevelActor: NSObject {
     }
     
     func ToggleRollingRockA(isOn: Bool, num:Int){
-        if(isOn){
+        if(isOn && self._isActive){
             _rollingRockASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector:  #selector(LevelActor.SpawnRollingRockA), userInfo: num, repeats: true);
         }
         else{
@@ -141,7 +160,7 @@ class LevelActor: NSObject {
     }
     
     func ToggleRollingRockB(isOn: Bool, num:Int){
-        if(isOn){
+        if(isOn && self._isActive){
             _rollingRockBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: #selector(LevelActor.SpawnRollingRockB), userInfo: num, repeats: true);
         }
         else{
@@ -150,7 +169,7 @@ class LevelActor: NSObject {
     }
     
     func ToggleEnemySpaceshipA(isOn: Bool, num:Int){
-        if(isOn){
+        if(isOn && self._isActive){
             _eneynySpaceshipASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKB_SPAWN, target: self, selector: #selector(LevelActor.SpawnEnemySpaceshipA), userInfo: num, repeats: true);
         }
         else{
@@ -159,7 +178,7 @@ class LevelActor: NSObject {
     }
     
     func ToggleEnemySpaceshipB(isOn: Bool, num:Int){
-        if(isOn){
+        if(isOn && self._isActive){
             
             _eneynySpaceshipBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ENEMYB_SPAWN, target: self, selector: #selector(LevelActor.SpawnEnemySpaceshipB), userInfo: num, repeats: true);
         }
@@ -169,7 +188,7 @@ class LevelActor: NSObject {
     }
     
     func ToggleBeaconA(isOn: Bool, num:Int){
-        if(isOn){
+        if(isOn && self._isActive){
             _beaconASpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector:  #selector(LevelActor.SpawnBeaconA), userInfo: num, repeats: true);
         }
         else{
@@ -178,7 +197,7 @@ class LevelActor: NSObject {
     }
     
     func ToggleBeaconB(isOn: Bool, num:Int){
-        if(isOn){
+        if(isOn && self._isActive){
             _beaconBSpawnTimer = Timer.scheduledTimer(timeInterval: GeneralGameSettings.ROLLINGROCKA_SPAWN, target: self, selector:  #selector(LevelActor.SpawnBeaconB), userInfo: num, repeats: true);
         }
         else{
@@ -315,6 +334,9 @@ class LevelActor: NSObject {
         
         let tempItem4 = Item(atlasItemName: GeneralGameSettings.ITEM_MISSLEUPGRADE_NAME, exposionName: GeneralGameSettings.ITEM_CAPTURED_NAME, position: GameObjectServices.instance.GenerateRandomPosition(), itemType: ActorType.ItemMissleUpgrade);
         self._items.append(tempItem4);
+        
+        let tempItem5 = Item(atlasItemName: GeneralGameSettings.ITEM_GEM_NAME, exposionName: GeneralGameSettings.ITEM_CAPTUREE_NAME, position: GameObjectServices.instance.GenerateRandomPosition(), itemType: ActorType.ItemGem);
+        self._items.append(tempItem5);
         
         
     }
