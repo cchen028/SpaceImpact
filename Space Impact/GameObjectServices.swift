@@ -16,17 +16,20 @@ class GameObjectServices {
     fileprivate var _gameScreen:SKNode?;
     fileprivate var _spaceShip:Spaceship?;
     fileprivate var _planet:[Planet];
-
+    fileprivate var _isPaused:Bool;
     
     var Stars:[Star]{get{return self._stars}}
     var GameScreen:SKNode?{get{return self._gameScreen}}
     var PlayerSpaceship:Spaceship?{get{return self._spaceShip}}
     var Planets:[Planet]{get{return self._planet}}
+    var IsPaused:Bool{get{return self._isPaused} set(value){self._isPaused = value}}
+    
     
     private init(){
         self._planet = [Planet]();
         self._stars = [Star]();
         self._gameScreen = nil;
+        self._isPaused = false;
         let location = CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.minY + 30);
         _spaceShip = Spaceship(position: location);
     }
@@ -85,6 +88,40 @@ class GameObjectServices {
     
     func GetRandomPercentage() -> CGFloat{
         return CGFloat(generateRandomNumber(5))/5;
+    }
+    
+    func HideCollection(lists:[Any]){
+        for obj in lists{
+            if let button = obj as? Button{
+                button.FadeOut();
+            }
+            
+            if let button = obj as? Icon{
+                button.FadeOut();
+            }
+            
+            if let button = obj as? Label{
+                button.FadeOut();
+            }
+            
+        }
+    }
+    
+    func ShowCollection(lists:[Any]){
+        for obj in lists{
+            if let button = obj as? Button{
+                button.FadeIn();
+            }
+            
+            if let button = obj as? Icon{
+                button.FadeIn();
+            }
+            
+            if let button = obj as? Label{
+                button.FadeIn();
+            }
+            
+        }
     }
     
     fileprivate func generateRandomNumber(_ range:Int, zeroBase:Bool = false) -> Int{

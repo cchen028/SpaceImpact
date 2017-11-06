@@ -44,26 +44,45 @@ class MainScreen: IStage,ITouchable {
     
     fileprivate func generateButtons(){
         
-        let btnStart = Button(displayText: "START".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY*1.2),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
-
+//        let btnStart = Button(displayText: "START".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY*1.2),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+//
+//        
+//        let btnHighScore = Button(displayText: "HIGH SCORE".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnStart.position.y - btnStart.Height - _buttonPaddings), fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+//        
+//        let btnTutorial = Button(displayText: "TUTORIAL".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnHighScore.position.y - btnHighScore.Height - _buttonPaddings),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+//        
+//        let btnPowerUp = Button(displayText: "POWER UP".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnTutorial.position.y - btnTutorial.Height - _buttonPaddings),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
-        let btnHighScore = Button(displayText: "HIGH SCORE".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnStart.position.y - btnStart.Height - _buttonPaddings), fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnNewGame = Button(displayText: "".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX + 20, y:GameScene.instance!.frame.midY*1.2),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:GeneralGameSettings.NEWGAME_NAME);
         
-        let btnTutorial = Button(displayText: "TUTORIAL".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnHighScore.position.y - btnHighScore.Height - _buttonPaddings),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
         
-        let btnPowerUp = Button(displayText: "POWER UP".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y: btnTutorial.position.y - btnTutorial.Height - _buttonPaddings),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:"none");
+        let btnHighScore = Button(displayText: "".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX + 20, y: btnNewGame.position.y - btnNewGame.Height - _buttonPaddings), fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:GeneralGameSettings.HIGHSCORE_NAME);
         
-        _buttons.append(btnStart);
+        let btnSettings = Button(displayText: "".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX + 20, y: btnHighScore.position.y - btnHighScore.Height - _buttonPaddings),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:GeneralGameSettings.SETTINGS_NAME);
+        
+        let btnShop = Button(displayText: "".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX + 20, y: btnSettings.position.y - btnSettings.Height - _buttonPaddings),  fontName:GeneralGameSettings.BUTTON_FONTFAMILY, fontSize:GeneralGameSettings.BUTTON_FONTSIZE, imageName:GeneralGameSettings.SHOP_NAME);
+        
+        let lblMainTitle = Button(displayText: "".capitalized, position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY+210),  fontName:GeneralGameSettings.TITLE_FONTFAMILY, fontSize:GeneralGameSettings.TITLE_FONTSIZE, imageName:GeneralGameSettings.TITLE_NAME);
+        
+        btnNewGame.name = "New_Game";
+        btnHighScore.name = "High_Score";
+        btnSettings.name = "Settings";
+        btnShop.name = "Shop";
+        lblMainTitle.setScale(0.5);
+        
+        _buttons.append(btnNewGame);
         _buttons.append(btnHighScore);
-        _buttons.append(btnTutorial);
-        _buttons.append(btnPowerUp)
+        _buttons.append(btnSettings);
+        _buttons.append(btnShop)
+        _buttons.append(lblMainTitle)
     }
     
     fileprivate func generateLabels(){
-        let lblMainTitle = Label(displayText: "SPACE IMPACT", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY+150), fontSize: GeneralGameSettings.TITLE_FONTSIZE, fontNamed: GeneralGameSettings.TITLE_FONTFAMILY);
+//        let lblMainTitle = Label(displayText: "SPACE IMPACT", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY+150), fontSize: GeneralGameSettings.TITLE_FONTSIZE, fontNamed: GeneralGameSettings.TITLE_FONTFAMILY);
         
+//         let lblMainTitle = Label(displayText: "", position: CGPoint(x:GameScene.instance!.frame.midX, y:GameScene.instance!.frame.midY+210), fontSize: GeneralGameSettings.TITLE_FONTSIZE, fontNamed: GeneralGameSettings.TITLE_FONTFAMILY);
         
-        self._labels.append(lblMainTitle);
+        //self._labels.append(lblMainTitle);
     }
     
     func Update(){
@@ -96,13 +115,13 @@ class MainScreen: IStage,ITouchable {
             {
                 let curNodeName = button.name == nil ? "" : button.name!;
                 switch curNodeName {
-                    case "Start":
+                    case "New_Game":
                         self._isStarted = true;
                     case "High_Score":
                         self._isHighScore = true;
-                    case "Tutorial":
+                    case "Settings":
                         self._isTutorial = true;
-                    case "Power_Up":
+                    case "Shop":
                         NotificationCenter.default.post(name: .onPowerUpButtonPressed, object: nil)
                     default:
                         print("main menu error", terminator: "");

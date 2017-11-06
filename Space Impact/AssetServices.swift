@@ -37,6 +37,16 @@ class AssetServices {
         
         _skTextures[GeneralGameSettings.BACKGROUND_NAME] = SKTexture(imageNamed: GeneralGameSettings.BACKGROUND_NAME);
         _skTextures[GeneralGameSettings.BOSS_NAME] = SKTexture(imageNamed: GeneralGameSettings.BOSS_NAME);
+        _skTextures[GeneralGameSettings.BEACONB_NAME] = SKTexture(imageNamed: GeneralGameSettings.BEACONB_NAME);
+        
+        
+        _skTextures[GeneralGameSettings.NEWGAME_NAME] = SKTexture(imageNamed: GeneralGameSettings.NEWGAME_NAME);
+        _skTextures[GeneralGameSettings.RESUMEGAME_NAME] = SKTexture(imageNamed: GeneralGameSettings.RESUMEGAME_NAME);
+        _skTextures[GeneralGameSettings.SETTINGS_NAME] = SKTexture(imageNamed: GeneralGameSettings.SETTINGS_NAME);
+        _skTextures[GeneralGameSettings.HIGHSCORE_NAME] = SKTexture(imageNamed: GeneralGameSettings.HIGHSCORE_NAME);
+        _skTextures[GeneralGameSettings.SHOP_NAME] = SKTexture(imageNamed: GeneralGameSettings.SHOP_NAME);
+        _skTextures[GeneralGameSettings.TITLE_NAME] = SKTexture(imageNamed: GeneralGameSettings.TITLE_NAME);
+        _skTextures[GeneralGameSettings.GAMESCREEN_ICON_GEM] = SKTexture(imageNamed: GeneralGameSettings.GAMESCREEN_ICON_GEM);
         
         
         
@@ -77,10 +87,16 @@ class AssetServices {
         
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_HEART_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.INJUREA_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.INJUREB_NAME);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MYSPACESHIP_THRUSTER);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MyMissle_Name);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MyMissleB_Name);
         self.InitializeAtlas_ZeroBase(GeneralGameSettings.MyMissleC_Name);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.BEACONA_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_GEM_NAME);
+        self.InitializeAtlas_ZeroBase(GeneralGameSettings.ITEM_CAPTUREE_NAME);
+        
+        
         
         
         //ITEM_HEART_NAME

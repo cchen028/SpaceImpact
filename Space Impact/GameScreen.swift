@@ -15,6 +15,9 @@ class GameScreen: NSObject,IStage {
     fileprivate var _isActive:Bool;
     fileprivate var _mySpaceshipMissleTimer: Timer!;
     fileprivate var _labels:[Label];
+    fileprivate var _buttons:[Button];
+    fileprivate var _icons:[Icon];
+    
     fileprivate var _life:[Icon];
     fileprivate var _lightning:[Icon];
     
@@ -39,6 +42,8 @@ class GameScreen: NSObject,IStage {
         self._labels = [Label]();
         self._life = [Icon]();
         self._lightning = [Icon]();
+        self._icons = [Icon]();
+        self._buttons = [Button]();
         self._levelThres = GeneralGameSettings.GAMELEVEL_THRES;
         
         GameObjectServices.instance.CreateGameScreen(gameScreen: self._gameScreenNode);
@@ -47,20 +52,30 @@ class GameScreen: NSObject,IStage {
         self._collidingService = CollidingServices(level: self._level, spaceship: self._mySpaceship);
         super.init();
         self.createLabels();
+        self.createButtons();
     }
     
     func Update(_ currentTime: TimeInterval){
+        if(!GameObjectServices.instance.IsPaused && !self.Level.IsActive){
+            self._level.Resume();
+        }
+        
         self._level.Update(currentTime);
         self._mySpaceship.Update();
         self._collidingService.Update();
         if UserStatsInfo.instance.Score.value > _levelThres{
+            GameObjectServices.instance.HideCollection(lists: self._buttons);
+             _levelThres = _levelThres + (Int)((Double)(_levelThres) * 1.3);
             self._level.Stop();
-            for enemy in self._level.Enemies{
-                enemy.Explode();
-            }
             self._level.Level += 1;
-            self._level.Start(level:self._level.Level, animationCompleted: nil);
-            _levelThres = _levelThres + (Int)((Double)(_levelThres) * 1.3);
+            self._level.Start(level:self._level.Level, animationCompleted: {
+                GameObjectServices.instance.ShowCollection(lists: self._buttons);
+            });
+            
+            if(self._level.Level == 6){
+                self._level.TransitToBackground(imageName:"galaxy2")
+                
+            }
         }
     }
     
@@ -79,21 +94,14 @@ class GameScreen: NSObject,IStage {
         GameScene.instance!.addChild(self._gameScreenNode);
         self._mySpaceship.SetActive(true);
         
+        GameObjectServices.instance.ShowCollection(lists: self._icons);
+        GameObjectServices.instance.ShowCollection(lists: self._labels);
         
-        for label in self._labels{
-            label.FadeIn();
-        }
-        
-        for lightning in self._lightning{
-            lightning.FadeIn();
-        }
-
-        for heart in self._life{
-            heart.FadeIn();
-        }
-        
-        self._level.Start(level:self._level.Level, animationCompleted: nil);
+        self._level.Start(level:self._level.Level, animationCompleted: {
+            GameObjectServices.instance.ShowCollection(lists: self._buttons)
+        });
     }
+
     
     fileprivate func destroy(){
         self._gameScreenNode.removeFromParent();
@@ -101,7 +109,56 @@ class GameScreen: NSObject,IStage {
         self._level.Stop();
     }
     
+    fileprivate func createButtons(){
+        let pauseMenu = Button(displayText: "⊜", position: CGPoint(x:GameScene.instance!.frame.maxX - 10, y:GameScene.instance!.frame.minY + 20), fontName: GeneralGameSettings.BUTTON_FONTFAMILY, fontSize: 40, imageName: "none");
+        pauseMenu.LabelNode.LabelNode.zRotation = CGFloat(Double.pi/2);
+        pauseMenu.name = "PauseMenu";
+        self._buttons.append(pauseMenu);
+    }
+    
     fileprivate func createLabels(){
+        let iconLife = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_LIFE, position: CGPoint(x:20, y:GameScene.instance!.frame.maxY - 23));
+        
+        let lblLife = Label(displayText: "3", position: CGPoint(x:iconLife.position.x + iconLife.Width, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
+        
+        let iconBomb = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_BOMB, position: CGPoint(x:lblLife.Position.x + iconLife.Width * 2, y:GameScene.instance!.frame.maxY - 23));
+        
+        let lblBomb = Label(displayText: "3", position: CGPoint(x:iconBomb.position.x + iconBomb.Width, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
+        
+        
+        let iconGem = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_GEM, position: CGPoint(x:lblBomb.Position.x + iconBomb.Width * 2, y:GameScene.instance!.frame.maxY - 23));
+        
+        let lblGem = Label(displayText: "0", position: CGPoint(x:iconGem.position.x + iconGem.Width, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
+        
+        let lblScore = Label(displayText: "0", position: CGPoint(x:GameScene.instance!.frame.midX * 1.75, y:GameScene.instance!.frame.maxY - 30), fontSize: GeneralGameSettings.GAMESCREEN_LABEL_FONTSIZE, fontNamed: GeneralGameSettings.GAMESCREEN_LABEL_FONTFAMILY);
+        
+        UserStatsInfo.instance.Score.bind {
+            lblScore.DisplayText = String($0);
+        }
+        
+        UserStatsInfo.instance.Life.bind {
+            lblLife.DisplayText = String($0);
+        }
+        
+        UserStatsInfo.instance.Bomb.bind {
+            lblBomb.DisplayText = String($0);
+        }
+
+        UserStatsInfo.instance.Gem.bind {
+            lblGem.DisplayText = String($0);
+        }
+        
+        self._labels.append(lblBomb);
+        self._labels.append(lblLife);
+        self._labels.append(lblScore);
+        self._labels.append(lblGem);
+        
+        self._icons.append(iconLife);
+        self._icons.append(iconBomb);
+        self._icons.append(iconGem);
+    }
+    
+    fileprivate func createLabels_backup(){
         
         let iconBomb = Icon(imageName: GeneralGameSettings.GAMESCREEN_ICON_BOMB, position: CGPoint(x:20, y:GameScene.instance!.frame.maxY - 23));
         
@@ -124,7 +181,6 @@ class GameScreen: NSObject,IStage {
         UserStatsInfo.instance.Bomb.bind {
             lblBomb.DisplayText = "X " + String($0);
         }
-
         
         self._labels.append(lblBomb);
         self._labels.append(lblLife);
@@ -134,14 +190,40 @@ class GameScreen: NSObject,IStage {
     }
 
     
-    func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool, multipleTouch:Bool = false)
+    func HandlesTouch(position: CGPoint, direction:MoveDirection, isTouched:Bool, multipleTouch:Bool = false, touch: UITouch? = nil, event:UIEvent? = nil)
     {
         if !self._isActive
         {
             return;
         }
         
-        if(multipleTouch && UserStatsInfo.instance.Bomb.value > 0){
+        
+        if((touch) != nil){
+            for button in self._buttons{
+                if button.IsTouched(touch!, withEvent: event)
+                {
+                    let curNodeName = button.name == nil ? "" : button.name!;
+                    switch curNodeName {
+                    case "PauseMenu":
+                        GameObjectServices.instance.IsPaused = true;
+                        self._mySpaceship.Thruster.isPaused = GameObjectServices.instance.IsPaused;
+                        for missle in self._mySpaceship.Missles{
+                            missle.Sprite.isPaused = GameObjectServices.instance.IsPaused;
+                        }
+                        self._mySpaceship.Spaceship.isPaused = GameObjectServices.instance.IsPaused;
+                        
+                        
+                        self._level.Stop();
+                        NotificationCenter.default.post(name: .onPauseMenuButtonPressed, object: nil);
+                    default:
+                        return;
+                    }
+                }
+            }
+
+        }
+        
+        if(multipleTouch && UserStatsInfo.instance.Bomb.value > 0 && self._mySpaceship.IsActive){
              UserStatsInfo.instance.Bomb.value -= 1;
             _mySpaceship.IsBigLazer = true;
             self._level._background?.FadeInAndOut(customTimeIn: 0.4, customTimeOut: 0.2, animationCompleted: nil);
@@ -160,8 +242,6 @@ class GameScreen: NSObject,IStage {
             
             self._mySpaceship.Position = postion;
         }
-        
-       
         
         self._mySpaceship.Direction = direction;
     }

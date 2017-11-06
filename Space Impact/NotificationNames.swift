@@ -10,5 +10,6 @@ import Foundation
 
 
 extension Notification.Name {    
-    static let onPowerUpButtonPressed = Notification.Name("on-power-up-button-pressed")
+    static let onPowerUpButtonPressed = Notification.Name("on-power-up-button-pressed");
+    static let onPauseMenuButtonPressed = Notification.Name("on-pause-menu-button-pressed");
 }

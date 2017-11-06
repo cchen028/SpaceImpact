@@ -33,6 +33,7 @@ class Spaceship: SpaceshipActor{
     
     fileprivate var _previousMovementIndex: Int;
     
+    var Thruster:SpriteActor{get{return self._thruster}}
     var RespawnTimer: Timer?;
     var Direction:MoveDirection{get{return self._moveDirection} set(val){self._moveDirection = val}}
     var IsTouched:Bool{get{return self._isTouched} set(val){self._isTouched = val}}
