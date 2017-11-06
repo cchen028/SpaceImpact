@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		614AA658399522182778EF0B /* Pods_Space_Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C932682CBBAEBC8435CE5CAA /* Pods_Space_Impact.framework */; };
 		657459B31DAF313300200C68 /* IAP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657459B21DAF313300200C68 /* IAP.storyboard */; };
 		657459B51DAF379C00200C68 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657459B41DAF379C00200C68 /* NotificationNames.swift */; };
 		657AE7BB1DBC7DA000A38315 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AE7BA1DBC7DA000A38315 /* IAPTableViewController.swift */; };
 		657AE7BD1DBC7F2100A38315 /* IAPContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AE7BC1DBC7F2100A38315 /* IAPContainerViewController.swift */; };
 		657AE7BF1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */; };
+		9DF4D5F7355971D9E4A0EF7B /* Pods_Space_ImpactUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B2587EBAB69196B89635C8 /* Pods_Space_ImpactUITests.framework */; };
 		B001493A1DBBE95000FB961B /* Item-Shield.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B00149391DBBE95000FB961B /* Item-Shield.atlas */; };
 		B001493C1DBBEA0700FB961B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001493B1DBBEA0700FB961B /* Item.swift */; };
 		B001493E1DBBEE1800FB961B /* ItemActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001493D1DBBEE1800FB961B /* ItemActor.swift */; };
@@ -110,6 +112,7 @@
 		B0F53E031C83ACC400876394 /* TransitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F53E021C83ACC400876394 /* TransitionService.swift */; };
 		B0F53E051C83B9AC00876394 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F53E041C83B9AC00876394 /* GameScreen.swift */; };
 		B0F53E081C83C98300876394 /* GeneralGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F53E071C83C98300876394 /* GeneralGameSettings.swift */; };
+		FE07D4086E364AD78641BC66 /* Pods_Space_ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD4F2417CC0A1C0F37529DB /* Pods_Space_ImpactTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,11 +133,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F6FBFDEF6741EA1D9695ABD /* Pods-Space ImpactUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Space ImpactUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Space ImpactUITests/Pods-Space ImpactUITests.release.xcconfig"; sourceTree = "<group>"; };
+		52C2DA73C7A488F1B6803EE3 /* Pods-Space ImpactUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Space ImpactUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Space ImpactUITests/Pods-Space ImpactUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		657459B21DAF313300200C68 /* IAP.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAP.storyboard; sourceTree = "<group>"; };
 		657459B41DAF379C00200C68 /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		657AE7BA1DBC7DA000A38315 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
 		657AE7BC1DBC7F2100A38315 /* IAPContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPContainerViewController.swift; sourceTree = "<group>"; };
 		657AE7BE1DBC871A00A38315 /* UIGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
+		7E1F9D0B2A2089053A59E801 /* Pods-Space ImpactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Space ImpactTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Space ImpactTests/Pods-Space ImpactTests.release.xcconfig"; sourceTree = "<group>"; };
+		806FC9C4D8B546F995DB198B /* Pods-Space Impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Space Impact.release.xcconfig"; path = "Pods/Target Support Files/Pods-Space Impact/Pods-Space Impact.release.xcconfig"; sourceTree = "<group>"; };
+		9AD4F2417CC0A1C0F37529DB /* Pods_Space_ImpactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Space_ImpactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00149391DBBE95000FB961B /* Item-Shield.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "Item-Shield.atlas"; sourceTree = "<group>"; };
 		B001493B1DBBEA0700FB961B /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B001493D1DBBEE1800FB961B /* ItemActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemActor.swift; sourceTree = "<group>"; };
@@ -239,6 +247,10 @@
 		B0F53E021C83ACC400876394 /* TransitionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionService.swift; sourceTree = "<group>"; };
 		B0F53E041C83B9AC00876394 /* GameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		B0F53E071C83C98300876394 /* GeneralGameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralGameSettings.swift; sourceTree = "<group>"; };
+		C2B54AF5E2938E39E372728C /* Pods-Space Impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Space Impact.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Space Impact/Pods-Space Impact.debug.xcconfig"; sourceTree = "<group>"; };
+		C932682CBBAEBC8435CE5CAA /* Pods_Space_Impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Space_Impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9B2587EBAB69196B89635C8 /* Pods_Space_ImpactUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Space_ImpactUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAE62826F4D79ABB5380ADD7 /* Pods-Space ImpactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Space ImpactTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Space ImpactTests/Pods-Space ImpactTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				614AA658399522182778EF0B /* Pods_Space_Impact.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE07D4086E364AD78641BC66 /* Pods_Space_ImpactTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DF4D5F7355971D9E4A0EF7B /* Pods_Space_ImpactUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +291,16 @@
 			);
 			name = ViewControllers;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		963932115A23BAB9D9EB442C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C932682CBBAEBC8435CE5CAA /* Pods_Space_Impact.framework */,
+				9AD4F2417CC0A1C0F37529DB /* Pods_Space_ImpactTests.framework */,
+				C9B2587EBAB69196B89635C8 /* Pods_Space_ImpactUITests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B004876C1C8D10DD0061EC7F /* Animation Assets */ = {
@@ -344,6 +369,8 @@
 				B03BD6021C706BC200D14F4C /* Space ImpactTests */,
 				B03BD60D1C706BC200D14F4C /* Space ImpactUITests */,
 				B03BD5E81C706BC200D14F4C /* Products */,
+				EB0CC15765EA97A38CC86542 /* Pods */,
+				963932115A23BAB9D9EB442C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -526,6 +553,19 @@
 			name = Configurations;
 			sourceTree = "<group>";
 		};
+		EB0CC15765EA97A38CC86542 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2B54AF5E2938E39E372728C /* Pods-Space Impact.debug.xcconfig */,
+				806FC9C4D8B546F995DB198B /* Pods-Space Impact.release.xcconfig */,
+				EAE62826F4D79ABB5380ADD7 /* Pods-Space ImpactTests.debug.xcconfig */,
+				7E1F9D0B2A2089053A59E801 /* Pods-Space ImpactTests.release.xcconfig */,
+				52C2DA73C7A488F1B6803EE3 /* Pods-Space ImpactUITests.debug.xcconfig */,
+				4F6FBFDEF6741EA1D9695ABD /* Pods-Space ImpactUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -533,9 +573,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B03BD6131C706BC200D14F4C /* Build configuration list for PBXNativeTarget "Space Impact" */;
 			buildPhases = (
+				80EAA57D526E8D8993CC2CA8 /* [CP] Check Pods Manifest.lock */,
 				B03BD5E31C706BC200D14F4C /* Sources */,
 				B03BD5E41C706BC200D14F4C /* Frameworks */,
 				B03BD5E51C706BC200D14F4C /* Resources */,
+				1293F38FC991E7FC52AB3CEB /* [CP] Embed Pods Frameworks */,
+				67B7423D45CB1FA339B0CF97 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -550,9 +593,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B03BD6161C706BC200D14F4C /* Build configuration list for PBXNativeTarget "Space ImpactTests" */;
 			buildPhases = (
+				EEC21B8752BFEA6130C5708F /* [CP] Check Pods Manifest.lock */,
 				B03BD5FB1C706BC200D14F4C /* Sources */,
 				B03BD5FC1C706BC200D14F4C /* Frameworks */,
 				B03BD5FD1C706BC200D14F4C /* Resources */,
+				41264641EE69E80D29C9C2A7 /* [CP] Embed Pods Frameworks */,
+				1ACDE90FDCD931E1B8F0E476 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -568,9 +614,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B03BD6191C706BC200D14F4C /* Build configuration list for PBXNativeTarget "Space ImpactUITests" */;
 			buildPhases = (
+				96186DC1C71827119042AD3E /* [CP] Check Pods Manifest.lock */,
 				B03BD6061C706BC200D14F4C /* Sources */,
 				B03BD6071C706BC200D14F4C /* Frameworks */,
 				B03BD6081C706BC200D14F4C /* Resources */,
+				A0D7398EF786C70981295242 /* [CP] Embed Pods Frameworks */,
+				8023AA48F0521BB615D7431A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -697,6 +746,153 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1293F38FC991E7FC52AB3CEB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Space Impact/Pods-Space Impact-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1ACDE90FDCD931E1B8F0E476 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Space ImpactTests/Pods-Space ImpactTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41264641EE69E80D29C9C2A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Space ImpactTests/Pods-Space ImpactTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67B7423D45CB1FA339B0CF97 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Space Impact/Pods-Space Impact-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8023AA48F0521BB615D7431A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Space ImpactUITests/Pods-Space ImpactUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80EAA57D526E8D8993CC2CA8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Space Impact-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96186DC1C71827119042AD3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Space ImpactUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0D7398EF786C70981295242 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Space ImpactUITests/Pods-Space ImpactUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEC21B8752BFEA6130C5708F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Space ImpactTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B03BD5E31C706BC200D14F4C /* Sources */ = {
@@ -905,6 +1101,7 @@
 		};
 		B03BD6141C706BC200D14F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2B54AF5E2938E39E372728C /* Pods-Space Impact.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -919,6 +1116,7 @@
 		};
 		B03BD6151C706BC200D14F4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 806FC9C4D8B546F995DB198B /* Pods-Space Impact.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -933,6 +1131,7 @@
 		};
 		B03BD6171C706BC200D14F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAE62826F4D79ABB5380ADD7 /* Pods-Space ImpactTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -947,6 +1146,7 @@
 		};
 		B03BD6181C706BC200D14F4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E1F9D0B2A2089053A59E801 /* Pods-Space ImpactTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Space ImpactTests/Info.plist";
@@ -960,6 +1160,7 @@
 		};
 		B03BD61A1C706BC200D14F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52C2DA73C7A488F1B6803EE3 /* Pods-Space ImpactUITests.debug.xcconfig */;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "Space ImpactUITests/Info.plist";
@@ -974,6 +1175,7 @@
 		};
 		B03BD61B1C706BC200D14F4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F6FBFDEF6741EA1D9695ABD /* Pods-Space ImpactUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Space ImpactUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
